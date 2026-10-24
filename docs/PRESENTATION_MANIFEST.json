@@ -11,13 +11,13 @@
   },
   "theme": "dark technical; editable native shapes + actual UI screenshots",
   "inputs_sha256": {
-    "scripts/build_presentation.py": "3a6c08e56d4bac50bb331a5457dc5c96be8da0fb54cba5aef264a2bf38c9ce82",
+    "scripts/build_presentation.py": "659468f9aad78718cd2c01cdcd26f0fed39302faf3d9828b2f3e55bc498b568b",
     "docs/ui-report.png": "3a3ad1538d50d3ede791a7fcdf6d2c1c6e1cf3f070a4bb855acf157386f035e7",
     "docs/ui-interview.png": "703fb6b0af77106c564d2eac49a84ca8b60db1d96ee9a91d5cab1797236c1672",
     "docs/SOURCE_TRAINING_RESULT.json": "7a2db13010712059b005f2152c1db2b644f96828b25c414fe97678fc723439f4",
     "docs/ELITE_TRANSFER_RESULT.json": "1efc6f43d252c44e725d5b0a8b42fd4759829eb01c737c1dc83db9f3da3529e3",
     "docs/CASE_SOLVABILITY_AUDIT.json": "424064b699f5294f59a00fe1ec63ed7e94a394d65ee9d91d4d4bd984673e9b2f",
-    "docs/VALIDATION_RESULT.json": "8a5fb5d23c81dac351cd6d3762b44554c22f876cdec2884fabfa629e889f25ac",
+    "docs/VALIDATION_RESULT.json": "31efdb2b333c6a4cc36553a24fd582ae73c50af6e8d2966a47c7fbfa71712fca",
     "docs/FAMILY_VALIDATION_RESULT.json": "46f097e2fbb8f8e9073da1bf64006c0a4df4e6bf7b88462a5f36fb3c8f3647dc"
   },
   "screenshots": {

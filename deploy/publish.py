@@ -1,10 +1,9 @@
 """Publish a sanitized local release to this project's dedicated Terraform VM.
 
-Provider credentials are loaded by deploy/terraform.sh; API/auth secrets travel
-only over SSH and are never embedded in Terraform metadata, state or Git.
+Provider credentials are loaded by deploy/terraform.sh. The public app stores
+provider settings only; team API keys are not deployed or embedded in Terraform.
 """
 import argparse
-import contextlib
 import hashlib
 import json
 import os
@@ -17,7 +16,6 @@ import tarfile
 import time
 import urllib.error
 import urllib.request
-import base64
 
 ROOT=Path(__file__).resolve().parents[1]
 PRIVATE=ROOT/'.deployment'

@@ -2,8 +2,8 @@
 
 Usage: python -m mercy.viewer.server --port 8787
 The browser never receives private world/actor files or configured API keys.
-Hosted access requires an authenticated HTTPS proxy and explicit public origin;
-the application itself always binds to loopback.
+Hosted access requires an HTTPS proxy and explicit public origin;
+the application itself always binds to loopback. Public demo runs use visitor keys.
 """
 import argparse
 import hmac

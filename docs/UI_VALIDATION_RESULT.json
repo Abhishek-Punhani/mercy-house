@@ -1,5 +1,5 @@
 {
-  "town_tests": 118,
+  "town_tests": 120,
   "legacy_tests": 9,
   "node_state_tests": 9,
   "browser": {
@@ -103,5 +103,7 @@
   "case_audit": "docs/CASE_SOLVABILITY_AUDIT.json",
   "source_training": "docs/SOURCE_TRAINING_RESULT.json",
   "hosted_viewer_boundary_tests": "11 viewer tests include4 hosted-origin/provider-key regressions",
-  "deployment_validation": "DEPLOYMENT_RESULT.json"
+  "deployment_validation": "DEPLOYMENT_RESULT.json",
+  "public_viewer_tests": "13 viewer boundary tests, including visitor key isolation and creator-only stop token",
+  "public_site": "PUBLIC_SITE_BROWSER_CHECKS.json"
 }

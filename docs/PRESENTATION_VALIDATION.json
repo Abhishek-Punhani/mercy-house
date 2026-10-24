@@ -5,12 +5,11 @@
     "Abhishek",
     "Tapis Samaiya"
   ],
-  "qr_codes": {
-    "qr-repository.png": "https://github.com/Abhishek-Punhani/mercy-house",
-    "qr-live-demo.png": "https://mercyhouse.abhi07.xyz"
-  },
-  "qr_pngs_decode": true,
+  "public_links": [
+    "https://github.com/Abhishek-Punhani/mercy-house",
+    "https://mercyhouse.abhi07.xyz"
+  ],
   "qr_codes_decode_from_rendered_pdf": true,
-  "clickable_powerpoint_links": true,
-  "final_render_after_theme_update": "Both rendered QR codes decode and clickable links match the intended URLs."
+  "plain_language_review": true,
+  "access_labels": "Public repository and website; no login. Visitor key for a new live run."
 }

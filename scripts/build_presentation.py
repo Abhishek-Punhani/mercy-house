@@ -90,110 +90,98 @@ def build():
         s.shapes.add_picture(str(p),Inches(x+(w-pw)/2),Inches(y+(h-ph)/2),width=Inches(pw),height=Inches(ph))
     def note(s,words):s.notes_slide.notes_text_frame.text=words
     def small(s,words):text(s,.65,6.54,12,.35,words,11,'muted')
-    train=read('SOURCE_TRAINING_RESULT.json');elite=read('ELITE_TRANSFER_RESULT.json');audit=read('CASE_SOLVABILITY_AUDIT.json');tests=read('VALIDATION_RESULT.json')
-    s=slide('MERCY HOUSE','Kasukabe Defence Force','An evidence-grounded investigation environment for language agents.')
-    text(s,.69,2.6,11.5,.72,'Private memories. Conflicting accounts. Verifiable conclusions.',26,'mint',True)
+    train=read('SOURCE_TRAINING_RESULT.json');elite=read('ELITE_TRANSFER_RESULT.json');tests=read('VALIDATION_RESULT.json')
+    s=slide('MERCY HOUSE','Kasukabe Defence Force','A detective game that checks the evidence behind every conclusion.')
+    text(s,.7,2.65,11.6,.7,'Find the truth. Show the proof.',32,'mint',True)
     text(s,.72,3.65,11.4,.35,'PRESENTED BY',12,'muted',True)
     for i,name in enumerate(['Aditya Ahirwar','Abhishek','Tapis Samaiya']):
         box(s,.7+i*4.16,4.23,3.94,1.17,line='edge')
         text(s,.93+i*4.16,4.58,3.5,.45,name,22,'ink',True)
     small(s,'RL Environment Hackathon  /  Games & World Simulations  /  Team Kasukabe Defence Force')
-    # 1
-    s=slide('Truth needs a chain of evidence.','Evidence-grounded agent evaluation')
-    text(s,.65,2.05,6.0,1.15,'An investigation world for language agents.',29,'mint',True)
-    text(s,.65,3.36,5.7,1.15,'A snowbound town in 1900. Private lives, limited witnesses and evidence that can point at the wrong person.',20)
-    image(s,'ui-interview.png',6.8,2.05,5.85,4.1)
-    text(s,6.95,6.19,5.6,.25,'Shown: scripted inquest reference, not a live solve.',10,'muted')
-    for x,n,l in [(.65,'8','PUBLIC TASKS'),(2.6,'4','CASE FAMILIES'),(4.55,'3','DESIGNED LEVELS')]:
-        box(s,x,5.15,1.7,1.12,line='edge');text(s,x+.16,5.24,1.3,.48,n,28,'mint',True);text(s,x+.16,5.86,1.4,.3,l,8,'muted')
-    small(s,'The competition deliverable is the environment. Judges supply their detective model.')
-    # 2
-    s=slide('The agent controls the investigation.','What the environment asks an agent to do','It starts with its own biography and the local scene. The answer and hidden event journal remain private.')
-    for i,(a,b) in enumerate([('01  EXPLORE','Choose a place and inspect visible features.'),('02  INTERVIEW','Question people; separate experience from hearsay.'),('03  TEST','Compare acquired documents and physical traces.'),('04  REPORT','Cite sources for each conclusion; retain uncertainty.')]):card(s,.65+i*3.08,2.7,2.9,2.55,a,b,body_size=16)
-    text(s,.72,5.65,11.9,.72,'In the flagship case, physician Mira Sen dies while exposing old institutional records. The detective’s sister, former partner and trusted constable connect him to the inquiry, putting loyalty in conflict with proof.',17,'muted')
-    small(s,'Eight task scopes across four causal families; difficulty labels describe design complexity, not measured success bands.')
-    # 3
-    s=slide('The incident executes before arrival.','World state and causal traces','Validated transitions produce the injury, objects and local recollections that the detective can investigate.')
-    labels=[('ACTION TAPE','Recorded or authored\nseeded decisions'),('WORLD ENGINE','Movement, possession,\nattack and delivery'),('LOCAL EFFECTS','Physical traces +\nlimited perception'),('INVESTIGATION','Persistent tools,\nreceipts and dialogue')]
-    for i,(a,b) in enumerate(labels):
-        card(s,.65+3.08*i,2.75,2.9,2.05,a,b,body_size=15)
-    for x,a,b in [(.65,'NO ASSAULT','No fatal lamp injury.'),(4.8,'INTACT BRAKE','No sabotage-caused coach deaths.'),(8.95,'ORDINARY CORDIAL','No adulteration-caused death.')]:card(s,x,5.03,3.75,1.23,a,b,'amber',12)
-    small(s,'Mercy House replays recorded LLM actions. New cases execute authored seeded tapes. Continuous offstage lives are unfinished.')
-    # 4
-    s=slide('Each character owns its memories.','Character model architecture','Private planning and public speech use separate contexts; physical truth stays in the engine.')
-    card(s,.65,2.75,3.7,2.6,'PRIVATE PLANNER','Own life, local memories and legal choices. The raw detective question is replaced by derived topics.',body_size=17)
-    card(s,4.82,2.75,3.7,2.6,'DISCLOSURE GATE','Trust, relevant acquired evidence and memory sensitivity determine which recollections may be released.','violet',17)
-    card(s,8.99,2.75,3.7,2.6,'PUBLIC SPEAKER','Only released recollections and public context become the spoken answer. Dialogue cannot create objects.','amber',17)
-    text(s,.72,5.74,11.9,.6,'The viewer streams observed actions, actual dialogue and stated notes. It excludes private character memories and provider reasoning.',17,'muted')
-    # 5
-    s=slide('The submitted report stays visible.','Observable results and official scoring')
-    image(s,'ui-report.png',.65,2.0,7.2,4.55)
-    box(s,8.05,2.15,4.6,3.98,line='edge');text(s,8.3,2.4,4.1,.4,'PROGRAMMATIC VERIFIER',15,'mint',True)
-    text(s,8.3,3.02,4.05,.77,'R = clamp(C − .20F − .10U, 0, 1)',21,'ink',True)
-    text(s,8.3,4.03,4.02,1.87,'C: supported target coverage\nF: distinct false findings\nU: distinct unsupported findings\nA correct guess without proof earns zero.',16)
-    small(s,'Screenshot: actual native detective success, Lantern Room seed211. Narrative is unscored. Optional author-review LLM cannot assign rewards.')
-    # 6
-    s=slide('A small stack with explicit boundaries.','Implementation and isolation','Python standard-library runtime • Vanilla JavaScript, CSS and original SVG • Docker Compose • HTTPS model APIs')
-    for x,a,b,accent in [(.65,'PROTECTED WORLD','Python state engine, receipts, proof routes and deterministic verifier.','mint'),(3.73,'TRUSTED HARNESS','Model-independent parsing, step/time budgets, private HTTP tool requests and JSONL logs.','violet'),(6.81,'MODEL GATEWAY','Configured endpoints, credential isolation, deadlines and request limits.','amber'),(9.89,'AGENT WORKSPACE','Real shell plus public town CLI; no keys, truth files or external route.','mint')]:card(s,x,2.75,2.8,2.65,a,b,accent,15)
-    text(s,.72,5.75,11.9,.64,'Presentation UI: local Python HTTP server + server-sent events. Policy training: CPU REINFORCE over a linear softmax selector; no GPU or LLM fine-tuning.',17,'muted')
-    small(s,'Workspace has no Docker socket, private mounts or control token. Security assumes a trusted host and Docker daemon.')
-    # 7
-    s=slide('RL learns which proposed action to execute.','The trained policy','Optional research policy: a compact learned selector ranks actions using public features. The native UI/judging detective remains independent.')
-    for i,(a,b) in enumerate([('OBSERVED STATE','Acquired records, comparisons, interviews, repeat attempts and steps left.'),('CANDIDATE ACTIONS','An authored public proposer during CPU training; an LLM proposer during transfer tests.'),('LEARNED SELECTOR','Scores features, produces action probabilities, and executes one choice.')]):card(s,.65+4.13*i,2.75,3.91,2.65,a,b,['mint','violet','amber'][i],17)
-    text(s,.73,5.8,11.85,.57,'REINFORCE raises the probability of action sequences that earn a valid terminal exercise reward, relative to a running baseline.',18,'muted')
-    small(s,'Earlier prototype: 20,000 episodes / 460 weights. Fresh source curriculum: 6,000 episodes / 132 weights. Language-model weights stay fixed.')
-    # 8
-    s=slide('Three mechanisms become practice exercises.','Sourced inspiration, original interactive training','Original renamed checkpoint scenarios reuse the tested world mechanics. They do not reproduce TV scripts or complete episodes.')
-    cards=[('INTENDED TARGET','The Mentalist S1E8\nSeparate the person targeted from the other casualty.'),('APPARENT FOREKNOWLEDGE','The Mentalist S1E7\nTest authorship; prediction alone does not establish murder.'),('TRUSTED RELATIVE','His & Hers\nCheck a familiar parent against evidence rather than loyalty or rumour.')]
-    for i,(a,b) in enumerate(cards):card(s,.65+4.13*i,2.75,3.91,2.6,a,b,['mint','violet','amber'][i],17)
-    text(s,.72,5.78,11.9,.62,'Both culprit assignments occur. Training starts from zero; the elite Mercy House cases are excluded from this new curriculum.',17,'muted')
-    small(s,'Sources credited in SOURCE_TRAINING_REPORT.md. Some materials are acquired before these checkpoints begin; this is skill training.')
-    note(s,'Sources: The Mentalist S1E7 Seeing Red https://www.tvmaze.com/episodes/8884/the-mentalist-1x07-seeing-red ; S1E8 The Thin Red Line https://tv.apple.com/nz/episode/thin-red-line/umc.cmc.343dcf9kznkxsuz2rx6jcazs9 ; His & Hers official ending https://www.netflix.com/tudum/articles/his-hers-episode-6-recap-ending-explained . Broad mechanisms only; no episode transcript training or original-plot generalization claim.')
-    # 9
-    s=slide('Reward supported inference, not activity.','New CPU training and held-out evaluation')
-    episodes=train.get('training_episodes',train.get('episodes','Pending'))
-    evaluations=train.get('evaluations',{})
-    text(s,.7,2.18,11.8,.62,f'{episodes} episodes  /  48 training checkpoints  /  48 disjoint held-out checkpoints  /  CPU only',20,'mint',True)
-    card(s,.65,3.0,5.25,2.67,'TERMINAL EXERCISE REWARD','1: the scoped material finding has acquired proof and no false or unsupported conclusions.\n0: incomplete, guessed, wrong or unsupported.','mint',17)
-    labels=[('Untrained','untrained'),('Trained sampling','trained_sampling'),('Trained greedy','trained_greedy')]
-    for i,(label,key) in enumerate(labels):
-        data=evaluations.get(key,{})
-        n=data.get('episodes',0);rate=data.get('mean_reward')
-        if rate is None and isinstance(data.get('success_rate'),(int,float)):rate=data['success_rate']
-        y=3.05+i*1.0;text(s,6.35,y,4.7,.3,label,16,'muted')
-        box(s,6.35,y+.42,4.8,.18,'edge',radius=False)
-        if isinstance(rate,(int,float)):box(s,6.35,y+.42,max(.03,4.8*rate),.18,'mint' if i else 'amber',radius=False)
-        text(s,11.35,y+.23,1.2,.38,f'{rate:.1%}' if isinstance(rate,(int,float)) else 'Pending',17,'ink',True)
-    small(s,'96 trials per policy (48 checkpoints repeated twice). Prepared acquisitions + authored candidate rules. Same templates; not full-case success.')
-    # 10
-    s=slide('Test transfer on excluded elite cases.','Frozen checkpoint • matched proposal contract','Two predeclared task scopes of the excluded Mercy House incident. LLM-ranked baseline versus frozen source-trained selector; 40 choices per arm.')
-    rows=elite.get('rows',[])
-    for i,task in enumerate(['last_witness','mercy_inquest']):
-        y=2.8+i*1.48;box(s,.65,y,12.03,1.2,line='edge');text(s,.9,y+.2,4.5,.4,'Fatal assault' if i==0 else 'Seven-act full inquest',21,'ink',True)
+
+    s=slide('A murder. Many accounts. One investigation.','The idea')
+    text(s,.7,2.15,5.4,1.15,'Bhairav’s Hollow, 1900.',29,'mint',True)
+    text(s,.7,3.2,5.35,1.5,'A physician dies while trying to expose old records. The detective knows the people involved. Some accounts are mistaken; some evidence was planted.',21)
+    image(s,'ui-interview.png',6.25,2.0,6.4,4.5)
+    for x,n,label in [(.7,'8','TASKS'),(2.6,'4','CASE FAMILIES'),(4.5,'3','LEVELS')]:
+        box(s,x,5.1,1.72,1.1,line='edge');text(s,x+.16,5.2,1.4,.45,n,27,'mint',True);text(s,x+.16,5.79,1.4,.25,label,9,'muted')
+    small(s,'Image: a labeled recorded reference investigation. It is a demonstration, not a model-performance result.')
+
+    s=slide('The detective chooses every next step.','How to play','Start at the scene with a personal history and an assignment. No solution is supplied.')
+    for i,(title,body) in enumerate([('EXPLORE','Choose where to go and what to search.'),('QUESTION','Ask people what they saw, heard or believe.'),('CHECK','Compare documents and physical evidence.'),('REPORT','Make conclusions and cite the records behind them.')]):
+        card(s,.65+i*3.08,2.78,2.9,2.5,title,body,body_size=17)
+    text(s,.75,5.7,11.8,.6,'The detective can be wrong, follow a false lead, change its mind or finish with unanswered questions.',19,'muted')
+    small(s,'Judges bring their detective model. Our submission provides the world, tools, characters and scoring.')
+
+    s=slide('Actions create the clues.','What happens before the detective arrives','The engine checks who was present, what they could do and what they could actually observe.')
+    for i,(title,body) in enumerate([('THE INCIDENT','Characters move, act and handle objects.'),('THE CONSEQUENCES','The engine records injuries and physical changes.'),('THE WITNESSES','Each person remembers only their own experience.')]):
+        card(s,.65+i*4.13,2.8,3.91,2.35,title,body,['mint','violet','amber'][i],18)
+    text(s,.78,5.54,11.8,.8,'Remove the assault: no fatal injury. Keep the brake intact: no coach deaths. Leave the drink unchanged: no poisoning death.',19,'muted')
+    small(s,'Starting incidents replay recorded or authored actions for repeatable tests. A continuously autonomous town is not implemented.')
+
+    s=slide('Each person has a life beyond the question.','Character conversations','Family, work, relationships and private memories shape what a character is willing to say.')
+    card(s,.65,2.85,3.85,2.58,'WHAT THEY KNOW','Their own history and local experiences. They cannot inspect another person’s memories.',body_size=18)
+    card(s,4.76,2.85,3.85,2.58,'WHAT THEY SHARE','Reassurance and relevant evidence can unlock a reluctant account. A character may still refuse.','violet',18)
+    card(s,8.87,2.85,3.85,2.58,'WHAT THEY SAY','A separate model call writes the spoken reply using only the released recollections.','amber',18)
+    small(s,'Witnesses do not receive the answer file. Conversation alone cannot create evidence or change what happened.')
+
+    s=slide('Read the report—and why it passed or failed.','The finished investigation')
+    image(s,'ui-report.png',.65,2.0,7.25,4.5)
+    card(s,8.15,2.25,4.45,3.85,'VISIBLE RESULTS','The submitted conclusions.\nLinks to acquired evidence.\nSupported and unsupported findings.\nThe score and its explanation.',body_size=18)
+    small(s,'Image: an actual beginner investigation that scored 1.0. The written narrative is shown, but is not automatically fact-checked.')
+
+    s=slide('What we built.','The software')
+    for i,(title,body) in enumerate([('PYTHON','Runs the world, checks actions, stores evidence and scores reports.'),('JAVASCRIPT + SVG','Shows places, characters, dialogue, evidence and the final report.'),('DOCKER','Separates the hidden world, model access, run controller and detective’s shell.'),('MODEL APIs','Power the detective and character conversations. The viewer streams their public actions.')]):
+        card(s,.65+i*3.08,2.8,2.9,2.85,title,body,['mint','violet','amber','mint'][i],16)
+    small(s,'Hosted on Google Cloud with Terraform, Cloudflare DNS and Caddy HTTPS. The public website needs no account.')
+
+    s=slide('What did we train?','Learning which action to choose','We trained a small action selector. We did not change the language model’s weights.')
+    for i,(title,body) in enumerate([('1  READ THE PROGRESS','Use acquired records, past actions and remaining steps.'),('2  CONSIDER CHOICES','Receive several possible searches, questions, comparisons or reports.'),('3  PICK AN ACTION','Learn which choices tend to lead to a supported conclusion.')]):
+        card(s,.65+i*4.13,2.8,3.91,2.6,title,body,['mint','violet','amber'][i],18)
+    text(s,.78,5.78,11.85,.52,'After repeated practice, successful action sequences become more likely. This is the reinforcement-learning part.',18,'muted')
+    small(s,'The method is REINFORCE. Training used written rules to propose choices; the full-case test used language-model proposals.')
+
+    s=slide('Three story ideas became practice problems.','The training examples','We wrote new interactive exercises inspired by these stories. We did not train on complete episode scripts.')
+    for i,(title,body) in enumerate([('THE MENTALIST · S1E8','Two people died. Which one was the intended target? Check the instruction and passenger records.'),('THE MENTALIST · S1E7','Someone predicted a death. That does not prove murder. Check who wrote the warning.'),('HIS & HERS','A familiar relative can be guilty or innocent. Use a first-hand account and physical evidence, not loyalty or gossip.')]):
+        card(s,.65+i*4.13,2.8,3.91,2.78,title,body,['mint','violet','amber'][i],17)
+    small(s,'Both culprit assignments appear. Some evidence is already acquired when practice begins. The original full inquest is excluded from this new training.')
+    note(s,'Broad story inspiration only. Sources: https://tv.apple.com/nz/episode/thin-red-line/umc.cmc.343dcf9kznkxsuz2rx6jcazs9 ; https://www.tvmaze.com/episodes/8884/the-mentalist-1x07-seeing-red ; https://www.netflix.com/tudum/articles/his-hers-episode-6-recap-ending-explained . Full details and limits: SOURCE_TRAINING_REPORT.md.')
+
+    s=slide('Reward proof, not a confident accusation.','How scoring works')
+    card(s,.65,2.8,5.78,2.86,'DURING PRACTICE','1 point: the requested conclusion has valid acquired evidence, with no false or unsupported claims.\n0 points: otherwise.',body_size=19)
+    card(s,6.76,2.8,5.78,2.86,'DURING A FULL CASE','Credit for supported required findings.\n−0.20 per distinct false finding.\n−0.10 per distinct unsupported finding.\nFinal score stays between 0 and 1.','amber',18)
+    small(s,'A correct guess without evidence earns no credit. A Python verifier assigns the score; a language model does not grade the investigation.')
+
+    s=slide('Practice improved. Full cases remain difficult.','The measured results')
+    text(s,.73,2.1,11.9,.7,'6,000 practice runs · 132 learned weights · 48 seconds on a CPU · no training API calls',20,'mint',True)
+    for i,(label,key) in enumerate([('Before training','untrained'),('After training: sampled choices','trained_sampling'),('After training: top choice','trained_greedy')]):
+        data=train['evaluations'][key];rate=data['mean_reward'];y=3.15+i*.9
+        text(s,.82,y,6.0,.4,label,19,'ink')
+        box(s,6.45,y+.12,4.75,.22,'edge',radius=False);box(s,6.45,y+.12,max(.03,4.75*rate),.22,'mint' if i else 'amber',radius=False)
+        text(s,11.45,y,1.1,.4,str(data['successes'])+'/'+str(data['episodes']),22,'mint',True)
+    text(s,.8,6.05,11.8,.4,'48 practice setups and 48 separate test setups. Each test setup was evaluated twice, using the same kinds of practice problem.',15,'muted')
+    small(s,'These results measure choosing among prepared actions. They do not show that a model can solve any murder case.')
+
+    s=slide('The harder test exposed the gap.','Full investigations excluded from training','We froze the new weights, then tested two tasks from the original Mercy House incident.')
+    for i,(task,label) in enumerate([('last_witness','Establish the fatal assault'),('mercy_inquest','Explain all seven material acts')]):
+        y=2.85+i*1.4;box(s,.65,y,12.0,1.15,line='edge');text(s,.91,y+.27,4.85,.55,label,20,'ink',True)
         for j,arm in enumerate(['llm_ranked','rl_selected']):
-            row=next((r for r in rows if r.get('task_id')==task and r.get('arm')==arm),{})
-            result=row.get('result',{});score=result.get('score')
-            text(s,5.9+j*3.25,y+.14,3.05,.27,'LLM-RANKED' if j==0 else 'SOURCE-TRAINED SELECTOR',10,'muted',True)
-            text(s,5.9+j*3.25,y+.51,3.05,.48,str(score) if score is not None else 'Pending',27,'mint' if result.get('success') else 'amber',True)
-    text(s,.78,5.95,11.85,.4,'The same grounded response bank controls character variation. After branches diverge, later LLM proposals may differ.',15,'muted')
-    small(s,'Small development comparison, not statistical superiority or the standard native-tool judging harness. Full trajectories retained.')
-    # 11
-    s=slide('Audit the case, not just the score.','Consistency, source-only solvability and robustness')
-    count=tests.get('town_tests','?');node=tests.get('node_state_tests',8)
-    card(s,.65,2.75,3.85,2.85,'FACT AND PROVENANCE FIXES','Distinguish payer from carrier. Authenticate the register writer independently. Correct what witnesses actually perceived.','mint',17)
-    card(s,4.76,2.75,3.85,2.85,'LEGAL PROOF ROUTES', 'All eight reference/no-op pairs: 1 / 0. Public-information-only scripted probes solve all three new families with both culprit roles.','violet',17)
-    card(s,8.87,2.75,3.85,2.85,'EXECUTABLE CHECKS',f'{count} town + 9 legacy + {node} Node tests. Browser desktop/mobile reports, isolation probes, forged-source rejection and causal counterfactuals.','amber',17)
-    small(s,'Scripted feasibility is not live cooperation. Canonical murder proof can depend on a reluctant witness or a supported admission.')
-    # 12
-    s=slide('A reviewable environment, with measured limits.','Demonstration and handoff')
-    card(s,.65,2.7,5.82,2.83,'TRY THE INVESTIGATION','mercyhouse.abhi07.xyz → Sign in → New investigation → Lantern Room, seed7.\nInspect the submitted report and acquired citations.','mint',18)
-    card(s,6.77,2.7,5.82,2.83,'WHAT IS ESTABLISHED','Four native beginner runs scored 1.0 with live character agents. Harder-case and RL results are reported separately. Continuous autonomous lives and scored ghost causes remain unfinished.','amber',17)
-    text(s,.75,5.83,11.88,.5,'docker compose up --build --abort-on-container-exit --exit-code-from harness',16,'violet',font='DejaVu Sans Mono')
-    small(s,'Source + baseline gates + raw runs + editable deck/PDF + security and audit evidence. Final character-model setup and submission are external.')
+            row=next(r for r in elite['rows'] if r['task_id']==task and r['arm']==arm)
+            text(s,6.25+j*3.14,y+.16,2.9,.28,'MODEL’S FIRST CHOICE' if j==0 else 'TRAINED SELECTOR',10,'muted',True)
+            text(s,6.25+j*3.14,y+.52,2.9,.45,str(row['result']['score']),25,'amber',True)
+    text(s,.8,5.95,11.7,.4,'Neither method completed the two tasks. Full-case improvement remains unproven.',18,'muted')
+    small(s,'Same proposal rules, fixed character responses and 40 choices per run. Four runs are a small comparison, not a broad performance claim.')
+
+    s=slide('Checked, corrected and ready to inspect.','Testing and live demonstration')
+    count=tests.get('town_tests','?');node=tests.get('node_state_tests',9)
+    card(s,.65,2.8,3.85,2.8,'CASE CONSISTENCY','184 task-and-seed checks passed. We fixed mixed-up roles, weak document attribution and impossible witness details.',body_size=17)
+    card(s,4.76,2.8,3.85,2.8,'SOFTWARE CHECKS',f'{count} world/runtime tests.\n9 earlier regression tests.\n{node} viewer tests.\nDesktop and mobile checks.','violet',18)
+    card(s,8.87,2.8,3.85,2.8,'TRY IT','Open the demo without signing in. Watch a recorded case, or enter your own API key to start a live investigation.','amber',18)
+    small(s,'A hosted beginner test scored 1.0. Difficult live cases remain unproven; a witness can refuse to disclose crucial evidence.')
+
     s=slide('Thank you.','Questions & live demonstration','Scan to explore the source or watch an investigation unfold.')
-    for x,label,name,url,detail in [(.7,'SOURCE REPOSITORY','qr-repository.png',REPO_URL,'Private repository · GitHub access required'),(6.86,'LIVE DEMONSTRATION','qr-live-demo.png',LIVE_URL,'Protected demo · sign-in required')]:
-        box(s,x,2.7,5.77,3.36,line='edge')
-        text(s,x+.24,2.93,5.25,.35,label,15,'mint',True)
+    for x,label,name,url,detail in [(.7,'SOURCE REPOSITORY','qr-repository.png',REPO_URL,'Public source and project documentation'),(6.86,'LIVE DEMONSTRATION','qr-live-demo.png',LIVE_URL,'Open access · no sign-in')]:
+        box(s,x,2.7,5.77,3.36,line='edge');text(s,x+.24,2.93,5.25,.35,label,15,'mint',True)
         image(s,name,x+.25,3.55,2.04,2.04)
         short='github.com/\nAbhishek-Punhani/\nmercy-house' if name=='qr-repository.png' else 'mercyhouse.abhi07.xyz'
         link=text(s,x+2.54,3.68,2.96,1.2,short,14,'mint',True)
@@ -201,7 +189,7 @@ def build():
             for run in paragraph.runs:run.hyperlink.address=url
         text(s,x+2.54,5.02,2.92,.7,detail,12,'muted')
     small(s,'Aditya Ahirwar  •  Abhishek  •  Tapis Samaiya  |  Kasukabe Defence Force')
-    note(s,'Repository: '+REPO_URL+' . Live demo: '+LIVE_URL+' . QR codes encode only these HTTPS URLs. The repository is private and the demo requires authentication; no credentials appear in the presentation.')
+    note(s,'Public repository: '+REPO_URL+' . Public demo: '+LIVE_URL+' . QR codes contain only these URLs. Watching needs no login or key; a new public live run uses a visitor key for the configured provider.')
     for s in R.slides:
         if not s.notes_slide.notes_text_frame.text.strip():note(s,'All claims describe implemented local artifacts and recorded development measurements. See docs/PS_COMPLIANCE_AUDIT.md, SOURCE_TRAINING_REPORT.md, ELITE_TRANSFER_RESULT.json and CASE_SOLVABILITY_AUDIT.md. Do not present scripted references as LLM success or checkpoint rates as whole-case success.')
     R.save(str(DOC/'deck.pptx'))

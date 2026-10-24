@@ -1,6 +1,6 @@
 # Local submission handoff
 
-The private GitHub repository has been created/configured and pushed under the user’s later explicit authorization. The user still handles organizer access and the submission form. The protected live demo is documented in DEPLOYMENT.md.
+The public GitHub repository has been created/configured and pushed under the user’s later explicit authorization. The user still handles organizer access and the submission form. The public live demo is documented in DEPLOYMENT.md.
 
 The project-root `Kasukabe Defence Force.zip` is reference material; judges clone and run the source repository. It contains all eight reference/no-op gate trajectories, at least three actual API model runs including failures, actual beginner model success, a separately labeled scripted full-inquest reference, two-page design PDF, fourteen-slide editable PowerPoint and PDF, CPU policy evidence, the negative family comparison, validation and a hashed manifest.
 
@@ -13,7 +13,7 @@ The project-root `Kasukabe Defence Force.zip` is reference material; judges clon
 
 Rebuild after final source commit with `python scripts/build_submission.py`. Chrome and pdfinfo are local document authoring tools, not runtime dependencies. The builder checks page counts, archive integrity and configured credential values without printing them. Never include `.env` in the repository, zip or logs.
 
-Use local `main` for the private team-named repository, invite the exact organizer username from their email, and upload the team-named zip. Configure the judged detective’s MODEL/API_KEY/BASE_URL and the environment’s own NPC_MODEL/NPC_API_KEY/NPC_BASE_URL. Development sharing is explicitly user-authorized; it is not evidence that the PS waives its own-setup rule for finals. A fresh clone must be configured because the ignored local .env is not shipped.
+Use local `main` for the team-named repository, invite the exact organizer username from their email, and upload the team-named zip. Configure the judged detective’s MODEL/API_KEY/BASE_URL and the environment’s own NPC_MODEL/NPC_API_KEY/NPC_BASE_URL. Development sharing is explicitly user-authorized; it is not evidence that the PS waives its own-setup rule for finals. A fresh clone must be configured because the ignored local .env is not shipped.
 
 Current evidence: all eight scripted gates 1/0; 114 town, 9 legacy and 9 Node tests; browser/filter/form checks; real-command isolation. Four development beginner runs succeeded; one separately saved user beginner run also succeeded. No reliable solving claim across harder families. Historical CPU greedy checkpoints 147/160 and live checkpoints 2/5 are separate; new matched family calibration gives LLM-ranked 1/3 versus frozen selector 0/3. The fresh source-trained selector separately scored96/96 on held-out prepared skill checkpoints and0/2 on the predeclared full-scope elite test (baseline also0/2). The selector stays optional.
 
@@ -24,4 +24,4 @@ Latest reference material also includes SOURCE_TRAINING_REPORT/RESULT, ELITE_TRA
 
 The presentation authoring script uses optional python-pptx1.0.2 and LibreOffice (`pip install -r requirements-presentation.txt`), never runtime dependencies. `scripts/build_presentation.py` regenerates editable docs/deck.pptx and docs/deck.pdf; unchanged input hashes reuse artifacts. The final zip remains reference material; source main is the judged runnable entry.
 
-The final introduction names Aditya Ahirwar, Abhishek and Tapis Samaiya. The thank-you slide has validated QR codes and clickable repository/live URLs. The private repository and authenticated hosted demo require access; no login secret is embedded.
+The final introduction names Aditya Ahirwar, Abhishek and Tapis Samaiya. The thank-you slide has validated QR codes and clickable repository/live URLs. The public repository and demo open without signing in. A live investigation needs the visitor’s own API key; no key is embedded.
