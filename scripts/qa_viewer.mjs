@@ -15,6 +15,17 @@ try{
  await wait('document.getElementById("event-count")?.textContent.includes(" / ") && document.getElementById("event-count").textContent!=="0 / 0"');
  check(await evaluate('document.querySelectorAll("#occupants .actor").length===1'),'Opening must not reveal undiscovered NPCs');
  await shot('viewer-opening-desktop.png');
+ await evaluate('document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click()');
+ check(await evaluate('!document.getElementById("report-panel").classList.contains("hidden")&&document.querySelector(".report-heading h2").textContent==="Case solved"'),'Actual beginner success must have a persistent solved report');
+ check(await evaluate('document.querySelectorAll("#report-panel .report-claim").length>0&&document.querySelectorAll("#report-panel .report-source").length>0'),'Submitted findings and acquired source links must be visible');
+ check(await evaluate('document.getElementById("report-panel").textContent.includes("PROGRAMMATIC REWARD BREAKDOWN")'),'Deterministic reward components must be visible');
+ await evaluate('document.getElementById("report-panel").scrollIntoView({block:"start"})');
+ await new Promise(resolve=>setTimeout(resolve,6200));
+ const reportShot=await call('Page.captureScreenshot',{format:'png'});await fs.writeFile('docs/ui-report.png',Buffer.from(reportShot.data,'base64'));
+ await evaluate('document.querySelector("#report-panel .report-source").click()');await wait('document.getElementById("detail-dialog").open');
+ check(await evaluate('document.getElementById("detail-body").textContent.length>10'),'A cited source opens the acquired record');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click();window.scrollTo(0,0)');
  await evaluate('document.getElementById("library-button").click()');await wait('document.getElementById("library-dialog").open');
  await evaluate('(()=>{const select=document.getElementById("library-level");select.value="introductory";select.dispatchEvent(new Event("change"));})()');
  await wait('document.querySelectorAll(".library-entry").length>0&&Array.from(document.querySelectorAll(".library-entry")).every(e=>e.textContent.includes("INTRODUCTORY"))');
@@ -28,6 +39,7 @@ try{
  check(await evaluate('document.getElementById("question-text").textContent.length>10 && document.getElementById("answer-text").textContent.length>10'),'Actual question and answer must be shown');
  check(await evaluate('Number(document.getElementById("record-count").textContent)>0'),'Acquired evidence tray should populate');
  await shot('viewer-conversation-desktop.png');
+ const interviewShot=await call('Page.captureScreenshot',{format:'png'});await fs.writeFile('docs/ui-interview.png',Buffer.from(interviewShot.data,'base64'));
  const box=await evaluate('(()=>{const r=document.querySelector(".stage").getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,scale:1}})()');
  const stageImage=await call('Page.captureScreenshot',{format:'png',clip:box});await fs.writeFile('logs/viewer-stage.png',Buffer.from(stageImage.data,'base64'));
  await evaluate('document.querySelector(".evidence-card").click()');await wait('document.getElementById("detail-dialog").open');
@@ -35,11 +47,13 @@ try{
  await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("end-button").click()');
  await wait('document.getElementById("detail-dialog").open');
  check(await evaluate('document.getElementById("detail-body").textContent.includes("scripted reference")'),'Reference success must be explicitly labeled');
+ check(await evaluate('document.getElementById("detail-body").textContent.includes("knowingly facilitated the fatal incident involving")'),'Fatal assistance must not read as aid to the victim');
  await shot('viewer-reference-verdict.png');
  await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("library-button").click()');await wait('document.querySelectorAll(".library-entry").length>=6');
  await evaluate('document.querySelector("[data-run-id=recorded-model-1]").click()');await wait('document.getElementById("run-kind").textContent==="RECORDED API MODEL"');
  await evaluate('document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');
  check(await evaluate('document.getElementById("detail-kicker").textContent.includes("STEP_CAP")||document.getElementById("detail-kicker").textContent.includes("FAILURE")'),'Model failure must stay a failure');
+ check(await evaluate('document.querySelector(".report-heading h2").textContent==="Case not solved"'),'Persistent report must preserve model failure');
  await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("new-button").click()');await wait('document.getElementById("settings-dialog").open');
  check(await evaluate('document.getElementById("key-input").value===""'),'Configured key is never sent to browser');
  await shot('viewer-provider-dialog.png');
@@ -55,7 +69,11 @@ try{
  await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  check(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'Mobile layout must not overflow horizontally');
  await shot('viewer-mobile.png');
+ await evaluate('document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("report-panel").scrollIntoView({block:"start"})');
+ check(await evaluate('document.documentElement.scrollWidth<=window.innerWidth&&!document.getElementById("report-panel").classList.contains("hidden")'),'Mobile submitted report must remain readable without horizontal overflow');
+ await shot('viewer-report-mobile.png');
  check(errors.length===0,'Browser JavaScript errors: '+errors.join('; '));
- await fs.writeFile('logs/viewer-browser-checks.json',JSON.stringify({passed:true,checks:['opening hides undiscovered NPCs','difficulty filter preserves modal and limits entries','actual dialogue and evidence','evidence details','scripted reference label','actual model failure label','provider key absent from DOM','responsive mobile layout','RL choice probability is labeled','checkpoint reward separate from Town report score'],javascript_errors:errors},null,2)+'\n');
- console.log(JSON.stringify({passed:true,browser_errors:errors,screenshots:5}));
+ await fs.writeFile('logs/viewer-browser-checks.json',JSON.stringify({passed:true,checks:['opening hides undiscovered NPCs','difficulty filter preserves modal and limits entries','actual dialogue and evidence','evidence details','scripted reference label','actual model failure label','provider key absent from DOM','responsive mobile layout','RL choice probability is labeled','checkpoint reward separate from Town report score','persistent solved and unsolved report panels','actual submitted findings, narrative and cited acquired sources','programmatic reward breakdown','responsive mobile report','fatal assistance display distinguished from victim aid'],javascript_errors:errors},null,2)+'\n');
+ console.log(JSON.stringify({passed:true,browser_errors:errors,screenshots:8}));
 }finally{socket.close();}

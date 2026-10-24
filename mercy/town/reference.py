@@ -106,7 +106,7 @@ def solve(world, folder=None):
         return a.finish([('savitri', 'commissioned', 'burials'),('nalin','moved','burials')])
     a.go('cemetery', 'chapel')
     a.act('search', surface='register desk')
-    a.compare('ink-stained ledger', 'parish register')
+    a.compare('ink-stained ledger', 'parish register', 'signed maintenance receipt')
     return a.finish([('savitri', 'killed', 'mira'), ('vedant', 'assisted', 'mira'),
                      ('savitri', 'forged', 'threat'), ('savitri', 'commissioned', 'burials'),('nalin','moved','burials'),
                      ('savitri', 'altered', 'tara_statement'), ('vedant', 'altered', 'death_register')])

@@ -34,3 +34,11 @@ The standard judge harness does not select our checkpoint. Local training demons
 ## Later family calibration
 
 The eight tasks now cover four families. The same strict coverage/false/unsupported reward applies. Levels are designed investigation complexity, not calibrated model-success bands. Four native live-character beginner runs succeeded. In a separate fixed-response three-case comparison, the frozen CPU selector succeeded in 0/3 versus the LLM’s first ranked action in 1/3. No whole-case RL advantage is established; checkpoint learning results do not override this negative transfer result. See CASE_FAMILIES.md and FAMILY_POLICY_COMPARISON.json.
+
+
+## New source-inspired training rewards
+
+The latest optional training uses three original checkpoint drills: intended-target attribution, warning-document fabrication and a trusted-relative fatal-assault account. The per-episode exercise reward is1 only if the designated material proposition has admissible acquired proof and the final report has no false/unsupported claims; otherwise0. There is no automatic bonus for interviews, object collection, length, confidence, accusing relatives or alleging supernatural causes. This exercise reward is distinct from full Town coverage. Prepared legal acquisitions and authored candidate parsing are disclosed. No internal hatred, ego, grief or intelligence metric is claimed. See SOURCE_TRAINING_REPORT.md.
+
+
+The final fresh-source elite comparison solved0/2 in both arms. The selector’s supported garment match earned0 full-inquest coverage because it did not establish the required material acts; three arms made no report before the cap. This is why supported findings and scoped supported coverage are distinct. The recorded negative result is ELITE_TRANSFER_REPORT.md.

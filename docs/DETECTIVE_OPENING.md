@@ -39,6 +39,7 @@ The following is public information, reproduced from the current factory. It con
   "notes": [],
   "task": {
     "task_id": "mercy_inquest",
+    "family": "mercy_house",
     "name": "The Mercy House Inquest",
     "difficulty": "advanced",
     "scope": "Reconstruct the fatal assault, assistance, documentary fabrication, grave relocation and historical record alterations. Distinguish established acts from unrelated personal history and leave unresolved matters explicit.",

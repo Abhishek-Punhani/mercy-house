@@ -1,0 +1,165 @@
+{
+  "experiment": {
+    "cases": [
+      {
+        "task_id": "last_witness",
+        "seed": 617
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 619
+      }
+    ],
+    "arms": [
+      "llm_ranked",
+      "rl_selected"
+    ],
+    "steps": 40,
+    "request_cap": 160,
+    "checkpoint_sha256": "3becf2a6f883c60f5152de258f3224f246caad5459f17efa21445a8e170f6059",
+    "frozen_source": "/home/manav/Desktop/mercy-house/logs/frozen-source-1792849285730319917",
+    "npc_condition": "fixed grounded per-memory response bank; same disclosure gates in both arms; NOT live NPCs",
+    "candidate_condition": "same ranked API proposal contract, two to six actions; no extra candidates for the selector",
+    "limitations": [
+      "Only 2 matched cases; not statistical evidence of superiority.",
+      "Equal-state API proposals cached, but proposals after branch divergence can differ.",
+      "Not the default native-tool detective or a whole-competition comparison."
+    ]
+  },
+  "rows": [
+    {
+      "task_id": "last_witness",
+      "seed": 617,
+      "arm": "llm_ranked",
+      "termination": "step_cap",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 1,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 40
+    },
+    {
+      "task_id": "last_witness",
+      "seed": 617,
+      "arm": "rl_selected",
+      "termination": "step_cap",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 1,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 39
+    },
+    {
+      "task_id": "mercy_inquest",
+      "seed": 619,
+      "arm": "llm_ranked",
+      "termination": "step_cap",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 7,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 40
+    },
+    {
+      "task_id": "mercy_inquest",
+      "seed": 619,
+      "arm": "rl_selected",
+      "termination": "failure",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [
+          {
+            "actor": "o70949-20",
+            "predicate": "matched",
+            "object": "o97793-10"
+          }
+        ],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 7,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 34
+    }
+  ],
+  "requests_used": 153,
+  "seconds": 1300.195,
+  "successes": {
+    "llm_ranked": 0,
+    "rl_selected": 0
+  },
+  "predeclared_plan": {
+    "declared_at_utc": "2026-10-24T13:36:31.793616+00:00",
+    "cases": [
+      {
+        "task_id": "last_witness",
+        "seed": 617
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 619
+      }
+    ],
+    "arms": [
+      "llm_ranked",
+      "source_trained_selector"
+    ],
+    "choices_per_arm": 40,
+    "request_cap": 160,
+    "npc_condition": "fixed grounded per-memory response bank with normal disclosure gates",
+    "proposal_condition": "same ranked API contract, equal-state cache; subsequent branches may differ",
+    "training_exclusion": "Neither elite snapshot is used in new source curriculum; new weights start from zero. Historical policy/results remain separate.",
+    "selection_rule": "One final frozen checkpoint after fixed6000episodes; no selecting weights after elite evaluation.",
+    "scope_limit": "Two task scopes over the same canonical Mercy House incident, not two independent unseen plot families. Both are excluded from the new source-mechanism training."
+  },
+  "scope_limit": "Two task scopes over the same canonical Mercy House incident, not two independent unseen plot families. Both are excluded from the new source-mechanism training.",
+  "interpretation": "No elite full-case advantage demonstrated. Three arms did not submit within40 choices; the source selector submitted one supported garment match in the full inquest, which covers none of its seven scoped targets and correctly earned zero."
+}

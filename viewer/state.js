@@ -1,4 +1,4 @@
-export function initialState(){return {opening:null,scene:{},people:{},here:[],records:{},secured:[],visited:[],history:[],reply:0,note:'',hypotheses:[],conversation:null,pending:null,finished:null,selection:null,status:'At the crime scene'};}
+export function initialState(){return {opening:null,scene:{},people:{},here:[],records:{},secured:[],visited:[],history:[],reply:0,note:'',hypotheses:[],conversation:null,pending:null,finished:null,submission:null,selection:null,status:'At the crime scene'};}
 export function actionTitle(action={},state={people:{}}){
  const a=action.args||{}, person=state.people?.[a.pid]?.name||a.pid||'a witness';
  return ({model_request:'Choosing the next action',look:'Observing the room',people_here:'Identifying people present',go:`Travelling to ${(a.destination||'the next place').replaceAll('_',' ')}`,search:`Searching the ${a.surface||'room'}`,collect:'Securing recovered material',ask:`Speaking with ${person}`,compare:'Comparing acquired records',excavate:'Excavating disturbed ground',request_access:`Requesting access from ${person}`,review_records:'Reviewing the acquired casebook',record_note:'Recording a decision note',submit_report:'Submitting the investigation report',run_command:'Using the isolated workspace'})[action.tool]||'Investigating';
@@ -30,6 +30,7 @@ export function reduceEvent(previous,event){
   if(action.tool==='ask'&&!o.error)state.conversation={pid:action.args.pid,question:action.args.question,answer:o.words||'No spoken answer recorded.',recollections:o.recollections||[]};
   else if(!['record_note','review_records'].includes(action.tool))state.conversation=null;
   if(action.tool==='record_note'&&!o.error){state.note=o.summary||'';state.hypotheses=o.hypotheses||[];}
+  if(action.tool==='submit_report'&&o.submitted===true&&!o.error)state.submission={findings:structuredClone(action.args?.findings||[]),narrative:action.args?.narrative||'',reply:event.reply,seq:event.seq};
   state.history.push({action,observation:o,reply:event.reply,seq:event.seq,minutes:event.minutes});
   return state;
  }
@@ -41,3 +42,15 @@ export function stateAt(events,count){return events.slice(0,count).reduce(reduce
 export function recordKind(r){return r.object_id?'material':r.recollections?'account':r.compared?'comparison':r.hypotheses?'note':'record';}
 export function recordLabel(r){return r.label||(r.recollections?'Account · '+(r.person||'witness'):r.compared?'Material comparison':r.hypotheses?'Decision note':r.observation?'Custody observation':'Search record');}
 export function recordText(r){return r.description||r.words||r.observation||r.summary||'An acquired record of the inquiry.';}
+
+export function reportOutcome(state,kind){
+ const end=state.finished;if(!end)return {label:'Report submitted',tone:'pending',detail:'Awaiting the programmatic verifier. Submission alone does not establish success.'};
+ if(kind==='selector-checkpoint'&&end.exercise_reward!==undefined)return {label:end.exercise_reward===1?'Checkpoint completed':'Checkpoint incomplete',tone:end.exercise_reward===1?'success':'failure',detail:'Exercise reward is separate from the Town report score. This run starts with prior acquired material.'};
+ if(typeof end.result?.success==='boolean')return {label:end.result.success?'Case solved':'Case not solved',tone:end.result.success?'success':'failure',detail:end.result.success?'Every scoped material finding has acquired support, with no false or unsupported findings.':'The scoped success conditions were not all met. Review supported, false and unsupported findings below.'};
+ return {label:'Investigation not graded',tone:'pending',detail:end.message||'No final programmatic grade is available for this run.'};
+}
+
+export function findingDescription(finding){
+ const verb={assisted:'knowingly facilitated the fatal incident involving',aided:'gave aid to'}[finding.predicate]||finding.predicate;
+ return String(finding.actor)+' · '+String(verb)+' · '+String(finding.object);
+}

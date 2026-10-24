@@ -1,0 +1,2352 @@
+{
+  "status": "passed_with_limits",
+  "generated_at_utc": "2026-10-24T14:11:18.399933+00:00",
+  "scope": {
+    "public_tasks": 8,
+    "case_families": 4,
+    "excluded": [
+      "historical V1 datasets",
+      "training-only source-inspired adaptations",
+      "provider speech semantic correctness",
+      "exhaustive uniqueness against published fiction"
+    ]
+  },
+  "fixes": [
+    {
+      "id": "grave_relocation_alias",
+      "finding": "The exact report phrase grave relocation was not normalized to the existing burials entity, rejecting an otherwise equivalent supported finding.",
+      "fix": "Added exact folded aliases for grave relocation, burial relocation and relocation of graves. Full acquired reference proof succeeds; naming the same facts without acquisition still earns zero; negated or embedded phrases are not matched. Historical model and frozen elite results are preserved.",
+      "files": [
+        "mercy/town/verifier.py"
+      ]
+    },
+    {
+      "id": "payer_carrier",
+      "finding": "Burial evidence and comparison labeled Savitri as the physical mover despite the text naming Nalin as carrier.",
+      "fix": "Only commissioned/Savitri and moved/Nalin are attributed. Remains alone carry no role attribution. Wrong moved/Savitri report is rejected.",
+      "files": [
+        "mercy/town/world.py",
+        "mercy/town/comparison.py"
+      ]
+    },
+    {
+      "id": "register_authorship",
+      "finding": "Cover initials and a missing register entry did not independently identify the writer of the deletion instruction.",
+      "fix": "Added an independently signed and countersigned routine maintenance receipt. Attributing alteration to Vedant requires both the register discrepancy and independent handwriting comparison; three-way or composed two-way examinations are accepted.",
+      "files": [
+        "mercy/town/world.py",
+        "mercy/town/comparison.py",
+        "mercy/town/verifier.py",
+        "mercy/town/reference.py"
+      ]
+    },
+    {
+      "id": "impossible_letter_stroke",
+      "finding": "The threat comparison cited a lower-case d although the original threat wording contained none.",
+      "fix": "Added the natural warning sentence You have been warned, which contains the described stroke.",
+      "files": [
+        "mercy/town/world.py"
+      ]
+    },
+    {
+      "id": "spade_place",
+      "finding": "Dev remembered leaving the spade at the beds but the object was in the tool shed.",
+      "fix": "Memory now names the tool shed beside the beds.",
+      "files": [
+        "mercy/town/setting.py"
+      ]
+    },
+    {
+      "id": "letter_place",
+      "finding": "Nalin called the storage location the archive visitors book while the actual feature is in the entrance hall.",
+      "fix": "Memory now identifies the entrance-hall visitors book.",
+      "files": [
+        "mercy/town/setting.py"
+      ]
+    },
+    {
+      "id": "prewritten_wreck",
+      "finding": "Static bridge scenery already described a wreck before the sabotage and even in the safe counterfactual.",
+      "fix": "Bridge scenery and brake placement now reflect actual crossing outcome. No sabotage produces no fatalities or wreck state.",
+      "files": [
+        "mercy/town/family_data.py",
+        "mercy/town/family_world.py"
+      ]
+    },
+    {
+      "id": "optional_delivery",
+      "finding": "Niv really delivered the warning but a truthful transmission finding had no admissible proof route.",
+      "fix": "The countersigned delivery docket supports optional relayed/Niv with the acquired warning. Ivo remains the scoped public-relay target; bell target count remains three.",
+      "files": [
+        "mercy/town/family_world.py",
+        "mercy/town/family_proof.py"
+      ]
+    },
+    {
+      "id": "future_docket",
+      "finding": "A docket created during delivery described Tessa entering the chapel later in the tape.",
+      "fix": "The docket records contemporaneous local observation: Tessa is still in the inn common room at delivery. Regression stops the tape at delivery to check this.",
+      "files": [
+        "mercy/town/family_world.py"
+      ]
+    },
+    {
+      "id": "citation_provenance",
+      "finding": "Canonical proof did not consistently follow the acquired material actually examined by a cited comparison, although family proof already did.",
+      "fix": "Canonical support expands protected comparison dependencies. Self-written notes do not create source dependencies or proof.",
+      "files": [
+        "mercy/town/verifier.py"
+      ]
+    },
+    {
+      "id": "sera_author_narrative",
+      "finding": "The author plot summary described a hatch sighting that does not occur in the recorded tape.",
+      "fix": "Root updated the summary to distinguish the actual cry/heard sound from the unused hatch possibility. No eyewitness was invented.",
+      "files": [
+        "docs/CURRENT_PLOT.md"
+      ]
+    }
+  ],
+  "baseline_stress": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      37,
+      82,
+      211,
+      307,
+      401,
+      -9223372036854775808,
+      9223372036854775807
+    ],
+    "task_ids": [
+      "lantern_room",
+      "second_passenger",
+      "bell_before_dawn",
+      "last_witness",
+      "borrowed_signature",
+      "brothers_letter",
+      "garden_burials",
+      "mercy_inquest"
+    ],
+    "pairs": 184,
+    "passed": true,
+    "seconds": 8.857,
+    "rows": [
+      {
+        "task_id": "lantern_room",
+        "seed": 0,
+        "starting_hash": "ab2ed5c731f80f8118a0a8d972bfb3d1a8a3d178006a811d250522aa28d423eb",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.007,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 1,
+        "starting_hash": "bf814db5ddc4bc879d15616b795de41c94614dbde2489b260f0f9230d97043b7",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 2,
+        "starting_hash": "d4059c20e157f750b8630ff3317535ea6860dedc13ef33dc4365f2e233f2a8e2",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 3,
+        "starting_hash": "2667f7600ff1baff20ee7de25727f7e0dc758395462b11778b70caa42b4640d5",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 4,
+        "starting_hash": "1e0648d40b1823bb794d560279678fb3e9757676aeb7066897e5473d9d689c41",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 5,
+        "starting_hash": "db67a265a09ab09cdf0e791d8c30560873a91dc40dd919786743e2cf3a3bacb5",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 6,
+        "starting_hash": "7c94c0259ddd6ea5615f53fe2b8319e87be703ac7aba033a34f54e03bcf30fd9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 7,
+        "starting_hash": "86a405adc4abfd986eadc2c7016af888b389a706fe203583a93d91295de9df83",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 8,
+        "starting_hash": "92ce53d54f1d4b8bfb30c2ed2bc92aae2ce21ff238ab5e4461c9356b620fd8c2",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 9,
+        "starting_hash": "797f6af827e337745db3a5fe91636eeaf8e45e2da90324943da3478c60e81884",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 10,
+        "starting_hash": "1d70b17854c1c0898a2bf94afb3cddbb954c42da29f540c9baf0c36be11e58b6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 11,
+        "starting_hash": "815d7a0812c0ab45cac5c49953784a490508d0faf20e09bfa3b8d6cbc0a89b9b",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 12,
+        "starting_hash": "80d5250bddfafe68be3b3e74f06904cfae158acce5124a1d10307baf1c2d053c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 13,
+        "starting_hash": "65a59a5bf1de2e5939590fb3f0c2795bfaab0faf0ae04089f3b44678855189e3",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 14,
+        "starting_hash": "359e84d63d831d4f1616b2f582add07b217dba3c7e3a964c74d07340fce9be88",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 15,
+        "starting_hash": "2542101ceccee51b3c8a830622d74e98fdea41f2689797d29376568f3ec45cd5",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 37,
+        "starting_hash": "671d6539a5d92857755825fffd322135ac9d551f9b68f88fff6068622cdd3883",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 82,
+        "starting_hash": "25e734b1066f640bd0328161857e2d941bf546f1e822a1ea2e6d8eb832e561b9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 211,
+        "starting_hash": "72bd576b4dc3f0914a06f008629ef85685e70669e37dfa7f5cfd05245ba7ef65",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 307,
+        "starting_hash": "acf50f8f39742ecbd47dbfbf6e571bd1c83b0ae1d8d989a6650e02c92a759b9a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.005,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 401,
+        "starting_hash": "24cddcbe92d04df8c073f6ea2113a614366d63881a57fa54be2156fdae7d9c99",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": -9223372036854775808,
+        "starting_hash": "01b85823192b7fdbf3060a078f2f4b83a4d65419efd354504d8fe4d2f0c31487",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 9223372036854775807,
+        "starting_hash": "646b8319c8d9c3e0a52b12303682fac4ed8f38b4389f32e461fa257775ea116c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.004,
+        "passed": true,
+        "reference_actions": 5,
+        "targets": 1
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 0,
+        "starting_hash": "866103d6db7af33de93b662d9098f8dc680d6c621a14502f54633633495065cf",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.016,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 1,
+        "starting_hash": "9b0314b5babbc14beec07c7fc6d95fc5147e69a9703eb5ee62980537292e9afe",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 2,
+        "starting_hash": "a3856458870513d7011bdabb4b1d226d69bbb1d9da8f43095a2f1371e0ed7584",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 3,
+        "starting_hash": "15bb1f6496147ae8cd5902030542a0517b095388d0dfb1676884668b2329529e",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 4,
+        "starting_hash": "014cb0c2174e13a7936fca18b67be02054f780ec94ffd23d6ec82621916c2eb0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.016,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 5,
+        "starting_hash": "b485554fa429e15feb4e0836821303056fccad8f1c0f44982e4c7640c42a0f18",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.016,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 6,
+        "starting_hash": "d3975fca61d651f679bed96a61bd8f6dcf1cb3f3f22ca38b9f0a3d3f04dec2db",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 7,
+        "starting_hash": "79f1bee0b4941b34d2af6c7a10f058797c7289025a4fc05023d06738c6eb8836",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 8,
+        "starting_hash": "f371a15a86517c135c22aa632dce353825a6389d590d32cb39c163051f69ee90",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 9,
+        "starting_hash": "1d2d8dc192be419b1030913e58458f97d6cb9b6e14d666989abc4dfd17fe82d9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 10,
+        "starting_hash": "41125c5b5ed7907439a2fd31d193625f356f817cfb68f875ee573f0ec84bc209",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 11,
+        "starting_hash": "ad2526a5e722ad1caa9347bc7907cf7016093c259bee4a325dda1003ef245507",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 12,
+        "starting_hash": "bec6ad13257fe8f698b3bfcd1e473314d7b71a57bb2af06dd79bec1e67a49cc6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 13,
+        "starting_hash": "a18e3910cfd553a3eda0a6d9c399e342760e52fa64b108211363edf57dbfc076",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 14,
+        "starting_hash": "cb4181e3a2dcb1c13b3910fc7cf6915058baa96330ed323c5258391fad884eca",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 15,
+        "starting_hash": "e06a551a978dc4fedb142ab1676d9d83a48e3cf940ab53f35c44a1422301bcb6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 37,
+        "starting_hash": "83624893140c710c5d6b7d61f5a3fc85ae308e9c508eaa4356676601bfbe7be8",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 82,
+        "starting_hash": "6f22d15dac01b2935e47133158196f15848108277a27c1451c466bc6ab3e2ecf",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 211,
+        "starting_hash": "9cb3ba8e8354dccb8b4b3eba9948061611aa75801f6188b6ae22c55fb6c4b55c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 307,
+        "starting_hash": "8ed71a9135223dc33a47fefd32fe6b8a71a768335d4c2524e863dde3de73ff95",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 401,
+        "starting_hash": "cce7dafdc5b1f52acbb2d036dacdbf6684177a51dcde89b4eb11ce9b813d0483",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": -9223372036854775808,
+        "starting_hash": "22174d663ff252ce9a6595f265d9bc3f0bd21208cc1c7ece9f461bc6e1df3fcf",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 9223372036854775807,
+        "starting_hash": "c130e5627f397d2e5e3e09dff5b12720ee47b59cb87230625499f6c60a1ab619",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 16,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 0,
+        "starting_hash": "d495f6e6680a9e5846cf35fe3072fb17f819822d2c16e7106054a5dbd9d9617f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 1,
+        "starting_hash": "919640df7b1225703d9793997b47c2b99c13931c971d99c8c40eff7ba99ea4a9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 2,
+        "starting_hash": "4b30cb31591e4ef7c6b7c6c3c3df8a496ffaf8064f9bee60f4767be29ca23fcf",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 3,
+        "starting_hash": "d37506b1970f636dfe7db99f2ab9ee19ff1278a27c18bdc4c31b34fa49ec3be4",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 4,
+        "starting_hash": "e389e9f54ba21d938f56cf4405238d1b39da49a584b14a6a0f35991b96d9a357",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 5,
+        "starting_hash": "37f1f69a78e8f202401264676eeba10c5b3030bb4e0932c48c5f7a8452831dff",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.02,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 6,
+        "starting_hash": "f406213862dcb2758fb2b2951c683294ee637c0864b170b5b7cf45572948fc36",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 7,
+        "starting_hash": "00ad7179d42719f9e9215467c303bae23a80dc2721e41816f997d2799e611b9e",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 8,
+        "starting_hash": "9cabeed38ff141f67d4a3aaddb1e6983271e05e9308e8ad64487a21de26f1714",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 9,
+        "starting_hash": "b6943df72f0884483ea9fa5aa65bb68baa1c8a3c6a586ed0579f54748981d62a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 10,
+        "starting_hash": "a384ce344012c0b5dadb488ee75962d39ba7aa506c86a9a34c4281b1a9ba8ba7",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 11,
+        "starting_hash": "c7667eafd393f0ea3f3a46856390ce157d277af7632d7e29755930c643383bc2",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 12,
+        "starting_hash": "feb3f5fee19e3110fb61257cdc4fb2dd6df2476fc9fa8bdae695030fdd580a6d",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 13,
+        "starting_hash": "1d2c843aaf84e90474c318a0d4751d3279c187007cfe985d7550e551af625893",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 14,
+        "starting_hash": "51eebb6133ed38afee61a051a0cf129abea260fb7e6cc267a50cafea1d8cc474",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 15,
+        "starting_hash": "c9cdd417aecfb42e0d6c74b1ea8438ab3578204bf9b62deff69f1c0b4dfa241f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 37,
+        "starting_hash": "3112022a5283ffbb92e93c52d7badb71ebd582fbc9309ba33d2abd272c70d8a5",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 82,
+        "starting_hash": "063229191f67b74188f48125452d3a2b4ccad890ee84cae1e85a0dd45258f7e9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 211,
+        "starting_hash": "ae54375a639b9e1f82540483a46cb7cca9601c7dc1ba292d61cdcdee299fe717",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 307,
+        "starting_hash": "50a96517c9c22fb55aa5b3046b6937849b8f6f173b1b9b627c29f5b1151b0bbe",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.019,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 401,
+        "starting_hash": "2ebedc8b360a05ac86a204d4112dbb8cdf8ac1a6d3c8ee8fa8e0c01450ec7222",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": -9223372036854775808,
+        "starting_hash": "76f995f201085b9404ba8894e778aee771dcc17c6820efa444ef20df212dbeaa",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 9223372036854775807,
+        "starting_hash": "77c90c2cd9556b2af0c2d275303f4b36337f020f15d4d4379030724805a96014",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 17,
+        "targets": 3
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 0,
+        "starting_hash": "d24bab5c178704aacef7b9bdcfa05d24114f2e660997ccceb974636780a66b4a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.016,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 1,
+        "starting_hash": "1d5fd692b845385731ccea863f7ba0fbc8b4a198e701a1ab176a39aaee1f016a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 2,
+        "starting_hash": "76bb22459fc1efb8b3118c66d721ac9f2f122958ff388cce0d76880722b65a30",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 3,
+        "starting_hash": "d78d754feb324fe03580ff18073b1f676008a218b7b0dddfd3ed83c95023d734",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 4,
+        "starting_hash": "eacbebb8582575782560257ac450b74a7dfbd337a41aec6d89dae809252fdf61",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 5,
+        "starting_hash": "febae3eb668f7e5d0e80af146d010881cf2a855d1a67f4c6d29bd2db040901c6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 6,
+        "starting_hash": "8cacbf613527d9737bbdc3a769ebecdf4eecf38acf7c222420f4c7c9783d98f6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 7,
+        "starting_hash": "d273c67c37064ffe467254626fa4c0de2b7920514cafd276976e893060f4e4e1",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 8,
+        "starting_hash": "45b5e7d7e67c01e00823049dc89dcec4bd6592a7cc939937d4905b8082ab37fe",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 9,
+        "starting_hash": "3691882572b51d766e1285bc026912b40ce8a8332efb0c530736766065638e1f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 10,
+        "starting_hash": "b39cfc80e6997d101fac67500e933191d48dc62edd6f2337374c8d2030f7f725",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 11,
+        "starting_hash": "ab64aa8c04fe729ad7edcaa27c0b1013168f1ba26ee8c331746cdf8cb09e8e27",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 12,
+        "starting_hash": "f44f95873dd1927e073708ad1481434271a3d2e3ea171b58e1ca7c3001d42519",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 13,
+        "starting_hash": "28ba9d26e977105127ceda25af3f382c543b250d27471183b94e05022b83a010",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 14,
+        "starting_hash": "45ee258bcf03fe3b20dd0974279b8ea0a06f1ee07a53840a1127c6b598a4aa2c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 15,
+        "starting_hash": "0680e27d2eef57cc8c205d64a8338ac8bed37e5c42ab3a4dc0c3958707f4e7b0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.016,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 37,
+        "starting_hash": "4583ddfe764813131b54d1cbeeadfb6f5dfab69696aa86a0be67c59143ac9955",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.016,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 82,
+        "starting_hash": "cbe7f83ad55f4a34a3748a8d04e4bef8420bc435c92b2815cc1b3af56f1c34e0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 211,
+        "starting_hash": "04e289972a58e8b9a4eed007f849c91d34c706109059c6f88dc67dcd25e73f05",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 307,
+        "starting_hash": "a74d2efce16b91b2f4e3849585872b65443f77ac2aba3b74a1ae5f37e112852f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.015,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 401,
+        "starting_hash": "ec36df5a043c0950ee101ee2472fbbbd3a61b26f3ff479b6f3742d051207b53c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": -9223372036854775808,
+        "starting_hash": "02be6cc5553f03a036aa14c9bf8c764dbad580bba24d6ea6cd7be4decc4f5fe9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.014,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "last_witness",
+        "seed": 9223372036854775807,
+        "starting_hash": "83360afc12ac989f578c56556fe8d8ede112d248dfe8a720dfdacf15baa096f4",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.018,
+        "passed": true,
+        "reference_actions": 10,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 0,
+        "starting_hash": "d24bab5c178704aacef7b9bdcfa05d24114f2e660997ccceb974636780a66b4a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.037,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 1,
+        "starting_hash": "1d5fd692b845385731ccea863f7ba0fbc8b4a198e701a1ab176a39aaee1f016a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 2,
+        "starting_hash": "76bb22459fc1efb8b3118c66d721ac9f2f122958ff388cce0d76880722b65a30",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 3,
+        "starting_hash": "d78d754feb324fe03580ff18073b1f676008a218b7b0dddfd3ed83c95023d734",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.031,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 4,
+        "starting_hash": "eacbebb8582575782560257ac450b74a7dfbd337a41aec6d89dae809252fdf61",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.03,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 5,
+        "starting_hash": "febae3eb668f7e5d0e80af146d010881cf2a855d1a67f4c6d29bd2db040901c6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 6,
+        "starting_hash": "8cacbf613527d9737bbdc3a769ebecdf4eecf38acf7c222420f4c7c9783d98f6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 7,
+        "starting_hash": "d273c67c37064ffe467254626fa4c0de2b7920514cafd276976e893060f4e4e1",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 8,
+        "starting_hash": "45b5e7d7e67c01e00823049dc89dcec4bd6592a7cc939937d4905b8082ab37fe",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 9,
+        "starting_hash": "3691882572b51d766e1285bc026912b40ce8a8332efb0c530736766065638e1f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 10,
+        "starting_hash": "b39cfc80e6997d101fac67500e933191d48dc62edd6f2337374c8d2030f7f725",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 11,
+        "starting_hash": "ab64aa8c04fe729ad7edcaa27c0b1013168f1ba26ee8c331746cdf8cb09e8e27",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 12,
+        "starting_hash": "f44f95873dd1927e073708ad1481434271a3d2e3ea171b58e1ca7c3001d42519",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 13,
+        "starting_hash": "28ba9d26e977105127ceda25af3f382c543b250d27471183b94e05022b83a010",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 14,
+        "starting_hash": "45ee258bcf03fe3b20dd0974279b8ea0a06f1ee07a53840a1127c6b598a4aa2c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.027,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 15,
+        "starting_hash": "0680e27d2eef57cc8c205d64a8338ac8bed37e5c42ab3a4dc0c3958707f4e7b0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 37,
+        "starting_hash": "4583ddfe764813131b54d1cbeeadfb6f5dfab69696aa86a0be67c59143ac9955",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.032,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 82,
+        "starting_hash": "cbe7f83ad55f4a34a3748a8d04e4bef8420bc435c92b2815cc1b3af56f1c34e0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 211,
+        "starting_hash": "04e289972a58e8b9a4eed007f849c91d34c706109059c6f88dc67dcd25e73f05",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 307,
+        "starting_hash": "a74d2efce16b91b2f4e3849585872b65443f77ac2aba3b74a1ae5f37e112852f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.029,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 401,
+        "starting_hash": "ec36df5a043c0950ee101ee2472fbbbd3a61b26f3ff479b6f3742d051207b53c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": -9223372036854775808,
+        "starting_hash": "02be6cc5553f03a036aa14c9bf8c764dbad580bba24d6ea6cd7be4decc4f5fe9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.03,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "borrowed_signature",
+        "seed": 9223372036854775807,
+        "starting_hash": "83360afc12ac989f578c56556fe8d8ede112d248dfe8a720dfdacf15baa096f4",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.028,
+        "passed": true,
+        "reference_actions": 20,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 0,
+        "starting_hash": "5b7010ce554adc5539a317aaead0a1bc41b4cef0a76505c589422369cef2af4e",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 1,
+        "starting_hash": "d2bbfd23938224a61b5b4aad0a2e99d33eaf6ecc9cb28c8252f00d2efea9eccf",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 2,
+        "starting_hash": "f2b8cbcb6c2ab1c1bdb34b71d7a482c8ea5de6fa77362596fcccbd8f4f0b4980",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 3,
+        "starting_hash": "9c672c636e5ac94ccf5089d09198e4568f6f81975800310c742547ee410fc5b7",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.049,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 4,
+        "starting_hash": "890e6420b1475ba4059ff5b56ce198e249923cd91fac8e5dd45dc736a57c7735",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.049,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 5,
+        "starting_hash": "99713d6af69a2955e6b7c33cd618030553ccdd4190c72fe561412e63e193c19e",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 6,
+        "starting_hash": "f558f1761a517b2d6a59d2b84bb43fcc14c73a26530e115b47d255e737061a5e",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 7,
+        "starting_hash": "aceb5a4ef0cf079be59269b4935a824d2208f31a9caaff5fb8d8b2260158b6fb",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 8,
+        "starting_hash": "09512f1880ce939c162d68408ec76b91c69cfd0119e6d26b79c7a38b4feefc0e",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 9,
+        "starting_hash": "58e886683a55765449d0dfff96ce2e2fa5d13b2cd639894c7b5ceae1085b21ef",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.049,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 10,
+        "starting_hash": "118a3debfc35ef6bac4bf46dafc0c9f2994c90ed3c4e4b16e4889a3369cdfc2a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 11,
+        "starting_hash": "1aa6caa15d832d995829c8363742e0e111c25d11bb2df2984f49aa77f6b5ccac",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 12,
+        "starting_hash": "22d727ca29b53e383c2c4458738ac04b253f4a50cc8f0ca6cb6dabc79dffa796",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.049,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 13,
+        "starting_hash": "930f95effc1f70b27ae2934897a429f363f5ee89602f13a81d113bce4c16cece",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 14,
+        "starting_hash": "e33f8b070d44fc3a8029b10745cb0a83c92bf65d64b641e1db47d8b368e3600c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.049,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 15,
+        "starting_hash": "3591517ec565595babce076e0f8baf8d2a61546cef868cb27a7b944573599fd6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 37,
+        "starting_hash": "c4118b7eb3b85d0989a328cbcec72647c957c6e145323efb28beda10d26330c5",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 82,
+        "starting_hash": "e346cb2e1a6aef063835ecfdffff10564a51d4ae6cbe45f234b0053cbb7c8705",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 211,
+        "starting_hash": "05c0bae24beacd485e0b15cf290ac549ac27dab428476ec83b9cb81eebcdb30f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 307,
+        "starting_hash": "ff02f537226b3507bcc8060f78fb21197c5a83dd92f262c9152113f87c386688",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 401,
+        "starting_hash": "c06259eed285e1506383af710b21da3dd3286c4f9e9a71d408edc9bb7a77854f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": -9223372036854775808,
+        "starting_hash": "60100de4e3c8f9e0debc68abc25f1930823d5b9ab3c63b750cd8b6f729e108dd",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.049,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "brothers_letter",
+        "seed": 9223372036854775807,
+        "starting_hash": "955b78abed1e8287f6b0c11e33a67bdd8238581a428c015c07e6a60ae649f227",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 1
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 0,
+        "starting_hash": "d24bab5c178704aacef7b9bdcfa05d24114f2e660997ccceb974636780a66b4a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 1,
+        "starting_hash": "1d5fd692b845385731ccea863f7ba0fbc8b4a198e701a1ab176a39aaee1f016a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.045,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 2,
+        "starting_hash": "76bb22459fc1efb8b3118c66d721ac9f2f122958ff388cce0d76880722b65a30",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.044,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 3,
+        "starting_hash": "d78d754feb324fe03580ff18073b1f676008a218b7b0dddfd3ed83c95023d734",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 4,
+        "starting_hash": "eacbebb8582575782560257ac450b74a7dfbd337a41aec6d89dae809252fdf61",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 5,
+        "starting_hash": "febae3eb668f7e5d0e80af146d010881cf2a855d1a67f4c6d29bd2db040901c6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.045,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 6,
+        "starting_hash": "8cacbf613527d9737bbdc3a769ebecdf4eecf38acf7c222420f4c7c9783d98f6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 7,
+        "starting_hash": "d273c67c37064ffe467254626fa4c0de2b7920514cafd276976e893060f4e4e1",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.045,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 8,
+        "starting_hash": "45b5e7d7e67c01e00823049dc89dcec4bd6592a7cc939937d4905b8082ab37fe",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 9,
+        "starting_hash": "3691882572b51d766e1285bc026912b40ce8a8332efb0c530736766065638e1f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 10,
+        "starting_hash": "b39cfc80e6997d101fac67500e933191d48dc62edd6f2337374c8d2030f7f725",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 11,
+        "starting_hash": "ab64aa8c04fe729ad7edcaa27c0b1013168f1ba26ee8c331746cdf8cb09e8e27",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.048,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 12,
+        "starting_hash": "f44f95873dd1927e073708ad1481434271a3d2e3ea171b58e1ca7c3001d42519",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 13,
+        "starting_hash": "28ba9d26e977105127ceda25af3f382c543b250d27471183b94e05022b83a010",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.045,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 14,
+        "starting_hash": "45ee258bcf03fe3b20dd0974279b8ea0a06f1ee07a53840a1127c6b598a4aa2c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.043,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 15,
+        "starting_hash": "0680e27d2eef57cc8c205d64a8338ac8bed37e5c42ab3a4dc0c3958707f4e7b0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.045,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 37,
+        "starting_hash": "4583ddfe764813131b54d1cbeeadfb6f5dfab69696aa86a0be67c59143ac9955",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 82,
+        "starting_hash": "cbe7f83ad55f4a34a3748a8d04e4bef8420bc435c92b2815cc1b3af56f1c34e0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.045,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 211,
+        "starting_hash": "04e289972a58e8b9a4eed007f849c91d34c706109059c6f88dc67dcd25e73f05",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.044,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 307,
+        "starting_hash": "a74d2efce16b91b2f4e3849585872b65443f77ac2aba3b74a1ae5f37e112852f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 401,
+        "starting_hash": "ec36df5a043c0950ee101ee2472fbbbd3a61b26f3ff479b6f3742d051207b53c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.047,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": -9223372036854775808,
+        "starting_hash": "02be6cc5553f03a036aa14c9bf8c764dbad580bba24d6ea6cd7be4decc4f5fe9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.046,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "garden_burials",
+        "seed": 9223372036854775807,
+        "starting_hash": "83360afc12ac989f578c56556fe8d8ede112d248dfe8a720dfdacf15baa096f4",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.05,
+        "passed": true,
+        "reference_actions": 31,
+        "targets": 2
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 0,
+        "starting_hash": "d24bab5c178704aacef7b9bdcfa05d24114f2e660997ccceb974636780a66b4a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.053,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 1,
+        "starting_hash": "1d5fd692b845385731ccea863f7ba0fbc8b4a198e701a1ab176a39aaee1f016a",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.058,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 2,
+        "starting_hash": "76bb22459fc1efb8b3118c66d721ac9f2f122958ff388cce0d76880722b65a30",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 3,
+        "starting_hash": "d78d754feb324fe03580ff18073b1f676008a218b7b0dddfd3ed83c95023d734",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.059,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 4,
+        "starting_hash": "eacbebb8582575782560257ac450b74a7dfbd337a41aec6d89dae809252fdf61",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.054,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 5,
+        "starting_hash": "febae3eb668f7e5d0e80af146d010881cf2a855d1a67f4c6d29bd2db040901c6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.053,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 6,
+        "starting_hash": "8cacbf613527d9737bbdc3a769ebecdf4eecf38acf7c222420f4c7c9783d98f6",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.055,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 7,
+        "starting_hash": "d273c67c37064ffe467254626fa4c0de2b7920514cafd276976e893060f4e4e1",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.057,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 8,
+        "starting_hash": "45b5e7d7e67c01e00823049dc89dcec4bd6592a7cc939937d4905b8082ab37fe",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.056,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 9,
+        "starting_hash": "3691882572b51d766e1285bc026912b40ce8a8332efb0c530736766065638e1f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.053,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 10,
+        "starting_hash": "b39cfc80e6997d101fac67500e933191d48dc62edd6f2337374c8d2030f7f725",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 11,
+        "starting_hash": "ab64aa8c04fe729ad7edcaa27c0b1013168f1ba26ee8c331746cdf8cb09e8e27",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 12,
+        "starting_hash": "f44f95873dd1927e073708ad1481434271a3d2e3ea171b58e1ca7c3001d42519",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 13,
+        "starting_hash": "28ba9d26e977105127ceda25af3f382c543b250d27471183b94e05022b83a010",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.057,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 14,
+        "starting_hash": "45ee258bcf03fe3b20dd0974279b8ea0a06f1ee07a53840a1127c6b598a4aa2c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.055,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 15,
+        "starting_hash": "0680e27d2eef57cc8c205d64a8338ac8bed37e5c42ab3a4dc0c3958707f4e7b0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.056,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 37,
+        "starting_hash": "4583ddfe764813131b54d1cbeeadfb6f5dfab69696aa86a0be67c59143ac9955",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.054,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 82,
+        "starting_hash": "cbe7f83ad55f4a34a3748a8d04e4bef8420bc435c92b2815cc1b3af56f1c34e0",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.058,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 211,
+        "starting_hash": "04e289972a58e8b9a4eed007f849c91d34c706109059c6f88dc67dcd25e73f05",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.053,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 307,
+        "starting_hash": "a74d2efce16b91b2f4e3849585872b65443f77ac2aba3b74a1ae5f37e112852f",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.053,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 401,
+        "starting_hash": "ec36df5a043c0950ee101ee2472fbbbd3a61b26f3ff479b6f3742d051207b53c",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.051,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": -9223372036854775808,
+        "starting_hash": "02be6cc5553f03a036aa14c9bf8c764dbad580bba24d6ea6cd7be4decc4f5fe9",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.056,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      },
+      {
+        "task_id": "mercy_inquest",
+        "seed": 9223372036854775807,
+        "starting_hash": "83360afc12ac989f578c56556fe8d8ede112d248dfe8a720dfdacf15baa096f4",
+        "reference": 1.0,
+        "noop": 0.0,
+        "seconds": 0.052,
+        "passed": true,
+        "reference_actions": 35,
+        "targets": 7
+      }
+    ]
+  },
+  "source_only_feasibility": {
+    "kind": "scripted public-only feasibility; not model performance",
+    "rows": [
+      {
+        "task_id": "lantern_room",
+        "seed": 0,
+        "actions": 25,
+        "max_calls_per_reply": 10,
+        "conservative_batched_reply_bound": 12,
+        "findings": [
+          {
+            "actor": "tobin",
+            "predicate": "killed",
+            "object": "oren"
+          }
+        ],
+        "score": 1.0,
+        "success": true
+      },
+      {
+        "task_id": "lantern_room",
+        "seed": 1,
+        "actions": 25,
+        "max_calls_per_reply": 10,
+        "conservative_batched_reply_bound": 12,
+        "findings": [
+          {
+            "actor": "maren",
+            "predicate": "killed",
+            "object": "oren"
+          }
+        ],
+        "score": 1.0,
+        "success": true
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 0,
+        "actions": 112,
+        "max_calls_per_reply": 10,
+        "conservative_batched_reply_bound": 24,
+        "findings": [
+          {
+            "actor": "elin",
+            "predicate": "killed",
+            "object": "vesper"
+          },
+          {
+            "actor": "elin",
+            "predicate": "killed",
+            "object": "joel"
+          },
+          {
+            "actor": "elin",
+            "predicate": "targeted",
+            "object": "joel"
+          }
+        ],
+        "score": 1.0,
+        "success": true
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 1,
+        "actions": 112,
+        "max_calls_per_reply": 10,
+        "conservative_batched_reply_bound": 24,
+        "findings": [
+          {
+            "actor": "brin",
+            "predicate": "killed",
+            "object": "vesper"
+          },
+          {
+            "actor": "brin",
+            "predicate": "killed",
+            "object": "joel"
+          },
+          {
+            "actor": "brin",
+            "predicate": "targeted",
+            "object": "vesper"
+          }
+        ],
+        "score": 1.0,
+        "success": true
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 0,
+        "actions": 201,
+        "max_calls_per_reply": 10,
+        "conservative_batched_reply_bound": 36,
+        "findings": [
+          {
+            "actor": "lewin",
+            "predicate": "killed",
+            "object": "tessa"
+          },
+          {
+            "actor": "lewin",
+            "predicate": "forged",
+            "object": "warning_letter"
+          },
+          {
+            "actor": "ivo",
+            "predicate": "relayed",
+            "object": "warning_letter"
+          }
+        ],
+        "score": 1.0,
+        "success": true
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 1,
+        "actions": 201,
+        "max_calls_per_reply": 10,
+        "conservative_batched_reply_bound": 36,
+        "findings": [
+          {
+            "actor": "maela",
+            "predicate": "killed",
+            "object": "tessa"
+          },
+          {
+            "actor": "maela",
+            "predicate": "forged",
+            "object": "warning_letter"
+          },
+          {
+            "actor": "ivo",
+            "predicate": "relayed",
+            "object": "warning_letter"
+          }
+        ],
+        "score": 1.0,
+        "success": true
+      }
+    ]
+  },
+  "regressions": {
+    "file": "tests/town/test_case_audit.py",
+    "tests": 9,
+    "passed": true,
+    "captured_log": "logs/case-audit-regressions.txt"
+  },
+  "scoped_targets_unchanged": true,
+  "scoring_weights_changed": false,
+  "new_model_calls": 0,
+  "residual_limits": [
+    "Programmatic proof vocabulary and authored routes are finite; this is not a formal proof of every natural-language claim or an exhaustive absence-of-contradiction certificate.",
+    "Reference and source-only feasibility runs use cooperative fixture characters. A live character may permanently refuse an eligible disclosure; successful routes do not guarantee live cooperation.",
+    "In the canonical recorded murder Vedant is the only independent named eyewitness. Complete attribution needs his disclosure or an eligible admission by Savitri. Sera only hears the cry in this tape; clothing alone remains insufficient.",
+    "The source-only probes are scripted genre-specific investigators with public text parsing and exhaustive 2/3-record examinations, not trained or LLM successes. Batched reply bounds are calculated schedules, not measured API reply counts.",
+    "Narrative prose, internal grief/ego and supernatural causes are not scored. No ghost influence or continuous offstage lifetime simulation is implemented.",
+    "Historical metrics refer to their frozen source versions. The new independent register sample, payer/carrier correction and later docket wording mean older logs are evidence of their old versions, not automatic validation of current source.",
+    "The separate source-inspired training worker validates its training-only adaptations. This audit covers the current eight public tasks and four case families, not all future generated stories.",
+    "Security relies on the documented trusted-host/container boundary; these data/proof checks are not universal jailbreak certification."
+  ],
+  "source_sha256": {
+    "mercy/town/world.py": "ed0fd8310cabd9bce62134fdeebfa347052493e4b31e9f1af4164095d15fb1db",
+    "mercy/town/setting.py": "1f6373e1b2196ca6cf11401198447b2c538cc61698adedc8092106d37b758290",
+    "mercy/town/prose.py": "6165b4dd0c464047983edd6003a4cb1156d0f4cb236bb048b601c6fd55c54388",
+    "mercy/town/factory.py": "02f52633945a55917b778c4953976544575ab2e697f1b3a8f8f995ac474abecc",
+    "mercy/town/comparison.py": "e7df39384a2f95d242f12298dfb5c24b169fc609180f95998fd6b485f34fc8c5",
+    "mercy/town/verifier.py": "abbeb2865dd659de51564f7823a2ec3474724443c233bf01bcb3660323973f51",
+    "mercy/town/reference.py": "d311e362ef9e06fc0dc4e5fc420b13804b40e276f129818b10a070f09255b512",
+    "mercy/town/family_data.py": "100f2a1c52acfdb3f641f5140dc282e506213e89543fdf691ac7e3970271f3f4",
+    "mercy/town/family_world.py": "82a424fea709ace4c28d27ce48902488e44191aad06df522ab685ecb0f550edd",
+    "mercy/town/family_proof.py": "7c734c080459e8f0765fa6e562ed46e7d58bc14b0d4cd82ee27ed439ba73891b",
+    "mercy/town/family_reference.py": "993c1d266ee210b5fd061ee2e528d29199506edf7e396586081a32f67fe04cee",
+    "tests/town/test_case_audit.py": "2091f897b8ece1451ac3d2a1f1f223e6773049c0b12a0b6a4864f0fd077b37e5",
+    "tests/town/public_feasibility.py": "dc215e59647e84784512d8109e8dc16696caa31103a669c4680a935ab5d9198a"
+  },
+  "source_note": "Audit of current worktree by exact file hashes; final submission manifest records the final commit. Training/evaluation snapshots remain separately versioned."
+}

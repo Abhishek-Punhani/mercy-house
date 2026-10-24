@@ -1,0 +1,24 @@
+{
+  "declared_at_utc": "2026-10-24T13:36:31.793616+00:00",
+  "cases": [
+    {
+      "task_id": "last_witness",
+      "seed": 617
+    },
+    {
+      "task_id": "mercy_inquest",
+      "seed": 619
+    }
+  ],
+  "arms": [
+    "llm_ranked",
+    "source_trained_selector"
+  ],
+  "choices_per_arm": 40,
+  "request_cap": 160,
+  "npc_condition": "fixed grounded per-memory response bank with normal disclosure gates",
+  "proposal_condition": "same ranked API contract, equal-state cache; subsequent branches may differ",
+  "training_exclusion": "Neither elite snapshot is used in new source curriculum; new weights start from zero. Historical policy/results remain separate.",
+  "selection_rule": "One final frozen checkpoint after fixed6000episodes; no selecting weights after elite evaluation.",
+  "scope_limit": "Two task scopes over the same canonical Mercy House incident, not two independent unseen plot families. Both are excluded from the new source-mechanism training."
+}

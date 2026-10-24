@@ -35,12 +35,13 @@ class Town:
         # Existing objects have specific owners and histories; present crimes are not prewritten.
         self.object('folded sheet','archive','desk','A thin sheet has been folded along the same lines until the paper has worn almost white. In Tara’s hand: “Please keep what I actually said. The director ordered the door locked. I asked Matron Das to let me out. She refused. If another copy is made, do not let that sentence disappear.” The remaining lines concern cold bedding and a request for clean clothes.',{'predicate':'confined','actor':'raghav','object':'tara'},'original_statement')
         self.object('visitors book','hall','visitors book','Names and arrival times. Several pages have been folded at the corner.',None,'visitors_book')
-        self.object('folded envelope','hall','visitors book','The envelope has no stamp. Inside, a hurried letter begins: “Kabir—Savitri paid me to carry two sealed grave crates to Dev’s winter beds. I took the cart after the last bell, as she asked. I was told not to stop at the house. The stable kept a duplicate of the charge. Please keep me out of this; I cannot have your uniform at my door. Nalin.” A second fold has tucked the signature out of sight.',{'predicate':'moved','actor':'savitri','object':'burials'},'delivery_letter')
-        self.object('carbon invoice','rao_house','correspondence drawer','A duplicate account has left a blue-grey impression on thin paper. “Paid by S. Das. Carrier Nalin. Two grave crates: old cemetery to winter garden. Evening cartage; payment received.” A stable clerk has initialled the charge, and an old pinhole marks the corner where this copy was once attached to another account.',{'predicate':'moved','actor':'savitri','object':'burials'},'invoice')
+        self.object('folded envelope','hall','visitors book','The envelope has no stamp. Inside, a hurried letter begins: “Kabir—Savitri paid me to carry two sealed grave crates to Dev’s winter beds. I took the cart after the last bell, as she asked. I was told not to stop at the house. The stable kept a duplicate of the charge. Please keep me out of this; I cannot have your uniform at my door. Nalin.” A second fold has tucked the signature out of sight.',{'predicate':'commissioned','actor':'savitri','object':'burials'},'delivery_letter')
+        self.object('carbon invoice','rao_house','correspondence drawer','A duplicate account has left a blue-grey impression on thin paper. “Paid by S. Das. Carrier Nalin. Two grave crates: old cemetery to winter garden. Evening cartage; payment received.” A stable clerk has initialled the charge, and an old pinhole marks the corner where this copy was once attached to another account.',{'predicate':'commissioned','actor':'savitri','object':'burials'},'invoice')
         self.object('copybook','das_house','writing desk','A draft statement copies Tara’s words but crosses out the sentence about the matron refusing release.',{'predicate':'altered','actor':'savitri','object':'tara_statement'},'copybook')
         self.object('ink-stained ledger','rao_house','correspondence drawer','The working book has absorbed ink through its cloth spine. Its inside cover is signed V. Rao. A replacement list of ninth-ward deaths has no entry for Nera; against the earlier numbering, a marginal instruction reads “remove this entry from the clean copy.” The space has been ruled over rather than torn out.',{'predicate':'altered','actor':'vedant','object':'death_register'},'correction_ledger')
+        self.object('signed maintenance receipt','rao_house','correspondence drawer','A routine maintenance receipt predates the inquiry. “Speaking-tube repair completed and account settled. Vedant Rao.” Hari countersigned its payment when it was filed. The ordinary writing has narrow letters and a doubled loop on lower-case o.',None,'vedant_sample')
         self.object('disturbed soil','garden','winter beds','The soil above last month’s bulbs has recently been lifted. The depression is longer than a garden trench.',None,'soil')
-        self.object('grave cloth','garden','winter beds','Below the disturbed soil are two old sets of human remains wrapped in cloth marked WARD IX.',{'predicate':'moved','actor':'savitri','object':'burials'},'remains')
+        self.object('grave cloth','garden','winter beds','Below the disturbed soil are two old sets of human remains wrapped in cloth marked WARD IX.',None,'remains')
         self.object('household paper','das_house','stove','An unused paper offcut lies beside the ash bucket rather than inside it. One edge has been cut square; the other is an irregular tear with a small projecting tooth near the middle. The household stationery block is the same pale shade, but there is no writing on this piece.',None,'draft')
         self.object('signed shopping note','das_house','parlor table','A shopping note has been held flat by the sugar bowl. “Kamala—please collect flour and lamp oil tomorrow. Leave the account in the kitchen tin; I shall settle it after breakfast. S. Das.” The ordinary household hand has a distinctive overwritten lower-case d. A dry ring from the bowl crosses the bottom corner.',None,'savitri_sample')
         coat=self.object('household shawl','hall','worn clothing','A dark wool shawl with repaired cuffs and a laundry tag bearing S. Das.',None,'coat')
@@ -156,7 +157,7 @@ class Town:
         elif action=='plant_threat':
             eid=self.event('forgery',pid,'archive','Savitri writes a threatening note and signs Dev’s name.',{'predicate':'forged','actor':pid,'object':'threat'},noticed=False)
             self.remember(pid,'I wrote a note in Dev’s name and left it among the papers.','own_action',eid,{'predicate':'forged','actor':pid,'object':'threat'})
-            self.object('folded note','archive','desk','“Keep out of the burial office. Before the ninth bell I shall silence you. — Dev”',None,'planted_threat',eid)
+            self.object('folded note','archive','desk','“Keep out of the burial office. You have been warned. Before the ninth bell I shall silence you. — Dev”',None,'planted_threat',eid)
         elif action=='return_home':
             self.event('departure',pid,place,f'{p["name"]} leaves toward home.');p['location']=p['home']
             if pid=='savitri':
@@ -372,12 +373,12 @@ class Town:
             props=[{'predicate':'matched','actor':coat,'object':cuff}]
         if {'invoice','delivery_letter'}<=keys:
             result='The payment amount, carrier name, and destination agree across the two separately retained papers.'
-            props=[{'predicate':'moved','actor':'savitri','object':'burials'},{'predicate':'moved','actor':'nalin','object':'burials'},{'predicate':'commissioned','actor':'savitri','object':'burials'}]
+            props=[{'predicate':'moved','actor':'nalin','object':'burials'},{'predicate':'commissioned','actor':'savitri','object':'burials'}]
         if {'original_statement','copybook','savitri_sample'}<=keys:
             result='The household copy omits the original sentence about the matron refusing release. Its amended lines agree in handwriting with the independently signed shopping note.'
             props=[{'predicate':'altered','actor':'savitri','object':'tara_statement'}]
-        if {'correction_ledger','parish_register'}<=keys:
-            result='Nera’s certified parish entry has no counterpart in the replacement death register. The working ledger’s instruction to remove that entry is in the keeper’s signed hand, V. Rao.'
+        if {'correction_ledger','parish_register','vedant_sample'}<=keys:
+            result='Nera’s certified parish entry has no counterpart in the replacement death register. The deletion instruction agrees in handwriting with the independently countersigned maintenance receipt; the ledger-cover initials alone do not establish its writer.'
             props=[{'predicate':'altered','actor':'vedant','object':'death_register'}]
         return self._receipt('comparison',{'compared':records,'observation':result},props,records)
 

@@ -39,17 +39,23 @@ def main():
     parser.add_argument('--checkpoint',type=Path,default=Path('models/action-selector-final.json'))
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--steps',type=int,default=24);parser.add_argument('--request-cap',type=int,default=150)
+    parser.add_argument('--case',action='append',help='Predeclared task_id:seed; repeat for matched evaluation cases')
     args=parser.parse_args()
     if args.output.exists() and any(args.output.iterdir()):parser.error('Use a new output directory')
     args.output.mkdir(parents=True,exist_ok=True)
     if not 1<=args.steps<=40 or not 1<=args.request_cap<=200:parser.error('Invalid experiment budget')
     cases=[('lantern_room',211),('second_passenger',307),('bell_before_dawn',401)]
+    if args.case:
+        from mercy.town.tasks import task_id
+        try:cases=[(task_id(value.rsplit(':',1)[0]),int(value.rsplit(':',1)[1])) for value in args.case]
+        except (ValueError,IndexError):parser.error('Each case must be a registered task_id:integer_seed')
+        if len(cases)!=len(set(cases)) or len(cases)>8:parser.error('Use at most eight distinct cases')
     policy=Selector.load(args.checkpoint);frozen=dict(policy.weights)
     manifest={'cases':[{'task_id':t,'seed':s} for t,s in cases],'arms':['llm_ranked','rl_selected'],
       'steps':args.steps,'request_cap':args.request_cap,'checkpoint_sha256':hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
       'frozen_source':os.getenv('EXPERIMENT_FROZEN_SOURCE'),'npc_condition':'fixed grounded per-memory response bank; same disclosure gates in both arms; NOT live NPCs',
       'candidate_condition':'same ranked API proposal contract, two to six actions; no extra candidates for the selector',
-      'limitations':['Only three matched cases; not statistical evidence of superiority.','Equal-state API proposals cached, but proposals after branch divergence can differ.','Not the default native-tool detective or a whole-competition comparison.']}
+      'limitations':[f'Only {len(cases)} matched cases; not statistical evidence of superiority.','Equal-state API proposals cached, but proposals after branch divergence can differ.','Not the default native-tool detective or a whole-competition comparison.']}
     write_json(args.output/'experiment.json',manifest)
     live.PROPOSER_SYSTEM+=' Rank candidates from most to least preferred: the first candidate is your best next action. This ranking is used by the baseline. Do not see or infer another selector’s output.'
     cache={};used=0;last=0.;results=[];start=time.monotonic()

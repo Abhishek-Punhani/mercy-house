@@ -1,9 +1,9 @@
 import {backdrop,portrait} from './art.js';
-import {initialState,stateAt,actionTitle,recordKind,recordLabel,recordText} from './state.js';
+import {initialState,stateAt,actionTitle,recordKind,recordLabel,recordText,reportOutcome,findingDescription} from './state.js';
 
 const $=id=>document.getElementById(id);
 const csrf=document.querySelector('meta[name="mercy-csrf"]').content;
-let settings={},runs=[],run=null,events=[],position=0,state=initialState(),playing=false,live=false,stream=null,clock=null,filter='all',sceneId='',actorKey='',opened=false;
+let settings={},runs=[],run=null,events=[],position=0,state=initialState(),playing=false,live=false,stream=null,clock=null,filter='all',sceneId='',actorKey='',opened=false,announcedReport='';
 const icon={go:'↗',ask:'◌',search:'⌕',collect:'◇',compare:'≋',request_access:'⚿',excavate:'⌁',submit_report:'▤',people_here:'♧',look:'◈',record_note:'✎',review_records:'▱',run_command:'›_'};
 
 function node(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=String(text);return el;}
@@ -59,12 +59,56 @@ function renderTimeline(){
   content.append(node('strong','',actionTitle(item.action,state)),node('p','',detail));row.append(node('span','timeline-icon',icon[item.action.tool]||'·'),content,node('small','',item.reply?'REPLY '+item.reply:'EVENT '+item.seq));$('timeline-events').append(row);
  }
 }
+function reportBlocks(){
+ const blocks=[],finished=state.finished,result=finished?.result||{},submission=state.submission;
+ const provenance=run.kind==='reference'?'This is a scripted reference with cooperative fixture characters. It demonstrates a legal proof route; it is not a learned detective result.':run.kind==='selector-checkpoint'?'This is an actual trained-selector skill checkpoint with previously acquired material. Its exercise reward is separate from the broader Town report score; it is not a fresh crime-scene solve.':'This is an actual API detective run. Its submitted conclusions are checked against the evidence it acquired.';
+ blocks.push(node('p','report-provenance',provenance));
+ if(finished){
+  const metrics=node('div','report-metrics');
+  const entries=[];if(finished.exercise_reward!==undefined)entries.push(['Exercise reward',finished.exercise_reward]);
+  entries.push([run.kind==='selector-checkpoint'?'Town report score':'Investigation reward',result.score??'Not graded'],['Supported findings',result.supported_findings?.length??0],['False findings',result.false_findings?.length??0],['Unsupported findings',result.unsupported_findings?.length??0]);
+  for(const [label,value] of entries){const cell=node('div','report-metric');cell.append(node('strong','',value),node('span','',label));metrics.append(cell);}blocks.push(metrics);
+  const components=result.reward_components;
+  if(components){const box=node('div','report-formula');box.append(node('span','eyebrow','PROGRAMMATIC REWARD BREAKDOWN'),node('p','',Number(components.supported_coverage??0).toFixed(3)+' supported coverage − '+Number(components.false_penalty??0).toFixed(3)+' false penalty − '+Number(components.unsupported_penalty??0).toFixed(3)+' unsupported penalty → '+Number(result.score??0).toFixed(3)+' reward (clamped to 0–1)'));blocks.push(box);}
+ }
+ const submitted=node('div','report-submission');submitted.append(node('h3','',submission?'The detective’s submitted report':'Submission record'));
+ if(submission){
+  if(!submission.findings.length)submitted.append(node('p','report-muted','The detective submitted an empty findings list.'));
+  for(const [i,f] of submission.findings.entries()){
+   const claim=node('div','report-claim');claim.append(node('span','report-claim-number',String(i+1).padStart(2,'0')),node('p','report-assertion',findingDescription(f)));
+   const sources=node('div','report-sources');sources.append(node('span','report-muted','Cited sources: '));
+   if(!f.sources?.length)sources.append(node('span','report-muted','none'));
+   for(const rid of f.sources||[]){const record=state.records[rid];const button=node('button','report-source',rid);button.type='button';button.title=record?recordLabel(record):'No acquired record with this ID';button.addEventListener('click',()=>showDetail(record?recordLabel(record):'Unacquired source',record?recordText(record)+(record.recollections?'\n\n'+record.recollections.map(m=>m.basis+' — '+m.text).join('\n'):''):'This source ID is not present in the acquired casebook.',String(rid)+' · CITED BY THE DETECTIVE'));sources.append(button);}
+   claim.append(sources);submitted.append(claim);
+  }
+  submitted.append(node('span','eyebrow','SUBMITTED NARRATIVE · UNSCORED'),node('p','report-narrative',submission.narrative||'No narrative was submitted.'));
+  const raw=node('details','report-raw');raw.append(node('summary','','Exact submitted report JSON'),node('pre','',JSON.stringify({findings:submission.findings,narrative:submission.narrative},null,2)));submitted.append(raw);
+ }else submitted.append(node('p','report-muted',finished?'No accepted submit_report action is captured in this public trace. A step/time cap can be graded automatically with an empty report; an older shell trace may omit the inner tool action. The recorded verifier result above remains authoritative.':'No accepted report has been observed yet.'));
+ blocks.push(submitted);
+ if(finished){
+  const judgments=node('div','report-judgments');judgments.append(node('h3','','What the verifier established'));
+  let findings=0;
+  for(const [key,label] of [['supported_findings','SUPPORTED'],['false_findings','FALSE'],['unsupported_findings','UNSUPPORTED'],['unresolved_findings','UNRESOLVED']])for(const finding of result[key]||[]){const item=node('div','report-verdict '+key);item.append(node('span','',label),node('p','',findingDescription(finding)));judgments.append(item);findings++;}
+  if(!findings)judgments.append(node('p','report-muted','No structured findings were established in the recorded grade.'));
+  if(result.limitations)judgments.append(node('p','report-muted',result.limitations));
+  blocks.push(judgments);
+ }
+ return blocks;
+}
+function renderReport(){
+ const visible=!!(state.submission||state.finished);$('report-panel').classList.toggle('hidden',!visible);if(!visible)return;
+ const outcome=reportOutcome(state,run?.kind);$('report-panel').dataset.outcome=outcome.tone;
+ const heading=node('div','report-heading'),copy=node('div');copy.append(node('span','eyebrow',state.finished?'FINAL RESULT · PROGRAMMATIC VERIFIER':'REPORT RECEIVED'),node('h2','',outcome.label),node('p','',outcome.detail));
+ heading.append(copy,node('span','report-seal',outcome.tone==='success'?'✓':outcome.tone==='failure'?'!':'…'));
+ $('report-content').replaceChildren(heading,...reportBlocks());
+ if(state.finished&&announcedReport!==run.id){announcedReport=run.id;toast(outcome.label+' — submitted report and verifier findings are below the replay controls.');}
+}
 function render(){
  const place=state.scene.place||{};
  if(place.id&&place.id!==sceneId){sceneId=place.id;$('backdrop').innerHTML=backdrop(sceneId);document.querySelector('.stage').classList.remove('scene-change');void document.querySelector('.stage').offsetWidth;document.querySelector('.stage').classList.add('scene-change');}
  $('location-name').textContent=place.name||'The town is waiting';$('scene-description').textContent=place.description||'';
  $('reply-count').textContent=state.reply?(run?.kind==='reference'?'ACTION '+state.reply:run?.kind==='selector-checkpoint'?'DECISION '+state.reply+' / '+run.max_steps:'REPLY '+state.reply+' / 40'):'PROLOGUE';
- $('activity-text').textContent=state.status;$('activity-detail').textContent=state.pending?.tool==='model_request'?'The model request is in progress. No private reasoning is shown.':state.pending?'Waiting for this action to return. The scene follows actual engine events.':state.finished?'Open the final report to see what was supported.':live?'The agent is running independently.':'The stage reflects the selected replay event.';
+ $('activity-text').textContent=state.status;$('activity-detail').textContent=state.pending?.tool==='model_request'?'The model request is in progress. No private reasoning is shown.':state.pending?'Waiting for this action to return. The scene follows actual engine events.':state.finished?'The submitted report and verifier findings are visible below the replay controls.':live?'The agent is running independently.':'The stage reflects the selected replay event.';
  $('decision-note').textContent=state.note||'No decision note recorded yet. The detective’s private reasoning is not shown.';
  $('selector-panel').classList.toggle('hidden',!state.selection);
  if(state.selection){$('selector-choice').textContent=state.selection.tool+' · '+(state.selection.probability*100).toFixed(1)+'% among '+state.selection.count+' candidates';$('selector-probability').value=state.selection.probability;}
@@ -72,12 +116,12 @@ function render(){
  $('record-count').textContent=Object.values(state.records).filter(r=>recordKind(r)!=='note').length;$('people-count').textContent=Object.keys(state.people).length;$('place-count').textContent=state.visited.length;
  $('conversation').classList.toggle('hidden',!state.conversation);
  if(state.conversation){const c=state.conversation;$('question-text').textContent=c.question;$('answer-text').textContent=c.answer;$('witness-name').textContent=state.people[c.pid]?.name||c.pid;$('dialogue-basis').textContent=[...new Set(c.recollections.map(m=>m.basis.replaceAll('_',' ')))].join(' · ')||'NO FACTUAL RECOLLECTION RELEASED';}
- renderActors();renderRecords();renderTimeline();
+ renderActors();renderRecords();renderTimeline();renderReport();
  $('event-count').textContent=position+' / '+events.length;$('seek').max=events.length;$('seek').value=position;
  $('play-button').textContent=playing?'Ⅱ':'▶';$('play-button').setAttribute('aria-label',playing?'Pause the viewer':'Play the viewer');
  $('play-label').textContent=live?(playing?'Following live':'Display paused'):playing?'Playing recorded events':'Recorded replay';
  $('playback-note').textContent=live?'Playback controls affect the viewer only. The agent continues.':run?.kind==='reference'?'Scripted public-tool reference · fixture characters':run?.kind==='selector-checkpoint'?'RL skill checkpoint · prior acquired material · not a whole-case run':'Recorded API detective · actual observations';
- $('stage-caption').textContent=state.finished?(state.finished.termination==='success'?'Report accepted · acquired support verified':'Investigation ended · '+state.finished.termination):state.pending?actionTitle(state.pending,state):state.conversation?'A conversation, with limits on what each person knows.':state.scene.immediately_visible||'Only acquired observations are shown.';
+ $('stage-caption').textContent=state.finished?(reportOutcome(state,run?.kind).label+' · '+state.finished.termination):state.pending?actionTitle(state.pending,state):state.conversation?'A conversation, with limits on what each person knows.':state.scene.immediately_visible||'Only acquired observations are shown.';
  $('arrival-card').classList.toggle('hidden',opened||live||position>1);$('stop-button').classList.toggle('hidden',!live||!!state.finished);
  $('end-button').textContent=state.finished?'Read final report →':'Go to report →';
 }
@@ -107,14 +151,8 @@ async function loadRun(ident){
 }
 function showReport(){
  if(!state.finished){const end=events.findIndex(e=>e.type==='finished'||e.type==='run_error'||e.type==='stopped');if(end<0){toast(live?'The investigation is still running.':'No final report was recorded.');return;}pause();seek(end+1);}
- const finished=state.finished,result=finished.result||{};$('detail-title').textContent=run.kind==='selector-checkpoint'?'The checkpoint result':finished.termination==='success'?'A supported reconstruction':'An unfinished reconstruction';$('detail-kicker').textContent='FINAL VERIFIER RESULT · '+finished.termination.toUpperCase();
- const blocks=[];const narrative=state.history.findLast(h=>h.action.tool==='submit_report')?.action.args?.narrative;
- blocks.push(node('div','',run.kind==='reference'?'This is a scripted reference with cooperative fixture characters. It demonstrates a legal proof route; it is not a learned detective result.':run.kind==='selector-checkpoint'?'This is an actual trained-selector skill checkpoint with previously acquired material. Its exercise reward is separate from the broader Town report score; it is not a fresh crime-scene solve.':'This is an actual model run. A plausible narrative is not counted as a supported finding.'));
- if(finished.exercise_reward!==undefined){const row=node('div','verdict-row');row.append(node('span','','Exercise reward'),node('strong','',finished.exercise_reward));blocks.push(row);}
- for(const [label,value] of [[run.kind==='selector-checkpoint'?'Town report score':'Reward',result.score??'Not graded'],['Supported findings',result.supported_findings?.length??0],['False findings',result.false_findings?.length??0],['Unsupported findings',result.unsupported_findings?.length??0]]){const row=node('div','verdict-row');row.append(node('span','',label),node('strong','',value));blocks.push(row);}
- for(const [key,label] of [['supported_findings','SUPPORTED'],['false_findings','FALSE'],['unsupported_findings','UNSUPPORTED']])for(const f of result[key]||[])blocks.push(node('span','source-line',label+' — '+f.actor+' / '+f.predicate+' / '+f.object));
- if(narrative)blocks.push(node('span','source-line','THE DETECTIVE’S SUBMITTED NARRATIVE (UNSCORED)'),node('div','',narrative));
- if(finished.message)blocks.push(node('div','',finished.message));$('detail-body').replaceChildren(...blocks);$('detail-dialog').showModal();
+ const outcome=reportOutcome(state,run.kind);$('detail-title').textContent=outcome.label;$('detail-kicker').textContent='FINAL VERIFIER RESULT · '+state.finished.termination.toUpperCase();
+ $('detail-body').replaceChildren(...reportBlocks());if(!$('detail-dialog').open)$('detail-dialog').showModal();
 }
 async function showLibrary(){
  const data=await api('/api/runs');runs=data.runs;$('library-list').replaceChildren();

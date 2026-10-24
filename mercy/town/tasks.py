@@ -40,5 +40,5 @@ def task_id(value):
 def description(value):
     key = task_id(value)
     return {'task_id': key, 'family':TASKS[key].get('family','mercy_house'), **TASKS[key],
-            'report_contract': 'Choose your own findings: actor, predicate, object and acquired source IDs. Use the exact predicate enum in the tool schema. Acquired object IDs, observed full names and concise object labels are accepted. commissioned distinguishes an orderer from the carrier; matched describes physical objects and does not identify a killer. Hypotheses belong in narrative.',
+            'report_contract': 'Choose your own findings: actor, predicate, object and acquired source IDs. Use the exact predicate enum in the tool schema. Acquired object IDs, observed full names and concise object labels are accepted. assisted means knowingly facilitated the fatal incident involving the named victim; aided means help given to the victim. commissioned distinguishes an orderer from the carrier; matched describes physical objects and does not identify a killer. Hypotheses belong in narrative.',
             'limits': {'model_replies': 40, 'calls_per_reply': 10, 'wall_seconds': 600}}

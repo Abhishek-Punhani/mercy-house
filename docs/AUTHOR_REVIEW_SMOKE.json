@@ -1,0 +1,16 @@
+{
+  "kind": "private development author-review smoke; not the official verifier",
+  "fixture": "privileged public-tool reference, not a model detective",
+  "programmatic_score_unchanged": true,
+  "programmatic_score": 1.0,
+  "advisory_unscored": true,
+  "issues_count": 4,
+  "first_attempt": "unreadable JSON; deterministic result unaffected",
+  "second_attempt": "valid advisory after bounded output/parsing fix",
+  "actions": [
+    "Clarified assisted versus aided semantics in generic schema and visible report text.",
+    "Retained reference all-acquired source lists as feasibility fixture, not an ideal editorial report.",
+    "Documented finite proof vocabulary and no inference of carrier knowledge or historical murder from relocation alone."
+  ],
+  "private_outputs": "Excluded from viewer, agent tools and archive."
+}

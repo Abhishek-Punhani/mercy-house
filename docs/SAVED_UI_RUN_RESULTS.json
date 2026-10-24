@@ -1,0 +1,88 @@
+{
+  "runs": [
+    {
+      "id": "c4f462c055",
+      "task": "lantern_room",
+      "seed": 7,
+      "termination": "success",
+      "score": 1.0,
+      "false": [],
+      "unsupported": [],
+      "supported": [
+        {
+          "actor": "tobin",
+          "predicate": "killed",
+          "object": "oren"
+        }
+      ],
+      "source": "saved user-started native UI run; separate from development calibration and later frozen source-policy elite test"
+    },
+    {
+      "id": "2e7fd6f26e",
+      "task": "mercy_inquest",
+      "seed": 7,
+      "termination": "failure",
+      "score": 0.0,
+      "false": [],
+      "unsupported": [
+        {
+          "actor": "savitri",
+          "predicate": "commissioned",
+          "object": "grave relocation"
+        },
+        {
+          "actor": "nalin",
+          "predicate": "moved",
+          "object": "burials"
+        }
+      ],
+      "supported": [],
+      "source": "saved user-started native UI run; separate from development calibration and later frozen source-policy elite test"
+    },
+    {
+      "id": "4f73c45cde",
+      "task": "mercy_inquest",
+      "seed": 41,
+      "termination": "failure",
+      "score": 0.0,
+      "false": [],
+      "unsupported": [
+        {
+          "actor": "savitri",
+          "predicate": "forged",
+          "object": "threat"
+        },
+        {
+          "actor": "savitri",
+          "predicate": "commissioned",
+          "object": "burials"
+        },
+        {
+          "actor": "nalin",
+          "predicate": "moved",
+          "object": "burials"
+        }
+      ],
+      "supported": [
+        {
+          "actor": "savitri",
+          "predicate": "killed",
+          "object": "mira"
+        }
+      ],
+      "source": "saved user-started native UI run; separate from development calibration and later frozen source-policy elite test"
+    },
+    {
+      "id": "0e112f8018",
+      "task": "borrowed_signature",
+      "seed": 41,
+      "termination": "failure",
+      "score": 0.0,
+      "false": [],
+      "unsupported": [],
+      "supported": [],
+      "source": "saved user-started native UI run; separate from development calibration and later frozen source-policy elite test"
+    }
+  ],
+  "note": "Additional native UI runs discovered during packaging; preserve their original source and do not pool with the four development calibration runs or frozen-selector experiments."
+}

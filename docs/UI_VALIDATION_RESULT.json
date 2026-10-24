@@ -1,7 +1,7 @@
 {
-  "town_tests": 96,
+  "town_tests": 114,
   "legacy_tests": 9,
-  "node_state_tests": 4,
+  "node_state_tests": 9,
   "browser": {
     "passed": true,
     "checks": [
@@ -14,7 +14,12 @@
       "provider key absent from DOM",
       "responsive mobile layout",
       "RL choice probability is labeled",
-      "checkpoint reward separate from Town report score"
+      "checkpoint reward separate from Town report score",
+      "persistent solved and unsolved report panels",
+      "actual submitted findings, narrative and cited acquired sources",
+      "programmatic reward breakdown",
+      "responsive mobile report",
+      "fatal assistance display distinguished from victim aid"
     ],
     "javascript_errors": []
   },
@@ -40,7 +45,7 @@
   },
   "cold_build": {
     "exit_code": 0,
-    "seconds": 14.069,
+    "seconds": 26.338,
     "scope": "Four current runtime images; new isolated docker-container builder with no imported cache, --no-cache; local machine."
   },
   "frozen_source_compose_baselines": "passed all eight reference/no-op pairs without model calls",
@@ -94,5 +99,7 @@
     "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
     "source_note": "Fresh local Git clone; MODE=baselines with unused placeholder key. No provider calls. Later handoff commit changes validation documents and removes two unreferenced generated replay copies; runtime code remains identical."
   },
-  "family_evidence": "FAMILY_VALIDATION_RESULT.json"
+  "family_evidence": "FAMILY_VALIDATION_RESULT.json",
+  "case_audit": "docs/CASE_SOLVABILITY_AUDIT.json",
+  "source_training": "docs/SOURCE_TRAINING_RESULT.json"
 }

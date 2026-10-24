@@ -1,6 +1,6 @@
 # Private author review — original families
 
-Contains solutions and private memories. Trusted review only; excluded from the detective image, workspace and viewer endpoints. All examples use seed 37. Not an agent prompt.
+Contains solutions and private memories. Trusted author review only; excluded from the detective image, workspace and viewer endpoints. Examples use seed37. Not an agent prompt.
 
 ## The Lantern Room
 
@@ -15,7 +15,7 @@ Contains solutions and private memories. Trusted review only; excluded from the 
 
 **Material targets (private):** [{"predicate": "killed", "actor": "maren", "object": "oren"}]
 
-### Detective’s own remembered life
+### Detective’s remembered life
 
 The district coat still carries the smell of the coach. Before the uniform there was Mill Lane: your father's wheel plane, your mother's account book, and Tara asking you to wait at the chapel turn. Twelve winters after her death, the institutional letter remains in your desk. You remember its careful wording.
 
@@ -31,7 +31,7 @@ Oren kept the lamps and the inn's smaller debts in the same ruled book. He disli
 
 **Family:** {"spouse": "Mina, a weaver"}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [direct_observation] Maren Vale picks up the lamp base.
 
@@ -43,7 +43,7 @@ Maren learned her numbers in this reading room while waiting for her father to f
 
 **Family:** {"brother": "Adit, studying elsewhere"}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I came to discuss an old freight charge with Oren.
 - [personal_history] Oren intended to publish an altered freight account. I came prepared to stop him by violence.
@@ -59,7 +59,7 @@ Tobin can make a worn spring work for another winter, but finds promises harder 
 
 **Family:** {"daughter": "Elsie, a school pupil"}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I came to settle a disputed workshop advance with Oren.
 - [own_action] Tobin Hale arrives from Pine Lantern reading room.
@@ -73,7 +73,7 @@ Nell has run the Pine Lantern through three winters of closed roads. She knows w
 
 **Family:** {"son": "Perrin, a porter"}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I was laying the reading-room table before the lamps were lowered.
 - [direct_observation] Maren Vale picks up the lamp base.
@@ -84,19 +84,19 @@ Nell has run the Pine Lantern through three winters of closed roads. She knows w
 
 The reading room holds the last warmth of the kitchen. A green-shaded lamp lights a large table, and an ashless hearth has been swept for the night. Beyond the door is a small hall; the courtyard can be reached from there. On the table the inn's ordinary accounts wait beneath a bowl of apples. The room is quiet enough to hear a cup being set down.
 
-Routes: hall. Searchable surfaces: floor, table, hearth.
+Routes: hall. Searchable features: floor, table, hearth.
 
 ### Pine Lantern side hall (hall)
 
 A narrow bench stands beneath hooks for wet coats. The reading-room door is close enough that an ordinary voice can carry through it, but the room itself cannot be seen from the bench. The courtyard door closes unevenly against the snow. A shelf holds the day's parcels.
 
-Routes: inn, courtyard. Searchable surfaces: bench, parcel shelf.
+Routes: inn, courtyard. Searchable features: bench, parcel shelf.
 
 ### Pine Lantern courtyard (courtyard)
 
 Wheel ruts end beside a covered woodpile. The gate has been fastened against the wind, leaving a single lantern above the snow. The inn's side hall is the way back into the warm rooms. Ordinary errands have left tracks crossing one another without a readable chronology.
 
-Routes: hall. Searchable surfaces: woodpile, gate.
+Routes: hall. Searchable features: woodpile, gate.
 
 ### Physical material after execution
 
@@ -122,7 +122,7 @@ Routes: hall. Searchable surfaces: woodpile, gate.
 
 **Material targets (private):** [{"predicate": "targeted", "actor": "brin", "object": "vesper"}, {"predicate": "killed", "actor": "brin", "object": "vesper"}, {"predicate": "killed", "actor": "brin", "object": "joel"}]
 
-### Detective’s own remembered life
+### Detective’s remembered life
 
 The district coat still carries the smell of the coach. Before the uniform there was Mill Lane: your father's wheel plane, your mother's account book, and Tara asking you to wait at the chapel turn. Twelve winters after her death, the institutional letter remains in your desk. You remember its careful wording.
 
@@ -138,7 +138,7 @@ Vesper measures things others prefer to estimate. The bridge report has become a
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] My dispatch code is BLUE-17.
 - [direct_observation] Brin Calder arrives from Pine Lantern booking room.
@@ -153,7 +153,7 @@ Joel carries official packets without being told why their seals matter. Recentl
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] My dispatch code is AMBER-4.
 - [direct_observation] Brin Calder arrives from Pine Lantern booking room.
@@ -168,7 +168,7 @@ Brin has spent thirty years making the valley's repairs possible on credit. A cl
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I objected to the surveyor’s proposal to close the bridge.
 - [personal_history] I decided to prevent Vesper Rane reaching the regional office. I planned to disable the coach carrying BLUE-17.
@@ -185,7 +185,7 @@ Elin inherited an office in which several old conveniences had never been writte
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] Joel and I disagreed about duplicate toll charges.
 
@@ -197,7 +197,7 @@ Neri signs a repair only after testing it. Brin helped his family after a roof f
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I inspected the brake before departure. The dated inspection card is on the repair stand.
 - [direct_observation] Brin Calder arrives from Pine Lantern booking room.
@@ -212,34 +212,34 @@ Pella knows passengers first by their handwriting and only later by their faces.
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] The dispatch ledger ties sealed packets to their carriers.
 - [direct_observation] Brin Calder arrives from Coach boarding yard.
 
 ### Old bridge crossing (forest)
 
-The coach has stopped below the old bridge, its near wheel folded under the axle. Snow makes the broken timbers look softer than they are. A path climbs back to the boarding yard. Between the firs the river can be heard beneath its ice. The wreckage and the bank beside it can be inspected separately.
+The old bridge crosses a narrow channel between the firs. A path climbs back to the boarding yard. The river can be heard beneath its ice. The bridge approach, the bank and anything below the crossing can be inspected separately.
 
-Routes: courtyard. Searchable surfaces: wreckage, bank.
+Routes: courtyard. Searchable features: wreckage, bank, bridge approach.
 
 ### Coach boarding yard (courtyard)
 
 A covered bay keeps the worst weather off the coaches. A repair stand faces the gate and a narrow notice board holds the day's departures. The road descends to the bridge; doors lead to the inn, while a short lane reaches the square. From the stand a person can see the rear brake assembly without seeing inside the coach.
 
-Routes: forest, inn, square. Searchable surfaces: repair stand, notice board.
+Routes: forest, inn, square. Searchable features: repair stand, notice board.
 
 ### Pine Lantern booking room (inn)
 
 The booking room smells of damp tickets and tea. A desk holds the dispatch ledger; a writing shelf has been cleared for visitors. The boarding yard is just outside. Passengers have left scarves over the backs of chairs, expecting to return for them after the short journey.
 
-Routes: courtyard. Searchable surfaces: dispatch desk, writing shelf.
+Routes: courtyard. Searchable features: dispatch desk, writing shelf.
 
 ### Toll office at the square (square)
 
 The toll office has a broad public counter and a low stove. Receipts are tied in monthly bundles, with specimen signatures in the cover book. The boarding yard lies along the lane. A clerk has left enough lamp oil for the last accounts to be checked.
 
-Routes: courtyard. Searchable surfaces: counter, cover book.
+Routes: courtyard. Searchable features: counter, cover book.
 
 ### Physical material after execution
 
@@ -277,7 +277,7 @@ Routes: courtyard. Searchable surfaces: counter, cover book.
 
 **Material targets (private):** [{"predicate": "forged", "actor": "maela", "object": "warning_letter"}, {"predicate": "relayed", "actor": "ivo", "object": "warning_letter"}, {"predicate": "killed", "actor": "maela", "object": "tessa"}]
 
-### Detective’s own remembered life
+### Detective’s remembered life
 
 The district coat still carries the smell of the coach. Before the uniform there was Mill Lane: your father's wheel plane, your mother's account book, and Tara asking you to wait at the chapel turn. Twelve winters after her death, the institutional letter remains in your desk. You remember its careful wording.
 
@@ -293,7 +293,7 @@ Tessa kept two copies when one would have made her life easier. Her private inde
 
 **Family:** {"daughter": "Maela"}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [direct_observation] Niv Soren arrives from The lamp-lit square.
 - [direct_observation] Niv Soren delivers the folded warning to Ivo Lark before the chapel visit.
@@ -310,7 +310,7 @@ Maela grew up making clean copies of her mother's difficult pages. When a disput
 
 **Family:** {"mother": "Tessa"}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I use the copying table in the chapel hall.
 - [personal_history] My mother asked about changes to a night-duty list.
@@ -331,7 +331,7 @@ Lewin has mended the Rowan household's clocks since Maela needed a stool to see 
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I use the repair table in the chapel hall.
 - [personal_history] Tessa questioned some of my hospital attendance certificates.
@@ -345,7 +345,7 @@ Ivo has learned that an uncertain sentence is remembered as a prediction once so
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I am staying at the inn and have not gone into the chapel tonight.
 - [direct_observation] Niv Soren arrives from The lamp-lit square.
@@ -360,7 +360,7 @@ Alba records what is put on the remedy shelf because labels survive longer than 
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] The sealed reference vial and dispensing record are on my desk.
 - [direct_observation] Maela Rowan arrives from Chapel side hall.
@@ -377,7 +377,7 @@ Niv carries the errands that everyone calls small until their contents become im
 
 **Family:** {}
 
-**Own experienced memories:**
+**Own memories:**
 
 - [personal_history] I keep delivery dockets at the lodging desk after the evening round.
 - [direct_observation] Maela Rowan gives a folded sheet to Niv Soren for delivery to Ivo at the inn.
@@ -390,31 +390,31 @@ Niv carries the errands that everyone calls small until their contents become im
 
 A lamp burns beside the reading lectern. A cup and a small labelled bottle stand on a tray, where evening visitors leave their remedies before sitting down. On the keeper's desk lie dispensary papers and a sealed reference vial. Doors open toward the square and the quieter side hall. The bell rope hangs motionless beside the wall.
 
-Routes: square, hall. Searchable surfaces: floor, lectern, keeper desk.
+Routes: square, hall. Searchable features: floor, lectern, keeper desk.
 
 ### Chapel side hall (hall)
 
 Two writing tables stand beneath the coat hooks. One is used by Maela for hospital copies; the other holds Lewin's repair accounts. The chapel and square can both be reached from here. A parcel shelf catches paper scraps that the stove has not yet claimed.
 
-Routes: chapel, square. Searchable surfaces: copying table, repair table, parcel shelf.
+Routes: chapel, square. Searchable features: copying table, repair table, parcel shelf.
 
 ### The lamp-lit square (square)
 
 Snow has collected against the chapel steps. Across the road the inn keeps a line of light under its door. The chapel side hall opens beside a covered passage. Voices travel across the square more easily than faces can be made out.
 
-Routes: hall, chapel, inn, forest. Searchable surfaces: notice board, steps.
+Routes: hall, chapel, inn, forest. Searchable features: notice board, steps.
 
 ### Pine Lantern common room (inn)
 
 The stove has gathered a small audience who pretend not to be listening to one another. A notice board stands beside the counter, and the lodging desk has a clock that gains a minute each winter. The square is outside. Someone has pinned a narrow sheet under a warning about the road.
 
-Routes: square. Searchable surfaces: notice board, lodging desk.
+Routes: square. Searchable features: notice board, lodging desk.
 
 ### Fir path above the chapel (forest)
 
 The path rises only a short way before the last window disappears. Branches rub together in the wind, making an uneven tapping. The town can be reached only by returning to the square. Nothing here supplies a face to a sound.
 
-Routes: square. Searchable surfaces: path, milestone.
+Routes: square. Searchable features: path, milestone.
 
 ### Physical material after execution
 
@@ -434,7 +434,7 @@ Routes: square. Searchable surfaces: path, milestone.
 
 **warning letter** (warning), inn/notice board: “Before the last bell, Tessa will fall beside her reading lamp. The old bell keeper has spoken.” The paper has a toothed torn edge. The close lettering has a double stroke on its final letters.
 
-**delivery docket** (delivery), inn/lodging desk: Niv’s docket records a sealed paper delivered to Ivo at the inn before Tessa entered the chapel. The inn clock time was countersigned by the recipient.
+**delivery docket** (delivery), inn/lodging desk: Niv’s docket records a sealed paper delivered to Ivo at the inn while Tessa was still in the common room. The inn clock time was countersigned by the recipient.
 
 **body** (body_tessa), chapel/floor: Tessa Rowan lies beside the lectern, unresponsive after drinking, with no visible external injury.
 

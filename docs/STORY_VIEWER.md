@@ -24,7 +24,7 @@ Open **http://localhost:8787**. Recorded cases need no API calls or Docker. For 
 
 ## Replay provenance
 
-The library includes four public-tool family references, eleven actual API detective runs (seven original-town failures and four beginner successes), and three actual trained-selector checkpoint evaluations. It defaults to an actual beginner success. Difficulty filters select introductory, intermediate, advanced and training replays. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
+The library includes four public-tool family references, fifteen actual API detective runs (ten failures and five beginner successes), and three actual trained-selector checkpoint evaluations. It defaults to an actual beginner success. Difficulty filters select introductory, intermediate, advanced and training replays. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
 
 Regenerate bundled replays with `python scripts/build_viewer_replays.py`. This reads public trajectories from the prior submission archive, current reference execution and the recorded selector evaluations. It never reads private actor audits or world snapshots.
 
@@ -47,3 +47,8 @@ This is a local companion, not a multi-user internet service. Bind remains 127.0
 Python tests cover projection canaries, provider-role separation, endpoint validation, key redaction, frozen-source exclusion, private-path denial, CSRF/origin rejection, SSE and casebook proof integrity. Node tests cover replay causality, acquired-record retention and observed presence. Chrome browser checks exercise dialogue, evidence details, verdict labels, provider-key absence, RL probability labels and mobile layout. The current container command-isolation probe also passes.
 
 Development browser checks use a dedicated local headless Chrome instance and `node --experimental-websocket scripts/qa_viewer.mjs`; these are not runtime dependencies. Raw results and screenshots are under ignored `logs/`; the compact validation report and representative screenshot are in `docs/`.
+
+
+## Persistent final report
+
+Completed runs now show a persistent solved/unsolved/not-graded panel beneath the playback controls. It contains the actual accepted submission, cited acquired sources, narrative, exact report JSON, programmatic findings and reward breakdown. Forced-end and missing-submission runs have explicit notices. Checkpoint exercise reward and full Town score remain separate. `assisted` is rendered as knowingly facilitating the fatal incident; `aided` is help given to the victim. No expected-answer list or private world is exposed. See UI_REPORT_IMPROVEMENTS.md.

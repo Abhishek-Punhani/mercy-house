@@ -41,11 +41,15 @@ Eight tasks cover four causal families. The five original objectives share one c
 
 ## Local RL training
 
+Two separate selectors exist. The historical five-skill prototype trained 20,000 CPU episodes. The new source-mechanism selector starts from zero and trains 6,000 episodes on 48 original checkpoint scenarios inspired by intended-target reversal, misleading foreknowledge and trusted-family suspicion. Both train only action-ranking weights; the API LLM stays fixed.
+
 ```bash
-python scripts/frozen_run.py mercy.rl.train_skills --episodes 20000 --seed 145 --output logs/my-training
+python scripts/frozen_run.py mercy.rl.train_sources --episodes 6000 --seed 526 --output logs/my-source-training
 ```
 
-CPU only, standard-library Python, no API calls. REINFORCE trains a linear softmax selector across document comparison, witness selection, statement checking, navigation and supervised delegation. A public proposer supplies candidate arguments; the selector learns which to execute. See [actual training and transfer results](docs/RL_TRAINING_REPORT.md). Live evaluations use API calls and start at skill checkpoints, rather than a complete crime scene.
+The new model has 132 coefficients and took 48.251 seconds including evaluation, with zero training API calls. On 48 disjoint held-out checkpoints evaluated twice: untrained 3/96, trained sampling 89/96, greedy 96/96. These are prepared skill checkpoints with authored reading/candidate rules and cooperative fixture characters, not complete TV episodes or whole-case LLM success. See [exact curriculum, rewards and limits](docs/SOURCE_TRAINING_REPORT.md). The source-trained checkpoint is `models/action-selector-sources.json`; the original20k checkpoint is retained separately.
+
+The separately preregistered [elite evaluation](docs/ELITE_EVALUATION_PLAN.json) uses two excluded full investigations, frozen weights, a matched ranked API proposer and fixed grounded character responses. [Results](docs/ELITE_TRANSFER_RESULT.json) must not be pooled with native live-character runs or checkpoint results. The normal viewer button runs the native API detective; it does not silently insert a selector.
 
 ## Isolation and validation
 
@@ -62,3 +66,5 @@ Read [PS audit](docs/PS_COMPLIANCE_AUDIT.md), [security](docs/SECURITY.md), [res
 A separate three-case fixed-response calibration found LLM-ranked actions succeeded in 1/3 and the frozen RL selector in 0/3. The selector remains optional; no whole-case RL improvement is established. See [exact comparison](docs/FAMILY_POLICY_COMPARISON.json). Historical offline checkpoint results are separate.
 
 Author review: [new families](docs/FAMILY_AUTHOR_REVIEW.md), [original plot](docs/CURRENT_PLOT.md), [characters](docs/V2_CHARACTER_PROFILES.md), [locations](docs/V2_LOCATIONS.md), [documents](docs/V2_EVIDENCE_AUTHOR.md), [original opening](docs/DETECTIVE_OPENING.md). These private review files never enter the detective image or workspace. Historical V1 dossiers/transcripts remain historical. Continuous offstage lives, a scored ghost mechanism and broad unseen-plot generalization remain future work.
+
+The [consistency/solvability audit](docs/CASE_SOLVABILITY_AUDIT.md) checks 184 task/seed baseline pairs and six source-only scripted investigations, and documents concrete factual/provenance fixes. Current author exports and reference trajectories have been regenerated. Historical runs retain their source-specific labels. The [private report-review command](docs/VERIFIER_AND_REVIEWER.md) complements the official programmatic scorer; optional LLM commentary cannot assign rewards.

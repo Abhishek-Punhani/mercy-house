@@ -62,5 +62,5 @@ def supports(world,p,records):
     if p['predicate']=='targeted':
         return has(p,'comparison') or has(prop('addressed','route_slip',p['object']),'comparison') and edge('handwriting_consistent','route_slip','sample_'+p['actor'])
     if p['predicate']=='forged':return edge('matched','warning','paper_'+p['actor']) and edge('handwriting_consistent','warning','sample_'+p['actor'])
-    if p['predicate']=='relayed':return {'warning','delivery'}<=keys and has(p,'testimony')
+    if p['predicate']=='relayed':return {'warning','delivery'}<=keys and (has(p,'testimony') or has(p,'physical'))
     return has(p,'testimony') or has(p,'comparison')

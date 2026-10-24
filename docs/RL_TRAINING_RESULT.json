@@ -169,5 +169,9 @@
         }
       }
     }
-  }
+  },
+  "historical_source_issues": [
+    "Historical five-skill results belong to the immutable recorded source. The later audit corrected payer/carrier confusion in delegation evidence/proposer; these old numbers do not validate current delegation semantics.",
+    "Current primary new-training evidence is SOURCE_TRAINING_RESULT.json; that fresh selector did not load this old checkpoint."
+  ]
 }

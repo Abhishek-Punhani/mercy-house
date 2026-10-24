@@ -25,8 +25,7 @@ def compare(world, records):
         link('matched', 'cuff', 'coat')
     if {'invoice', 'delivery_letter'} <= keys:
         observations.append('The payment amount, carrier name, and destination agree across the two separately retained papers. The payer and the carrier are different people.')
-        props.extend([{'predicate': 'moved', 'actor': 'savitri', 'object': 'burials'},
-                      {'predicate': 'commissioned', 'actor': 'savitri', 'object': 'burials'},
+        props.extend([{'predicate': 'commissioned', 'actor': 'savitri', 'object': 'burials'},
                       {'predicate': 'moved', 'actor': 'nalin', 'object': 'burials'}])
     if {'original_statement', 'copybook'} <= keys:
         observations.append('The household copy omits the original sentence about the matron refusing release. Comparing the two texts alone does not identify the person who made the change.')
@@ -36,7 +35,11 @@ def compare(world, records):
     if {'original_statement', 'copybook', 'savitri_sample'} <= keys:
         props.append({'predicate': 'altered', 'actor': 'savitri', 'object': 'tara_statement'})
     if {'correction_ledger', 'parish_register'} <= keys:
-        observations.append('Nera’s certified parish entry has no counterpart in the replacement death register. The working ledger instructs that entry to be removed; its inside cover is signed V. Rao.')
+        observations.append('Nera’s certified parish entry has no counterpart in the replacement death register. The working ledger instructs that entry to be removed. Its cover initials do not by themselves identify the writer of that instruction.')
+    if {'correction_ledger', 'vedant_sample'} <= keys:
+        observations.append('The deletion instruction agrees in handwriting with the separately signed and countersigned maintenance receipt, including the narrow letters and doubled loop on lower-case o.')
+        link('handwriting_consistent', 'correction_ledger', 'vedant_sample')
+    if {'correction_ledger', 'parish_register', 'vedant_sample'} <= keys:
         props.append({'predicate': 'altered', 'actor': 'vedant', 'object': 'death_register'})
     return world._receipt('comparison', {'compared': records, 'observation': ' '.join(observations) or
         'You lay out the records. Their wording and provenance remain distinct; no specific material correspondence is established by this selection.'}, props, records)

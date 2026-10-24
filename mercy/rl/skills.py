@@ -187,7 +187,9 @@ def propose(skill, book):
         if letter and invoice:
             # This is the same explicitly documented public parsing prior as the
             # forgery proposer; names never become selector coefficients.
-            who = re.search(r'—([A-Z][a-z]+) paid me', letter['description'])
+            # The named payer commissioned the journey; the letter's signed
+            # carrier performed it. Never turn payment into physical carrying.
+            who = re.search(r'([A-Z][a-z]+)\.[”"]\s+A second fold', letter['description'])
             if who:
                 findings = [{'actor': who[1].lower(), 'predicate': 'moved', 'object': 'burials',
                              'sources': [letter['record_id'], invoice['record_id']]}]

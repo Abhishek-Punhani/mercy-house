@@ -80,6 +80,46 @@
     "family": "lantern_room"
   },
   {
+    "id": "0e112f8018",
+    "kind": "recorded-model",
+    "label": "A Borrowed Signature \u00b7 model run 12",
+    "task_id": "borrowed_signature",
+    "seed": 41,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
+  },
+  {
+    "id": "2e7fd6f26e",
+    "kind": "recorded-model",
+    "label": "The Mercy House Inquest \u00b7 model run 13",
+    "task_id": "mercy_inquest",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "advanced",
+    "family": "mercy_house"
+  },
+  {
+    "id": "4f73c45cde",
+    "kind": "recorded-model",
+    "label": "The Mercy House Inquest \u00b7 model run 14",
+    "task_id": "mercy_inquest",
+    "seed": 41,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "advanced",
+    "family": "mercy_house"
+  },
+  {
+    "id": "c4f462c055",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 15",
+    "task_id": "lantern_room",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
     "id": "recorded-model-2",
     "kind": "recorded-model",
     "label": "A Borrowed Signature \u00b7 model run 2",

@@ -64,3 +64,15 @@ The local runner is not the Docker security boundary or the judged entry point. 
 ## Subsequent whole-family transfer calibration
 
 No weights were changed for the later case expansion. Three predeclared matched cases with a fixed grounded NPC-response bank gave LLM-ranked 1/3 and frozen RL-selected 0/3. Equal-state proposals were cached; branches can receive different later proposals. This is a small controlled development comparison, not the standard native-tool harness, and demonstrates no whole-case benefit from the checkpoint-trained selector. Full conditions and trajectories are in FAMILY_POLICY_COMPARISON.json and the archive. Four successful live-character beginner runs used the ordinary native detective, not this selector.
+
+
+## Subsequent data/proof audit and new training
+
+The case audit corrected payer/carrier attribution: Savitri commissioned the relocation; Nalin carried it out. The old delegation proposer extracted the payer and is now fixed to extract the letter’s signer. Historical training numbers remain measurements of their frozen source, not validation of current delegation semantics. Register attribution now also requires an independent signed sample. See CASE_SOLVABILITY_AUDIT.md.
+
+A separate fresh-zero selector was actually trained for6,000 episodes on48 source-mechanism checkpoints. It has132 coefficients; its held-out96/96 greedy exercise result is not a full-case solve. SOURCE_TRAINING_REPORT.md and SOURCE_TRAINING_RESULT.json provide the new curriculum, source credits, exact reward and limits. ELITE_TRANSFER_RESULT.json records the separate frozen whole-case test.
+
+
+### Current evaluation-only recheck of the historical selector
+
+After the payer/carrier and proof fixes, the unchanged historical selector was re-evaluated on its80 held-out checkpoint states with two greedy trials each. It again scored147/160 (delegation32/32) in3.558 seconds. This uses the corrected public proposer and programmatic proof rules; no weights or training data were updated. It remains fixture-based checkpoint performance, not native LLM or whole-case success. See LEGACY_POLICY_CURRENT_RECHECK.json.

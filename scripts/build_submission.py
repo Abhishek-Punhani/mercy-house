@@ -72,10 +72,12 @@ def main():
     if {r['task_id'] for r in gates} != set(TASKS) or not all(row['passed'] for row in gates): raise RuntimeError('All task gates required')
     family = read('docs/FAMILY_VALIDATION_RESULT.json')
     comparison = read('docs/FAMILY_POLICY_COMPARISON.json')
+    source_result=read('docs/SOURCE_TRAINING_RESULT.json')
+    elite=read('docs/ELITE_TRANSFER_RESULT.json')
+    elite_success=elite['successes']
+    elite_caption=f"New two-scope elite calibration: LLM-ranked {elite_success['llm_ranked']}/2; source-trained selector {elite_success['rl_selected']}/2. Same API proposal contract and grounded fixed NPC response bank; not the native live-NPC harness."
     live_good = sum(row['exercise_reward']==1 for row in live['rows'])
     live_caption = f'{live_good}/{len(live["rows"])} completed live checkpoint exercises; small unpaired smoke, not whole-case success.'
-    viewer_image=ROOT/'docs/viewer-stage.png'
-    viewer_slide=('<h1>Watch the actual inquiry</h1><div style="display:flex;align-items:center;gap:28px"><img alt="Actual scripted-reference dialogue in the Mercy House viewer" style="width:65%;max-height:420px;object-fit:contain" src="data:image/png;base64,'+base64.b64encode(viewer_image.read_bytes()).decode()+'"><div style="font-size:.9em"><p>Places change after movement.</p><p>Dialogue and evidence follow public observations.</p><p>Provider setup, live streaming and labeled replays.</p><p>No hidden character memories or invented thoughts.</p></div></div><p class="small">Shown: an actual scripted-reference replay. The UI labels it explicitly. New live runs still use strict scoring.</p>') if viewer_image.exists() else None
     proof = 'R = clamp(C − 0.20 F − 0.10 U, 0, 1)'
     design = [
       '<h1>Mercy House</h1><p class="large">Evidence-grounded investigations, from an accessible assault to an entangled town inquest.</p>'
@@ -86,26 +88,13 @@ def main():
       '<h2>Actual calibration</h2><p>Four cold-start native-tool detective runs with live character models solved Lantern Room with score 1.0 and no false/unsupported findings, including both culprit assignments. This is a small development set, not a reliability estimate. Other families have scripted feasibility proofs; complete live solving is not established.</p>',
       '<h1>Isolation, evaluation and limits</h1><h2>Protect truth from the solver</h2><p>Four unprivileged containers separate world, credentials, trusted harness and real shell. The shell has no verifier, private files, orchestration token, keys or external route. Its gateway accepts only validated public tools. Private character planners receive derived question topics; public speakers see only released memories. Live UI events omit private memories and provider reasoning. Docker security assumes a trusted host/daemon.</p>'
       '<h2>Run contract</h2><p>Exact Compose command; MODEL/API_KEY/BASE_URL, TASK_ID/SEED/MODE; exact UTF-8 APPEND_FILE suffix. Selected-task reference/no-op gates run before detective calls. Forty replies, ten calls per reply, 600 seconds; tool and grading deadlines. Malformed replies consume steps. Logs retain requests, raw outputs, actions, errors, state hashes, reward, latency and usage. Optional localhost story viewer remains independent.</p>'
-      '<h2>Measured checks</h2><p>All eight references score 1.0 and no-ops 0.0. '+str(tests['town_tests'])+' town, '+str(tests['legacy_tests'])+' legacy and four Node tests pass. Browser/filter/form checks and real-command isolation probes pass. Fresh no-cache four-image build: '+str(tests['cold_build_seconds'])+' seconds locally; organizer timing remains external.</p>'
-      '<h2>RL and negative transfer</h2><p>Optional REINFORCE selector: 20,000 CPU episodes, 460 coefficients, 530.243 seconds, zero training API calls. Frozen historical offline greedy: 147/160; live checkpoint smoke: 2/5. LLM weights stay fixed. New matched three-case calibration: LLM-ranked 1/3, frozen RL-selected 0/3, with the same 2–6 proposal contract and fixed response bank. This is not live-NPC evaluation or evidence of RL superiority. Both hard-family runs failed.</p>'
-      '<h2>Known weaknesses</h2><p>Authored small families and proof vocabulary; no whole-case RL benefit demonstrated; no direct score for internal grief/ego; no discovered supernatural mechanism. Other levels are design complexity, not measured success-rate bands. Source originality is authored, not an exhaustive uniqueness guarantee. Final separate NPC setup and upload remain external. No winning or universal jailbreak-resistance claim.</p>'
+      '<h2>Measured checks</h2><p>All 184 task/seed gate pairs passed (eight tasks, 23 seeds); references1 and no-ops0. Six public-only scripted investigations also solved the three new families with both culprit assignments. '+str(tests['town_tests'])+' town, '+str(tests['legacy_tests'])+' legacy and '+str(tests['node_state_tests'])+' Node tests pass. Browser/filter/form checks and real-command isolation probes pass. Fresh no-cache four-image build: '+str(tests['cold_build_seconds'])+' seconds locally; organizer timing remains external.</p>'
+      '<h2>Policy training and transfer</h2><p>Earlier five-skill prototype:20,000 CPU episodes; unchanged weights rechecked147/160 with corrected sources. Historical training remains separately labeled. New fresh-zero selector: 6,000 episodes, 132 coefficients, 48.251 seconds, zero training API calls. Three original mechanism-inspired checkpoints, 48 training/48 held-out states; greedy 96/96 versus untrained 3/96. Prepared acquisitions and rule-based candidate parsing are disclosed; no LLM fine-tuning or full-TV-episode training. '+html.escape(elite_caption)+'</p>'
+      '<h2>Known weaknesses</h2><p>Authored small families and proof vocabulary; small transfer sample; no direct score for internal grief/ego; no discovered supernatural mechanism. Live refusal can block the sole independent named witness in the canonical incident. Other levels are design complexity, not measured success-rate bands. Source originality is authored, not an exhaustive uniqueness guarantee. Final separate NPC setup and upload remain external. No winning or universal jailbreak-resistance claim.</p>'
       '<p class="small">Primary research and PS links: docs/RESEARCH_AND_WIN_PLAN.md. Full trajectories and source manifests accompany this entry.</p>'
     ]
-    deck = [
-      '<h1>Mercy House</h1><p class="large">Can a detective prove what happened when a plausible story is wrong?</p><blockquote>A snowbound town in 1900. Local memories. Physical traces. No answer checklist.</blockquote><p>Eight tasks · Four case families · Three designed levels.</p><p class="small">Games & World Simulations / Open-compatible. Judges bring the detective; our deliverable is the environment.</p>',
-      '<h1>A real progression</h1>'+table(['Case family','Challenge'],[('Lantern Room / beginner','Witnessed fatal assault; learn tools and sourced reporting'),('Second Passenger / intermediate','Two deaths; identify sabotage and intended target'),('Bell Before Dawn / advanced','Forged foreknowledge, delivery chain and an unrelated-looking death'),('Mercy House / five scopes','Loyalty, concealed evidence, fabricated threats and historical crimes')])+'<p>New cases change the assailant with the seed and regenerate actions, traces and recollections. They are original authored scenarios using broad mystery mechanisms.</p>',
-      '<h1>Causes execute before arrival</h1><p class="large">Validated actions → local perceptions → persistent evidence → investigation</p><p>Remove the assault: no body. Leave the brake intact: the coach survives. Leave the cordial unadulterated: drinking does not kill.</p><p>Witnesses know what they saw, not an offstage cause of death.</p><p class="small">Canonical tape: recorded LLM decisions. New families: authored seeded tapes. Neither is claimed to be a continuously autonomous town.</p>',
-      '<h1>Watch the actual inquiry</h1><p>Local story viewer: changing locations, discovered character mascots, actual dialogue, acquired documents and provider configuration.</p><p>Public events only. No invented thoughts or hidden character memories.</p><p>Replay library filters by level and labels model runs, scripted references and skill checkpoints separately.</p><p class="small">python -m mercy.viewer.server → http://localhost:8787</p>',
-      '<h1>Reward proof, not a lucky name</h1><p class="large"><code>'+proof+'</code></p><p>C: supported target coverage. F: distinct false findings. U: distinct unsupported findings.</p><p>Physical mechanisms and testimony must agree. Paper ownership alone cannot establish forgery. An unsupported correct guess earns zero.</p><p class="small">Narrative is retained but unscored. Programmatic authored proof paths; no LLM judge.</p>',
-      '<h1>Protect the answer from the solver</h1>'+table(['Role','Authority'],[('Shell workspace','Notes, scripts and validated public town tools'),('Trusted harness','Budget, parsing, public logging and orchestration'),('Protected world','Hidden state, transitions, provenance and reward'),('Model gateway','Credentials and fixed endpoint configuration')])+'<p>Private planner → gated recollections → public speaker. Actor questions cannot directly inspect private memories.</p>',
-      '<h1>Measured beginner success</h1><p class="large">4 / 4 live detective runs · reward 1.0</p>'+table(['Seeds','NPC condition / conclusion'],[('211, 307, 401','Native API detective and live isolated character agents'),('37','Additional opposite-assailant calibration')])+'<p>No false or unsupported findings. The actual acquired proof and raw runs are retained.</p><p class="small">Small development sample, one model deployment. Not a reliability estimate. No complete live success established for the other families.</p>',
-      '<h1>RL: useful evidence, honest failure</h1>'+table(['Evaluation','Result'],[('20,000 CPU training episodes','530.243 seconds; 460 coefficients; no GPU'),('Historical offline greedy checkpoints','147/160 versus untrained 1/160'),('Historical live checkpoint smoke','2/5; not whole cases'),('New matched family comparison','LLM-ranked 1/3; frozen selector 0/3')])+'<p class="small">Same 2–6 ranked candidate contract, fixed grounded response bank and normal disclosure gates. Three cases only; branch-dependent proposals differ. Frozen policy showed no whole-case advantage and remains optional.</p>',
-      '<h1>Evidence under stress</h1>'+table(['Check','Result'],[('Eight task reference/no-op pairs','1.0 / 0.0 for every task'),('Town + legacy + Node tests',str(tests['town_tests'])+' + '+str(tests['legacy_tests'])+' + 4 pass'),('Real-command isolation','Private routes denied; workspace forgery scores zero'),('Causal counterfactuals','No destructive action → no corresponding death'),('No-cache four-image build',str(tests['cold_build_seconds'])+' seconds locally')])+'<p class="small">Failed runs stay in the archive. Scripted references are not presented as learned or LLM results.</p>',
-      '<h1>What this entry establishes</h1><p class="large">A reproducible investigation environment with an accessible demo and evidence-grounded difficulty.</p><p>Local tools, isolated character memories, strict scoring, observable failures and measured CPU RL.</p><p>Limits: authored proof vocabulary, small samples, no established whole-case RL gain, incomplete offstage-life and supernatural mechanics.</p><p class="small">Final separate character-model deployment and organizer-machine timing must be verified. User handles the private repository and submission form.</p>'
-    ]
-    if viewer_slide:deck[3]=viewer_slide
     render('design-doc',design)
-    render('deck',deck,True)
+    subprocess.run([sys.executable,str(ROOT/'scripts/build_presentation.py')],check=True,cwd=ROOT)
     archive=ROOT/(TEAM+'.zip')
     retained=[]
     if archive.exists():
@@ -136,6 +125,12 @@ def main():
         summary = json.loads(summary_path.read_text())
         run_summaries.append({'folder':str(target.relative_to(folder)),'original_run':str(run_folder.relative_to(ROOT)),
             'task_id':summary['task_id'],'termination':summary['termination_reason'],'score':summary['result']['score']})
+    for item in run_summaries:
+        origin=ROOT/item['original_run']
+        if 'ui-runs' in origin.parts:
+            ui_root=origin.parents[2]
+            for name in ('source-manifest.json','meta.json'):
+                if (ui_root/name).exists():copy(ui_root/name,folder/item['folder']/name)
     if len(run_summaries)<3: raise RuntimeError('At least three actual model runs required')
     shutil.copytree(ROOT/'baseline-results/mercy_inquest/reference',folder/'sample-trajectories/success-reference')
     (folder/'sample-trajectories/success-reference/README.txt').write_text('Scripted public-tool reference with cooperative fixture characters. The script knows the authored solution. This proves a legal proof route; it is NOT an LLM or learned-policy success.\n')
@@ -145,9 +140,10 @@ def main():
     (folder/'sample-trajectories/success-model/README.txt').write_text('Actual cold-start native API detective with live character agents. All required findings have acquired support; no scripted solver or disclosed answer checklist. Small development calibration, not a reliability estimate.\n')
     shutil.copytree(failure,folder/'sample-trajectories/failure-model')
     (folder/'sample-trajectories/failure-model/README.txt').write_text('Actual API detective crime-scene run. Failure is retained; no success is inferred from narrative or a correct guess.\n')
-    for name in ('design-doc.pdf','deck.pdf','RL_TRAINING_REPORT.md','RL_TRAINING_RESULT.json','RL_LIVE_TRANSFER_RESULT.json','PS_COMPLIANCE_AUDIT.md','SECURITY.md','POLICY_AND_REWARD.md','VALIDATION_RESULT.json','STORY_VIEWER.md','UI_VALIDATION_RESULT.json','viewer-stage.png','FAMILY_VALIDATION_RESULT.json','FAMILY_POLICY_COMPARISON.json','CASE_FAMILIES.md','FAMILY_AUTHOR_REVIEW.md'):
+    for name in ('design-doc.pdf','deck.pdf','RL_TRAINING_REPORT.md','RL_TRAINING_RESULT.json','RL_LIVE_TRANSFER_RESULT.json','PS_COMPLIANCE_AUDIT.md','SECURITY.md','POLICY_AND_REWARD.md','VALIDATION_RESULT.json','STORY_VIEWER.md','UI_VALIDATION_RESULT.json','viewer-stage.png','FAMILY_VALIDATION_RESULT.json','FAMILY_POLICY_COMPARISON.json','CASE_FAMILIES.md','FAMILY_AUTHOR_REVIEW.md','deck.pptx','PRESENTATION_MANIFEST.json','SOURCE_TRAINING_REPORT.md','SOURCE_TRAINING_RESULT.json','ELITE_TRANSFER_RESULT.json','ELITE_TRANSFER_REPORT.md','ELITE_EVALUATION_PLAN.json','CASE_SOLVABILITY_AUDIT.md','CASE_SOLVABILITY_AUDIT.json','VERIFIER_AND_REVIEWER.md','UI_REPORT_IMPROVEMENTS.md','ui-report.png','ui-interview.png','AUTHOR_REVIEW_SMOKE.json','LEGACY_POLICY_CURRENT_RECHECK.json','SAVED_UI_RUN_RESULTS.json'):
         copy('docs/'+name,folder/name)
     copy('models/action-selector-final.json',folder/'rl/action-selector-final.json')
+    copy('logs/legacy-policy-current-recheck.json',folder/'rl/legacy-current-recheck.json')
     for name in ('experiment.json','learning.jsonl','evaluation.json','exercise-gates.json'):
         copy('logs/selector-final-curriculum-145/'+name,folder/'rl'/name)
     frozen = Path(result['frozen_source'])
@@ -166,10 +162,30 @@ def main():
     for path in calibration.rglob('*'):
         if path.is_file() and path.name != 'private-response-bank.json':
             copy(path,folder/'rl/family-calibration'/path.relative_to(calibration))
+    source_training=read('docs/SOURCE_TRAINING_RESULT.json')
+    source_run=ROOT/source_training['run']
+    copy('models/action-selector-sources.json',folder/'rl/source-training/action-selector-sources.json')
+    for name in ('experiment.json','learning.jsonl','evaluation.json','exercise-gates.json'):
+        copy(source_run/name,folder/'rl/source-training'/name)
+    source_frozen=Path(source_training['experiment']['frozen_source'])
+    copy(source_frozen/'source-manifest.json',folder/'rl/source-training/frozen-source-manifest.json')
+    for path in (source_frozen/'mercy').rglob('*'):
+        if path.is_file() and path.suffix in ('.py','.json'):
+            copy(path,folder/'rl/source-training/frozen-source/mercy'/path.relative_to(source_frozen/'mercy'))
+    elite_frozen=Path(elite['experiment']['frozen_source'])
+    copy(elite_frozen/'source-manifest.json',folder/'rl/elite-transfer/frozen-source-manifest.json')
+    for path in (elite_frozen/'mercy').rglob('*'):
+        if path.is_file() and path.suffix in ('.py','.json'):
+            copy(path,folder/'rl/elite-transfer/frozen-source/mercy'/path.relative_to(elite_frozen/'mercy'))
+    for path in (ROOT/'logs/source-elite-617-619').rglob('*'):
+        if path.is_file() and path.name!='private-response-bank.json':
+            copy(path,folder/'rl/elite-transfer'/path.relative_to(ROOT/'logs/source-elite-617-619'))
+    (folder/'rl/README.txt').write_text('Historical action-selector-final checkpoint and147/160 metrics predate the payer/carrier proof audit; they are not validation of current delegation semantics. The separate fresh source-training checkpoint begins from zero; its checkpoint and elite conditions are independently documented. No LLM assigns the official score.\n')
     manifest = {'team':TEAM,'purpose':'Private reference material; judges run the source repository, not this zip.',
                 'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
                 'model_runs':run_summaries,'live_limitations':live['limitations'],
                 'sample_success_kind':'actual native detective + live characters (success-model); separate scripted feasibility reference (success-reference)',
+                'source_training':{'checkpoint_sha256':source_training['checkpoint_sha256'],'elite_result':'ELITE_TRANSFER_RESULT.json','scope':'original mechanism-inspired skill checkpoints, not exact TV episode reproduction'},
                 'family_calibration':{'native_successes':family['native_successes'],'controlled_successes':comparison['successes']},
                 'files_sha256':{str(p.relative_to(folder)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(folder.rglob('*')) if p.is_file()}}
     (folder/'MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
@@ -188,7 +204,7 @@ def main():
             if path.is_file(): bundle.write(path,path.relative_to(folder))
     with zipfile.ZipFile(archive) as bundle:
         if bundle.testzip() is not None: raise RuntimeError('Archive integrity check failed')
-    print(json.dumps({'archive':str(archive),'bytes':archive.stat().st_size,'model_runs':len(run_summaries),'design_pages':2,'deck_pages':10,'credential_scan':'passed'}))
+    print(json.dumps({'archive':str(archive),'bytes':archive.stat().st_size,'model_runs':len(run_summaries),'design_pages':2,'deck_pages':12,'credential_scan':'passed'}))
 
 
 if __name__ == '__main__': main()

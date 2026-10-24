@@ -40,6 +40,7 @@ def normalize(world, finding):
     aliases = {'threat': 'threat', 'threateningnote': 'threat', 'threateningletter': 'threat', 'foldednote': 'threat',
                'tarastatement': 'tara_statement', 'tarasstatement': 'tara_statement', 'deathregister': 'death_register',
                'burials': 'burials', 'remains': 'burials', 'humanremains': 'burials', 'deliveryletter': 'delivery_letter',
+               'graverelocation': 'burials', 'burialrelocation': 'burials', 'relocationofgraves': 'burials',
                'foldedenvelope': 'delivery_letter', 'carriersletter': 'delivery_letter'}
     aliases.update(getattr(world,'report_aliases',{}))
     value = p['object']
@@ -70,6 +71,16 @@ def normalize(world, finding):
 def supported(world, p, records):
     if getattr(world,'family_id',None):
         return world.supports(p,records)
+    # A cited comparison retains the acquired receipts it actually examined.
+    # Follow only protected provenance, never a source ID written in a note.
+    expanded=list(records);seen={id(r) for r in records}
+    for record in expanded:
+        if record['kind']=='comparison':
+            for rid in record.get('source',[]):
+                child=world.receipts.get(rid)
+                if child is not None and id(child) not in seen:
+                    expanded.append(child);seen.add(id(child))
+    records=expanded
     physical = [r for r in records if r['kind'] == 'physical']
     keys = {world.objects[r['source']]['key'] for r in physical}
     direct = any(p in r['propositions'] and r['kind'] in ('testimony', 'comparison') for r in records)
@@ -99,6 +110,16 @@ def supported(world, p, records):
         omitted = any(r['kind'] == 'search_log' and r['content'].get('by') == p['actor'] for r in records)
         return direct or custody and omitted
     if p['predicate'] == 'altered':
+        if p['actor']=='vedant' and p['object']=='death_register':
+            comparisons=[r for r in records if r['kind']=='comparison']
+            def compared_keys(r):
+                return {world.objects[world.receipts[rid]['source']]['key'] for rid in r['source']
+                        if rid in world.receipts and world.receipts[rid]['kind']=='physical'}
+            omission=any({'correction_ledger','parish_register'}<=compared_keys(r) for r in comparisons)
+            handwriting=any(any(e['predicate']=='handwriting_consistent' and
+                           {world.objects.get(e['actor'],{}).get('key'),world.objects.get(e['object'],{}).get('key')}=={'correction_ledger','vedant_sample'}
+                           for e in r['propositions']) for r in comparisons)
+            return omission and handwriting
         return any(r['kind'] == 'comparison' and p in r['propositions'] for r in records)
     if p['predicate'] == 'relationship':
         return any(p in r['propositions'] for r in records)

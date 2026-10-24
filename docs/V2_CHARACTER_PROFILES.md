@@ -110,7 +110,7 @@ Age 48; gravedigger and caretaker. Home: garden.
 **Own starting memories:**
 
 - I argued with Mira about the burial-office key yesterday.
-- I left my spade by the winter beds.
+- I left my spade in the tool shed beside the winter beds.
 - Bina expects me home for supper.
 
 **Experienced incident memories:**
@@ -228,7 +228,7 @@ Age 27; carrier. Home: inn.
 **Own starting memories:**
 
 - Savitri paid me to move two grave crates into Dev’s winter beds.
-- I wrote Kabir an appeal and left it in the archive visitors’ book for him.
+- I wrote Kabir an appeal and left it in the entrance-hall visitors’ book for him.
 
 ## Kamala Roy (kamala)
 
@@ -267,6 +267,7 @@ Age 39; household assistant. Home: rao_house.
 
 - I helped Nalin load two sealed crates at Savitri’s request.
 - A duplicate invoice is in the correspondence drawer.
+- I countersigned Vedant’s ordinary speaking-tube maintenance receipt when its payment was filed. It is in the correspondence drawer.
 
 ## Ritu Rao (ritu)
 

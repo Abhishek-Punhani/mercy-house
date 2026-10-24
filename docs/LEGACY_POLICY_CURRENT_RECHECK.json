@@ -1,0 +1,52 @@
+{
+  "kind": "evaluation-only recheck of historical frozen selector after payer/carrier/proof corrections",
+  "checkpoint_sha256": "bf8775b013b1d1a701eea7e1ee2b244deff290a439b7536d804e16a5a1296abb",
+  "episodes": 160,
+  "successes": 147,
+  "mean_reward": 0.91875,
+  "per_skill": {
+    "forgery": {
+      "episodes": 32,
+      "successes": 25,
+      "success_rate": 0.78125,
+      "mean_steps": 5.8125
+    },
+    "witness": {
+      "episodes": 32,
+      "successes": 32,
+      "success_rate": 1.0,
+      "mean_steps": 7
+    },
+    "statement_review": {
+      "episodes": 32,
+      "successes": 32,
+      "success_rate": 1.0,
+      "mean_steps": 7
+    },
+    "navigation": {
+      "episodes": 32,
+      "successes": 26,
+      "success_rate": 0.8125,
+      "mean_steps": 6.125
+    },
+    "delegation": {
+      "episodes": 32,
+      "successes": 32,
+      "success_rate": 1.0,
+      "mean_steps": 9
+    }
+  },
+  "seconds": 3.558,
+  "condition": "same authored checkpoint families, fixed cooperative NPCs and corrected public proposer; not whole-case or API transfer",
+  "weights_changed": false,
+  "training": false,
+  "source_note": "Current implementation; historical training was retained unchanged. This recheck is separate from the fresh source-mechanism selector and its frozen elite test.",
+  "source_sha256": {
+    "mercy/rl/skills.py": "26127c49a2642c73d80f989b2613147497ecb5b9566cf319a12c327716a9f7ff",
+    "mercy/rl/policy.py": "0fa67bceb83c55b72a1ceb8a9715622b9a2572848c3566cb5576ea97124cd4ad",
+    "mercy/rl/public.py": "d5c07f95ebb9b957d0079acad0865eaba4bbb43b07c7de626bb0594b121535e9",
+    "mercy/town/world.py": "ed0fd8310cabd9bce62134fdeebfa347052493e4b31e9f1af4164095d15fb1db",
+    "mercy/town/verifier.py": "8f401291ea24d6de91a2289dd583bc43549f752b3522a013e55598fc2ef13312",
+    "mercy/town/comparison.py": "e7df39384a2f95d242f12298dfb5c24b169fc609180f95998fd6b485f34fc8c5"
+  }
+}

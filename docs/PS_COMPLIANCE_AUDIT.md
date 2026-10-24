@@ -25,7 +25,7 @@ Games & World Simulations directly fits; Other/Open is also allowed and uses the
 | APPEND_FILE exact suffix | Exact UTF-8 text preserved, including CRLF, in actual system prompt and full logged request. Missing/empty files reject before model calls; oversized files reject for context safety. |
 | MODE full/all/baselines | One chosen task / sequential all tasks / all baseline pairs. `all` is development batch mode, not a single finals slot. Unknown mode/task rejected. |
 | Pinned dependencies, no runtime download | Pinned Python base digest; standard library only; no pip dependencies or runtime install. |
-| Build <=3 minutes from empty cache | A new isolated no-cache builder completed four images in 14.069 seconds locally, including bootstrap/base retrieval. Organizer-machine timing remains unverified. |
+| Build <=3 minutes from empty cache | A new isolated no-cache builder completed four images in 26.338 seconds locally, including bootstrap/base retrieval. Organizer-machine timing remains unverified. |
 | Model-independent harness | Native, legacy and structured-text action parsing tested; no model-name behavior switches. Real API runs used one deployment, not unknown judge providers. |
 | One reply one step, malformed/plain consume step | Recovery tests include unreadable envelopes and raw non-JSON responses; feedback continues. Raw response retained where received. |
 | <=10 calls per reply | Further calls produce errors without execution; calls after terminal report also denied. |
@@ -45,7 +45,7 @@ Every normal detective reply has timestamp, step, seed, full model request, raw 
 
 Meaningful tests cover gradients and parameter updates; public-only features; seeded checkpoints; private planner/speaker isolation; source grounding; fabricated objects and source IDs; unsupported accusations; comparison composition; exact instruction suffix; malformed replies; multi-call limits; forced end; total model timeout and explicit key-role configuration. A real container probe checks shell access, blocked internet, denied orchestration, absent private files, forged proof receiving zero and valid public proof receiving success.
 
-The final current suite has 96 town tests and 9 legacy regression tests, plus four Node state tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
+The final current suite has 114 town tests and 9 legacy regression tests, plus nine Node state tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
 
 ## Submission status
 
@@ -57,3 +57,12 @@ Remaining scientific limits: four authored families; authored historical backgro
 ## Story viewer update
 
 The optional local viewer now provides original vector scenes and mascots, real dialogue, acquired evidence, live provider setup, public SSE events and labeled replays. It excludes private memories and provider reasoning. `review_records` and `record_note` preserve acquired context without granting proof credit. Desktop/mobile browser checks and the real command-isolation probe pass; new source snapshots pass all eight Compose gates. Two original-town UI development runs failed and are retained. Four later beginner runs succeeded with live characters. New three-case fixed-response policy calibration: LLM-ranked 1/3, frozen RL selector 0/3; see CASE_FAMILIES.md. See [STORY_VIEWER.md](STORY_VIEWER.md) and [UI_VALIDATION_RESULT.json](UI_VALIDATION_RESULT.json). The official headless command is unchanged.
+
+
+## Final source-mechanism training, data audit and report update
+
+Independent audit corrected factual/provenance defects (payer versus carrier, signed-register attribution, local perception and contemporaneous documents), with unchanged scoped targets and reward weights. All184 task/seed gate pairs passed and six public-only scripted probes established legal routes. These are fixture feasibility results, not model reliability. The canonical murder can still depend on a reluctant independent witness or an eligible admission. See CASE_SOLVABILITY_AUDIT.md.
+
+New selector: fresh zero initialization,6,000 CPU episodes,48 original source-mechanism checkpoint scenarios,132 learned coefficients. Held-out same-template exercises:96/96 greedy; no full-case inference from that result. Separate frozen elite comparison is ELITE_TRANSFER_RESULT.json. Historical five-skill delegation interpretation predates corrected payer/carrier semantics and is not current validation.
+
+The UI now persistently presents the actual submitted report, citations, solved/unsolved state and deterministic score breakdown. An optional developer-only story reviewer can add unscored LLM observations; it is absent from public tools and cannot assign reward. The official verifier stays programmatic as required by the PS. Editable12-slide dark PowerPoint and matching PDF explain the complete project for first-time readers, with labeled real UI captures.

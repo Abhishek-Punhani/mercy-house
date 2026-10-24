@@ -14,7 +14,7 @@ def prop(predicate,actor,obj):return {'predicate':predicate,'actor':actor,'objec
 class FamilyTown(Town):
     def __init__(self,seed=7,agents=None,case=None):
         self.case=deepcopy(case or definition('lantern_room',seed));self.family_id=self.case['family_id']
-        self.mechanism={'brake_cut':False,'poisoned_by':None,'warning_author':None,'route_author':None}
+        self.mechanism={'brake_cut':False,'coach_outcome':None,'poisoned_by':None,'warning_author':None,'route_author':None}
         self.disclosure_relevance=self.case.get('disclosure_relevance',{})
         self.object_aliases={'warning':'warning_letter','tonic':'tonic','brake_trace':'coach_brake'}
         self.report_aliases={'warning':'warning_letter','warningletter':'warning_letter','warningdocument':'warning_letter',
@@ -99,11 +99,14 @@ class FamilyTown(Town):
             if here!='courtyard' or target not in self.locations[here]['exits'] or any(self.people[v]['location']!=here for v in self.case['victims']):raise ValueError('Passengers or route unavailable')
             self.emit('departure',pid,here,'The two passengers board and the coach leaves toward the bridge.')
             for victim in self.case['victims']:self.people[victim]['location']=target
-            self.item('brake_trace').update(location=target,surface='wreckage')
+            self.item('brake_trace').update(location=target,surface='bridge approach')
         elif verb=='cross':
             if here!='forest':raise ValueError('The coach has not reached the crossing')
             if not self.mechanism['brake_cut']:
+                self.mechanism['coach_outcome']='safe'
                 self.emit('safe_crossing',pid,here,'The intact brake holds and the coach crosses safely.');return
+            self.mechanism['coach_outcome']='crashed'
+            self.item('brake_trace')['surface']='wreckage'
             killer=self._actor_of('tampered')
             for victim in self.case['victims']:
                 self.states[victim]['alive']=False
@@ -124,8 +127,10 @@ class FamilyTown(Town):
             letter=self.item('warning')
             if self.people[target]['location']!=here or letter.get('carried_by')!=pid:raise ValueError('Delivery precondition failed')
             letter.update(carried_by=None,location=here,surface='notice board')
-            self.emit('delivery',pid,here,name+' delivers the folded warning to '+self.people[target]['name']+' before the chapel visit.')
-            self.object('delivery docket',here,'lodging desk','Niv’s docket records a sealed paper delivered to Ivo at the inn before Tessa entered the chapel. The inn clock time was countersigned by the recipient.',key='delivery')
+            event=self.emit('delivery',pid,here,name+' delivers the folded warning to '+self.people[target]['name']+' before the chapel visit.')
+            # Delivery is a true optional transmission finding. It is not a new
+            # scoped target: material_targets follows the journal's relay event.
+            self.object('delivery docket',here,'lodging desk','Niv’s docket records a sealed paper delivered to Ivo at the inn while Tessa was still in the common room. The inn clock time was countersigned by the recipient.',prop('relayed',pid,'warning_letter'),key='delivery',event=event)
         elif verb=='announce':
             if here!='inn' or self.item('warning')['location']!=here:raise ValueError('Warning unavailable')
             self.emit('relay',pid,here,name+' repeats the warning from the delivered sheet and presents it as a message from the old bell keeper.',prop('relayed',pid,'warning_letter'))
@@ -152,11 +157,15 @@ class FamilyTown(Town):
 
     def visible_scene(self,place):
         dead=[p['name'] for pid,p in self.people.items() if p['location']==place and not self.states[pid]['alive']]
-        return self.locations[place]['description']+(' '+', '.join(dead)+' lie motionless here.' if dead else '')
+        text=self.locations[place]['description']
+        if self.family_id=='second_passenger' and place=='forest':
+            if self.mechanism['coach_outcome']=='crashed':text+=' The coach lies below the bridge, its near wheel folded under the axle. Snow softens the outlines of the wreckage and broken timbers.'
+            elif self.mechanism['coach_outcome']=='safe':text+=' The coach has crossed safely; there is no wreck below the bridge.'
+        return text+(' '+', '.join(dead)+' lie motionless here.' if dead else '')
 
     def look(self):
         loc=self.locations[self.location];self.known_places.update(loc['exits'])
-        return {'place':{'id':self.location,'name':loc['name'],'description':loc['description']},
+        return {'place':{'id':self.location,'name':loc['name'],'description':self.visible_scene(self.location)},
           'immediately_visible':', '.join(p['name'] for pid,p in self.people.items() if p['location']==self.location and not self.states[pid]['alive'])+' lies motionless here.' if any(p['location']==self.location and not self.states[pid]['alive'] for pid,p in self.people.items()) else '',
           'exits':[{'id':x,'name':self.locations[x]['name']} for x in loc['exits']], 'searchable_features':list(loc['surfaces']),'minutes_since_arrival':self.clock}
 

@@ -54,3 +54,8 @@ The host loopback viewer is a separate trusted administration surface, never mou
 ## Original-family expansion
 
 `family_data.py`, `family_proof.py`, private seeded plans and author-review documents stay in the protected world. The workspace image still copies only the command executor and public town CLI. The same acquired-receipt, local-presence and private-planner/public-speaker boundaries apply to every family. Removing the destructive transition prevents the corresponding fatality; a correct name or workspace-written file remains unsupported. Controlled policy comparison response banks are development-only, never mounted or projected into solver tools. New-family provenance is explicitly authored seeded tapes, not autonomous crime generation.
+
+
+## Private author review
+
+The optional `mercy.audit.review` command requires an actual private snapshot and original report arguments. It is not registered as a public tool, served over HTTP or copied into detective/workspace images. Its output contains missing private targets and stays in protected author logs (mode0600). Optional development LLM commentary is explicitly unscored and cannot replace the programmatic result. It is not part of the judging verifier.

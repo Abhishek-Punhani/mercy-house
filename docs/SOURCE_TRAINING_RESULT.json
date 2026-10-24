@@ -1,0 +1,3354 @@
+{
+  "training_episodes": 6000,
+  "seconds": 48.251,
+  "coefficients": 132,
+  "checkpoint_sha256": "3becf2a6f883c60f5152de258f3224f246caad5459f17efa21445a8e170f6059",
+  "hardware": "CPU; standard library; zero training API calls",
+  "experiment": {
+    "algorithm": "episodic_REINFORCE_linear_softmax",
+    "initialization": "all-zero fresh Selector; no historical Mercy House weights",
+    "episodes": 6000,
+    "seed": 526,
+    "budget": 8,
+    "batch_size": 32,
+    "learning_rate": 0.15,
+    "initial_entropy": 0.02,
+    "train_cases": 48,
+    "heldout_cases": 48,
+    "sources": {
+      "intended_target": {
+        "work": "The Mentalist S1E8: The Thin Red Line",
+        "url": "https://tv.apple.com/nz/episode/thin-red-line/umc.cmc.343dcf9kznkxsuz2rx6jcazs9",
+        "mechanism": "Separate the intended victim from the other casualty."
+      },
+      "foreknowledge": {
+        "work": "The Mentalist S1E7: Seeing Red",
+        "url": "https://www.tvmaze.com/episodes/8884/the-mentalist-1x07-seeing-red",
+        "mechanism": "Apparent foreknowledge is not proof that the speaker committed a killing; investigate a family-connected alternative."
+      },
+      "trusted_relative": {
+        "work": "His & Hers",
+        "url": "https://www.netflix.com/tudum/articles/his-hers-episode-6-recap-ending-explained",
+        "mechanism": "Test a trusted relative and a plausible accusation against independent observation."
+      }
+    },
+    "frozen_source": "/home/manav/Desktop/mercy-house/logs/frozen-source-1792849014562894026",
+    "train": [
+      {
+        "skill": "intended_target",
+        "seed": 920000,
+        "hash": "98686304bbde91d65c2374105e0fe8a6ba78139cee27fc141e8041e526208da1"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920001,
+        "hash": "af3ba8d8eca5c7baef875061c98b6a0288d850676d1e924c7a99a77bf3d1fc22"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920002,
+        "hash": "8dfaef03ef70e11cf8559a9c5dff9b942a9be61a3827a1942a78cb60ada8f3ce"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920003,
+        "hash": "d54cb2ee50247f2146e57298c72f798edd15d7debf761712480296de1ee05779"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920004,
+        "hash": "7cf08c8ce85b6b301de033aeb2580dfa177d2bec9d6b835acf2c2638bce520f3"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920005,
+        "hash": "5d23ac6d984e1733c68a1488dd81114275121f6ce428ce90d989230ec17317af"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920006,
+        "hash": "f803d0f4c79e4e9698d09825592d9a901b828452295fc5688320b3b4bfcc2698"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920007,
+        "hash": "e6b9d02b4f03171a57b224f199662b9dec7f1e7cdbdb6e507c318cca701317fb"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920008,
+        "hash": "dfba64cd93ad834301388da6980ffbe763f801a6001d3d5a876b88e22840ee7c"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920009,
+        "hash": "bcba446624ef7888c4f74100dd646af4bd2bfb502c28c7d990a6f8305fd7f73f"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920010,
+        "hash": "0116623e5cb458c1ead9e149f55a1d12e6177f117508c081f9d8d0a3a7e1fe1e"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920011,
+        "hash": "1f996ceeafe1f3e39754cf245b03b9c0f4cfe5fcf0f28417162ca5f1e1b7cf55"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920012,
+        "hash": "6f853a7ad40672b9d659e9598c7be427b70ce85c4ec73dc0ed8425361f0c8eb6"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920013,
+        "hash": "19df97c7639e4d7d809b2d1769b1b6e5de67ba8f7a0c224d696e9aa4b8a8499f"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920014,
+        "hash": "32e0ba8a1d517fda7abdb46235a81d230efa64795a51a00fc7e79c9521deb7b6"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 920015,
+        "hash": "015fc333bbd32edad201b83242b0a6d8ec23c9031f69d4cefbba2bf1a664958e"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920000,
+        "hash": "aa1e067a2e57b465aa56e46cd2822727bad1322b4b9832ceb0e4ae09d888048a"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920001,
+        "hash": "ef1547c601789e2ce4a0a046ced31de94a6ffea895cae85fe9d5aa77aa63beed"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920002,
+        "hash": "3be19f8772cb71657b80f43539aaff697a912426e5ff20f833b3a1aea9cb1ec3"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920003,
+        "hash": "c31a15a35375928cb84dfa456f94b1fac9e2c1e8cb9f973bf2fcb2c4eaf8849c"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920004,
+        "hash": "603d9c6448af5704bc708f38dfa4af324387fb2d18f92238fa4bd7afb369976c"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920005,
+        "hash": "8a8b8585770793b326587fc9aa7dc42e4949daf3ccd7abd59e0ca89df440fab0"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920006,
+        "hash": "e54582355282b3efd18ac30f23da10670a42b8211f70450995dd33fe95283c61"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920007,
+        "hash": "eac77b28aa28326a37002c564e0c046cece869695f7edaf5063dd1c57d910ff8"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920008,
+        "hash": "a417217852231debef2c8258729f97aff2c18f1ee7f4ff5d060793ff712909b9"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920009,
+        "hash": "218051f67f2759493a2f96e4c3850a6f474784f8379fffda6cd1f53a014ea7bd"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920010,
+        "hash": "5a5752c85ec95c148698eb037e7e0b49d00ff3c5b3d01f38be66aea2b7c9d500"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920011,
+        "hash": "2f835bbba42c6a39d7c6db11fd846d45aa0a10dba2b825b325e56e84332a8fb9"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920012,
+        "hash": "44908a9802c48032ae043f029c76276e225ffbbbb38dfdd3c405d01398f30548"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920013,
+        "hash": "a15af60f390945be73acb818ce2b93e1f73916041669174aff179d82275d33fd"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920014,
+        "hash": "9ad31273c9c88eeb3c548f47135b4b95331deb50a4b9fa05a2b2792e530adcd2"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 920015,
+        "hash": "de5a53604066920c4d91146fedcbea40ff59802446c7a1c62dda4da915e8a02f"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920000,
+        "hash": "3503f357153ddc6c83ae56d80a46041717c7cd8005f605c29b7c463fb7343b5a"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920001,
+        "hash": "6ad652144bc56f10379d69c00ad3333e46611747160c8a075d94184de814c674"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920002,
+        "hash": "538a37db35c729a193a5b78ec3a35630adf5e1946b87c7070ef02ff680af1419"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920003,
+        "hash": "c3b966570e60d456aae87a83c57df35b64cb39e784bc635f16a8786394a21e59"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920004,
+        "hash": "f46f898dc27ce4f76ef9266474372f2ce86842dc1550df6cdee148a30a922157"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920005,
+        "hash": "87a09e6139a4185685fab6b247fe8bfd8eaddc18a51efab3304714ffe582c0a6"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920006,
+        "hash": "b298fdf064a47d85f7785944774f1f5b9221cdb8d7d07316663b0a9bd9c8e3f3"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920007,
+        "hash": "ffca6a175ea1040114fe05d774b6e1ef0e65678061108d4736c70bd93a210cf8"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920008,
+        "hash": "8b702d974d4e8245b2763eb322ab21ca07479878e4ae06527aa44069f6714e4b"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920009,
+        "hash": "c09a4c607a0c1fe7d5431cd62a39aadde382f6d22ecc6d9ba1e22a67d09fa004"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920010,
+        "hash": "3b11e6d9372e8865cdafe90f019065a989685029755634d0adcc9449157428ce"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920011,
+        "hash": "1595db6f7e8460c73783c74abf515fc26904a64e54ecdd789ef3b8a7eff537bf"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920012,
+        "hash": "5e4d5a51cdd9892c207069cf2efa2ec4f2d18ee6779925c629a1ac9461d35b96"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920013,
+        "hash": "ad5292a119f8f114b2ebc8d7dd07b71885fd532f0ec7c7c160ebce56a517c009"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920014,
+        "hash": "06a7910da8ca4b6a40ea33ffcc6814204e627a1b65eda93b8ba9895ad8c2a11a"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 920015,
+        "hash": "a9aa8ae15dd29186de5233e83b56a93772ba81b545290d3d84d8ef343208a490"
+      }
+    ],
+    "heldout": [
+      {
+        "skill": "intended_target",
+        "seed": 930000,
+        "hash": "1ac510ba8a74e8b738adb4e048ed18b9c8bc5ccaa53b1ee1fc0f70925fbbac89"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930001,
+        "hash": "99a740c9865b8d87bdc1b650725cf24a83f3953bf9e344505d9db0d77aba28c4"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930002,
+        "hash": "5bac20f086a07304e97e479c0f8cc1b526f2647bcc86cf549908d1f0bf70f738"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930003,
+        "hash": "a4b236bba67f71a9863390f6f6a7e8fe70d64d5f57900b6dfd732677bae22858"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930004,
+        "hash": "c1829af3d7bb21185ff54a58324e7927fb2305ea6569854125530ee22673ceec"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930005,
+        "hash": "9b6a6ad73e42f3a68bc2325e4f9ce6be5fbdc8903c3bc221a511c07cb0bb9bbc"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930006,
+        "hash": "8e95aade3b01f2962a11057e26704c85a17cd835f9532ee92622cf1370f33c47"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930007,
+        "hash": "678aa4ce81f78927ef525b09a9e14c237eec5ada16b2da250a229ebcebbbf709"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930008,
+        "hash": "1b7d393a4e2c83466b173e07c755bf8556a5896e4036a734ac0e47f205dbb500"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930009,
+        "hash": "cceb7d5d2ed85fc0306d4bcf514dcef8a5d99d3f4dc548f71070027f1a794b53"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930010,
+        "hash": "9daa03f5f2071a7b6716d654c3e3111e44067ca29152fa449feef544e9c6f284"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930011,
+        "hash": "9d1a8e74dd2001050e5d3a43e2b6ed253d4821a2ed6828c5261d93bfed255f7e"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930012,
+        "hash": "e7c37196e862ef3d588b880094348079ed3c43baff35d28c2ce33827e2128f04"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930013,
+        "hash": "631e44223a929b0951a610419e405ebcbc8414632feafc22a539db04abded964"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930014,
+        "hash": "97dd64778b1b0bf67b4653f0891c1be48ad32f1036444c98635a204e27a8ece6"
+      },
+      {
+        "skill": "intended_target",
+        "seed": 930015,
+        "hash": "843e0e160af86852789e799f7220e4dd9e6f09ecdfc350380adee3f16631fb09"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930000,
+        "hash": "c111231f1dab68d43e674d2730828ed333522ab1a80f6713502757e610be4f09"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930001,
+        "hash": "53418f2d768d1269721acfdf8aad720fc0f9b6e8663dff016ec5981b5c44ec87"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930002,
+        "hash": "da350e8bb2ef7d7d018861db2117f4e00ef2049f932d0749e491625d1fdf6b3a"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930003,
+        "hash": "11a205ad3728cbf1f19a032549da5ae6e43a4fcd3d2d62f58494797aff5695c2"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930004,
+        "hash": "961189187fd0c3fa786bac02c93a2ea514cf2a8efe6012a2643276938462e3a3"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930005,
+        "hash": "7523f315725384171a800e5049141434f27b736b2690cc4ac0c2cefd9a5040e0"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930006,
+        "hash": "ef55d1849bc5b5cecb1b13e452c519f56145f76056c043212b1ce3ee1e85daa8"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930007,
+        "hash": "d2ee9c8bc1237b77d220c89ac452b8ba724d3e3eae9b028a0d40865f8558edd0"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930008,
+        "hash": "e91423bcc8842bb7e2ad1d484f30b81b47f6cf91991544b06abb54c4ee1ac022"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930009,
+        "hash": "ca1b76d7ccfb6ff5b2054a552d1a37952fb5408c85d4830f289a02b89ae62f1d"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930010,
+        "hash": "5841cc203925686c8adf72030ad09ddee7c566cc656b3e67f4fd3c9eb5df4b24"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930011,
+        "hash": "b36abb4f848607e76a0d7f7f46cf4a9e935ca71973e60abd5cde1237d385289b"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930012,
+        "hash": "5a2af5d7c573edb2bdbf3efcbf415fe5268e1dd98ce30fe491693ed768842ef9"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930013,
+        "hash": "56ecaaa90f092134d63e7d27681b755f273d1803a9f22a7b0826a30022d8680e"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930014,
+        "hash": "c558b23d1ac675bd4c5454da3837e4e1d295b3411f2e16ef09bf03e05dfc25b4"
+      },
+      {
+        "skill": "foreknowledge",
+        "seed": 930015,
+        "hash": "28dca338d6054f14c46ac6bb6552ef2297f17e1d14f270ee215a649b67bd00a1"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930000,
+        "hash": "8842c6991aa939b97c31c5b4202cfb8947ee0795b5dc54080380ac5996cd9b28"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930001,
+        "hash": "3a12b2d3d6e8e3a2d4e0e93108b53ed1ff42347812f693a104d61dbe7dfb0468"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930002,
+        "hash": "a75530589aec85a652a54d3ddef4ebcaf0a50432c152d658e24e875133502933"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930003,
+        "hash": "128016309ec59183ab7447e7e364a1f04c33946839af5394a604bef474adbafa"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930004,
+        "hash": "a38231a61b2497c512211039b4bfbd405e3c9e8fb04100c5d06894a72c321498"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930005,
+        "hash": "399eedd2a08edc836fe03d561bc8ecb7e9d3271c398e30ff3de4a3040a537013"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930006,
+        "hash": "a0028734427df7d9fee81a360e0aa83d385d324104e9e743f068c538e27b483f"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930007,
+        "hash": "80f7a06c2492f77c47ef3add1a52afbed4bbdb464da9e9ac28e2fd3762e5967b"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930008,
+        "hash": "417fae135495f852221bb86a718d06863be6c75d13f406d417ebe1130eab983a"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930009,
+        "hash": "8b8476f1e00dbd021b9ecf6a94e9b6a7b466ac273702c23530d4fec382f53d73"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930010,
+        "hash": "660c260f8f843961de3a278395839a64ee2565a8ecc3f8197f0c81d841622918"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930011,
+        "hash": "98a2bdb34f470306c831b19d9e94b8f6384fa209123736630473474d7682c288"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930012,
+        "hash": "38e70aa29b10cb60f924eb9d9afd1fea4dec00c543e78506c6a50ac201c5a729"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930013,
+        "hash": "43a818adfd27ae1a944e4f9790034d5e21107a54675779e006835178cb89fbf3"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930014,
+        "hash": "9ae736e0d7f265c55802cca1120dcfd57cc378a05e68bf6f94cb3a1aea10916e"
+      },
+      {
+        "skill": "trusted_relative",
+        "seed": 930015,
+        "hash": "522c928284c681afd4edf5f6f7125a4f0e095b348d99f292e326178a71e31397"
+      }
+    ],
+    "reward": "Binary terminal exercise reward: requested supported proposition with acquired provenance and no false/unsupported findings. Whole-case Town coverage score is recorded separately.",
+    "proposer": "Authored rules read only acquired public descriptions and comparisons; not learned reading or source-episode understanding.",
+    "npc_condition": "cooperative deterministic fixture with normal disclosure gates; zero API calls",
+    "split": "No canonical Mercy House snapshot or elite trajectory in new training; reused FamilyTown causal templates and seed-heldout checkpoints, not unseen-template evaluation.",
+    "limitations": [
+      "Original mechanism-inspired exercises, not exact source episodes or copied scripts.",
+      "Prior legal acquisitions are prepared at checkpoints.",
+      "No emotional state, hatred or ego is measured.",
+      "False accusations and unsupported source claims receive no exercise success; no bonuses for dialogue count.",
+      "This is selector training, not fine-tuning an API LLM."
+    ]
+  },
+  "evaluations": {
+    "untrained": {
+      "episodes": 96,
+      "successes": 3,
+      "mean_reward": 0.03125,
+      "per_skill": {
+        "intended_target": {
+          "episodes": 32,
+          "successes": 0
+        },
+        "foreknowledge": {
+          "episodes": 32,
+          "successes": 1
+        },
+        "trusted_relative": {
+          "episodes": 32,
+          "successes": 2
+        }
+      },
+      "rows": [
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "step_cap"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "step_cap"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 7,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "step_cap"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "step_cap"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "step_cap"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 4,
+          "termination": "submitted"
+        }
+      ]
+    },
+    "trained_sampling": {
+      "episodes": 96,
+      "successes": 89,
+      "mean_reward": 0.9270833333333334,
+      "per_skill": {
+        "intended_target": {
+          "episodes": 32,
+          "successes": 30
+        },
+        "foreknowledge": {
+          "episodes": 32,
+          "successes": 30
+        },
+        "trusted_relative": {
+          "episodes": 32,
+          "successes": 29
+        }
+      },
+      "rows": [
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 7,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 2,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 7,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 6,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 8,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 8,
+          "termination": "step_cap"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 4,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 8,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 5,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 2,
+          "termination": "submitted"
+        }
+      ]
+    },
+    "trained_greedy": {
+      "episodes": 96,
+      "successes": 96,
+      "mean_reward": 1.0,
+      "per_skill": {
+        "intended_target": {
+          "episodes": 32,
+          "successes": 32
+        },
+        "foreknowledge": {
+          "episodes": 32,
+          "successes": 32
+        },
+        "trusted_relative": {
+          "episodes": 32,
+          "successes": 32
+        }
+      },
+      "rows": [
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 0.333333,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 1.0,
+          "town_report_score": 1.0,
+          "steps": 3,
+          "termination": "submitted"
+        }
+      ]
+    },
+    "noop": {
+      "episodes": 48,
+      "successes": 0,
+      "mean_reward": 0.0,
+      "per_skill": {
+        "intended_target": {
+          "episodes": 16,
+          "successes": 0
+        },
+        "foreknowledge": {
+          "episodes": 16,
+          "successes": 0
+        },
+        "trusted_relative": {
+          "episodes": 16,
+          "successes": 0
+        }
+      },
+      "rows": [
+        {
+          "skill": "intended_target",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "intended_target",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "foreknowledge",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930000,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930001,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930002,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930003,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930004,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930005,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930006,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930007,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930008,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930009,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930010,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930011,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930012,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930013,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930014,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        },
+        {
+          "skill": "trusted_relative",
+          "seed": 930015,
+          "exercise_reward": 0.0,
+          "town_report_score": 0.0,
+          "steps": 1,
+          "termination": "submitted"
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "Original mechanism-inspired exercises, not exact source episodes or copied scripts.",
+    "Prior legal acquisitions are prepared at checkpoints.",
+    "No emotional state, hatred or ego is measured.",
+    "False accusations and unsupported source claims receive no exercise success; no bonuses for dialogue count.",
+    "This is selector training, not fine-tuning an API LLM."
+  ],
+  "run": "logs/source-policy-526-corrected",
+  "checkpoint": "models/action-selector-sources.json",
+  "checkpoint_selection": "Final preregistered 6000-episode checkpoint, not selected by heldout performance.",
+  "invalidated_run": {
+    "path": "logs/source-policy-526",
+    "reason": "Rendered template documents retained original short names after character-profile renaming. Corrected normalization and standalone biography, then reran the identical preregistered config. No elite test run or performance-based checkpoint selection occurred."
+  },
+  "role_assignment_counts": {
+    "intended_target": {
+      "train": {
+        "brin": 5,
+        "elin": 11
+      },
+      "heldout": {
+        "brin": 9,
+        "elin": 7
+      }
+    },
+    "foreknowledge": {
+      "train": {
+        "maela": 5,
+        "lewin": 11
+      },
+      "heldout": {
+        "maela": 9,
+        "lewin": 7
+      }
+    },
+    "trusted_relative": {
+      "train": {
+        "maren": 5,
+        "tobin": 11
+      },
+      "heldout": {
+        "maren": 9,
+        "tobin": 7
+      }
+    }
+  },
+  "role_balance_note": "Both culprit assignments occur, but not equal counts:11/5 training and9/7 heldout per family. No post-hoc resampling.",
+  "later_source_correction": "After this immutable training run, the live delivery-docket prose was corrected from future-looking before Tessa entered chapel to a contemporaneous observation that she was still at the inn. Targets, proof requirements and training reward are unchanged; exact training source remains the recorded frozen version."
+}
