@@ -81,5 +81,12 @@
     "New model runs both failed. No whole-case performance improvement is established.",
     "Raw provider reasoning and private NPC memories are excluded from viewer events.",
     "Hosted multi-user deployment and materially different causal case families are not implemented."
-  ]
+  ],
+  "fresh_clone_compose": {
+    "exit_code": 0,
+    "seconds": 6.423,
+    "commit": "9910ee92ff815fafeec9d9f7b0e2bc6cecc19e2c",
+    "mode": "baselines",
+    "cache": "Docker layer cache present; separate new-builder no-cache measurement retained"
+  }
 }

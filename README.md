@@ -54,6 +54,6 @@ python -m unittest discover -s tests -p test_world.py -v
 python -m mercy.town.reference --output baseline-results
 ```
 
-Read [PS audit](docs/PS_COMPLIANCE_AUDIT.md), [security](docs/SECURITY.md), [research](docs/RESEARCH_AND_WIN_PLAN.md) and [submission notes](docs/SUBMISSION.md). Full detective model runs so far have failed; the verifier correctly withheld success. Reference success establishes a legal proof route, not reliable LLM success. A fresh no-cache local build took 23.208 seconds; timing on the organizer’s machine remains unverified.
+Read [PS audit](docs/PS_COMPLIANCE_AUDIT.md), [security](docs/SECURITY.md), [research](docs/RESEARCH_AND_WIN_PLAN.md) and [submission notes](docs/SUBMISSION.md). Full detective model runs so far have failed; the verifier correctly withheld success. Reference success establishes a legal proof route, not reliable LLM success. A fresh no-cache local build took 13.474 seconds; timing on the organizer’s machine remains unverified.
 
 Author review: [plot](docs/CURRENT_PLOT.md), [characters](docs/V2_CHARACTER_PROFILES.md), [locations](docs/V2_LOCATIONS.md), [documents](docs/V2_EVIDENCE_AUTHOR.md), [exact opening](docs/DETECTIVE_OPENING.md). Historical V1 dossiers and transcripts remain labeled historical; their easy scores are not current evidence. Continuous offstage lives, a scored ghost mechanism and unseen-plot generalization remain future work.
