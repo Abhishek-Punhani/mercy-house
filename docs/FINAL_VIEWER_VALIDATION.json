@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "13 provider choices including custom HTTPS",
+    "Gemini path preserved",
+    "Claude preset",
+    "7-step keyboard-accessible tour",
+    "live burst buffered until dialogue completes",
+    "word boundary highlights exact public text",
+    "detective and character receive distinct available voices",
+    "voice off clears highlights and cancels speech",
+    "completion drains buffered events",
+    "mobile tour fits"
+  ],
+  "audio": "Browser speech events mocked to reproduce timing; installed device audibility not certified.",
+  "model_calls": 0
+}

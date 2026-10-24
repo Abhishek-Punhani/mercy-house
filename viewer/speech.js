@@ -11,11 +11,8 @@ export function dialogueParts(event, people = {}) {
     answer = event.observation?.words;
   if (!question || !answer) return [];
   return [
-    { speaker: "detective", text: "Inspector Mehra. " + question },
-    {
-      speaker: "witness",
-      text: (people[event.action.args.pid]?.name || "Witness") + ". " + answer,
-    },
+    { speaker: "detective", target: "question-text", text: question },
+    { speaker: event.action.args.pid || "witness", role: "witness", target: "answer-text", text: answer },
   ];
 }
 export function caseBriefing(task = {}, scene = {}) {
@@ -31,10 +28,12 @@ export function caseBriefing(task = {}, scene = {}) {
   );
 }
 export class BrowserVoice {
-  constructor(environment = globalThis, onStatus = () => {}) {
+  constructor(environment = globalThis, onStatus = () => {}, onProgress = () => {}) {
     this.synth = environment.speechSynthesis;
     this.Utterance = environment.SpeechSynthesisUtterance;
     this.onStatus = onStatus;
+    this.onProgress = onProgress;
+    this.cast = new Map();
     this.queue = [];
     this.current = null;
     this.generation = 0;
@@ -46,6 +45,7 @@ export class BrowserVoice {
   }
   cancel() {
     this.generation++;
+    this.onProgress(null);
     if (this.timer) clearTimeout(this.timer);
     this.timer = null;
     const jobs = [...(this.current ? [this.current] : []), ...this.queue];
@@ -66,16 +66,17 @@ export class BrowserVoice {
     }
     const chunks = [];
     for (const part of parts) {
-      const words = String(part.text || "").split(/\s+/);
-      let line = "";
-      for (const word of words) {
-        if (line.length + word.length > 220 && line) {
-          chunks.push({ text: line, speaker: part.speaker });
-          line = "";
+      const text = String(part.text || "");
+      const matches = [...text.matchAll(/\S+(?:\s+|$)/g)];
+      let start = 0, end = 0;
+      for (const match of matches) {
+        if (match.index + match[0].length - start > 220 && end > start) {
+          chunks.push({ ...part, text: text.slice(start, end), offset: start, fullText: text });
+          start = match.index;
         }
-        line += (line ? " " : "") + word;
+        end = match.index + match[0].length;
       }
-      if (line) chunks.push({ text: line, speaker: part.speaker });
+      if (end > start) chunks.push({ ...part, text: text.slice(start, end), offset: start, fullText: text });
     }
     return new Promise((resolve) => {
       this.queue.push({ chunks, resolve });
@@ -93,6 +94,7 @@ export class BrowserVoice {
       if (this.timer) clearTimeout(this.timer);
       this.timer = null;
       this.utterance = null;
+      this.onProgress(null);
       this.current = null;
       job.resolve(result);
       this.onStatus(
@@ -112,17 +114,28 @@ export class BrowserVoice {
       const part = job.chunks[index++],
         utterance = new this.Utterance(part.text);
       this.utterance = utterance;
-      const voices = this.synth
-        .getVoices()
+      const voices = this.synth.getVoices()
         .filter((v) => /^en\b/i.test(v.lang))
-        .sort((a, b) => Number(b.localService) - Number(a.localService));
-      if (voices.length)
-        utterance.voice =
-          voices[part.speaker === "witness" && voices.length > 1 ? 1 : 0];
+        .sort((a, b) => Number(b.localService) - Number(a.localService) || a.name.localeCompare(b.name));
+      const speaker = part.speaker || "narrator";
+      if (!this.cast.has(speaker)) this.cast.set(speaker, speaker === "detective" || speaker === "narrator" ? 0 : 1 + [...this.cast.keys()].filter(k => !["detective", "narrator"].includes(k)).length);
+      const voiceIndex = this.cast.get(speaker);
+      if (voices.length) utterance.voice = voices[voiceIndex % voices.length];
       utterance.lang = utterance.voice?.lang || "en-US";
       utterance.rate = 0.98;
-      utterance.onend = next;
-      utterance.onerror = () => finish("unavailable");
+      let ended = false;
+      const valid = () => !ended && generation === this.generation && this.current === job && this.utterance === utterance;
+      utterance.onstart = () => {
+        if (valid()) this.onProgress({ ...part, start: part.offset, end: part.offset, boundary: false });
+      };
+      utterance.onboundary = (event) => {
+        if (!valid() || event.name && event.name !== "word") return;
+        const start = Math.max(0, Math.min(part.text.length, event.charIndex || 0));
+        const length = event.charLength || part.text.slice(start).match(/^\S+/)?.[0].length || 1;
+        this.onProgress({ ...part, start: part.offset + start, end: part.offset + start + length, boundary: true });
+      };
+      utterance.onend = () => { if (valid()) { ended = true; this.onProgress(null); next(); } };
+      utterance.onerror = () => { if (valid()) { ended = true; finish("unavailable"); } };
       this.timer = setTimeout(() => {
         if (generation !== this.generation) return;
         this.cancel();
@@ -131,7 +144,7 @@ export class BrowserVoice {
         );
       }, 30000);
       this.onStatus(
-        part.speaker === "witness"
+        part.role === "witness" || part.speaker === "witness"
           ? "Reading the character’s answer…"
           : part.speaker === "detective"
             ? "Reading the detective’s question…"

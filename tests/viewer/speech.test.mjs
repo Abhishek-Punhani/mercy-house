@@ -25,3 +25,15 @@ test('speech queues questions before answers and cancellation resolves waiting p
  const pending=voice.speak([{text:'A long briefing'}]);voice.cancel();assert.equal(await pending,'cancelled');
  spoken.at(-1).onend();assert.equal(voice.current,null);assert.equal(voice.queue.length,0);
 });
+
+test('chunks preserve exact text and boundaries point to original words with stable character voices',async()=>{
+ const spoken=[],progress=[];class U{constructor(text){this.text=text;}}
+ const voices=[{name:'A',lang:'en-US',localService:true},{name:'B',lang:'en-GB',localService:true},{name:'C',lang:'en-IN',localService:true}];
+ const voice=new BrowserVoice({speechSynthesis:{getVoices:()=>voices,cancel(){},speak(u){spoken.push(u);}},SpeechSynthesisUtterance:U},()=>{},p=>progress.push(p));
+ const text='This  account is uncertain. '.repeat(16);
+ const pending=voice.speak([{speaker:'anya',target:'answer-text',text}]);
+ let output='',idx=0,firstVoice=spoken[0].voice;
+ while(voice.current){const u=spoken[idx++];output+=u.text;u.onstart();u.onboundary({name:'word',charIndex:0,charLength:4});const p=progress.at(-1);assert.equal(p.fullText.slice(p.start,p.end),u.text.slice(0,4));assert.equal(u.voice,firstVoice);u.onend();u.onend();}
+ assert.equal(output,text);assert.equal(await pending,'finished');assert.equal(progress.at(-1),null);
+ const next=voice.speak([{speaker:'kabir',text:'Another account'}]);assert.notEqual(spoken.at(-1).voice,firstVoice);voice.cancel();assert.equal(await next,'cancelled');
+});

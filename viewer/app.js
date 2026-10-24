@@ -16,12 +16,30 @@ const $ = (id) => document.getElementById(id);
 const csrf = document.querySelector('meta[name="mercy-csrf"]').content;
 const runControls = new Map();
 let voiceEnabled = false,
-  playbackGeneration = 0;
+  playbackGeneration = 0,
+  pumpingGeneration = null,
+  speechProgress = null;
 const voice = new BrowserVoice(globalThis, (message) => {
   for (const id of ["voice-status", "preview-audio-status", "briefing-audio-status"]) {
     const status = $(id); if (status) status.textContent = message;
   }
+}, (progress) => {
+  speechProgress = progress;
+  paintSpeech();
 });
+function paintSpeech() {
+  document.querySelectorAll(".speaking-text").forEach(el => {
+    el.classList.remove("speaking-text");
+    el.textContent = el.textContent;
+  });
+  const p = speechProgress, el = p?.target && $(p.target);
+  if (!el || el.textContent !== p.fullText) return;
+  el.classList.add("speaking-text");
+  if (!p.boundary) return;
+  const mark = node("mark", "spoken-word", p.fullText.slice(p.start, p.end));
+  el.replaceChildren(document.createTextNode(p.fullText.slice(0, p.start)), mark,
+    document.createTextNode(p.fullText.slice(p.end)));
+}
 let settings = {},
   runs = [],
   run = null,
@@ -647,6 +665,7 @@ function render() {
       !!state.finished ||
       (settings.public_demo && !runControls.has(run.id)),
   );
+  paintSpeech();
   $("end-button").textContent = state.finished
     ? "Read final report →"
     : "Go to report →";
@@ -672,21 +691,20 @@ function pause() {
   render();
 }
 async function tick() {
-  if (!playing || live) return;
+  if (!playing || pumpingGeneration === playbackGeneration) return;
+  if (clock) clearTimeout(clock);
+  clock = null;
   if (position >= events.length) {
-    pause();
+    if (!live) pause();
     return;
   }
   const generation = playbackGeneration;
+  pumpingGeneration = generation;
   await seek(position + 1, true);
+  if (pumpingGeneration === generation) pumpingGeneration = null;
   if (!playing || generation !== playbackGeneration) return;
   const current = events[position - 1];
-  const delay =
-    (current?.action?.tool === "ask"
-      ? 5500
-      : current?.type === "reply"
-        ? 350
-        : 1400) / Number($("speed-select").value);
+  const delay = live ? 120 : (current?.action?.tool === "ask" && !voiceEnabled ? 5500 : current?.type === "reply" ? 350 : 1400) / Number($("speed-select").value);
   clock = setTimeout(tick, delay);
 }
 function play() {
@@ -694,13 +712,9 @@ function play() {
   opened = true;
   playing = true;
   playbackGeneration++;
-  if (live) {
-    if (events.length) seek(events.length);
-    render();
-  } else {
-    if (position >= events.length) seek(1);
-    tick();
-  }
+  if (!live && position >= events.length) seek(1);
+  render();
+  tick();
 }
 async function loadRun(ident) {
   pause();
@@ -742,17 +756,19 @@ async function loadRun(ident) {
       const event = JSON.parse(message.data);
       if (event.seq <= events.length) return;
       events.push(event);
-      if (playing) seek(events.length, true);
-      else render();
+      // Ingest immediately; display through one speech-aware playback pump.
+      // Never jump to a newer scene while the current utterance is speaking.
+      if (playing) {
+        if (pumpingGeneration !== playbackGeneration && !clock) tick();
+      } else render();
       if (["finished", "run_error", "stopped"].includes(event.type)) {
         live = false;
-        playing = false;
         run.status = "finished";
         stream.close();
         stream = null;
         $("status-dot").classList.remove("live");
         $("run-kind").textContent = kindLabel(run);
-        render();
+        if (!playing) render();
       }
     };
     stream.onerror = () => {
@@ -822,18 +838,17 @@ function configure() {
   pause();
   $("form-error").textContent = "";
   $("configuration-status").textContent = settings.public_demo
-    ? "Replays are free to watch. For a live case, enter your own key for the displayed provider. It powers both the detective and characters for this run and is not saved by the viewer."
+    ? "Replays are free to watch. For a live case, enter your own key for your selected provider. It powers both the detective and characters for this run and is not saved by the viewer."
     : settings.characters_configured
       ? "Town character model is configured server-side."
       : "Town character credentials are not configured. Add NPC settings to the server .env before a live run.";
   $("configured-key-input")
     .closest("label")
     .classList.toggle("hidden", !!settings.public_demo);
-  $("endpoint-input").readOnly = !!settings.public_demo;
+  $("endpoint-input").readOnly = false;
   $("configured-key-input").disabled = !settings.key_configured;
-  $("configured-key-input").checked = !!settings.key_configured;
-  $("key-field").classList.toggle("hidden", !!settings.key_configured);
-  $("key-input").required = !settings.key_configured;
+  $("configured-key-input").checked = !!settings.key_configured && $("endpoint-input").value === settings.defaults.base_url;
+  $("configured-key-input").dispatchEvent(new Event("change"));
   updateBriefingPreview();
   $("settings-dialog").showModal();
 }
@@ -895,6 +910,19 @@ $("run-form").addEventListener("submit", async (event) => {
     $("start-button").disabled = false;
   }
 });
+$("provider-input").addEventListener("change", () => {
+  const provider = settings.providers.find(p => p.id === $("provider-input").value);
+  $("key-input").value = "";
+  $("endpoint-input").value = provider.id === "configured" ? settings.defaults.base_url : provider.base_url;
+  $("model-input").value = provider.id === "configured" ? settings.defaults.model : "";
+  $("model-input").placeholder = "Enter a model ID available on this provider";
+  $("configured-key-input").checked = false;
+  $("configured-key-input").dispatchEvent(new Event("change"));
+});
+$("endpoint-input").addEventListener("input", () => {
+  $("configured-key-input").checked = false;
+  $("configured-key-input").dispatchEvent(new Event("change"));
+});
 $("configured-key-input").addEventListener("change", () => {
   const enabled = $("configured-key-input").checked;
   $("key-field").classList.toggle("hidden", enabled);
@@ -935,12 +963,12 @@ $("task-input").addEventListener("change", () => {
 });
 $("listen-preview").addEventListener("click", () =>
   voice.speak(
-    [{ speaker: "narrator", text: caseBriefing(selectedBriefing()) }],
+    [{ speaker: "narrator", target: "briefing-preview-text", text: $("briefing-preview-text").textContent }],
     { interrupt: true },
   ),
 );
 $("listen-briefing").addEventListener("click", () =>
-  voice.speak([{ speaker: "narrator", text: $("briefing-text").textContent }], {
+  voice.speak([{ speaker: "narrator", target: "briefing-text", text: $("briefing-text").textContent }], {
     interrupt: true,
   }),
 );
@@ -954,6 +982,7 @@ $("voice-toggle").addEventListener("change", (event) => {
     : "Voice off. Text remains available.";
 });
 $("read-conversation").addEventListener("click", () => {
+  pause();
   if (!state.conversation) {
     toast("No interview is shown at this event.");
     return;
@@ -1054,6 +1083,45 @@ document.querySelectorAll("[data-filter]").forEach((button) =>
   }),
 );
 
+const tourSteps = [
+  ["Welcome to Mercy House", "Watch a recorded investigation for free, or bring a provider API key to start a live case. You are observing the detective; playback controls never direct its decisions.", "library-button"],
+  ["Read the case first", "The case briefing gives you the public starting situation and assignment. Hidden answers stay outside the viewer. You can listen to this briefing before opening the case.", "briefing-button"],
+  ["Follow the investigation", "The scene changes as the detective travels. Interviews show the actual question and answer. The notebook keeps every exchange already observed, including follow-up questions.", "conversation"],
+  ["Listen at your pace", "Turn on Voice mode to hear dialogue. Playback waits until speech ends. Words highlight when your browser supplies word-boundary events. Characters use consistent installed voices; devices with few voices may share them.", "voice-toggle"],
+  ["Check the sources", "The evidence tray contains only acquired material. Click a record to read it. A witness statement or a letter can still be wrong; the detective must test its claims.", "evidence-list"],
+  ["Read the result", "Go to report shows the submitted conclusions and the rule-based verifier’s supported, false and unsupported findings. Recorded successes and failures are both retained. Scripted references and training checkpoints are labeled.", "end-button"],
+  ["Try your own model", "New investigation lets you choose the case, provider, model ID and seed. A public live run uses your key for the detective and characters. Keys are cleared from the form and are never included in replays. Start with Level 1; longer cases remain difficult.", "new-button"],
+];
+let tourPosition = 0;
+function finishTour() {
+  $("tour-dialog").close();
+  document.querySelectorAll(".tour-target").forEach(el => el.classList.remove("tour-target"));
+  try { localStorage.setItem("mercy-tour-v1", "seen"); } catch {}
+}
+function renderTour() {
+  const [title, copy, target] = tourSteps[tourPosition];
+  $("tour-title").textContent = title;
+  $("tour-copy").textContent = copy;
+  $("tour-counter").textContent = "QUICK TOUR · " + (tourPosition + 1) + " / " + tourSteps.length;
+  $("tour-back").disabled = tourPosition === 0;
+  $("tour-next").textContent = tourPosition === tourSteps.length - 1 ? "Explore the case →" : "Next →";
+  document.querySelectorAll(".tour-target").forEach(el => el.classList.remove("tour-target"));
+  const el = $(target);
+  if (el && !el.classList.contains("hidden")) { el.classList.add("tour-target"); el.scrollIntoView({ block: "center", behavior: "smooth" }); }
+}
+$("tour-button").addEventListener("click", () => {
+  pause(); tourPosition = 0; renderTour(); $("tour-dialog").showModal();
+});
+$("tour-next").addEventListener("click", () => {
+  if (tourPosition === tourSteps.length - 1) finishTour();
+  else { tourPosition++; renderTour(); }
+});
+$("tour-back").addEventListener("click", () => { if (tourPosition) { tourPosition--; renderTour(); } });
+$("tour-skip").addEventListener("click", finishTour);
+$("tour-dialog").addEventListener("close", () => {
+  document.querySelectorAll(".tour-target").forEach(el => el.classList.remove("tour-target"));
+});
+
 async function boot() {
   for (const id of [
     "voice-toggle",
@@ -1078,6 +1146,9 @@ async function boot() {
         return option;
       }),
     );
+    $("provider-input").replaceChildren(...settings.providers.map(p => {
+      const option = node("option", "", p.name); option.value = p.id; return option;
+    }));
     $("model-input").value = settings.defaults.model;
     $("endpoint-input").value = settings.defaults.base_url;
     if (runs.length) await loadRun(runs[0].id);
@@ -1087,6 +1158,7 @@ async function boot() {
       $("begin-button").textContent = "Configure a detective →";
       $("begin-button").addEventListener("click", configure);
     }
+    try { if (!localStorage.getItem("mercy-tour-v1")) toast("New here? Choose Quick tour at the top for a guided introduction."); } catch {}
   } catch (error) {
     toast(error.message);
     $("stage-caption").textContent = "The local viewer service is unavailable.";
