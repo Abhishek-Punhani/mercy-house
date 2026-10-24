@@ -20,7 +20,7 @@ Games & World Simulations directly fits; Other/Open is also allowed and uses the
 | Five tasks, at least two levels | Five TASK_IDs across three levels. Distinct subproblems of the canonical incident. |
 | Reference >=.95, no-op <=.05 | All five score 1/0. References execute public tools but know the solution and use cooperative fixture characters. This proves authored feasibility, not reliable cooperation from live NPCs. |
 | Gates before model, abort on failure | Private `/gate`, then harness check before `/reset` and first detective call. `MODE=baselines` uses no model API. |
-| Exact Compose command | Verified with four-role default Compose; harness exits 0 for passed baselines. No host ports. |
+| Exact Compose command | Verified from a fresh local main-branch Git clone with four-role default Compose; harness exits 0 for passed baselines (5.192 seconds, existing Docker cache). No host ports. |
 | MODEL/API_KEY/BASE_URL, TASK_ID, SEED | Wired into trusted gateway and selected-task reset. NPC model role separately configurable. |
 | APPEND_FILE exact suffix | Exact UTF-8 text preserved, including CRLF, in actual system prompt and full logged request. Missing/empty files reject before model calls; oversized files reject for context safety. |
 | MODE full/all/baselines | One chosen task / sequential all tasks / all baseline pairs. `all` is development batch mode, not a single finals slot. Unknown mode/task rejected. |

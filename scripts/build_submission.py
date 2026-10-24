@@ -30,7 +30,7 @@ def render(name, pages, landscape=False):
     height = '6.45in' if landscape else '263mm'
     body = ''.join('<section><div class="kicker">'+html.escape(TEAM)+' / MERCY HOUSE</div>'+page+'<footer>'+str(i+1)+' / '+str(len(pages))+'</footer></section>' for i,page in enumerate(pages))
     source = ROOT/'docs'/(name+'.html')
-    source.write_text('''<!doctype html><html><head><meta charset="utf-8"><style>
+    document = '''<!doctype html><html><head><meta charset="utf-8"><style>
 @page {size: '''+page_size+'''; margin: 12mm} * {box-sizing:border-box}
 body {font-family:Arial,sans-serif;color:#182b3c;margin:0;font-size:'''+font+''';line-height:1.36}
 section {height:'''+height+''';position:relative;break-after:page;padding:5px 10px 25px} section:last-child {break-after:auto}
@@ -40,10 +40,13 @@ p {margin:8px 0 13px} .kicker {color:#65788a;font-size:.7em;letter-spacing:.12em
 table {border-collapse:collapse;width:100%;margin:14px 0;font-size:.86em} th,td {text-align:left;border-bottom:1px solid #ccd9e2;padding:9px}
 th {color:#1b605f;background:#edf4f5} blockquote {border-left:4px solid #b47a4c;padding:10px 20px;margin:24px 0;background:#f5f2ed}
 code {background:#edf3f5;padding:2px 6px;font-family:monospace} footer {position:absolute;bottom:0;right:12px;font-size:.65em;color:#65788a}
-</style></head><body>'''+body+'</body></html>')
+</style></head><body>'''+body+'</body></html>'
+    changed = not source.exists() or source.read_text() != document
+    if changed: source.write_text(document)
     pdf = ROOT/'docs'/(name+'.pdf')
-    with (ROOT/'logs'/(name+'-chrome.log')).open('w') as output:
-        subprocess.run(['google-chrome','--headless','--no-sandbox','--disable-gpu','--no-pdf-header-footer','--print-to-pdf='+str(pdf),source.as_uri()],stdout=output,stderr=subprocess.STDOUT,check=True,timeout=60)
+    if changed or not pdf.exists():
+        with (ROOT/'logs'/(name+'-chrome.log')).open('w') as output:
+            subprocess.run(['google-chrome','--headless','--no-sandbox','--disable-gpu','--no-pdf-header-footer','--print-to-pdf='+str(pdf),source.as_uri()],stdout=output,stderr=subprocess.STDOUT,check=True,timeout=60)
     info = subprocess.check_output(['pdfinfo',str(pdf)],text=True)
     count = int(re.search(r'^Pages:\s+(\d+)',info,re.M).group(1))
     if count != len(pages):
@@ -121,7 +124,7 @@ def main():
         copy('logs/selector-final-curriculum-145/'+name,folder/'rl'/name)
     frozen = Path(result['frozen_source'])
     copy(frozen/'source-manifest.json',folder/'rl/frozen-source-manifest.json')
-    for name in ('final-town-tests.txt','final-legacy-tests.txt','cold-build.json'):
+    for name in ('final-town-tests.txt','final-legacy-tests.txt','cold-build.json','fresh-clone-compose.json'):
         copy('logs/'+name,folder/'validation'/name)
     copy('logs/public/command-isolation-probe.json',folder/'validation/command-isolation-probe.json')
     for run in live['runs']:

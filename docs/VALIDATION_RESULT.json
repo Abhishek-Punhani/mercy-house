@@ -22,5 +22,13 @@
     }
   },
   "gate_tasks": 5,
-  "source_note": "Current source: tool-description and legacy limitation-text clarification after frozen live source. No reward relaxation; frozen live results retained."
+  "source_note": "Current source: tool-description and legacy limitation-text clarification after frozen live source. No reward relaxation; frozen live results retained.",
+  "fresh_clone_compose": {
+    "commit": "920bd1c660d49390e63c6d714f8fd1db7acc6372",
+    "exit_code": 0,
+    "seconds": 5.192,
+    "mode": "baselines",
+    "cache": "Docker layer cache present; empty-cache build recorded separately",
+    "credential_handling": "ignored .env supplied locally, mode0600, not in Git"
+  }
 }
