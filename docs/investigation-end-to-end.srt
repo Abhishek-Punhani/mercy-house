@@ -1,0 +1,79 @@
+1
+00:00:00,001 --> 00:00:06,025
+How to start an investigation in Mercy House
+A fresh live API run, from setup to final report. Captions only; voice mode is off.
+
+2
+00:00:06,025 --> 00:00:12,028
+1. Click New investigation. Choose a case.
+Start with The Lantern Room for an introductory investigation.
+
+3
+00:00:12,028 --> 00:00:20,034
+2. Read the case briefing before starting.
+It describes your assignment; evidence and witness accounts must be discovered during the case.
+
+4
+00:00:20,034 --> 00:00:28,050
+3. Choose your provider, model ID and case seed.
+This demonstration uses the organizer’s configured endpoint. Other providers are available in the selector.
+
+5
+00:00:28,050 --> 00:00:35,051
+4. Enter your provider API key in the masked field.
+On the public demo, your key powers both the detective and the town’s character agents for this run.
+
+6
+00:00:35,051 --> 00:00:38,488
+5. Click Begin live investigation.
+The system prepares isolated containers and checks that the selected case has a valid reference solution.
+
+7
+00:00:38,488 --> 00:00:50,626
+The live investigation is starting.
+Container preparation and model response times are shown as they happen; this is not a prerecorded replay.
+
+8
+00:00:50,626 --> 00:01:00,306
+The detective is searching the current location.
+Newly acquired material appears in the evidence tray on the right.
+
+9
+00:01:00,306 --> 00:01:08,705
+The detective is interviewing a character.
+Questions, answers and any shown documents appear as the model investigates.
+
+10
+00:01:08,705 --> 00:01:16,664
+The detective is collecting a discovered item.
+Evidence must be acquired through the world tools before it can support a report.
+
+11
+00:01:16,664 --> 00:02:46,285
+The detective is travelling to another location.
+The background and people present follow the actual world state.
+
+12
+00:02:46,285 --> 00:02:57,351
+The investigation has ended.
+We will inspect the actual submitted report and verifier outcome, including any unsupported findings.
+
+13
+00:02:57,351 --> 00:03:07,360
+6. Read the final report and verifier result.
+This run scored 1.00. Supported, false and unsupported findings are listed separately. Guessing a name alone earns no proof.
+
+14
+00:03:07,360 --> 00:03:14,369
+Click a cited source to inspect the evidence behind a conclusion.
+The viewer exposes acquired public records; private world files and unreleased character memories stay hidden.
+
+15
+00:03:14,369 --> 00:03:22,372
+The interview notebook preserves the questions and answers already observed.
+Use it to review follow-ups and documents shown during questioning.
+
+16
+00:03:22,372 --> 00:03:30,584
+Start your own investigation at mercyhouse.abhi07.xyz
+New investigation → case → provider and model → masked API key → Begin. Recorded cases remain free to watch.

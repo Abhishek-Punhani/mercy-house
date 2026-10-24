@@ -4,6 +4,22 @@ A detective enters a snowbound mountain town in 1900 after an executed incident.
 
 The submission is an RL **environment**. Judges supply the detective model. Our environment supplies four case families, isolated character memories, tools, transitions and a programmatic verifier. The original town has sixteen profiles and fourteen locations; the three new families have smaller, distinct casts and places. An optional CPU-trained action selector is a separate research demonstration; it does not replace the judge’s agent or fine-tune an LLM.
 
+## Watch an investigation from start to finish
+
+[![Watch the caption-only live investigation walkthrough](docs/investigation-video-poster.jpg)](docs/investigation-end-to-end.mp4)
+
+[Watch the 3 min 31 sec video](docs/investigation-end-to-end.mp4) · [Caption file](docs/investigation-end-to-end.srt)
+
+The video starts a fresh investigation on the public site and follows it through to the final report. It shows selecting the case, reading the briefing, choosing the provider and model, entering a masked API key, watching interviews and searches, and checking the verifier result. Captions are included in the picture; there is no voice or audio track. The recording is one live demonstration, not a general success-rate measurement.
+
+To try it yourself:
+
+1. Open [Mercy House](https://mercyhouse.abhi07.xyz) and click **New investigation**.
+2. Choose **The Lantern Room** for an introductory case and read its briefing.
+3. Select your provider, enter a supported model ID, and choose a case seed.
+4. Enter that provider's API key and click **Begin live investigation**. The public demo uses your key for both the detective and character agents.
+5. Follow the investigation, then inspect its final report, cited sources and verifier result. Keep **Voice mode** off for silent viewing.
+
 ## Run
 
 For the optional animated story viewer, run `python -m mercy.viewer.server` and open **http://localhost:8787**. It includes room transitions, character mascots, actual dialogue, an evidence tray, provider configuration, live streaming and labeled recorded replays. Recorded cases make no model calls. [Viewer usage, validation and limits](docs/STORY_VIEWER.md).
