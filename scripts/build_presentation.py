@@ -87,7 +87,7 @@ def build():
     # 2
     s=slide('The agent controls the investigation.','What the environment asks an agent to do','It starts with its own biography and the local scene. The answer and hidden event journal remain private.')
     for i,(a,b) in enumerate([('01  EXPLORE','Choose a place and inspect visible features.'),('02  INTERVIEW','Question people; separate experience from hearsay.'),('03  TEST','Compare acquired documents and physical traces.'),('04  REPORT','Cite sources for each conclusion; retain uncertainty.')]):card(s,.65+i*3.08,2.7,2.9,2.55,a,b,body_size=16)
-    text(s,.72,5.65,11.9,.72,'Beginner: one witnessed assault. Intermediate: two casualties and an intended target. Advanced: fabrication, custody, historical records and divided loyalties.',17,'muted')
+    text(s,.72,5.65,11.9,.72,'In the flagship case, physician Mira Sen dies while exposing old institutional records. The detective’s sister, former partner and trusted constable connect him to the inquiry, putting loyalty in conflict with proof.',17,'muted')
     small(s,'Eight task scopes across four causal families; difficulty labels describe design complexity, not measured success bands.')
     # 3
     s=slide('The incident executes before arrival.','World state and causal traces','Validated transitions produce the injury, objects and local recollections that the detective can investigate.')
@@ -118,7 +118,7 @@ def build():
     s=slide('RL learns which proposed action to execute.','The trained policy','Optional research policy: a compact learned selector ranks actions using public features. The native UI/judging detective remains independent.')
     for i,(a,b) in enumerate([('OBSERVED STATE','Acquired records, comparisons, interviews, repeat attempts and steps left.'),('CANDIDATE ACTIONS','An authored public proposer during CPU training; an LLM proposer during transfer tests.'),('LEARNED SELECTOR','Scores features, produces action probabilities, and executes one choice.')]):card(s,.65+4.13*i,2.75,3.91,2.65,a,b,['mint','violet','amber'][i],17)
     text(s,.73,5.8,11.85,.57,'REINFORCE raises the probability of action sequences that earn a valid terminal exercise reward, relative to a running baseline.',18,'muted')
-    small(s,'Earlier prototype:20,000 episodes /460 weights. Fresh source curriculum:6,000 episodes /132 weights. Language-model weights stay fixed.')
+    small(s,'Earlier prototype: 20,000 episodes / 460 weights. Fresh source curriculum: 6,000 episodes / 132 weights. Language-model weights stay fixed.')
     # 8
     s=slide('Three mechanisms become practice exercises.','Sourced inspiration, original interactive training','Original renamed checkpoint scenarios reuse the tested world mechanics. They do not reproduce TV scripts or complete episodes.')
     cards=[('INTENDED TARGET','The Mentalist S1E8\nSeparate the person targeted from the other casualty.'),('APPARENT FOREKNOWLEDGE','The Mentalist S1E7\nTest authorship; prediction alone does not establish murder.'),('TRUSTED RELATIVE','His & Hers\nCheck a familiar parent against evidence rather than loyalty or rumour.')]
@@ -143,7 +143,7 @@ def build():
         text(s,11.35,y+.23,1.2,.38,f'{rate:.1%}' if isinstance(rate,(int,float)) else 'Pending',17,'ink',True)
     small(s,'96 trials per policy (48 checkpoints repeated twice). Prepared acquisitions + authored candidate rules. Same templates; not full-case success.')
     # 10
-    s=slide('Test transfer on excluded elite cases.','Frozen checkpoint • matched proposal contract','Two predeclared task scopes of the excluded Mercy House incident. LLM-ranked baseline versus frozen source-trained selector;40 choices per arm.')
+    s=slide('Test transfer on excluded elite cases.','Frozen checkpoint • matched proposal contract','Two predeclared task scopes of the excluded Mercy House incident. LLM-ranked baseline versus frozen source-trained selector; 40 choices per arm.')
     rows=elite.get('rows',[])
     for i,task in enumerate(['last_witness','mercy_inquest']):
         y=2.8+i*1.48;box(s,.65,y,12.03,1.2,line='edge');text(s,.9,y+.2,4.5,.4,'Fatal assault' if i==0 else 'Seven-act full inquest',21,'ink',True)
@@ -152,7 +152,7 @@ def build():
             result=row.get('result',{});score=result.get('score')
             text(s,5.9+j*3.25,y+.14,3.05,.27,'LLM-RANKED' if j==0 else 'SOURCE-TRAINED SELECTOR',10,'muted',True)
             text(s,5.9+j*3.25,y+.51,3.05,.48,str(score) if score is not None else 'Pending',27,'mint' if result.get('success') else 'amber',True)
-    text(s,.78,5.95,11.85,.4,'The same grounded response bank controls NPC variation. After branches diverge, later LLM proposals may differ.',15,'muted')
+    text(s,.78,5.95,11.85,.4,'The same grounded response bank controls character variation. After branches diverge, later LLM proposals may differ.',15,'muted')
     small(s,'Small development comparison, not statistical superiority or the standard native-tool judging harness. Full trajectories retained.')
     # 11
     s=slide('Audit the case, not just the score.','Consistency, source-only solvability and robustness')
