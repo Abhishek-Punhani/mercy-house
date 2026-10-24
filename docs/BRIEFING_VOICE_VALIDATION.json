@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "case briefing before live start",
+    "selected task changes briefing",
+    "no named solution in briefing",
+    "listen briefing uses browser speech",
+    "replay begins through briefing",
+    "voice reads question and answer in order",
+    "interview notebook retains all observed exchanges",
+    "briefing/speech create no model run",
+    "mobile layout fits"
+  ],
+  "javascript_errors": [],
+  "generation_calls": 0,
+  "audio_limit": "Speech lifecycle tested with a browser mock; audibility and installed device voices are not certified."
+}

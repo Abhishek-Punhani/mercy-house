@@ -14,7 +14,34 @@ SYSTEM = ('You are Inspector Arun Mehra in November 1900. Your biography is your
           'Investigate through the tools, choose your own leads, and distinguish observations from hearsay. '
           'Use the task scope and reporting contract in the opening. You have at most 40 replies and ten executed tool calls per reply. '
           'A selective answer or refusal is not an alibi. Present acquired records explicitly with show, and use ordinary follow-up or reassurance when appropriate. '
+          'An interview has no one- or two-question cap. Develop a relevant account: establish the person’s timeline and vantage point, '
+          'ask how they know a specific claim, distinguish what they saw from what they heard, and clarify an omission or inconsistency with a focused follow-up. '
+          'When new material changes a question, return to the person and show the acquired records. Do not repeat a generic question merely to increase the count; a sufficient supported account can be enough. '
+          'Several records can be presented together in one ask.show list. A tool response can hand over multiple records without spending additional model replies. '
+          'Batch independent tool calls whose arguments are already known; a follow-up that depends on a returned answer requires a later model reply. '
           'Finish with submit_report and cite acquired record IDs. A personal connection is not evidence of a present act.')
+
+
+def interview_progress(book):
+    """Only received public questions, answers and source IDs; never NPC state."""
+    people={}
+    for row in book.history:
+        action,answer=row.get('action',{}),row.get('observation',{})
+        if action.get('tool')!='ask' or answer.get('error'):continue
+        args=action.get('args',{});pid=args.get('pid')
+        if not pid:continue
+        entry=people.setdefault(pid,{'person':pid,'questions_asked':0,'unique_questions':set(),'shown_records':set(),'firsthand_accounts':0})
+        entry['questions_asked']+=1;entry['unique_questions'].add(' '.join(args.get('question','').lower().split()))
+        entry['shown_records'].update(args.get('show',[]))
+        memories=answer.get('recollections',[])
+        entry['firsthand_accounts']+=int(any(m.get('basis') in ('direct_observation','own_action') for m in memories))
+        entry['last_question']=args.get('question','')[:220]
+        entry['last_answer']=answer.get('words','')[:240]
+        entry['last_released_recollections']=len(memories)
+    result=[]
+    for entry in list(people.values())[-12:]:
+        result.append({**entry,'unique_questions':len(entry['unique_questions']),'shown_records':sorted(entry['shown_records'])[:12]})
+    return result
 
 
 def instructions(root=None,task_scope=None):
@@ -102,6 +129,7 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
     start = time.monotonic()
     deadline = start + seconds
     reason, error = 'step_cap', None
+    attempted_replies=0
     seed = getattr(world, 'seed', int(os.getenv('SEED', '7')))
     write_json(folder / 'opening.json', initial)
     for step in range(1, min(40, steps) + 1):
@@ -117,12 +145,13 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
         try:
             if hasattr(world,'reply_count'):world.reply_count=step
             index=[{'record_id':r['record_id'],'label':r.get('label') or ('account from '+r['person'] if r.get('person') else 'comparison' if 'compared' in r else 'notebook' if 'hypotheses' in r else 'record')} for r in list(book.records.values())[-24:]]
-            messages.append({'role':'user','content':'Investigation budget: reply '+str(step)+' of '+str(min(40,steps))+', approximately '+str(max(0,int(deadline-time.monotonic())))+' seconds remain. '+('This is the final reply: submit your supported findings now and put unresolved matters in narrative.' if step==min(40,steps) else 'Keep the selected task scope in view and leave time to submit your report. You may make several sequential tool calls in one reply. Use review_records to revisit acquired material and record_note for a concise stated plan or hypothesis.')+'\nSelected scope: '+initial.get('task',{}).get('scope','')+'\nYour acquired casebook index: '+json.dumps(index,ensure_ascii=False)})
+            messages.append({'role':'user','content':'Investigation budget: reply '+str(step)+' of '+str(min(40,steps))+', approximately '+str(max(0,int(deadline-time.monotonic())))+' seconds remain. '+('This is the final reply: submit your supported findings now and put unresolved matters in narrative.' if step==min(40,steps) else 'Keep the selected task scope in view and leave time to submit your report. Batch independent calls with already-known arguments; read returned answers before choosing dependent follow-ups. Use review_records to revisit acquired material. An interview can continue when a timeline, vantage point, source or contradiction needs clarification.')+'\nSelected scope: '+initial.get('task',{}).get('scope','')+'\nYour acquired casebook index: '+json.dumps(index,ensure_ascii=False)+'\nYour public interview history: '+json.dumps(interview_progress(book),ensure_ascii=False)})
             fit_context(messages, tools)
             sent = deepcopy(messages)
             model_tick = time.monotonic()
             if hasattr(world,'model_wait'):world.model_wait(step)
             try:
+                attempted_replies+=1
                 raw, wire = transport(sent, tools, timeout=min(60, deadline - time.monotonic()))
             finally:
                 model_latency = round((time.monotonic() - model_tick) * 1000, 3)
@@ -197,6 +226,8 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
     result = world.result
     summary = {'task_id': initial.get('task', {}).get('task_id'), 'seed': seed,
                'termination_reason': reason, 'reason': reason, 'result': result,
-               'seconds': round(time.monotonic() - start, 3), 'error': error}
+               'seconds': round(time.monotonic() - start, 3), 'error': error,
+               'detective_model_replies':attempted_replies,
+               'interviews':interview_progress(book)}
     write_json(folder / 'summary.json', summary)
     return summary

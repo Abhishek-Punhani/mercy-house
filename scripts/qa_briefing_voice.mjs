@@ -1,0 +1,33 @@
+import fs from 'node:fs/promises';
+const tab=await(await fetch('http://localhost:9224/json/new?about:blank',{method:'PUT'})).json();const socket=new WebSocket(tab.webSocketDebuggerUrl);await new Promise(r=>socket.addEventListener('open',r,{once:true}));let id=0;const jobs=new Map(),errors=[];
+socket.addEventListener('message',event=>{const m=JSON.parse(event.data);if(m.id){jobs.get(m.id)?.(m);jobs.delete(m.id);}else if(m.method==='Runtime.exceptionThrown')errors.push(m.params.exceptionDetails.text);});
+const call=(method,params={})=>new Promise(r=>{jobs.set(++id,r);socket.send(JSON.stringify({id,method,params}));});
+const ev=async expression=>{const m=await call('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(m.result.exceptionDetails)throw new Error(JSON.stringify(m.result.exceptionDetails));return m.result.result.value;};
+const wait=async expression=>{for(let i=0;i<100;i++){if(await ev(expression))return;await new Promise(r=>setTimeout(r,100));}throw new Error('Timed out: '+expression);};
+try{
+ await call('Runtime.enable');await call('Page.enable');await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+ await call('Page.addScriptToEvaluateOnNewDocument',{source:`window.testSpeech=[];let speechTimer;Object.defineProperty(window,'SpeechSynthesisUtterance',{value:class{constructor(text){this.text=text;}}});Object.defineProperty(window,'speechSynthesis',{value:{getVoices:()=>[{lang:'en-US',name:'Test voice',localService:true}],cancel(){clearTimeout(speechTimer);},speak(u){window.testSpeech.push(u.text);speechTimer=setTimeout(()=>u.onend?.(),3);}}});`});
+ await call('Page.navigate',{url:'http://localhost:8787'});await wait('document.getElementById("event-count")?.textContent!=="0 / 0"&&document.getElementById("task-input")?.options.length===8');
+ const count=await ev('(async()=> (await(await fetch("/api/runs")).json()).runs.length)()');
+ await ev('document.getElementById("new-button").click()');await wait('document.getElementById("settings-dialog").open');
+ if(!await ev('document.getElementById("briefing-preview-text").textContent.length>200'))throw new Error('Missing pre-start briefing');
+ await ev('(()=>{let s=document.getElementById("task-input");s.value="mercy_inquest";s.dispatchEvent(new Event("change"));document.getElementById("listen-preview").click();})()');
+ await wait('window.testSpeech.length>0');
+ if(!await ev('document.getElementById("briefing-preview-title").textContent.includes("Inquest")&&!/Savitri|Vedant/.test(document.getElementById("briefing-preview-text").textContent)'))throw new Error('Wrong or spoiler-filled briefing');
+ await ev('document.querySelector("#settings-dialog .close-dialog").click();document.getElementById("begin-button").click()');await wait('document.getElementById("briefing-dialog").open');
+ if(!await ev('!document.getElementById("briefing-continue").classList.contains("hidden")'))throw new Error('Briefing lacks replay continue');
+ await ev('document.querySelector("#briefing-dialog .close-dialog").click()');
+ const point=await ev('(async()=>{let run=await(await fetch("/api/runs")).json();let r=run.runs.find(r=>r.task_id==="lantern_room"&&r.kind==="recorded-model");let p=await(await fetch("/api/runs/"+r.id)).json();return {id:r.id,before:p.events.findIndex(e=>e.type==="action"&&e.action.tool==="ask")};})()');
+ await ev('document.getElementById("library-button").click()');await wait('document.getElementById("library-dialog").open');
+ await ev('document.querySelector('+JSON.stringify('[data-run-id="'+point.id+'"]')+').click()');await wait('!document.getElementById("library-dialog").open');
+ await ev('(()=>{let seek=document.getElementById("seek");seek.value='+point.before+';seek.dispatchEvent(new Event("input"));window.testSpeech=[];let voice=document.getElementById("voice-toggle");voice.checked=true;voice.dispatchEvent(new Event("change"));document.getElementById("play-button").click();})()');
+ await wait('window.testSpeech.some(s=>s.startsWith("Inspector Mehra."))&&window.testSpeech.length>=2');
+ await ev('document.getElementById("play-button").click();document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');await ev('document.querySelector("#detail-dialog .close-dialog").click()');
+ if(!await ev('!document.getElementById("interview-panel").classList.contains("hidden")&&document.querySelectorAll(".interview-entry").length>=3'))throw new Error('Full interview notebook missing');
+ if(await ev('(async()=> (await(await fetch("/api/runs")).json()).runs.length)()')!==count)throw new Error('Briefing or speech created model run');
+ await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});await ev('document.getElementById("new-button").click()');
+ if(!await ev('document.documentElement.scrollWidth<=innerWidth'))throw new Error('Mobile overflow');
+ const shot=await call('Page.captureScreenshot',{format:'png'});await fs.writeFile('logs/briefing-mobile.png',Buffer.from(shot.result.data,'base64'));
+ if(errors.length)throw new Error(errors.join(';'));
+ const result={passed:true,checks:['case briefing before live start','selected task changes briefing','no named solution in briefing','listen briefing uses browser speech','replay begins through briefing','voice reads question and answer in order','interview notebook retains all observed exchanges','briefing/speech create no model run','mobile layout fits'],javascript_errors:errors,generation_calls:0,audio_limit:'Speech lifecycle tested with a browser mock; audibility and installed device voices are not certified.'};await fs.writeFile('docs/BRIEFING_VOICE_VALIDATION.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+}finally{socket.close();}

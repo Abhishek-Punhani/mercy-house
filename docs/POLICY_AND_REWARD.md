@@ -42,3 +42,6 @@ The latest optional training uses three original checkpoint drills: intended-tar
 
 
 The final fresh-source elite comparison solved0/2 in both arms. The selector’s supported garment match earned0 full-inquest coverage because it did not establish the required material acts; three arms made no report before the cap. This is why supported findings and scoped supported coverage are distinct. The recorded negative result is ELITE_TRANSFER_REPORT.md.
+
+
+Later interview guidance and voice/briefing features change presentation and the public investigation prompt, not the frozen policy weights or score formula. More questions do not earn a bonus. A sufficient supported account can be enough, while timeline/source contradictions can justify further questioning. All returned material from a tool call remains one result within the detective’s current reply.

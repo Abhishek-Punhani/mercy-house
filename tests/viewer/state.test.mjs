@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {initialState,reduceEvent,stateAt,reportOutcome,findingDescription} from '../../viewer/state.js';
+import {initialState,reduceEvent,stateAt,reportOutcome,findingDescription,interviewGroups} from '../../viewer/state.js';
 
 test('only observed people enter a scene; movement clears previous presence',()=>{
  let s=reduceEvent(initialState(),{type:'opening',opening:{now:{place:{id:'archive'}}}});
@@ -62,4 +62,11 @@ test('fatal assistance and aid to a victim have distinct display meanings',()=>{
  assert.match(findingDescription(facilitation),/knowingly facilitated the fatal incident involving/);
  assert.equal(findingDescription({...facilitation,predicate:'aided'}),'Vedant · gave aid to · Mira');
  assert.equal(facilitation.predicate,'assisted'); // Display does not rewrite exact submitted JSON.
+});
+
+test('interview notebook groups every observed exchange and does not invent future questions',()=>{
+ const events=[{type:'opening',opening:{now:{place:{id:'room'},people:[{id:'p',name:'A witness'}]}}},...['Where were you?','What happened next?','What did you see?'].map((question,i)=>({type:'action',reply:i+1,action:{tool:'ask',args:{pid:'p',question,show:['r1']}},observation:{words:'An observed answer.'}}))];
+ assert.equal(interviewGroups(stateAt(events,1)).length,0);
+ assert.equal(interviewGroups(stateAt(events,3))[0].exchanges.length,2);
+ const group=interviewGroups(stateAt(events,4))[0];assert.equal(group.exchanges.length,3);assert.equal(group.name,'A witness');assert.deepEqual(group.exchanges[0].show,['r1']);
 });

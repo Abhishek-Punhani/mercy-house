@@ -40,7 +40,7 @@ def observation(value):
 def opening(value):
     return {'your_life':pick(value.get('your_life',{}),('name','age','occupation','recollections')),
             'now':observation(value.get('now',{})),
-            'task':pick(value.get('task',{}),('task_id','name','difficulty','scope','success','limits')),
+            'task':pick(value.get('task',{}),('task_id','name','difficulty','scope','success','limits','briefing')),
             'assignment':value.get('assignment',''),
             'notes':[record(r) for r in value.get('notes',[])]}
 

@@ -294,7 +294,7 @@ def handler(manager):
                         if run.closed and cursor>=len(run.events):return
                 except (BrokenPipeError,ConnectionResetError):pass
                 return
-            files={'/':('index.html','text/html'),'/app.js':('app.js','text/javascript'),'/art.js':('art.js','text/javascript'),'/state.js':('state.js','text/javascript'),'/styles.css':('styles.css','text/css')}
+            files={'/':('index.html','text/html'),'/app.js':('app.js','text/javascript'),'/art.js':('art.js','text/javascript'),'/state.js':('state.js','text/javascript'),'/speech.js':('speech.js','text/javascript'),'/styles.css':('styles.css','text/css')}
             if path not in files:self.send({'error':'Not found'},404);return
             name,mime=files[path];file=STATIC/name
             if not file.is_file():self.send({'error':'Viewer assets missing'},404);return

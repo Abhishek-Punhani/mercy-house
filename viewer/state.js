@@ -54,3 +54,14 @@ export function findingDescription(finding){
  const verb={assisted:'knowingly facilitated the fatal incident involving',aided:'gave aid to'}[finding.predicate]||finding.predicate;
  return String(finding.actor)+' · '+String(verb)+' · '+String(finding.object);
 }
+
+export function interviewGroups(state){
+ const groups=new Map();
+ for(const event of state.history){
+  if(event.action.tool!=='ask'||event.observation.error)continue;
+  const pid=event.action.args.pid;
+  if(!groups.has(pid))groups.set(pid,{pid,name:state.people[pid]?.name||pid,exchanges:[]});
+  groups.get(pid).exchanges.push({question:event.action.args.question,answer:event.observation.words||'No spoken answer recorded.',show:event.action.args.show||[],reply:event.reply});
+ }
+ return [...groups.values()];
+}

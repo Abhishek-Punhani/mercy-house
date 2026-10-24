@@ -73,3 +73,6 @@ The [consistency/solvability audit](docs/CASE_SOLVABILITY_AUDIT.md) checks 184 t
 ## Hosted demo
 
 Open https://mercyhouse.abhi07.xyz without signing in. Recorded cases need no key; a new live run requires your own API key for the displayed provider. The public server holds no team API key. Source: https://github.com/Abhishek-Punhani/mercy-house. See [deployment and checks](docs/DEPLOYMENT.md). The14-slide presentation includes the named team and QR codes for the public repo and demo.
+
+
+The viewer now includes public case briefings before live runs, optional browser speech for introductions and dialogue, and a complete interview notebook. The detective receives its own public interview progress to support focused follow-ups. See [briefing, voice and interview behavior](docs/BRIEFING_VOICE_AND_INTERVIEWS.md). Multiple returned materials do not consume extra detective replies; the40-reply/10-tool-call limits are unchanged.
