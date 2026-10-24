@@ -3,10 +3,7 @@
 }
 
 __DOMAIN__ {
-    # Entire site, including all JSON/SSE/run-control routes, requires login.
-    basicauth {
-        __USERNAME__ __PASSWORD_HASH__
-    }
+    # Public replay site; live cases require a visitor-supplied API key.
     encode gzip
     header {
         Strict-Transport-Security "max-age=31536000"

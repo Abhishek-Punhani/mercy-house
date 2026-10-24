@@ -53,6 +53,6 @@ Development browser checks use a dedicated local headless Chrome instance and `n
 
 Completed runs now show a persistent solved/unsolved/not-graded panel beneath the playback controls. It contains the actual accepted submission, cited acquired sources, narrative, exact report JSON, programmatic findings and reward breakdown. Forced-end and missing-submission runs have explicit notices. Checkpoint exercise reward and full Town score remain separate. `assisted` is rendered as knowingly facilitating the fatal incident; `aided` is help given to the victim. No expected-answer list or private world is exposed. See UI_REPORT_IMPROVEMENTS.md.
 
-## Protected hosted access
+## Public hosted demo
 
-The same viewer can run behind an authenticated HTTPS proxy with `MERCY_PUBLIC_ORIGIN` set to its exact public origin. The application stays on loopback. Live POSTs must present the matching HTTPS Origin and CSRF token; provider overrides using a server-configured key are denied unless the provider URL matches its configuration. Use your own key when changing providers. This deployment is for trusted operators sharing one run library, not isolated public customer accounts. Infrastructure, login handoff and validation are documented in DEPLOYMENT.md.
+The website now opens without a login. Recorded cases need no key. Public live runs use the visitor’s key for both the detective and characters on the displayed provider. The server has no team API key; the form hides the configured-key option in public mode. A creator-only token protects the Stop button. Local judging mode retains separately configured character credentials. Deployment and verification: DEPLOYMENT.md.

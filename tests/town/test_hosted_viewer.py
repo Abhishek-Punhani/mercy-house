@@ -15,6 +15,36 @@ DEFAULTS={'API_KEY':'test-server-key','BASE_URL':'https://configured.example/v1'
 
 
 class HostedViewerTests(unittest.TestCase):
+    def test_public_demo_uses_visitor_key_for_both_roles_and_never_server_key(self):
+        defaults={**DEFAULTS,'MERCY_PUBLIC_DEMO':'1'}
+        with self.assertRaises(ValueError):configuration({'use_configured_key':True},defaults)
+        with self.assertRaises(ValueError):configuration({'api_key':'visitor-key','base_url':'https://another.example'},defaults)
+        c=configuration({'api_key':'visitor-key'},defaults)
+        self.assertEqual(c['key'],'visitor-key');self.assertEqual(c['npc_key'],'visitor-key')
+        self.assertEqual(c['base_url'],c['npc_base'])
+        with TemporaryDirectory() as folder,patch('mercy.viewer.server.credentials',return_value=defaults):
+            settings=Manager(folder).settings()
+            self.assertTrue(settings['public_demo']);self.assertFalse(settings['key_configured'])
+            self.assertNotIn('test-server-key',json.dumps(settings))
+
+    def test_public_run_control_token_not_exposed_in_replay_and_required_for_stop(self):
+        from mercy.viewer.server import Run
+        defaults={**DEFAULTS,'MERCY_PUBLIC_DEMO':'1'}
+        with TemporaryDirectory() as folder,patch('mercy.viewer.server.credentials',return_value=defaults):
+            manager=Manager(folder);run=Run('a123456789',{});run.control_token='private-run-control';run.closed=True
+            manager.runs[run.id]=run
+            self.assertNotIn(run.control_token,json.dumps(run.public()))
+            server=ThreadingHTTPServer(('127.0.0.1',0),handler(manager));thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+            base='http://127.0.0.1:'+str(server.server_port)
+            try:
+                headers={'X-Mercy-CSRF':manager.csrf}
+                req=urllib.request.Request(base+'/api/runs/'+run.id+'/stop',data=b'{}',headers=headers)
+                with self.assertRaises(urllib.error.HTTPError) as error:urllib.request.urlopen(req)
+                self.assertEqual(error.exception.code,403)
+                headers['X-Mercy-Run-Control']=run.control_token
+                with urllib.request.urlopen(urllib.request.Request(base+'/api/runs/'+run.id+'/stop',data=b'{}',headers=headers)) as response:self.assertEqual(response.status,200)
+            finally:server.shutdown();server.server_close();thread.join()
+
     def test_public_origin_is_explicit_single_https_origin(self):
         self.assertEqual(public_origin('https://MercyHouse.abhi07.xyz:443/'),'https://mercyhouse.abhi07.xyz')
         self.assertIsNone(public_origin(''))

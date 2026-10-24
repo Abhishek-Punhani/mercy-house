@@ -3,6 +3,7 @@ import {initialState,stateAt,actionTitle,recordKind,recordLabel,recordText,repor
 
 const $=id=>document.getElementById(id);
 const csrf=document.querySelector('meta[name="mercy-csrf"]').content;
+const runControls=new Map();
 let settings={},runs=[],run=null,events=[],position=0,state=initialState(),playing=false,live=false,stream=null,clock=null,filter='all',sceneId='',actorKey='',opened=false,announcedReport='';
 const icon={go:'↗',ask:'◌',search:'⌕',collect:'◇',compare:'≋',request_access:'⚿',excavate:'⌁',submit_report:'▤',people_here:'♧',look:'◈',record_note:'✎',review_records:'▱',run_command:'›_'};
 
@@ -122,7 +123,7 @@ function render(){
  $('play-label').textContent=live?(playing?'Following live':'Display paused'):playing?'Playing recorded events':'Recorded replay';
  $('playback-note').textContent=live?'Playback controls affect the viewer only. The agent continues.':run?.kind==='reference'?'Scripted public-tool reference · fixture characters':run?.kind==='selector-checkpoint'?'RL skill checkpoint · prior acquired material · not a whole-case run':'Recorded API detective · actual observations';
  $('stage-caption').textContent=state.finished?(reportOutcome(state,run?.kind).label+' · '+state.finished.termination):state.pending?actionTitle(state.pending,state):state.conversation?'A conversation, with limits on what each person knows.':state.scene.immediately_visible||'Only acquired observations are shown.';
- $('arrival-card').classList.toggle('hidden',opened||live||position>1);$('stop-button').classList.toggle('hidden',!live||!!state.finished);
+ $('arrival-card').classList.toggle('hidden',opened||live||position>1);$('stop-button').classList.toggle('hidden',!live||!!state.finished||settings.public_demo&&!runControls.has(run.id));
  $('end-button').textContent=state.finished?'Read final report →':'Go to report →';
 }
 function seek(value){position=Math.max(1,Math.min(events.length,value));state=stateAt(events,position);opened=true;render();}
@@ -161,7 +162,9 @@ async function showLibrary(){
  if(!$('library-dialog').open)$('library-dialog').showModal();
 }
 function configure(){
- $('form-error').textContent='';$('configuration-status').textContent=settings.characters_configured?'Town character model is configured server-side.':'Town character credentials are not configured. Add NPC settings to the server .env before a live run.';
+ $('form-error').textContent='';$('configuration-status').textContent=settings.public_demo?'Replays are free to watch. For a live case, enter your own key for the displayed provider. It powers both the detective and characters for this run and is not saved by the viewer.':settings.characters_configured?'Town character model is configured server-side.':'Town character credentials are not configured. Add NPC settings to the server .env before a live run.';
+ $('configured-key-input').closest('label').classList.toggle('hidden',!!settings.public_demo);
+ $('endpoint-input').readOnly=!!settings.public_demo;
  $('configured-key-input').disabled=!settings.key_configured;$('configured-key-input').checked=!!settings.key_configured;$('key-field').classList.toggle('hidden',!!settings.key_configured);
  $('key-input').required=!settings.key_configured;$('settings-dialog').showModal();
 }
@@ -170,12 +173,12 @@ $('run-form').addEventListener('submit',async event=>{
  if(!Number.isSafeInteger(seed)){$('form-error').textContent='Enter a seed within JavaScript’s exact integer range.';return;}
  const body={task_id:$('task-input').value,seed,model:$('model-input').value,base_url:$('endpoint-input').value,api_key:$('key-input').value,use_configured_key:$('configured-key-input').checked};
  $('start-button').disabled=true;
- try{const value=await api('/api/runs',{method:'POST',body:JSON.stringify(body)});$('key-input').value='';$('settings-dialog').close();await loadRun(value.id);toast('The isolated live investigation is starting.');}
+ try{const value=await api('/api/runs',{method:'POST',body:JSON.stringify(body)});if(value.control_token)runControls.set(value.id,value.control_token);$('key-input').value='';$('settings-dialog').close();await loadRun(value.id);toast('The isolated live investigation is starting.');}
  catch(error){$('form-error').textContent=error.message;}
  finally{$('key-input').value='';body.api_key='';$('start-button').disabled=false;}
 });
 $('configured-key-input').addEventListener('change',()=>{const enabled=$('configured-key-input').checked;$('key-field').classList.toggle('hidden',enabled);$('key-input').required=!enabled;});
-$('stop-button').addEventListener('click',async()=>{try{await api('/api/runs/'+run.id+'/stop',{method:'POST',body:'{}'});toast('Stopping this live run.');}catch(e){toast(e.message);}});
+$('stop-button').addEventListener('click',async()=>{try{await api('/api/runs/'+run.id+'/stop',{method:'POST',body:'{}',headers:runControls.has(run.id)?{'X-Mercy-Run-Control':runControls.get(run.id)}:{}});toast('Stopping this live run.');}catch(e){toast(e.message);}});
 $('library-button').addEventListener('click',()=>showLibrary().catch(e=>toast(e.message)));$('new-button').addEventListener('click',configure);
 $('library-level').addEventListener('change',()=>showLibrary().catch(e=>toast(e.message)));
 $('begin-button').addEventListener('click',play);$('play-button').addEventListener('click',()=>playing?pause():play());

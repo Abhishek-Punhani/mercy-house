@@ -72,4 +72,4 @@ The [consistency/solvability audit](docs/CASE_SOLVABILITY_AUDIT.md) checks 184 t
 
 ## Hosted demo
 
-The authenticated demo is https://mercyhouse.abhi07.xyz. Login details are kept in the local ignored `.deployment/access.json`. Deployment uses a dedicated Terraform VM and Cloudflare record; see [deployment and verification](docs/DEPLOYMENT.md). The private repository is https://github.com/Abhishek-Punhani/mercy-house. The14-slide presentation includes team introduction and repository/demo QR codes; the QR codes contain no credentials.
+Open https://mercyhouse.abhi07.xyz without signing in. Recorded cases need no key; a new live run requires your own API key for the displayed provider. The public server holds no team API key. Source: https://github.com/Abhishek-Punhani/mercy-house. See [deployment and checks](docs/DEPLOYMENT.md). The14-slide presentation includes the named team and QR codes for the public repo and demo.

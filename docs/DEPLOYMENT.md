@@ -1,44 +1,46 @@
-# Mercy House hosted deployment
+# Public demo deployment
 
-Live address: **https://mercyhouse.abhi07.xyz**. The entire site, JSON API, replay streams and live-run controls require a browser login. The repository is private at **https://github.com/Abhishek-Punhani/mercy-house**.
+Live site: **https://mercyhouse.abhi07.xyz**. It opens without a username or password. The source is public at **https://github.com/Abhishek-Punhani/mercy-house**.
 
-The unique demo username and password are in the ignored local file `.deployment/access.json` (mode0600). Open that file locally to sign in; do not commit it or include its contents in slides or QR codes. The final presentation QR codes encode only the ordinary repository/demo URLs. Repository viewers need GitHub access separately.
+Recorded investigations are available without an account or API key. To start a new live case, enter your own key for the provider shown in the form. That key powers the detective and characters for that run. The viewer does not save it in browser storage or application files. The public host stores no team API key. This website mode is separate from the official judging configuration, where character credentials remain separately configured.
 
-## Infrastructure and separation
+## Infrastructure
 
-Terraform reused the GCP project, region, zone, machine type, provider credentials and Cloudflare zone from the existing reference environment at `/home/manav/dev_ws/N8N-Agent /terraform/.env` (the directory name contains a trailing space). Application-specific names and domain changed. It uses a separate Terraform directory/state and does not reference or modify n8n infrastructure.
+Terraform reused the existing GCP project, region, zone, machine type and Cloudflare credentials from `/home/manav/dev_ws/N8N-Agent /terraform/.env` (the directory name contains a trailing space). App-specific names and the domain changed. State is separate; the n8n resources and state were not modified.
 
-Eight resources were created in project `rank-tracker-473910`: a dedicated VPC/subnet, HTTPS firewall, restricted SSH firewall, static IP, role-free runtime service account, Debian12 VM and new Cloudflare DNS A record. VM: `mercy-house-viewer`, `asia-south1-c`, `e2-medium`,30GBpd-ssd. DNS is unproxied so Caddy obtains and serves HTTPS directly without changing Cloudflare zone-wide SSL settings. The VM and disk remain provisioned until explicitly removed.
+Eight dedicated resources were created: VPC, subnet, web firewall, restricted SSH firewall, static IP, a service account without project roles, Debian12 VM and Cloudflare DNS record. VM: `mercy-house-viewer`, project `rank-tracker-473910`, zone `asia-south1-c`, type `e2-medium`,30GBpd-ssd. Caddy serves HTTPS directly using the unproxied DNS record. The VM/disk remain provisioned until explicitly removed.
 
-Caddy protects every route with a hashed BasicAuth password. Python listens only on127.0.0.1:8787 under systemd; no world, model-gateway, harness or workspace port is published. Live investigations still use the isolated four-container architecture. A trusted service user runs the viewer and Docker orchestration; authorized operators share the run library and one concurrent live slot. This is not an anonymous multi-tenant service.
+The Python viewer binds only to127.0.0.1:8787 under systemd. Caddy forwards the public HTTPS site without an authentication challenge. Firewall ingress is80/443, with SSH restricted to the administrator’s IPv4/32. No world, gateway, controller or detective-workspace port is published.
 
-The application key is copied separately over SSH to `/opt/mercy-house/.env`, owned by the service user with mode0600. It is absent from Terraform metadata, state variables, Git and the presentation. `LOCAL_UID=1100` aligns container log ownership with the host service user. `MERCY_PUBLIC_ORIGIN=https://mercyhouse.abhi07.xyz` enables strict hosted Host/Origin/CSRF checks. The configured key cannot be forwarded to another provider URL; a provider override needs an operator-supplied key.
+## Public live-run controls
+
+`MERCY_PUBLIC_ORIGIN=https://mercyhouse.abhi07.xyz` restricts the Host and browser Origin. `MERCY_PUBLIC_DEMO=1` requires a visitor key, refuses server-key use and restricts calls to the configured provider URL. The browser explains that this key powers both model roles for the public demonstration. The original local/judging mode still separates detective and character credentials.
+
+Only one live run executes at a time. The creator receives a random control token held in browser memory; stopping that run requires the token. It is absent from shared replay responses and saved metadata. Recorded public actions and dialogue remain viewable by other visitors. Private world files, raw private model context and credentials are not served.
+
+The service user has trusted Docker orchestration authority. Detective containers retain the documented separation and do not have a Docker socket or host secrets. This is a public demonstration with a shared run library, not private visitor accounts or a multi-tenant investigation service.
 
 ## Reproduce or update
 
-Configure `terraform/.env` from its example using provider/project values; never copy the n8n Terraform state or unrelated service secrets. GCP Application Default Credentials and the administrator SSH key are local prerequisites.
+Configure `terraform/.env` from its example. Keep GCP Application Default Credentials and the administrator SSH key local; never copy the n8n Terraform state.
 
 ```bash
 ./deploy/terraform.sh init
 ./deploy/terraform.sh fmt -check
 ./deploy/terraform.sh validate
 ./deploy/terraform.sh plan
-# Inspect the resource changes, then apply the intended dedicated Mercy plan.
+# Inspect the dedicated Mercy changes before applying.
 ./deploy/terraform.sh apply
 python deploy/publish.py
 python deploy/publish.py --checks-only
 ```
 
-`deploy/publish.py` uploads a sanitized application archive and app/auth files over SSH, validates Caddy, then enables the systemd viewer. It refuses to redeploy while an investigation is active. Source manifests identify deployed file hashes and source commit; release snapshots exclude Git credentials, local logs and author documents. `.deployment/`, Terraform state, plans, real variable files and real environment files stay ignored. Preserve the protected local state for future infrastructure management.
+`deploy/publish.py` uploads a sanitized archive over SSH, writes only public model/provider settings to the remote app environment, validates Caddy and starts the service. It refuses to interrupt an active investigation. The release manifest records commit and runtime hashes. Local `.env`, `.deployment/`, Terraform state, plans and real variable files stay ignored. Preserve the protected local state for future management.
 
-The public bootstrap installs Docker Compose, Python and Caddy. Terraform credentials are never sent to the VM. `deploy/mercy-house.service` and `deploy/Caddyfile.template` are the reviewable runtime configuration; the template contains placeholders, not a password.
+The previous HTTP login was removed at the user’s request. Old local `.deployment/access.json` is obsolete and is not needed to use the site. No password or API key appears in either presentation QR code.
 
-## Verified behavior
+## Verification
 
-Terraform format/validation passed. The saved apply created8 resources with0 changes and0 deletions. A subsequent refreshed plan reports no changes.
+Terraform format and validation passed; eight resources were created, with no changes or deletions to existing resources. A later plan reports no changes. HTTPS certificates validate through the system trust store. Anonymous homepage/config/replay requests return200 with no login challenge. Private paths return404, cross-origin writes403 and missing visitor keys/server-key requests/wrong providers400 without creating runs. Replay events stream through Caddy.
 
-HTTPS certificates validate through the system trust store. Anonymous requests receive401; authenticated UI/config requests succeed. Private paths return404, cross-origin writes403, invalid provider settings400 without creating a run, and replay SSE streams through Caddy. Viewer, Caddy and Docker services are active; port8787 binds only to loopback.
-
-One hosted native-tool detective run with live character agents completed Lantern Room seed7: score1.0, no false or unsupported findings, and an actual submitted report. The graded investigation took87.72 seconds; initial build/start plus stream observation took114.108 seconds. This is one deployment smoke, not an estimate of general solving reliability. See DEPLOYMENT_RESULT.json. Model calls were made only for that authorized smoke; the infrastructure/HTTP checks make no generation requests.
-
-The final remote release is synchronized after commits and rechecked without another generation run. GitHub main and the deployment source manifest identify the handoff versions; local source and remote runtime hashes are checked before reporting completion.
+A hosted native detective test completed Lantern Room seed7 with score1.0 before the public-access change. The separate public visitor-key test also scored1.0 with no false or unsupported findings; its graded investigation took46.048 seconds. Current public HTTP checks and both test records are in DEPLOYMENT_RESULT.json. These are bounded deployment checks, not a general solving estimate. No scores from historical runs were changed when site access changed.

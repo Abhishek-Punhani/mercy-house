@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "anonymous HTTPS opens without login",
+    "recorded investigation loads",
+    "public live form requests own key",
+    "server-key option hidden",
+    "configured provider fixed",
+    "mobile layout fits"
+  ],
+  "javascript_errors": [],
+  "generation_calls": 0
+}

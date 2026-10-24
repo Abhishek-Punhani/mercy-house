@@ -62,10 +62,18 @@ def configuration(data, defaults):
     url=urlsplit(base)
     if url.scheme!='https' or not url.hostname or url.username or url.password or url.query or url.fragment:raise ValueError('Use an HTTPS base URL without credentials, query or fragment')
     if type(data.get('use_configured_key',False)) is not bool:raise ValueError('Invalid configured-key option')
+    public_demo=defaults.get('MERCY_PUBLIC_DEMO')=='1'
+    if public_demo and data.get('use_configured_key'):
+        raise ValueError('Public live investigations require your own API key.')
+    if public_demo and base.rstrip('/')!=defaults.get('BASE_URL','').rstrip('/'):
+        raise ValueError('Use the provider configured for this public demo.')
     if data.get('use_configured_key') and base.rstrip('/')!=defaults.get('BASE_URL','').rstrip('/'):
         raise ValueError('The configured key is bound to its configured provider URL. Supply your own key for another provider.')
     key=defaults.get('API_KEY','') if data.get('use_configured_key') else data.get('api_key','')
     if not isinstance(key,str) or not 1<=len(key)<=1024 or any(c in key for c in '\r\n\x00'):raise ValueError('Provide an API key or choose the configured key')
+    if public_demo:
+        return {'task_id':task,'seed':seed,'model':model,'base_url':base.rstrip('/'),'key':key,
+                'npc_key':key,'npc_base':base.rstrip('/'),'npc_model':model}
     shared=defaults.get('ALLOW_SHARED_NPC_KEY')=='1'
     # Judge override NEVER becomes the town's credential implicitly.
     npc_key=defaults.get('NPC_API_KEY') or (defaults.get('API_KEY','') if shared else '')
@@ -81,6 +89,7 @@ class Run:
         self.id=ident;self.meta=meta;self.folder=folder;self.events=[];self.changed=threading.Condition()
         self.status='starting';self.process=None;self.stopped=False;self.closed=False;self.hidden=tuple(s for s in secrets_to_hide if s)
         self.seen={};self.project='mercy-ui-'+ident
+        self.control_token=None
     def emit(self,value):
         def redact(item):
             if isinstance(item,str):
@@ -120,10 +129,12 @@ class Manager:
                 except (OSError,ValueError,KeyError):continue
     def settings(self):
         shared=self.defaults.get('ALLOW_SHARED_NPC_KEY')=='1'
+        public_demo=self.defaults.get('MERCY_PUBLIC_DEMO')=='1'
         return {'tasks':[description(k) for k in TASKS],
           'defaults':{'model':self.defaults.get('MODEL','gpt-6-luna'),'base_url':self.defaults.get('BASE_URL',''),'seed':7},
-          'key_configured':bool(self.defaults.get('API_KEY')),
-          'characters_configured':bool(self.defaults.get('NPC_API_KEY') or shared and self.defaults.get('API_KEY')),
+          'public_demo':public_demo,
+          'key_configured':bool(self.defaults.get('API_KEY')) and not public_demo,
+          'characters_configured':public_demo or bool(self.defaults.get('NPC_API_KEY') or shared and self.defaults.get('API_KEY')),
           'docker_available':__import__('shutil').which('docker') is not None}
     def start(self,data):
         config=configuration(data,self.defaults)
@@ -137,8 +148,9 @@ class Manager:
                   'description':'Live API detective with independent town character agents.'}
             (folder/'meta.json').write_text(json.dumps(meta,indent=2)+'\n')
             run=Run(ident,meta,folder,(config['key'],config['npc_key']));self.runs[ident]=run
+            if self.defaults.get('MERCY_PUBLIC_DEMO')=='1':run.control_token=secrets.token_urlsafe(32)
             threading.Thread(target=self.execute,args=(run,config),daemon=True).start()
-        return run.public()
+        return {**run.public(),**({'control_token':run.control_token} if run.control_token else {})}
     def stop(self,run):
         if run.closed:return
         run.stopped=True;run.status='stopping';run.emit({'type':'status','message':'Stopping the live containers. An interrupted run is not a graded success.'})
@@ -302,7 +314,10 @@ def handler(manager):
                 if self.path=='/api/runs':self.send(manager.start(data),202);return
                 match=re.fullmatch(r'/api/runs/([a-f0-9]{10})/stop',self.path)
                 if match and match[1] in manager.runs:
-                    manager.stop(manager.runs[match[1]]);self.send({'stopping':True});return
+                    run=manager.runs[match[1]]
+                    if manager.defaults.get('MERCY_PUBLIC_DEMO')=='1' and (not run.control_token or not hmac.compare_digest(self.headers.get('X-Mercy-Run-Control',''),run.control_token)):
+                        self.send({'error':'Only the browser that started this investigation can stop it.'},403);return
+                    manager.stop(run);self.send({'stopping':True});return
                 self.send({'error':'Not found'},404)
             except (ValueError,TypeError) as exc:self.send({'error':str(exc) if isinstance(exc,ValueError) else 'Invalid run options'},400)
             except Exception:self.send({'error':'Unable to configure this run'},500)

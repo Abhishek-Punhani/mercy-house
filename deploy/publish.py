@@ -90,62 +90,48 @@ def render_release():
 
 def prepare_secrets(domain,reference):
     app=envfile(ROOT/'.env')
-    keep=('MODEL','API_KEY','BASE_URL','NPC_MODEL','NPC_API_KEY','NPC_BASE_URL','ALLOW_SHARED_NPC_KEY','APPEND_FILE')
-    clean={key:app[key] for key in keep if key in app}
-    if not clean.get('API_KEY'):raise RuntimeError('Configure this project .env API settings first')
-    clean.update(MODE='full',TASK_ID='lantern_room',SEED='7',LOCAL_UID='1100',MERCY_PUBLIC_ORIGIN='https://'+domain)
+    # The public host stores no team API key. Each live run supplies its own
+    # key for both detective and characters through the per-run gateway.
+    clean={key:app[key] for key in ('MODEL','BASE_URL','APPEND_FILE') if key in app}
+    if not clean.get('BASE_URL','').startswith('https://'):raise ValueError('Configure the public demo provider URL first')
+    clean.update(MODE='full',TASK_ID='lantern_room',SEED='7',LOCAL_UID='1100',MERCY_PUBLIC_ORIGIN='https://'+domain,MERCY_PUBLIC_DEMO='1')
     if any(any(c in value for c in '\r\n\x00') for value in clean.values()):raise ValueError('Control character in app environment')
     private_write(PRIVATE/'app.env','\n'.join(key+'='+shlex.quote(value) for key,value in clean.items())+'\n')
-    access=PRIVATE/'access.json'
-    if access.exists():login=json.loads(access.read_text())
-    else:
-        login={'url':'https://'+domain,'username':'mercyhouse','password':secrets.token_urlsafe(30)}
-        private_write(access,json.dumps(login,indent=2)+'\n')
-    if not re.fullmatch(r'[a-z0-9_-]{1,40}',login['username']):raise ValueError('Invalid access username')
-    with contextlib.suppress(DeprecationWarning):
-        import crypt
-    hashed=crypt.crypt(login['password'],crypt.mksalt(crypt.METHOD_BLOWFISH,rounds=4096))
-    if not hashed.startswith(('$2a$','$2b$','$2y$')):raise RuntimeError('No local bcrypt support')
     ref=envfile(reference);email=ref.get('TF_VAR_admin_email','admin@abhi07.xyz')
     if not re.fullmatch(r'[A-Za-z0-9._+@-]+',email):raise ValueError('Invalid ACME email')
-    caddy=(ROOT/'deploy/Caddyfile.template').read_text()
-    for key,value in {'__DOMAIN__':domain,'__ADMIN_EMAIL__':email,'__USERNAME__':login['username'],'__PASSWORD_HASH__':hashed}.items():caddy=caddy.replace(key,value)
+    caddy=(ROOT/'deploy/Caddyfile.template').read_text().replace('__DOMAIN__',domain).replace('__ADMIN_EMAIL__',email)
     private_write(PRIVATE/'Caddyfile',caddy)
-    return login
+    return None
 
 
-def checks(domain,login):
+def checks(domain,login=None):
     base='https://'+domain
     def request(path='/',headers=None,data=None):
         req=urllib.request.Request(base+path,headers=headers or {},data=data)
         with urllib.request.urlopen(req,timeout=30) as response:return response.status,response.read(),response.headers
-    for path in ('/','/api/config','/api/runs'):
-        try:request(path);raise AssertionError('Unauthenticated route was exposed')
-        except urllib.error.HTTPError as exc:assert exc.code==401,(path,exc.code)
-    auth='Basic '+base64.b64encode((login['username']+':'+login['password']).encode()).decode()
-    headers={'Authorization':auth};_,html,_=request(headers=headers)
+    status,html,_=request();assert status==200
     csrf=re.search(rb'name="mercy-csrf" content="([^"]+)"',html)[1].decode()
-    _,raw,_=request('/api/config',headers);config=json.loads(raw)
-    _,raw,_=request('/api/runs',headers);runs=json.loads(raw)['runs']
-    assert len(config['tasks'])==8 and runs
+    _,raw,_=request('/api/config');config=json.loads(raw)
+    _,raw,_=request('/api/runs');runs=json.loads(raw)['runs']
+    assert len(config['tasks'])==8 and runs and config['public_demo'] and not config['key_configured']
     for path in ('/.env','/logs/private/world.json','/terraform/terraform.tfstate'):
-        try:request(path,headers);raise AssertionError('Private path was exposed')
+        try:request(path);raise AssertionError('Private path was exposed')
         except urllib.error.HTTPError as exc:assert exc.code==404,(path,exc.code)
-    bad={'Authorization':auth,'Origin':'https://other.invalid','X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
+    bad={'Origin':'https://other.invalid','X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
     try:request('/api/runs',bad,b'{}');raise AssertionError('Wrong origin was accepted')
     except urllib.error.HTTPError as exc:assert exc.code==403,exc.code
-    probe={'Authorization':auth,'Origin':base,'X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
-    body=json.dumps({'model':'generic','base_url':'http://invalid.test','api_key':'deployment-probe-not-a-key','seed':7,'task_id':'lantern_room'}).encode()
-    try:request('/api/runs',probe,body);raise AssertionError('Insecure endpoint accepted')
-    except urllib.error.HTTPError as exc:assert exc.code==400,exc.code
-    # An authenticated observed replay must stream as SSE through the proxy.
-    ident=runs[0]['id'];_,wire,h=request('/api/runs/'+ident+'/events',headers)
+    probe={'Origin':base,'X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
+    for payload in ({'use_configured_key':True},{'api_key':''},{'base_url':'https://other.invalid','api_key':'not-a-key'}):
+        try:request('/api/runs',probe,json.dumps(payload).encode());raise AssertionError('Public key/provider requirement bypassed')
+        except urllib.error.HTTPError as exc:assert exc.code==400,exc.code
+    _,raw,_=request('/api/runs');assert len(json.loads(raw)['runs'])==len(runs)
+    ident=runs[0]['id'];_,wire,h=request('/api/runs/'+ident+'/events')
     assert 'text/event-stream' in h['Content-Type'] and b'opening' in wire
-    return {'https_certificate':'verified by system trust store','unauthenticated_routes':'401',
-       'authenticated_ui_and_config':'200','private_paths':'404','wrong_origin':'403',
-       'invalid_provider_creates_no_run':'400','sse_replay':'passed','tasks':len(config['tasks']),
-       'replays':len(runs),'key_configured':config['key_configured'],
-       'character_model_configured':config['characters_configured'],'generation_calls':0}
+    return {'https_certificate':'verified by system trust store','anonymous_ui_config_and_replays':'200; no login',
+       'private_paths':'404','wrong_origin':'403','server_key_access':'denied',
+       'public_live_runs':'visitor key for detective and characters; configured provider only',
+       'invalid_key_or_provider_creates_no_run':'400','sse_replay':'passed','tasks':len(config['tasks']),
+       'replays':len(runs),'key_configured':config['key_configured'],'public_demo':True,'generation_calls':0}
 
 
 def main():
@@ -154,7 +140,7 @@ def main():
     parser.add_argument('--checks-only',action='store_true')
     args=parser.parse_args();PRIVATE.mkdir(exist_ok=True);PRIVATE.chmod(0o700)
     outputs=tfoutputs();host=outputs['instance_ip'];domain=outputs['domain_name'];login_name='manav'
-    if args.checks_only:login=json.loads((PRIVATE/'access.json').read_text())
+    if args.checks_only:login=None
     else:
         archive=render_release();login=prepare_secrets(domain,args.reference_env);wait_boot(host,login_name)
         # No active production investigation may be interrupted by a release.
