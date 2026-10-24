@@ -170,6 +170,16 @@
     "family": "mercy_house"
   },
   {
+    "id": "447858320b",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 20",
+    "task_id": "lantern_room",
+    "seed": 37,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
     "id": "recorded-model-3",
     "kind": "recorded-model",
     "label": "A Borrowed Signature \u00b7 model run 3",

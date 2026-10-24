@@ -54,7 +54,8 @@ let settings = {},
   sceneId = "",
   actorKey = "",
   opened = false,
-  announcedReport = "";
+  announcedReport = "",
+  libraryGeneration = 0;
 const icon = {
   go: "↗",
   ask: "◌",
@@ -804,7 +805,9 @@ function showReport() {
   if (!$("detail-dialog").open) $("detail-dialog").showModal();
 }
 async function showLibrary() {
+  const generation = ++libraryGeneration;
   const data = await api("/api/runs");
+  if (generation !== libraryGeneration) return;
   runs = data.runs;
   $("library-list").replaceChildren();
   const level = $("library-level").value;
@@ -827,6 +830,7 @@ async function showLibrary() {
       ),
     );
     button.addEventListener("click", () => {
+      libraryGeneration++;
       $("library-dialog").close();
       loadRun(item.id).catch((e) => toast(e.message));
     });
