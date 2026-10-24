@@ -1,5 +1,5 @@
 {
-  "town_tests": 114,
+  "town_tests": 118,
   "legacy_tests": 9,
   "node_state_tests": 9,
   "browser": {
@@ -101,5 +101,7 @@
   },
   "family_evidence": "FAMILY_VALIDATION_RESULT.json",
   "case_audit": "docs/CASE_SOLVABILITY_AUDIT.json",
-  "source_training": "docs/SOURCE_TRAINING_RESULT.json"
+  "source_training": "docs/SOURCE_TRAINING_RESULT.json",
+  "hosted_viewer_boundary_tests": "11 viewer tests include4 hosted-origin/provider-key regressions",
+  "deployment_validation": "DEPLOYMENT_RESULT.json"
 }

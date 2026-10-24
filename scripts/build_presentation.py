@@ -14,6 +14,9 @@ import re
 
 ROOT=Path(__file__).resolve().parents[1]
 DOC=ROOT/'docs'
+SLIDE_COUNT=14
+REPO_URL='https://github.com/Abhishek-Punhani/mercy-house'
+LIVE_URL='https://mercyhouse.abhi07.xyz'
 INPUTS=['scripts/build_presentation.py','docs/ui-report.png','docs/ui-interview.png',
         'docs/SOURCE_TRAINING_RESULT.json','docs/ELITE_TRANSFER_RESULT.json',
         'docs/CASE_SOLVABILITY_AUDIT.json','docs/VALIDATION_RESULT.json',
@@ -28,7 +31,7 @@ def build():
     fingerprint={s:hashlib.sha256((ROOT/s).read_bytes()).hexdigest() if (ROOT/s).exists() else None for s in INPUTS}
     manifest=DOC/'PRESENTATION_MANIFEST.json'
     if manifest.exists() and read(manifest.name).get('inputs_sha256')==fingerprint and all((DOC/f).exists() for f in ('deck.pptx','deck.pdf')):
-        print(json.dumps({'presentation':'unchanged','slides':12}));return
+        print(json.dumps({'presentation':'unchanged','slides':SLIDE_COUNT}));return
     if importlib.util.find_spec('pptx') is None:
         raise SystemExit('Presentation inputs changed. Install authoring dependencies with pip install -r requirements-presentation.txt, then rerun scripts/build_presentation.py.')
     from pptx import Presentation
@@ -36,8 +39,21 @@ def build():
     from pptx.dml.color import RGBColor
     from pptx.enum.shapes import MSO_SHAPE
     from pptx.enum.text import MSO_ANCHOR
+    from pptx.opc.constants import RELATIONSHIP_TYPE as RT
+    from lxml import etree
     from PIL import Image
+    import qrcode
+    for name,url in [('qr-repository.png',REPO_URL),('qr-live-demo.png',LIVE_URL)]:
+        qr=qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_M,box_size=12,border=4)
+        qr.add_data(url);qr.make(fit=True)
+        qr.make_image(fill_color='#090F1B',back_color='white').save(DOC/name)
     R=Presentation();R.slide_width=Inches(13.333);R.slide_height=Inches(7.5)
+    theme=R.slide_masters[0].part.part_related_by(RT.THEME)
+    xml=etree.fromstring(theme.blob)
+    ns={'a':'http://schemas.openxmlformats.org/drawingml/2006/main'}
+    for kind,value in [('hlink','66E6CD'),('folHlink','A2ADFF')]:
+        xml.find('.//a:clrScheme/a:'+kind+'/a:srgbClr',ns).set('val',value)
+    theme._blob=etree.tostring(xml,xml_declaration=True,encoding='UTF-8',standalone=True)
     C={'bg':'090F1B','panel':'111D30','edge':'24354B','ink':'EDF4FF','muted':'A4B6CD','mint':'66E6CD','amber':'FFC177','violet':'A2ADFF','red':'FF8798'}
     texts=[]
     def color(k):return RGBColor.from_string(C.get(k,k))
@@ -62,7 +78,7 @@ def build():
         if subtitle:text(s,.62,1.85,12,.65,subtitle,15,'muted')
         box(s,.6,7.03,12.1,.012,'edge',radius=False)
         text(s,.62,7.15,11.3,.22,'KASUKABE DEFENCE FORCE  •  RL ENVIRONMENT HACKATHON',8,'muted')
-        text(s,12,7.12,.7,.25,f'{len(R.slides):02d} / 12',9,'mint')
+        text(s,12,7.12,.7,.25,f'{len(R.slides):02d} / {SLIDE_COUNT}',9,'mint')
         texts.append({'title':title,'kicker':kicker,'subtitle':subtitle});return s
     def card(s,x,y,w,h,label,body,accent='mint',body_size=17):
         box(s,x,y,w,h,line='edge');box(s,x+.18,y+.2,.05,.34,accent,radius=False)
@@ -75,6 +91,13 @@ def build():
     def note(s,words):s.notes_slide.notes_text_frame.text=words
     def small(s,words):text(s,.65,6.54,12,.35,words,11,'muted')
     train=read('SOURCE_TRAINING_RESULT.json');elite=read('ELITE_TRANSFER_RESULT.json');audit=read('CASE_SOLVABILITY_AUDIT.json');tests=read('VALIDATION_RESULT.json')
+    s=slide('MERCY HOUSE','Kasukabe Defence Force','An evidence-grounded investigation environment for language agents.')
+    text(s,.69,2.6,11.5,.72,'Private memories. Conflicting accounts. Verifiable conclusions.',26,'mint',True)
+    text(s,.72,3.65,11.4,.35,'PRESENTED BY',12,'muted',True)
+    for i,name in enumerate(['Aditya Ahirwar','Abhishek','Tapis Samaiya']):
+        box(s,.7+i*4.16,4.23,3.94,1.17,line='edge')
+        text(s,.93+i*4.16,4.58,3.5,.45,name,22,'ink',True)
+    small(s,'RL Environment Hackathon  /  Games & World Simulations  /  Team Kasukabe Defence Force')
     # 1
     s=slide('Truth needs a chain of evidence.','Evidence-grounded agent evaluation')
     text(s,.65,2.05,6.0,1.15,'An investigation world for language agents.',29,'mint',True)
@@ -163,10 +186,22 @@ def build():
     small(s,'Scripted feasibility is not live cooperation. Canonical murder proof can depend on a reluctant witness or a supported admission.')
     # 12
     s=slide('A reviewable environment, with measured limits.','Demonstration and handoff')
-    card(s,.65,2.7,5.82,2.83,'TRY THE INVESTIGATION','localhost:8787 → New investigation → Lantern Room, seed7 → configured key.\nThen inspect the submitted report and acquired citations.','mint',18)
+    card(s,.65,2.7,5.82,2.83,'TRY THE INVESTIGATION','mercyhouse.abhi07.xyz → Sign in → New investigation → Lantern Room, seed7.\nInspect the submitted report and acquired citations.','mint',18)
     card(s,6.77,2.7,5.82,2.83,'WHAT IS ESTABLISHED','Four native beginner runs scored 1.0 with live character agents. Harder-case and RL results are reported separately. Continuous autonomous lives and scored ghost causes remain unfinished.','amber',17)
     text(s,.75,5.83,11.88,.5,'docker compose up --build --abort-on-container-exit --exit-code-from harness',16,'violet',font='DejaVu Sans Mono')
     small(s,'Source + baseline gates + raw runs + editable deck/PDF + security and audit evidence. Final character-model setup and submission are external.')
+    s=slide('Thank you.','Questions & live demonstration','Scan to explore the source or watch an investigation unfold.')
+    for x,label,name,url,detail in [(.7,'SOURCE REPOSITORY','qr-repository.png',REPO_URL,'Private repository · GitHub access required'),(6.86,'LIVE DEMONSTRATION','qr-live-demo.png',LIVE_URL,'Protected demo · sign-in required')]:
+        box(s,x,2.7,5.77,3.36,line='edge')
+        text(s,x+.24,2.93,5.25,.35,label,15,'mint',True)
+        image(s,name,x+.25,3.55,2.04,2.04)
+        short='github.com/\nAbhishek-Punhani/\nmercy-house' if name=='qr-repository.png' else 'mercyhouse.abhi07.xyz'
+        link=text(s,x+2.54,3.68,2.96,1.2,short,14,'mint',True)
+        for paragraph in link.text_frame.paragraphs:
+            for run in paragraph.runs:run.hyperlink.address=url
+        text(s,x+2.54,5.02,2.92,.7,detail,12,'muted')
+    small(s,'Aditya Ahirwar  •  Abhishek  •  Tapis Samaiya  |  Kasukabe Defence Force')
+    note(s,'Repository: '+REPO_URL+' . Live demo: '+LIVE_URL+' . QR codes encode only these HTTPS URLs. The repository is private and the demo requires authentication; no credentials appear in the presentation.')
     for s in R.slides:
         if not s.notes_slide.notes_text_frame.text.strip():note(s,'All claims describe implemented local artifacts and recorded development measurements. See docs/PS_COMPLIANCE_AUDIT.md, SOURCE_TRAINING_REPORT.md, ELITE_TRANSFER_RESULT.json and CASE_SOLVABILITY_AUDIT.md. Do not present scripted references as LLM success or checkpoint rates as whole-case success.')
     R.save(str(DOC/'deck.pptx'))
@@ -175,8 +210,8 @@ def build():
         with (ROOT/'logs/presentation-render.log').open('w') as log:
             subprocess.run(['libreoffice','-env:UserInstallation='+profile.as_uri(),'--headless','--convert-to','pdf','--outdir',str(output),str(DOC/'deck.pptx')],check=True,timeout=90,stdout=log,stderr=subprocess.STDOUT)
         shutil.copyfile(output/'deck.pdf',DOC/'deck.pdf')
-    info=subprocess.check_output(['pdfinfo',str(DOC/'deck.pdf')],text=True);pages=int(re.search(r'^Pages:\s+(\d+)',info,re.M)[1]);assert pages==12,pages
-    manifest.write_text(json.dumps({'slides':12,'theme':'dark technical; editable native shapes + actual UI screenshots','inputs_sha256':fingerprint,'screenshots':{'ui-report.png':'actual native detective Lantern Room seed211 success','ui-interview.png':'explicitly labeled original inquest scripted reference'}},indent=2)+'\n')
+    info=subprocess.check_output(['pdfinfo',str(DOC/'deck.pdf')],text=True);pages=int(re.search(r'^Pages:\s+(\d+)',info,re.M)[1]);assert pages==SLIDE_COUNT,pages
+    manifest.write_text(json.dumps({'slides':SLIDE_COUNT,'team_members':['Aditya Ahirwar','Abhishek','Tapis Samaiya'],'links':{'repository':REPO_URL,'live_demo':LIVE_URL},'theme':'dark technical; editable native shapes + actual UI screenshots','inputs_sha256':fingerprint,'screenshots':{'ui-report.png':'actual native detective Lantern Room seed211 success','ui-interview.png':'explicitly labeled original inquest scripted reference'}},indent=2)+'\n')
     import html
     (DOC/'deck.html').write_text('<!doctype html><meta charset="utf-8"><title>Mercy House presentation</title><style>body{background:#090f1b;color:#edf4ff;font:18px sans-serif;max-width:900px;margin:60px auto}a{color:#66e6cd}li{margin:20px}</style><h1>Mercy House</h1><p>Editable dark technical presentation: <a href="deck.pptx">PowerPoint</a> · <a href="deck.pdf">PDF</a></p><ol>'+''.join('<li>'+html.escape(t['title'])+'</li>' for t in texts)+'</ol>')
     print(json.dumps({'slides':pages,'pptx':str(DOC/'deck.pptx'),'pdf':str(DOC/'deck.pdf')}))

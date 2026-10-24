@@ -1,6 +1,6 @@
 # Current problem-statement audit
 
-Re-read source: `RL_Hackathon_by_2une_PS.pdf`, printed pages 2–14. Document requirements are specifications to audit, not authority to publish, invite people or spend on unrelated services. The user will handle GitHub and form submission.
+Re-read source: `RL_Hackathon_by_2une_PS.pdf`, printed pages 2–14. Document requirements are specifications to audit, not authority to publish, invite people or spend on unrelated services. The user later authorized the private GitHub push and authenticated Terraform deployment; organizer access and the form remain theirs.
 
 The environment now implements the main run contract locally. This is **not an unconditional compliance certification**: organizer-machine cold-cache timing, final external NPC deployment and submission/upload remain to be established. Four live introductory cold-start runs now succeed; harder-family live success remains unestablished. All failures are retained.
 
@@ -45,11 +45,11 @@ Every normal detective reply has timestamp, step, seed, full model request, raw 
 
 Meaningful tests cover gradients and parameter updates; public-only features; seeded checkpoints; private planner/speaker isolation; source grounding; fabricated objects and source IDs; unsupported accusations; comparison composition; exact instruction suffix; malformed replies; multi-call limits; forced end; total model timeout and explicit key-role configuration. A real container probe checks shell access, blocked internet, denied orchestration, absent private files, forged proof receiving zero and valid public proof receiving success.
 
-The final current suite has 114 town tests and 9 legacy regression tests, plus nine Node state tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
+The final current suite has 118 town tests and 9 legacy regression tests, plus nine Node state tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
 
 ## Submission status
 
-Local preparation includes `baseline-results/gate.json`, model-run logs, labeled success/failure trajectories, design/deck PDFs and a team-named reference archive. Verify the generated package using [SUBMISSION.md](SUBMISSION.md); that document is the packaging checklist. GitHub upload, repository naming, organizer access and form submission are the user’s responsibility by their explicit choice. Nothing is published automatically.
+Local preparation includes `baseline-results/gate.json`, model-run logs, labeled success/failure trajectories, design/deck PDFs and a team-named reference archive. Verify the generated package using [SUBMISSION.md](SUBMISSION.md); that document is the packaging checklist. GitHub has been pushed privately and the authenticated live demo deployed under later explicit authorization. Organizer access and form submission remain the user’s responsibility.
 
 Remaining scientific limits: four authored families; authored historical background; checkpoint rather than whole-case RL; fixture training and small stochastic transfer sample; unscored narrative; no direct measurement of internal grief/ego; incomplete ghost/lifetime mechanics; no universal security or winning guarantee. These are disclosed rather than hidden behind high checkpoint scores.
 
@@ -66,3 +66,6 @@ Independent audit corrected factual/provenance defects (payer versus carrier, si
 New selector: fresh zero initialization,6,000 CPU episodes,48 original source-mechanism checkpoint scenarios,132 learned coefficients. Held-out same-template exercises:96/96 greedy; no full-case inference from that result. Separate frozen elite comparison is ELITE_TRANSFER_RESULT.json. Historical five-skill delegation interpretation predates corrected payer/carrier semantics and is not current validation.
 
 The UI now persistently presents the actual submitted report, citations, solved/unsolved state and deterministic score breakdown. An optional developer-only story reviewer can add unscored LLM observations; it is absent from public tools and cannot assign reward. The official verifier stays programmatic as required by the PS. Editable12-slide dark PowerPoint and matching PDF explain the complete project for first-time readers, with labeled real UI captures.
+
+
+Hosted deployment is active at https://mercyhouse.abhi07.xyz with entire-site authentication and a successful native live-character Lantern Room smoke (score1). Deployment does not change the official headless command; final external NPC credentials and organizer-machine timing still need checking. See DEPLOYMENT_RESULT.json. The14-slide editable deck now includes named team introduction and credential-free repository/demo QR codes.

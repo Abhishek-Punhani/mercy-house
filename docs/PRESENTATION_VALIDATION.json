@@ -1,0 +1,16 @@
+{
+  "slides": 14,
+  "team_members": [
+    "Aditya Ahirwar",
+    "Abhishek",
+    "Tapis Samaiya"
+  ],
+  "qr_codes": {
+    "qr-repository.png": "https://github.com/Abhishek-Punhani/mercy-house",
+    "qr-live-demo.png": "https://mercyhouse.abhi07.xyz"
+  },
+  "qr_pngs_decode": true,
+  "qr_codes_decode_from_rendered_pdf": true,
+  "clickable_powerpoint_links": true,
+  "final_render_after_theme_update": "Both rendered QR codes decode and clickable links match the intended URLs."
+}
