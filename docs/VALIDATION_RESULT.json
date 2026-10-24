@@ -1,12 +1,12 @@
 {
-  "town_tests": 86,
+  "town_tests": 96,
   "legacy_tests": 9,
   "passed": true,
-  "cold_build_seconds": 13.474,
+  "cold_build_seconds": 14.069,
   "cold_build": {
     "exit_code": 0,
-    "seconds": 13.474,
-    "scope": "Current four runtime images, new isolated builder, no imported cache, --no-cache, local machine."
+    "seconds": 14.069,
+    "scope": "Four current runtime images; new isolated docker-container builder with no imported cache, --no-cache; local machine."
   },
   "command_probe": {
     "passed": true,
@@ -19,8 +19,8 @@
       "legitimate_solution_through_real_commands": true
     }
   },
-  "gate_tasks": 5,
-  "source_note": "Current runtime: added acquired-only casebook tools, public observational logs, and optional loopback viewer. Reward/disclosure rules unchanged.",
+  "gate_tasks": 8,
+  "source_note": "Current eight-task runtime and four-family causal engine; full tests and gate-export replacement regression pass. Current no-cache rebuild includes the reference-log fix.",
   "fresh_clone_compose": {
     "exit_code": 0,
     "seconds": 6.423,

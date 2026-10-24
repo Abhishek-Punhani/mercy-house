@@ -24,7 +24,7 @@ Open **http://localhost:8787**. Recorded cases need no API calls or Docker. For 
 
 ## Replay provenance
 
-The initial library includes the current public-tool inquest reference, seven actual API detective runs (including the two recorded during UI development), and three actual trained-selector checkpoint evaluations. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
+The library includes four public-tool family references, eleven actual API detective runs (seven original-town failures and four beginner successes), and three actual trained-selector checkpoint evaluations. It defaults to an actual beginner success. Difficulty filters select introductory, intermediate, advanced and training replays. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
 
 Regenerate bundled replays with `python scripts/build_viewer_replays.py`. This reads public trajectories from the prior submission archive, current reference execution and the recorded selector evaluations. It never reads private actor audits or world snapshots.
 
@@ -32,7 +32,7 @@ Regenerate bundled replays with `python scripts/build_viewer_replays.py`. This r
 
 `review_records` lets the detective reread up to twelve genuinely acquired records without travelling back after context trimming. `record_note` stores concise stated plans and hypotheses; a note cannot become proof or discover material. The harness retains a public acquired-record index and current task scope. Witness dialogue instructions distinguish voluntary withholding from a factual negative observation. These changes do not relax disclosure eligibility, fabricate admissions or lower reward requirements.
 
-Two additional full detective runs were recorded during this work: seeds 23 and 24, both Last Witness. Both failed with false accusations and score 0. The second used revised withholding dialogue and more tool calls per reply, but this is not evidence of a solving improvement. They are development runs, not a controlled paired experiment. Offline selector 147/160 and prior live checkpoint 2/5 results remain historical measurements against their recorded source versions. No new policy training is claimed for this UI.
+Two additional full detective runs were recorded during this work: seeds 23 and 24, both Last Witness. Both failed with false accusations and score 0. The second used revised withholding dialogue and more tool calls per reply, but this is not evidence of a solving improvement. They are development runs, not a controlled paired experiment. Offline selector 147/160 and prior live checkpoint 2/5 results remain historical measurements against their recorded source versions. No new policy training is claimed for this UI. The later family expansion added four live beginner successes; it does not change those original-town failures. A separate controlled comparison is documented in CASE_FAMILIES.md.
 
 ## Separation and limits
 
@@ -40,7 +40,7 @@ The loopback server is trusted administration on the host, with authority to sta
 
 The detective workspace has no viewer source, private logs, browser, host-loopback listener, provider key or Docker socket. The viewer itself serves only explicit assets and public event endpoints. Host checks, same-origin POST checks and an ephemeral CSRF token protect run controls. No arbitrary file or private-world endpoint is exposed. Conversation/document text is rendered as text, not executable HTML.
 
-This is a local companion, not a multi-user internet service. Bind remains 127.0.0.1. Restarting the server preserves public replay history; a process interrupted outside normal cleanup can leave a Compose project requiring local cleanup. One concurrent live investigation is allowed. More causal plot families and reliable complete-case solving remain unfinished research work.
+This is a local companion, not a multi-user internet service. Bind remains 127.0.0.1. Restarting the server preserves public replay history; a process interrupted outside normal cleanup can leave a Compose project requiring local cleanup. One concurrent live investigation is allowed. Three additional causal families are now implemented. Complete live solving is demonstrated only in the small beginner calibration; reliable solving across families remains research work.
 
 ## Verification
 

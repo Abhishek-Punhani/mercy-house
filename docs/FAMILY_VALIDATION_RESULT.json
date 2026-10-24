@@ -1,0 +1,107 @@
+{
+  "tasks": 8,
+  "case_families": 4,
+  "designed_levels": [
+    "introductory",
+    "intermediate",
+    "advanced"
+  ],
+  "native_runs": [
+    {
+      "task_id": "lantern_room",
+      "seed": 211,
+      "score": 1.0,
+      "success": true,
+      "false_findings": [],
+      "unsupported_findings": [],
+      "supported_findings": [
+        {
+          "actor": "tobin",
+          "predicate": "killed",
+          "object": "oren"
+        }
+      ],
+      "public_run": "logs/public/1792840548412368650/lantern_room",
+      "replies": 8,
+      "termination": "success",
+      "condition": "cold-start native-tool API detective + live isolated character models in Docker",
+      "seconds": 54.757
+    },
+    {
+      "task_id": "lantern_room",
+      "seed": 307,
+      "score": 1.0,
+      "success": true,
+      "false_findings": [],
+      "unsupported_findings": [],
+      "supported_findings": [
+        {
+          "actor": "tobin",
+          "predicate": "killed",
+          "object": "oren"
+        }
+      ],
+      "public_run": "logs/public/1792840768225572926/lantern_room",
+      "replies": 9,
+      "termination": "success",
+      "condition": "cold-start native-tool API detective + live isolated character models in Docker",
+      "seconds": 69.412
+    },
+    {
+      "task_id": "lantern_room",
+      "seed": 401,
+      "score": 1.0,
+      "success": true,
+      "false_findings": [],
+      "unsupported_findings": [],
+      "supported_findings": [
+        {
+          "actor": "tobin",
+          "predicate": "killed",
+          "object": "oren"
+        }
+      ],
+      "public_run": "logs/public/1792840841901687506/lantern_room",
+      "replies": 10,
+      "termination": "success",
+      "condition": "cold-start native-tool API detective + live isolated character models in Docker",
+      "seconds": 56.514
+    },
+    {
+      "task_id": "lantern_room",
+      "seed": 37,
+      "score": 1.0,
+      "success": true,
+      "false_findings": [],
+      "unsupported_findings": [],
+      "supported_findings": [
+        {
+          "actor": "maren",
+          "predicate": "killed",
+          "object": "oren"
+        }
+      ],
+      "public_run": "logs/public/1792840955766739128/lantern_room",
+      "replies": 6,
+      "termination": "success",
+      "condition": "cold-start native-tool API detective + live isolated character models in Docker",
+      "seconds": 41.482
+    }
+  ],
+  "native_successes": 4,
+  "native_trials": 4,
+  "source_note": "Four development calibration runs, not a predeclared four-seed blind test. Seed 37 was added to exercise the other assailant after the first three shared an assignment. Intermediate/advanced levels reflect design complexity; live success bands have not been measured.",
+  "new_incident_provenance": "authored_seeded_action_tape; validated transitions execute the events, not newly generated autonomous crimes",
+  "counterfactuals": [
+    "No lamp attack => no corpse",
+    "Intact brake => no coach fatalities",
+    "Unadulterated cordial => no death from drinking"
+  ],
+  "controlled_comparison": "FAMILY_POLICY_COMPARISON.json; different fixed-response NPC condition; do not pool with live-character runs",
+  "limitations": [
+    "No new LLM fine-tuning or selector training.",
+    "Frozen selector failed all three matched full-case calibrations.",
+    "Advanced Mercy House native detective failures remain retained.",
+    "No proof of uniqueness against all fiction; original authored expression using broad mechanisms."
+  ]
+}

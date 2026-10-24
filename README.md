@@ -1,8 +1,8 @@
 # Mercy House
 
-A detective enters a snowbound mountain town in 1900 after an incident executed by character agents. It must reconstruct events through local searches, conversations, access requests and physical comparisons. A lucky name earns zero without acquired support.
+A detective enters a snowbound mountain town in 1900 after an executed incident. It must reconstruct events through local searches, conversations, access requests and physical comparisons. A lucky name earns zero without acquired support.
 
-The submission is an RL **environment**. Judges supply the detective model. Our environment supplies sixteen character profiles, fourteen locations, isolated character memories, tools, transitions and a programmatic verifier. An optional CPU-trained action selector is a separate research demonstration; it does not replace the judge’s agent or fine-tune an LLM.
+The submission is an RL **environment**. Judges supply the detective model. Our environment supplies four case families, isolated character memories, tools, transitions and a programmatic verifier. The original town has sixteen profiles and fourteen locations; the three new families have smaller, distinct casts and places. An optional CPU-trained action selector is a separate research demonstration; it does not replace the judge’s agent or fine-tune an LLM.
 
 ## Run
 
@@ -16,7 +16,7 @@ Docker Compose v2 is required. Create `.env` from `.env.example`. Set `MODEL`, `
 docker compose up --build --abort-on-container-exit --exit-code-from harness
 ```
 
-The default demo task is `last_witness`, seed 7. Before a detective request, the selected task’s scripted public-tool reference must score at least .95 and its empty-report baseline at most .05. `APPEND_FILE` defaults to `inputs/append.txt`; its text is appended exactly to the system prompt. Missing or empty instructions stop model runs.
+The default demo task is `lantern_room`, seed 7. Before a detective request, the selected task’s scripted public-tool reference must score at least .95 and its empty-report baseline at most .05. `APPEND_FILE` defaults to `inputs/append.txt`; its text is appended exactly to the system prompt. Missing or empty instructions stop model runs.
 
 ```bash
 MODE=baselines docker compose up --build --abort-on-container-exit --exit-code-from harness
@@ -24,17 +24,20 @@ MODE=full TASK_ID=borrowed_signature SEED=7 docker compose up --build --abort-on
 MODE=all docker compose up --build --abort-on-container-exit --exit-code-from harness
 ```
 
-`full` runs one task; `all` runs all tasks with gates before each; `baselines` checks all tasks without model calls. `all` is a development batch, not a promise that five episodes fit one finals slot. Set `LOCAL_UID` if the host owner differs from 1000. Public logs are under `logs/public/`, protected audits under `logs/private/`.
+`full` runs one task; `all` runs all tasks with gates before each; `baselines` checks all tasks without model calls. `all` is a development batch, not a promise that eight episodes fit one finals slot. Set `LOCAL_UID` if the host owner differs from 1000. Public logs are under `logs/public/`, protected audits under `logs/private/`.
 
 | TASK_ID | Difficulty | Public objective |
 |---|---|---|
-| `last_witness` | Introductory, demo | Establish the fatal assailant with physical support and a checked account. |
+| `lantern_room` | Introductory, demo | Establish a fatal assault with physical traces and an accessible first-hand witness. |
+| `second_passenger` | Intermediate | Explain two coach deaths, the sabotaged mechanism and intended target. |
+| `bell_before_dawn` | Advanced | Separate a chapel death from forged foreknowledge and the warning’s transmission. |
+| `last_witness` | Intermediate | Establish the fatal assailant with physical support and a checked account. |
 | `borrowed_signature` | Intermediate | Establish fabrication of a threatening document through comparisons. |
 | `brothers_letter` | Advanced | Establish concealed evidence and recover a sourced explanation. |
 | `garden_burials` | Advanced | Recover remains and establish relocation independently of garden ownership. |
 | `mercy_inquest` | Advanced | Reconstruct seven material acts across the present and historical inquiry. |
 
-These are different objectives over one canonical case, not five independent murder plots. Full success requires all material targets in scope and no false or unsupported findings. Score is supported target coverage minus .20 per distinct false finding and .10 per distinct unsupported finding, clamped to [0,1]. Narrative is unscored. See [reward and policy](docs/POLICY_AND_REWARD.md).
+Eight tasks cover four causal families. The five original objectives share one canonical Mercy House case. The three new families execute authored seeded action tapes; their cause, physical traces and private memories change together with the selected role assignment. See [families and measurements](docs/CASE_FAMILIES.md). Full success requires all material targets in scope and no false or unsupported findings. Score is supported target coverage minus .20 per distinct false finding and .10 per distinct unsupported finding, clamped to [0,1]. Narrative is unscored. See [reward and policy](docs/POLICY_AND_REWARD.md).
 
 ## Local RL training
 
@@ -54,6 +57,8 @@ python -m unittest discover -s tests -p test_world.py -v
 python -m mercy.town.reference --output baseline-results
 ```
 
-Read [PS audit](docs/PS_COMPLIANCE_AUDIT.md), [security](docs/SECURITY.md), [research](docs/RESEARCH_AND_WIN_PLAN.md) and [submission notes](docs/SUBMISSION.md). Full detective model runs so far have failed; the verifier correctly withheld success. Reference success establishes a legal proof route, not reliable LLM success. A fresh no-cache local build took 13.474 seconds; timing on the organizer’s machine remains unverified.
+Read [PS audit](docs/PS_COMPLIANCE_AUDIT.md), [security](docs/SECURITY.md), [research](docs/RESEARCH_AND_WIN_PLAN.md) and [submission notes](docs/SUBMISSION.md). Four native-tool detective runs with live character agents solved the introductory Lantern Room case with score 1.0 and no false/unsupported findings, covering both assailant assignments. This is a small development calibration. Historical Mercy House model failures are retained. Scripted references prove legal routes, not reliable live cooperation.
 
-Author review: [plot](docs/CURRENT_PLOT.md), [characters](docs/V2_CHARACTER_PROFILES.md), [locations](docs/V2_LOCATIONS.md), [documents](docs/V2_EVIDENCE_AUTHOR.md), [exact opening](docs/DETECTIVE_OPENING.md). Historical V1 dossiers and transcripts remain labeled historical; their easy scores are not current evidence. Continuous offstage lives, a scored ghost mechanism and unseen-plot generalization remain future work.
+A separate three-case fixed-response calibration found LLM-ranked actions succeeded in 1/3 and the frozen RL selector in 0/3. The selector remains optional; no whole-case RL improvement is established. See [exact comparison](docs/FAMILY_POLICY_COMPARISON.json). Historical offline checkpoint results are separate.
+
+Author review: [new families](docs/FAMILY_AUTHOR_REVIEW.md), [original plot](docs/CURRENT_PLOT.md), [characters](docs/V2_CHARACTER_PROFILES.md), [locations](docs/V2_LOCATIONS.md), [documents](docs/V2_EVIDENCE_AUTHOR.md), [original opening](docs/DETECTIVE_OPENING.md). These private review files never enter the detective image or workspace. Historical V1 dossiers/transcripts remain historical. Continuous offstage lives, a scored ghost mechanism and broad unseen-plot generalization remain future work.

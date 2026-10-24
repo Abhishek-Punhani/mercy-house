@@ -47,6 +47,8 @@ assert not os.environ.get("API_KEY") and not os.environ.get("NPC_API_KEY")
 assert not pathlib.Path("/control/token").exists()
 assert not pathlib.Path("/app/mercy/town/world.py").exists()
 assert not pathlib.Path("/app/mercy/town/verifier.py").exists()
+assert not pathlib.Path("/app/mercy/town/family_data.py").exists()
+assert not pathlib.Path("/app/mercy/town/family_proof.py").exists()
 assert not pathlib.Path("/app/mercy/town/data").exists()
 try:
  urllib.request.urlopen("https://example.com",timeout=2)

@@ -111,7 +111,7 @@ def main():
     if mode not in ('full','all','baselines'):raise ValueError('MODE must be full, all or baselines')
     if mode!='baselines':instructions()
     from .tasks import TASKS, task_id
-    selected=list(TASKS) if mode in ('all','baselines') else [task_id(os.getenv('TASK_ID','last_witness'))]
+    selected=list(TASKS) if mode in ('all','baselines') else [task_id(os.getenv('TASK_ID','lantern_room'))]
     seed=int(os.getenv('SEED','7'))
     controller={}
     gateway=ThreadingHTTPServer(('0.0.0.0',8002),public_handler(controller))

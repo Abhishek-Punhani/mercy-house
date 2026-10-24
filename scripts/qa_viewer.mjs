@@ -15,6 +15,13 @@ try{
  await wait('document.getElementById("event-count")?.textContent.includes(" / ") && document.getElementById("event-count").textContent!=="0 / 0"');
  check(await evaluate('document.querySelectorAll("#occupants .actor").length===1'),'Opening must not reveal undiscovered NPCs');
  await shot('viewer-opening-desktop.png');
+ await evaluate('document.getElementById("library-button").click()');await wait('document.getElementById("library-dialog").open');
+ await evaluate('(()=>{const select=document.getElementById("library-level");select.value="introductory";select.dispatchEvent(new Event("change"));})()');
+ await wait('document.querySelectorAll(".library-entry").length>0&&Array.from(document.querySelectorAll(".library-entry")).every(e=>e.textContent.includes("INTRODUCTORY"))');
+ check(await evaluate('document.getElementById("library-dialog").open'),'Filtering must preserve the open library');
+ await evaluate('(()=>{const select=document.getElementById("library-level");select.value="all";select.dispatchEvent(new Event("change"));})()');
+ await wait('document.querySelector("[data-run-id=reference-inquest]")');
+ await evaluate('document.querySelector("[data-run-id=reference-inquest]").click()');await wait('document.getElementById("run-kind").textContent==="SCRIPTED REFERENCE"');
  const target=await evaluate('(async()=>{const run=await(await fetch("/api/runs/reference-inquest")).json();return run.events.findIndex(e=>e.type==="action"&&e.action.tool==="ask")+1})()');
  await evaluate('(()=>{const seek=document.getElementById("seek");seek.value='+target+';seek.dispatchEvent(new Event("input",{bubbles:true}));})()');
  await wait('!document.getElementById("conversation").classList.contains("hidden")');
@@ -30,7 +37,7 @@ try{
  check(await evaluate('document.getElementById("detail-body").textContent.includes("scripted reference")'),'Reference success must be explicitly labeled');
  await shot('viewer-reference-verdict.png');
  await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("library-button").click()');await wait('document.querySelectorAll(".library-entry").length>=6');
- await evaluate('document.querySelectorAll(".library-entry")[1].click()');await wait('document.getElementById("run-kind").textContent==="RECORDED API MODEL"');
+ await evaluate('document.querySelector("[data-run-id=recorded-model-1]").click()');await wait('document.getElementById("run-kind").textContent==="RECORDED API MODEL"');
  await evaluate('document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');
  check(await evaluate('document.getElementById("detail-kicker").textContent.includes("STEP_CAP")||document.getElementById("detail-kicker").textContent.includes("FAILURE")'),'Model failure must stay a failure');
  await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("new-button").click()');await wait('document.getElementById("settings-dialog").open');
@@ -44,11 +51,11 @@ try{
  check(await evaluate('document.getElementById("detail-body").textContent.includes("Exercise reward")&&document.getElementById("detail-body").textContent.includes("Town report score")'),'Exercise success and Town reward must stay distinct');
  await evaluate('document.querySelector("#detail-dialog .close-dialog").click()');
  await evaluate('document.getElementById("library-button").click()');await wait('document.getElementById("library-dialog").open');
- await evaluate('document.querySelector(".library-entry").click()');await wait('document.getElementById("run-kind").textContent==="SCRIPTED REFERENCE"');
+ await evaluate('document.querySelector("[data-run-id=reference-inquest]").click()');await wait('document.getElementById("run-kind").textContent==="SCRIPTED REFERENCE"');
  await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  check(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'Mobile layout must not overflow horizontally');
  await shot('viewer-mobile.png');
  check(errors.length===0,'Browser JavaScript errors: '+errors.join('; '));
- await fs.writeFile('logs/viewer-browser-checks.json',JSON.stringify({passed:true,checks:['opening hides undiscovered NPCs','actual dialogue and evidence','evidence details','scripted reference label','actual model failure label','provider key absent from DOM','responsive mobile layout','RL choice probability is labeled','checkpoint reward separate from Town report score'],javascript_errors:errors},null,2)+'\n');
+ await fs.writeFile('logs/viewer-browser-checks.json',JSON.stringify({passed:true,checks:['opening hides undiscovered NPCs','difficulty filter preserves modal and limits entries','actual dialogue and evidence','evidence details','scripted reference label','actual model failure label','provider key absent from DOM','responsive mobile layout','RL choice probability is labeled','checkpoint reward separate from Town report score'],javascript_errors:errors},null,2)+'\n');
  console.log(JSON.stringify({passed:true,browser_errors:errors,screenshots:5}));
 }finally{socket.close();}

@@ -17,6 +17,14 @@ from mercy.viewer.events import action_event, reply_event, verdict
 def main():
     destination=ROOT/'viewer/data';destination.mkdir(parents=True,exist_ok=True)
     catalog=[]
+    for task in ('lantern_room','second_passenger','bell_before_dawn'):
+        world=build(task,37);initial=world.opening();folder=ROOT/'logs/viewer-family-references'/task;folder.mkdir(parents=True,exist_ok=True)
+        trajectory=folder/'episode.jsonl'
+        if trajectory.exists():trajectory.unlink()
+        solve(world,folder);rows=[json.loads(s) for s in trajectory.read_text().splitlines()]
+        entry={'id':'reference-'+task,'kind':'reference','label':TASKS[task]['name'],'task_id':task,'seed':37,
+               'description':'Scripted public-tool feasibility route with cooperative fixture characters, not a learned model result.'}
+        (destination/(entry['id']+'.json')).write_text(json.dumps({'events':replay(initial,rows,{'termination_reason':'success','result':world.result},'reference')},ensure_ascii=False)+'\n');catalog.append(entry)
     # Recompute the reference with the current engine and label it explicitly.
     world=build('mercy_inquest',7);initial=world.opening()
     folder=ROOT/'logs/viewer-reference';folder.mkdir(exist_ok=True)
@@ -35,13 +43,26 @@ def main():
             summaries=sorted(n for n in names if n.startswith('test-run-logs/') and n.endswith('/summary.json'))
             for i,name in enumerate(summaries,1):
                 prefix=name.rsplit('/',1)[0];summary=json.loads(bundle.read(name))
+                number=int(prefix.rsplit('model-run-',1)[-1])
                 if prefix+'/opening.json' not in names:continue
                 initial=json.loads(bundle.read(prefix+'/opening.json'));rows=[json.loads(s) for s in bundle.read(prefix+'/episode.jsonl').decode().splitlines()]
                 saved=re.search(r'logs/ui-runs/([a-f0-9]{10})/',originals.get(prefix,''))
-                entry={'id':saved[1] if saved else 'recorded-model-'+str(i),'kind':'recorded-model','label':TASKS[summary['task_id']]['name']+' · model run '+str(i),
+                original=originals.get(prefix,'')
+                native='native-'+original.split('/')[-2] if summary['task_id'] in ('lantern_room','second_passenger','bell_before_dawn') and original else None
+                entry={'id':saved[1] if saved else native or 'recorded-model-'+str(number),'kind':'recorded-model','label':TASKS[summary['task_id']]['name']+' · model run '+str(number),
                        'task_id':summary['task_id'],'seed':summary['seed'],
                        'description':'Actual API detective crime-scene run. Termination: '+summary['termination_reason']+'. '+('The verifier accepted its acquired support.' if summary['result'].get('success') else 'The verifier withheld success.')}
                 (destination/(entry['id']+'.json')).write_text(json.dumps({'events':replay(initial,rows,summary)},ensure_ascii=False)+'\n');catalog.append(entry)
+    for path in sorted((ROOT/'logs/public').glob('*/*/summary.json')):
+        if not (path.parent/'opening.json').exists():continue
+        summary=json.loads(path.read_text());task=summary['task_id']
+        if task not in ('lantern_room','second_passenger','bell_before_dawn'):continue
+        ident='native-'+path.parent.parent.name
+        if any(e['id']==ident for e in catalog):continue
+        initial=json.loads((path.parent/'opening.json').read_text());rows=[json.loads(s) for s in (path.parent/'episode.jsonl').read_text().splitlines()]
+        entry={'id':ident,'kind':'recorded-model','label':TASKS[task]['name']+' · live-character run','task_id':task,'seed':summary['seed'],
+               'description':'Actual isolated API detective and character agents. Result: '+summary['termination_reason']+'. The report is scored from acquired evidence.'}
+        (destination/(ident+'.json')).write_text(json.dumps({'events':replay(initial,rows,summary)},ensure_ascii=False)+'\n');catalog.append(entry)
     for skill,run in [('statement_review','selector-final-live-671000'),('navigation','selector-final-live-671003-continuation'),('forgery','selector-final-live-671000')]:
         source=ROOT/'logs'/run/skill
         if not (source/'summary.json').exists():continue
@@ -67,6 +88,12 @@ def main():
                'max_steps':packet['steps_left'],
                'description':'Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate.'}
         (destination/(entry['id']+'.json')).write_text(json.dumps({'events':projected},ensure_ascii=False)+'\n');catalog.append(entry)
+    for entry in catalog:
+        task=entry.get('task_id');entry['difficulty']=TASKS.get(task,{}).get('difficulty','checkpoint')
+        entry['family']=TASKS.get(task,{}).get('family','mercy_house')
+    # Prefer an actual successful beginner model run when available; recorded
+    # references remain explicitly labeled in the library.
+    catalog.sort(key=lambda e:(0 if e.get('task_id')=='lantern_room' and e.get('kind')=='recorded-model' and e.get('seed')==211 else 1))
     (destination/'catalog.json').write_text(json.dumps(catalog,indent=2)+'\n')
     print(json.dumps({'replays':len(catalog),'source':'current public-tool reference + existing archive public model runs','private_logs_read':False}))
 

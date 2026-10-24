@@ -59,3 +59,8 @@ python -m mercy.town.run --backend llm --rounds 4 --detective --selector models/
 ```
 
 The local runner is not the Docker security boundary or the judged entry point. The adapter samples actions; the 91.875% offline figure used greedy selection and must not be attributed to sampling.
+
+
+## Subsequent whole-family transfer calibration
+
+No weights were changed for the later case expansion. Three predeclared matched cases with a fixed grounded NPC-response bank gave LLM-ranked 1/3 and frozen RL-selected 0/3. Equal-state proposals were cached; branches can receive different later proposals. This is a small controlled development comparison, not the standard native-tool harness, and demonstrates no whole-case benefit from the checkpoint-trained selector. Full conditions and trajectories are in FAMILY_POLICY_COMPARISON.json and the archive. Four successful live-character beginner runs used the ordinary native detective, not this selector.

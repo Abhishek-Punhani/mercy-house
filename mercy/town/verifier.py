@@ -3,6 +3,8 @@ import re
 
 
 def targets(world):
+    if getattr(world,'family_id',None):
+        return world.material_targets()
     journal = [e['proposition'] for e in world.journal if e.get('proposition')]
     physical = {o['key']: o.get('proposition') for o in world.objects.values()}
     task = world.task_id
@@ -34,10 +36,12 @@ def normalize(world, finding):
     by_key = {'planted_threat': 'threat', 'original_statement': 'tara_statement', 'copybook': 'tara_statement',
               'correction_ledger': 'death_register', 'parish_register': 'death_register', 'remains': 'burials',
               'invoice': 'burials', 'delivery_letter': 'delivery_letter'}
+    by_key.update(getattr(world,'object_aliases',{}))
     aliases = {'threat': 'threat', 'threateningnote': 'threat', 'threateningletter': 'threat', 'foldednote': 'threat',
                'tarastatement': 'tara_statement', 'tarasstatement': 'tara_statement', 'deathregister': 'death_register',
                'burials': 'burials', 'remains': 'burials', 'humanremains': 'burials', 'deliveryletter': 'delivery_letter',
                'foldedenvelope': 'delivery_letter', 'carriersletter': 'delivery_letter'}
+    aliases.update(getattr(world,'report_aliases',{}))
     value = p['object']
     if p['predicate'] in ('matched','handwriting_consistent'):
         pass
@@ -64,6 +68,8 @@ def normalize(world, finding):
 
 
 def supported(world, p, records):
+    if getattr(world,'family_id',None):
+        return world.supports(p,records)
     physical = [r for r in records if r['kind'] == 'physical']
     keys = {world.objects[r['source']]['key'] for r in physical}
     direct = any(p in r['propositions'] and r['kind'] in ('testimony', 'comparison') for r in records)

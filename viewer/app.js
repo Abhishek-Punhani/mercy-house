@@ -118,8 +118,9 @@ function showReport(){
 }
 async function showLibrary(){
  const data=await api('/api/runs');runs=data.runs;$('library-list').replaceChildren();
- for(const item of runs){const button=node('button','library-entry');button.append(node('span','badge',kindLabel(item)),node('strong','',item.label),node('small','',(item.description||'Recorded investigation')+' · seed '+item.seed));button.addEventListener('click',()=>{$('library-dialog').close();loadRun(item.id).catch(e=>toast(e.message));});$('library-list').append(button);}
- $('library-dialog').showModal();
+ const level=$('library-level').value;
+ for(const item of runs.filter(r=>level==='all'||r.difficulty===level)){const button=node('button','library-entry');button.dataset.runId=item.id;button.append(node('span','badge',kindLabel(item)+' · '+(item.difficulty||'recorded').toUpperCase()),node('strong','',item.label),node('small','',(item.description||'Recorded investigation')+' · seed '+item.seed));button.addEventListener('click',()=>{$('library-dialog').close();loadRun(item.id).catch(e=>toast(e.message));});$('library-list').append(button);}
+ if(!$('library-dialog').open)$('library-dialog').showModal();
 }
 function configure(){
  $('form-error').textContent='';$('configuration-status').textContent=settings.characters_configured?'Town character model is configured server-side.':'Town character credentials are not configured. Add NPC settings to the server .env before a live run.';
@@ -138,6 +139,7 @@ $('run-form').addEventListener('submit',async event=>{
 $('configured-key-input').addEventListener('change',()=>{const enabled=$('configured-key-input').checked;$('key-field').classList.toggle('hidden',enabled);$('key-input').required=!enabled;});
 $('stop-button').addEventListener('click',async()=>{try{await api('/api/runs/'+run.id+'/stop',{method:'POST',body:'{}'});toast('Stopping this live run.');}catch(e){toast(e.message);}});
 $('library-button').addEventListener('click',()=>showLibrary().catch(e=>toast(e.message)));$('new-button').addEventListener('click',configure);
+$('library-level').addEventListener('change',()=>showLibrary().catch(e=>toast(e.message)));
 $('begin-button').addEventListener('click',play);$('play-button').addEventListener('click',()=>playing?pause():play());
 $('next-button').addEventListener('click',()=>{pause();seek(position+1);});$('back-button').addEventListener('click',()=>{pause();seek(position-1);});
 $('seek').addEventListener('input',event=>{const value=Number(event.target.value);pause();seek(value);});$('end-button').addEventListener('click',showReport);

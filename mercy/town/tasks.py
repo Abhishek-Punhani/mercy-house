@@ -1,7 +1,16 @@
 """Public task descriptions. This file contains no correct actors or proof paths."""
 
 TASKS = {
- 'last_witness': {'name': 'The Last Witness', 'difficulty': 'introductory', 'demo': True,
+ 'lantern_room': {'name':'The Lantern Room','family':'lantern_room','difficulty':'introductory','demo':True,
+   'scope':'Investigate the fatal assault at the Pine Lantern. Establish the assailant using acquired physical traces and a first-hand account. You choose whom to question and what to inspect.',
+   'success':'A supported attribution of the fatal assault, with no false or unsupported conclusions. A correct guess without acquired support earns zero.'},
+ 'second_passenger': {'name':'The Second Passenger','family':'second_passenger','difficulty':'intermediate',
+   'scope':'Investigate two deaths at the bridge crossing. Establish responsibility for the deaths and whether either passenger was specifically targeted. Distinguish an observed act, the failure mechanism and evidence of intention.',
+   'success':'Support both death attributions and the intended-target finding using acquired evidence, with no false or unsupported conclusions.'},
+ 'bell_before_dawn': {'name':'The Bell Before Dawn','family':'bell_before_dawn','difficulty':'advanced',
+   'scope':'Investigate the death in the chapel and the apparently prophetic warning. Establish responsibility for the death, any fabrication of the warning document, and how it was relayed. Foreknowledge alone does not establish participation in a killing.',
+   'success':'Support the death attribution, warning fabrication and its transmission with acquired sources. Unresolved supernatural explanations may remain explicit; they are not scored.'},
+ 'last_witness': {'name': 'The Last Witness', 'family':'mercy_house','difficulty': 'intermediate',
    'scope': 'Investigate the fatal assault. Establish who inflicted it and support the conclusion with physical evidence and an account whose limits you have checked.',
    'success': 'A supported attribution of the fatal assault, with no false or unsupported material conclusions. A correct name without acquired support scores zero.'},
  'borrowed_signature': {'name': 'A Borrowed Signature', 'difficulty': 'intermediate',
@@ -30,6 +39,6 @@ def task_id(value):
 
 def description(value):
     key = task_id(value)
-    return {'task_id': key, **TASKS[key],
+    return {'task_id': key, 'family':TASKS[key].get('family','mercy_house'), **TASKS[key],
             'report_contract': 'Choose your own findings: actor, predicate, object and acquired source IDs. Use the exact predicate enum in the tool schema. Acquired object IDs, observed full names and concise object labels are accepted. commissioned distinguishes an orderer from the carrier; matched describes physical objects and does not identify a killer. Hypotheses belong in narrative.',
             'limits': {'model_replies': 40, 'calls_per_reply': 10, 'wall_seconds': 600}}

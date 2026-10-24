@@ -1,0 +1,236 @@
+{
+  "experiment": {
+    "cases": [
+      {
+        "task_id": "lantern_room",
+        "seed": 211
+      },
+      {
+        "task_id": "second_passenger",
+        "seed": 307
+      },
+      {
+        "task_id": "bell_before_dawn",
+        "seed": 401
+      }
+    ],
+    "arms": [
+      "llm_ranked",
+      "rl_selected"
+    ],
+    "steps": 24,
+    "request_cap": 150,
+    "checkpoint_sha256": "bf8775b013b1d1a701eea7e1ee2b244deff290a439b7536d804e16a5a1296abb",
+    "frozen_source": "/home/manav/Desktop/mercy-house/logs/frozen-source-1792840692207827327",
+    "npc_condition": "fixed grounded per-memory response bank; same disclosure gates in both arms; NOT live NPCs",
+    "candidate_condition": "same ranked API proposal contract, two to six actions; no extra candidates for the selector",
+    "limitations": [
+      "Only three matched cases; not statistical evidence of superiority.",
+      "Equal-state API proposals cached, but proposals after branch divergence can differ.",
+      "Not the default native-tool detective or a whole-competition comparison."
+    ]
+  },
+  "rows": [
+    {
+      "task_id": "lantern_room",
+      "seed": 211,
+      "arm": "llm_ranked",
+      "termination": "success",
+      "result": {
+        "score": 1.0,
+        "success": true,
+        "supported_findings": [
+          {
+            "actor": "tobin",
+            "predicate": "killed",
+            "object": "oren"
+          }
+        ],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 1,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 1.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 1.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 20
+    },
+    {
+      "task_id": "lantern_room",
+      "seed": 211,
+      "arm": "rl_selected",
+      "termination": "failure",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [],
+        "false_findings": [],
+        "unsupported_findings": [
+          {
+            "actor": "tobin",
+            "predicate": "killed",
+            "object": "oren"
+          }
+        ],
+        "unrecognized_findings": [],
+        "material_events_total": 1,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.1,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 4
+    },
+    {
+      "task_id": "second_passenger",
+      "seed": 307,
+      "arm": "llm_ranked",
+      "termination": "failure",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [
+          {
+            "actor": "elin",
+            "predicate": "tampered",
+            "object": "coach_brake"
+          }
+        ],
+        "false_findings": [],
+        "unsupported_findings": [
+          {
+            "actor": "elin",
+            "predicate": "killed",
+            "object": "vesper"
+          },
+          {
+            "actor": "elin",
+            "predicate": "killed",
+            "object": "joel"
+          },
+          {
+            "actor": "elin",
+            "predicate": "targeted",
+            "object": "joel"
+          }
+        ],
+        "unrecognized_findings": [],
+        "material_events_total": 3,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.30000000000000004,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 24
+    },
+    {
+      "task_id": "second_passenger",
+      "seed": 307,
+      "arm": "rl_selected",
+      "termination": "failure",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [
+          {
+            "actor": "elin",
+            "predicate": "tampered",
+            "object": "coach_brake"
+          }
+        ],
+        "false_findings": [],
+        "unsupported_findings": [
+          {
+            "actor": "elin",
+            "predicate": "killed",
+            "object": "vesper"
+          },
+          {
+            "actor": "elin",
+            "predicate": "killed",
+            "object": "joel"
+          }
+        ],
+        "unrecognized_findings": [],
+        "material_events_total": 3,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.2,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 8
+    },
+    {
+      "task_id": "bell_before_dawn",
+      "seed": 401,
+      "arm": "llm_ranked",
+      "termination": "step_cap",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 3,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 24
+    },
+    {
+      "task_id": "bell_before_dawn",
+      "seed": 401,
+      "arm": "rl_selected",
+      "termination": "failure",
+      "result": {
+        "score": 0.0,
+        "success": false,
+        "supported_findings": [],
+        "false_findings": [],
+        "unsupported_findings": [],
+        "unrecognized_findings": [],
+        "material_events_total": 3,
+        "unresolved_findings": [],
+        "reward_components": {
+          "supported_coverage": 0.0,
+          "false_penalty": 0.0,
+          "unsupported_penalty": 0.0,
+          "total": 0.0
+        },
+        "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+      },
+      "api_requests": 5
+    }
+  ],
+  "requests_used": 85,
+  "seconds": 730.66,
+  "successes": {
+    "llm_ranked": 1,
+    "rl_selected": 0
+  }
+}

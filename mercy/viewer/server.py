@@ -36,7 +36,7 @@ def credentials():
 
 def configuration(data, defaults):
     if not isinstance(data,dict) or set(data)-{'task_id','seed','model','base_url','api_key','use_configured_key'}:raise ValueError('Unknown run option')
-    task=task_id(data.get('task_id','last_witness'))
+    task=task_id(data.get('task_id','lantern_room'))
     seed=data.get('seed',7)
     if type(seed) is not int or not -(2**63)<=seed<2**63:raise ValueError('Seed must be a signed 64-bit integer')
     model=data.get('model') or defaults.get('MODEL','gpt-6-luna')
@@ -113,6 +113,7 @@ class Manager:
             ident=secrets.token_hex(5);folder=self.root/'logs/ui-runs'/ident;folder.mkdir(parents=True)
             for kind in ('public','private'):(folder/kind).mkdir()
             meta={'id':ident,'kind':'live-model','label':TASKS[config['task_id']]['name']+' · '+config['model'],
+                  'difficulty':TASKS[config['task_id']]['difficulty'],'family':TASKS[config['task_id']].get('family','mercy_house'),
                   'task_id':config['task_id'],'seed':config['seed'],'model':config['model'],'created_at':time.time(),
                   'description':'Live API detective with independent town character agents.'}
             (folder/'meta.json').write_text(json.dumps(meta,indent=2)+'\n')

@@ -49,3 +49,8 @@ Host-side development runners can read the repository and are not sandboxes. Do 
 ## Optional story observer
 
 The host loopback viewer is a separate trusted administration surface, never mounted into the detective workspace. It serves explicit assets and a public-event projection; raw provider reasoning, unused memories and private actor/world files are excluded. Same-origin POST checks and a per-boot CSRF token protect run management. Model configuration is passed via process environment, separate from town credentials; source snapshots exclude .env. The UI has no arbitrary command/file endpoint. See [STORY_VIEWER.md](STORY_VIEWER.md) for the authority and scope.
+
+
+## Original-family expansion
+
+`family_data.py`, `family_proof.py`, private seeded plans and author-review documents stay in the protected world. The workspace image still copies only the command executor and public town CLI. The same acquired-receipt, local-presence and private-planner/public-speaker boundaries apply to every family. Removing the destructive transition prevents the corresponding fatality; a correct name or workspace-written file remains unsupported. Controlled policy comparison response banks are development-only, never mounted or projected into solver tools. New-family provenance is explicitly authored seeded tapes, not autonomous crime generation.

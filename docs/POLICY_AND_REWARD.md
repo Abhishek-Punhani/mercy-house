@@ -29,3 +29,8 @@ The verifier checks selected propositions and authored proof paths. Murder needs
 There is no bonus for many questions, unrelated objects or confident language. The scalar does not measure internal hatred, grief, ego or frustration. Observable diagnostics cover unsupported accusations, hearsay, handling omissions, preservation and denied extraction attempts. Controlled relationship interventions and repeated runs are needed before claiming resistance to personal bias.
 
 The standard judge harness does not select our checkpoint. Local training demonstrates parameter-updating RL; it is optional and is not part of the verifier.
+
+
+## Later family calibration
+
+The eight tasks now cover four families. The same strict coverage/false/unsupported reward applies. Levels are designed investigation complexity, not calibrated model-success bands. Four native live-character beginner runs succeeded. In a separate fixed-response three-case comparison, the frozen CPU selector succeeded in 0/3 versus the LLM’s first ranked action in 1/3. No whole-case RL advantage is established; checkpoint learning results do not override this negative transfer result. See CASE_FAMILIES.md and FAMILY_POLICY_COMPARISON.json.

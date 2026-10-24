@@ -1,11 +1,12 @@
 {
-  "town_tests": 86,
+  "town_tests": 96,
   "legacy_tests": 9,
   "node_state_tests": 4,
   "browser": {
     "passed": true,
     "checks": [
       "opening hides undiscovered NPCs",
+      "difficulty filter preserves modal and limits entries",
       "actual dialogue and evidence",
       "evidence details",
       "scripted reference label",
@@ -39,10 +40,10 @@
   },
   "cold_build": {
     "exit_code": 0,
-    "seconds": 13.474,
-    "scope": "Current four runtime images, new isolated builder, no imported cache, --no-cache, local machine."
+    "seconds": 14.069,
+    "scope": "Four current runtime images; new isolated docker-container builder with no imported cache, --no-cache; local machine."
   },
-  "frozen_source_compose_baselines": "passed all five reference/no-op pairs with no model calls",
+  "frozen_source_compose_baselines": "passed all eight reference/no-op pairs without model calls",
   "new_model_runs": [
     {
       "run_id": "df9ae0e971",
@@ -78,9 +79,10 @@
     }
   ],
   "limitations": [
-    "New model runs both failed. No whole-case performance improvement is established.",
-    "Raw provider reasoning and private NPC memories are excluded from viewer events.",
-    "Hosted multi-user deployment and materially different causal case families are not implemented."
+    "Four beginner live native detective successes are small development calibration, not a reliability estimate.",
+    "Harder-family live success is not established; controlled fixed-response calibration does not establish an RL advantage.",
+    "Private memories and provider reasoning are excluded from viewer events.",
+    "Local loopback UI; hosted multi-user deployment is not implemented."
   ],
   "fresh_clone_compose": {
     "exit_code": 0,
@@ -88,5 +90,6 @@
     "commit": "9910ee92ff815fafeec9d9f7b0e2bc6cecc19e2c",
     "mode": "baselines",
     "cache": "Docker layer cache present; separate new-builder no-cache measurement retained"
-  }
+  },
+  "family_evidence": "FAMILY_VALIDATION_RESULT.json"
 }

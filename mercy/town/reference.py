@@ -60,6 +60,9 @@ class Investigator:
 
 
 def solve(world, folder=None):
+    if getattr(world,'family_id',None):
+        from .family_reference import solve as solve_family
+        return solve_family(world,folder)
     task = world.task_id
     a = Investigator(world, folder)
     a.act('people_here')
@@ -111,6 +114,10 @@ def solve(world, folder=None):
 
 def gates(task, seed, folder):
     folder = Path(folder)
+    # Each gate invocation is a fresh episode, even when rebuilding the same
+    # submission folder. Never concatenate separate trajectories into one log.
+    for kind in ('reference', 'noop'):
+        (folder / kind / 'episode.jsonl').unlink(missing_ok=True)
     start = time.monotonic()
     reference = build(task, seed)
     noop = build(task, seed)

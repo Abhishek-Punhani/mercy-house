@@ -6,7 +6,7 @@ socket.addEventListener('message',e=>{const value=JSON.parse(e.data);if(value.id
 const call=(method,params={})=>new Promise(r=>{jobs.set(++seq,r);socket.send(JSON.stringify({id:seq,method,params}));});
 const evaluate=async expression=>(await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true})).result.result.value;
 try{
- for(let i=0;i<80;i++){if(await evaluate('document.getElementById("event-count")?.textContent!=="0 / 0"&&document.getElementById("task-input")?.options.length===5'))break;await new Promise(r=>setTimeout(r,100));}
+ for(let i=0;i<80;i++){if(await evaluate('document.getElementById("event-count")?.textContent!=="0 / 0"&&document.getElementById("task-input")?.options.length===8'))break;await new Promise(r=>setTimeout(r,100));}
  const before=await evaluate('(async()=>{return (await(await fetch("/api/runs")).json()).runs.length})()');
  await evaluate('(()=>{document.getElementById("new-button").click();let box=document.getElementById("configured-key-input");box.checked=false;box.dispatchEvent(new Event("change"));document.getElementById("key-input").value="browser-only-test-credential";document.getElementById("endpoint-input").value="http://insecure.invalid";document.getElementById("start-button").click();})()');
  for(let i=0;i<60;i++){if(await evaluate('document.getElementById("form-error").textContent.length>0'))break;await new Promise(r=>setTimeout(r,100));}

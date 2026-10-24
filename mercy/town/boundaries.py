@@ -47,7 +47,8 @@ def eligible_memories(world,pid,shown):
                 if child.get('kind')=='physical':keys.add(world.objects[child['source']]['key'])
     # Reassurance alone cannot unlock highly incriminating or intimate memories.
     relevance={'savitri':{'weapon','cuff','coat','draft','planted_threat','savitri_sample','original_statement'},'vedant':{'correction_ledger','weapon','cuff'},'kabir':{'delivery_letter','invoice'},'nalin':{'invoice','delivery_letter','remains'},'leena':{'private_letters'},'raghav':{'original_statement','copybook'}}
-    pertinent=keys & relevance.get(pid,set())
+    relevance=getattr(world,'disclosure_relevance',relevance)
+    pertinent=keys & set(relevance.get(pid,[]))
     release=[]
     for i,m in enumerate(state['memories']):
         level=sensitivity(pid,m,i)

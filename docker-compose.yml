@@ -71,7 +71,7 @@ services:
     environment:
       MODE: ${MODE:-full}
       MODEL: ${MODEL:-gpt-6-luna}
-      TASK_ID: ${TASK_ID:-last_witness}
+      TASK_ID: ${TASK_ID:-lantern_room}
       SEED: ${SEED:-7}
       APPEND_FILE: ${APPEND_FILE:-inputs/append.txt}
       NPC_BACKEND: ${NPC_BACKEND:-llm}

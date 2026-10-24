@@ -24,6 +24,9 @@ def build(task, seed=7, agents=None):
     key = task_id(task)
     if type(seed) is not int or not -(2**63) <= seed < 2**63:
         raise ValueError('SEED must fit a signed 64-bit integer')
+    if key in ('lantern_room','second_passenger','bell_before_dawn'):
+        from .family_world import build_family
+        return build_family(key,seed,agents)
     world = Town(seed, ReferenceActors())
     tape_file = Path(__file__).with_name('data') / 'incident-planted.json'
     tape = json.loads(tape_file.read_text())

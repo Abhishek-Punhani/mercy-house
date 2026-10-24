@@ -1,11 +1,53 @@
 [
   {
+    "id": "native-1792840548412368650",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 8",
+    "task_id": "lantern_room",
+    "seed": 211,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
+    "id": "reference-lantern_room",
+    "kind": "reference",
+    "label": "The Lantern Room",
+    "task_id": "lantern_room",
+    "seed": 37,
+    "description": "Scripted public-tool feasibility route with cooperative fixture characters, not a learned model result.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
+    "id": "reference-second_passenger",
+    "kind": "reference",
+    "label": "The Second Passenger",
+    "task_id": "second_passenger",
+    "seed": 37,
+    "description": "Scripted public-tool feasibility route with cooperative fixture characters, not a learned model result.",
+    "difficulty": "intermediate",
+    "family": "second_passenger"
+  },
+  {
+    "id": "reference-bell_before_dawn",
+    "kind": "reference",
+    "label": "The Bell Before Dawn",
+    "task_id": "bell_before_dawn",
+    "seed": 37,
+    "description": "Scripted public-tool feasibility route with cooperative fixture characters, not a learned model result.",
+    "difficulty": "advanced",
+    "family": "bell_before_dawn"
+  },
+  {
     "id": "reference-inquest",
     "kind": "reference",
     "label": "The Mercy House Inquest",
     "task_id": "mercy_inquest",
     "seed": 7,
-    "description": "Scripted public-tool reference with cooperative fixture characters. This is not a learned or LLM success."
+    "description": "Scripted public-tool reference with cooperative fixture characters. This is not a learned or LLM success.",
+    "difficulty": "advanced",
+    "family": "mercy_house"
   },
   {
     "id": "recorded-model-1",
@@ -13,7 +55,29 @@
     "label": "The Last Witness \u00b7 model run 1",
     "task_id": "last_witness",
     "seed": 7,
-    "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
+  },
+  {
+    "id": "native-1792840841901687506",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 10",
+    "task_id": "lantern_room",
+    "seed": 401,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
+    "id": "native-1792840955766739128",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 11",
+    "task_id": "lantern_room",
+    "seed": 37,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
   },
   {
     "id": "recorded-model-2",
@@ -21,7 +85,9 @@
     "label": "A Borrowed Signature \u00b7 model run 2",
     "task_id": "borrowed_signature",
     "seed": 7,
-    "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
   },
   {
     "id": "recorded-model-3",
@@ -29,7 +95,9 @@
     "label": "A Borrowed Signature \u00b7 model run 3",
     "task_id": "borrowed_signature",
     "seed": 7,
-    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
   },
   {
     "id": "recorded-model-4",
@@ -37,7 +105,9 @@
     "label": "A Borrowed Signature \u00b7 model run 4",
     "task_id": "borrowed_signature",
     "seed": 7,
-    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
   },
   {
     "id": "recorded-model-5",
@@ -45,7 +115,9 @@
     "label": "The Last Witness \u00b7 model run 5",
     "task_id": "last_witness",
     "seed": 19,
-    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
   },
   {
     "id": "df9ae0e971",
@@ -53,7 +125,9 @@
     "label": "The Last Witness \u00b7 model run 6",
     "task_id": "last_witness",
     "seed": 24,
-    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
   },
   {
     "id": "fdc7a4bb0b",
@@ -61,7 +135,19 @@
     "label": "The Last Witness \u00b7 model run 7",
     "task_id": "last_witness",
     "seed": 23,
-    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
+  },
+  {
+    "id": "native-1792840768225572926",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 9",
+    "task_id": "lantern_room",
+    "seed": 307,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
   },
   {
     "id": "rl-statement_review",
@@ -71,7 +157,9 @@
     "seed": 671002,
     "model": "Frozen CPU selector + API proposer",
     "max_steps": 10,
-    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate."
+    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate.",
+    "difficulty": "checkpoint",
+    "family": "mercy_house"
   },
   {
     "id": "rl-navigation",
@@ -81,7 +169,9 @@
     "seed": 671003,
     "model": "Frozen CPU selector + API proposer",
     "max_steps": 10,
-    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate."
+    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate.",
+    "difficulty": "checkpoint",
+    "family": "mercy_house"
   },
   {
     "id": "rl-forgery",
@@ -91,6 +181,8 @@
     "seed": 671000,
     "model": "Frozen CPU selector + API proposer",
     "max_steps": 10,
-    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate."
+    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate.",
+    "difficulty": "checkpoint",
+    "family": "mercy_house"
   }
 ]

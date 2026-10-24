@@ -13,10 +13,10 @@ from .boundaries import AuditTrail, flags, topics, eligible_memories
 from .validation import validate_action
 
 class Town:
-    def __init__(self, seed=7, agents=None, pressure="urgent"):
+    def __init__(self, seed=7, agents=None, pressure="urgent", setting_data=None):
         self.seed=seed; self.rng=random.Random(seed)
         self.pressure=pressure
-        self.locations,self.people,self.detective=setting(pressure)
+        self.locations,self.people,self.detective=deepcopy(setting_data) if setting_data is not None else setting(pressure)
         self.audit=AuditTrail()
         self.permissions=set()
         self.agents=agents
@@ -79,12 +79,15 @@ class Town:
                 'phase':self.phase,'time':self.tick,
                 'location':{'id':place,'description':self.locations[place]['description']},
                 'people_visible':[{'id':x,'name':v['name'],'condition':'responsive' if self.states[x]['alive'] else 'motionless on the floor'} for x,v in self.people.items() if x!=pid and v['location']==place],
-                'visible_scene':'Mira lies motionless beside the desk with a head injury.' if place=='archive' and not self.states['mira']['alive'] else self.locations[place]['description'],
+                'visible_scene':self.visible_scene(place),
                 'memories':[{k:m[k] for k in ('id','text','source')} for m in state['memories']],
                 'emotional_state':{'fear':state['fear'],'trust_in_detective':state['trust']},
                 'public_recall_ids':[m['id'] for m in state['memories'] if m['source'] not in ('personal_history','own_action') and not m.get('proposition')],
                 'recent_dialogue':deepcopy(state['dialogue'][-8:]),'question':question,'approach':approach,
                 'presented_material':presented or [],'available_actions':actions}
+
+    def visible_scene(self,place):
+        return 'Mira lies motionless beside the desk with a head injury.' if place=='archive' and not self.states['mira']['alive'] else self.locations[place]['description']
 
     def prelude_actions(self,pid):
         p=self.people[pid]; place=p['location']; alive=self.states[pid]['alive']
@@ -512,6 +515,9 @@ class Town:
 
     @classmethod
     def restore(cls,snapshot,agents):
+        if cls is Town and snapshot.get('family_id'):
+            from .family_world import FamilyTown
+            return FamilyTown.restore(snapshot,agents)
         world=cls(snapshot['seed'],agents)
         for key,value in snapshot.items():
             if key not in ('rng_state','state_hash','audit_rows'):setattr(world,key,deepcopy(value))
