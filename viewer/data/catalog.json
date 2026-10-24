@@ -5,6 +5,8 @@
     "label": "The Lantern Room \u00b7 model run 8",
     "task_id": "lantern_room",
     "seed": 211,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
     "difficulty": "introductory",
     "family": "lantern_room"
@@ -55,6 +57,8 @@
     "label": "The Last Witness \u00b7 model run 1",
     "task_id": "last_witness",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -65,6 +69,8 @@
     "label": "The Lantern Room \u00b7 model run 10",
     "task_id": "lantern_room",
     "seed": 401,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
     "difficulty": "introductory",
     "family": "lantern_room"
@@ -75,6 +81,8 @@
     "label": "The Lantern Room \u00b7 model run 11",
     "task_id": "lantern_room",
     "seed": 37,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
     "difficulty": "introductory",
     "family": "lantern_room"
@@ -85,6 +93,8 @@
     "label": "A Borrowed Signature \u00b7 model run 12",
     "task_id": "borrowed_signature",
     "seed": 41,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -95,6 +105,8 @@
     "label": "The Mercy House Inquest \u00b7 model run 13",
     "task_id": "mercy_inquest",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "advanced",
     "family": "mercy_house"
@@ -105,6 +117,8 @@
     "label": "The Mercy House Inquest \u00b7 model run 14",
     "task_id": "mercy_inquest",
     "seed": 41,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "advanced",
     "family": "mercy_house"
@@ -115,6 +129,8 @@
     "label": "The Lantern Room \u00b7 model run 15",
     "task_id": "lantern_room",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
     "difficulty": "introductory",
     "family": "lantern_room"
@@ -125,6 +141,8 @@
     "label": "The Second Passenger \u00b7 model run 16",
     "task_id": "second_passenger",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "second_passenger"
@@ -135,6 +153,8 @@
     "label": "A Borrowed Signature \u00b7 model run 17",
     "task_id": "borrowed_signature",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -145,6 +165,8 @@
     "label": "A Brother's Letter \u00b7 model run 18",
     "task_id": "brothers_letter",
     "seed": 15,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "advanced",
     "family": "mercy_house"
@@ -155,6 +177,8 @@
     "label": "The Last Witness \u00b7 model run 19",
     "task_id": "last_witness",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -165,6 +189,8 @@
     "label": "A Borrowed Signature \u00b7 model run 2",
     "task_id": "borrowed_signature",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -175,6 +201,56 @@
     "label": "The Lantern Room \u00b7 model run 20",
     "task_id": "lantern_room",
     "seed": 37,
+    "reply_limit": 40,
+    "practice": false,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
+    "id": "native-1792873337731874808",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 21",
+    "task_id": "lantern_room",
+    "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
+    "id": "recorded-model-22",
+    "kind": "recorded-model",
+    "label": "The Last Witness \u00b7 model run 22",
+    "task_id": "last_witness",
+    "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
+  },
+  {
+    "id": "native-1792874044645842934",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 23",
+    "task_id": "lantern_room",
+    "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
+    "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
+    "difficulty": "introductory",
+    "family": "lantern_room"
+  },
+  {
+    "id": "68d4a4b2bb",
+    "kind": "recorded-model",
+    "label": "The Lantern Room \u00b7 model run 24",
+    "task_id": "lantern_room",
+    "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
     "difficulty": "introductory",
     "family": "lantern_room"
@@ -185,6 +261,8 @@
     "label": "A Borrowed Signature \u00b7 model run 3",
     "task_id": "borrowed_signature",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -195,6 +273,8 @@
     "label": "A Borrowed Signature \u00b7 model run 4",
     "task_id": "borrowed_signature",
     "seed": 7,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -205,6 +285,8 @@
     "label": "The Last Witness \u00b7 model run 5",
     "task_id": "last_witness",
     "seed": 19,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -215,6 +297,8 @@
     "label": "The Last Witness \u00b7 model run 6",
     "task_id": "last_witness",
     "seed": 24,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -225,6 +309,8 @@
     "label": "The Last Witness \u00b7 model run 7",
     "task_id": "last_witness",
     "seed": 23,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
     "difficulty": "intermediate",
     "family": "mercy_house"
@@ -235,6 +321,8 @@
     "label": "The Lantern Room \u00b7 model run 9",
     "task_id": "lantern_room",
     "seed": 307,
+    "reply_limit": 40,
+    "practice": false,
     "description": "Actual API detective crime-scene run. Termination: success. The verifier accepted its acquired support.",
     "difficulty": "introductory",
     "family": "lantern_room"

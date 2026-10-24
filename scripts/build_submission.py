@@ -66,6 +66,10 @@ def copy(source, destination):
 def main():
     if not read('docs/FINAL_SUBMISSION_VALIDATION.json')['passed'] or not read('docs/SECURITY_SCAN.json')['passed']:
         raise RuntimeError('Final validation and credential scans must pass before packaging')
+    validation=read('docs/FINAL_SUBMISSION_VALIDATION.json')
+    for name,digest in validation['runtime_files_sha256'].items():
+        if hashlib.sha256((ROOT/name).read_bytes()).hexdigest()!=digest:
+            raise RuntimeError('Runtime changed after fresh-clone validation: '+name)
     result = read('docs/RL_TRAINING_RESULT.json')
     live = read('docs/RL_LIVE_TRANSFER_RESULT.json')
     tests = read('docs/VALIDATION_RESULT.json')
@@ -185,6 +189,7 @@ def main():
     (folder/'rl/README.txt').write_text('Historical action-selector-final checkpoint and147/160 metrics predate the payer/carrier proof audit; they are not validation of current delegation semantics. The separate fresh source-training checkpoint begins from zero; its checkpoint and elite conditions are independently documented. No LLM assigns the official score.\n')
     manifest = {'team':TEAM,'purpose':'Private reference material; judges run the source repository, not this zip.',
                 'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+                'validation':{'runtime_source_commit':validation['source_commit'],'runtime_matches_validated_files':True,'official_judging_reply_limit':40,'practice_reply_limits':{'introductory':40,'intermediate':100,'advanced':100}},
                 'model_runs':run_summaries,'live_limitations':live['limitations'],
                 'sample_success_kind':'actual native detective + live characters (success-model); separate scripted feasibility reference (success-reference)',
                 'source_training':{'checkpoint_sha256':source_training['checkpoint_sha256'],'elite_result':'ELITE_TRANSFER_RESULT.json','scope':'original mechanism-inspired skill checkpoints, not exact TV episode reproduction'},

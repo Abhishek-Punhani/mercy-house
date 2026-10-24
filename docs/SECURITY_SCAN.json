@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "tracked_paths": 269,
-  "reachable_history_blobs": 653,
+  "tracked_paths": 278,
+  "reachable_history_blobs": 680,
   "configured_credentials_checked": 2,
   "forbidden_tracked_paths": [],
   "findings": [],

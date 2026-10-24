@@ -2,11 +2,11 @@
   "town_tests": 137,
   "legacy_tests": 9,
   "passed": true,
-  "cold_build_seconds": 18.078,
+  "cold_build_seconds": 29.309,
   "cold_build": {
     "exit_code": 0,
-    "seconds": 18.078,
-    "source_commit": "04edcb48613fc005bccc27cf607a7c47d7124af1",
+    "seconds": 29.309,
+    "source_commit": "6b8ba3efdc2ccb6635d8a8707e0533087a00a153",
     "scope": "Four images, isolated empty docker-container builder, --no-cache, local machine. Exact Compose run builds again using local layers."
   },
   "command_probe": {
@@ -24,7 +24,7 @@
   "source_note": "Final bounded cooperation and cleanup. Historical live/training metrics keep their original source conditions.",
   "fresh_clone_compose": {
     "passed": true,
-    "source_commit": "04edcb48613fc005bccc27cf607a7c47d7124af1",
+    "source_commit": "6b8ba3efdc2ccb6635d8a8707e0533087a00a153",
     "runs": [
       {
         "label": "a",
@@ -33,31 +33,16 @@
         "model_override": "gpt-6-luna",
         "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
         "exit_code": 0,
-        "wall_seconds": 93.751,
-        "summary": "logs/judge-clone-04edcb4/logs/public/1792873337731874808/lantern_room/summary.json",
+        "wall_seconds": 121.67,
+        "summary": "logs/judge-clone-6b8ba3e/logs/public/1792874044645842934/lantern_room/summary.json",
         "termination": "success",
         "score": 1.0,
-        "detective_replies": 12,
-        "append_suffix_exact": true,
-        "telemetry_complete": true
-      },
-      {
-        "label": "b",
-        "task_id": "last_witness",
-        "seed": 7,
-        "model_override": "gpt-6-luna",
-        "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
-        "exit_code": 0,
-        "wall_seconds": 180.324,
-        "summary": "logs/judge-clone-04edcb4/logs/public/1792873429430082880/last_witness/summary.json",
-        "termination": "failure",
-        "score": 0.0,
-        "detective_replies": 40,
+        "detective_replies": 14,
         "append_suffix_exact": true,
         "telemetry_complete": true
       }
     ],
-    "source_note": "Fresh-clone runtime at the recorded commit. Subsequent edits are validation, packaging, docs, reference-test helpers and viewer CSS; protected runtime hashes are compared before final packaging."
+    "source_note": "Final protected runtime and Docker/Compose files match the recorded fresh clone byte-for-byte. Later edits concern release validation, packaging, docs and replay exports. Introductory judging run succeeded; harder previous-source failure is separately retained."
   },
   "node_state_tests": 15,
   "viewer_validation": "docs/UI_VALIDATION_RESULT.json",

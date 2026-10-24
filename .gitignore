@@ -33,3 +33,4 @@ service-account*.json
 *-credentials.json
 *.tfplan
 *.log
+*.zip.sha256
