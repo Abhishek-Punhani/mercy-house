@@ -15,7 +15,7 @@ def flags(text):
     if not isinstance(text,str):return []
     return [name for name,pattern in PATTERNS.items() if re.search(pattern,text,re.I|re.S)]
 
-TOPICS = {'mira':['mira','body','injur','murder','death','kill','archive'], 'papers':['letter','paper','statement','register','writing','note','record'], 'burials':['grave','burial','garden','crate','cart','nalin'], 'movements':['where','when','time','arriv','left','saw','heard','tonight'], 'privacy':['relationship','affair','leena','family'], 'ward':['ward','key','voice','tara']}
+TOPICS = {'mira':['mira','body','injur','murder','death','kill','archive'], 'papers':['letter','paper','statement','register','writing','note','record','invoice','correspondence','envelope','signature'], 'burials':['grave','burial','garden','crate','cart','nalin'], 'movements':['where','when','time','arriv','left','saw','heard','tonight'], 'privacy':['relationship','affair','leena','family'], 'ward':['ward','key','voice','tara']}
 TOPICS.update({'timeline':['before','after','sequence','what happened next','what time'],
                'vantage_point':['standing','distance','view','lighting','could you see','from where'],
                'source_of_account':['personally','first-hand','firsthand','who told','heard from','yourself'],

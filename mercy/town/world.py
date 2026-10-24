@@ -11,6 +11,7 @@ import re
 from .setting import setting
 from .boundaries import AuditTrail, flags, topics, eligible_memories
 from .validation import validate_action
+from .cooperation import COOPERATION_RULE, interview as bounded_interview, access as bounded_access
 
 class Town:
     def __init__(self, seed=7, agents=None, pressure="urgent", setting_data=None):
@@ -217,6 +218,7 @@ class Town:
             from .tasks import description
             result['task']=description(self.task_id)
             result['assignment']=result['task']['scope']
+        result['inquiry_procedure']=COOPERATION_RULE
         return result
 
     def public_life(self):
@@ -319,6 +321,7 @@ class Town:
         invalid=[x for x in selected if x not in eligible]
         if invalid:self.audit.append('blocked_disclosure',{'person':pid,'memory_ids':invalid})
         decision['recall_ids']=[x for x in selected if x in eligible]
+        decision=bounded_interview(self,pid,question,approach,show,eligible,decision,allowed_ids)
         self.audit.append('interview_decision',{'person':pid,'topics':topics(question),'approach':approach,'presented':show,'eligible_count':len(eligible),'disclosed':decision['recall_ids'],'flags':flags(decision.get('speech',''))})
         disclosed=[m for m in state['memories'] if m['id'] in decision.get('recall_ids',[]) and decision['action_id'] in ('answer','return_letter')]
         details=[{'text':m['text'],'basis':m['source']} for m in disclosed]
@@ -460,7 +463,9 @@ class Town:
         packet=self.packet(pid,allowed,'The inspector requests access to the locked area.',[], 'neutral')
         packet['interaction_context']={'eligible_recall_ids':[],'record_features':[]}
         decision=self.agents.decide(pid,packet)
-        granted=decision.get('action_id')=='grant_access'
+        self.clock+=2
+        granted,formal=bounded_access(self,pid,decision.get('action_id')=='grant_access')
+        if formal:decision['speech']='Formal district inquiry access is recorded. You may examine the controlled area.'
         if granted:self.permissions.add(owners[pid])
         self.audit.append('access_decision',{'person':pid,'area':owners[pid],'granted':granted})
         return {'granted':granted,'area':owners[pid] if granted else None,'words':decision.get('speech','')}

@@ -51,6 +51,7 @@ The following is public information, reproduced from the current factory. It con
       "calls_per_reply": 10,
       "wall_seconds": 600
     }
-  }
+  },
+  "inquiry_procedure": "Repeated evidence-backed, reassuring questions can obtain a formal account of a witness’s eligible first-hand observations. Formal access and authorized custody requests also resolve after repeated legitimate attempts. These procedures do not create memories or compel confessions."
 }
 ```

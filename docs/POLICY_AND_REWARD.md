@@ -45,3 +45,6 @@ The final fresh-source elite comparison solved0/2 in both arms. The selector’s
 
 
 Later interview guidance and voice/briefing features change presentation and the public investigation prompt, not the frozen policy weights or score formula. More questions do not earn a bonus. A sufficient supported account can be enough, while timeline/source contradictions can justify further questioning. All returned material from a tool call remains one result within the detective’s current reply.
+
+
+The final cooperation rule is a world transition, not reward shaping. Corroborated reassuring nonanswers can produce only eligible external direct observations; formal access and authorized inventory requests also resolve. Own-action confessions, partial views and hearsay are not compelled. It awards no points and changes neither verifier predicates nor reward weights. Frozen training/elite measurements predate this rule and have not been rerun or relabeled.

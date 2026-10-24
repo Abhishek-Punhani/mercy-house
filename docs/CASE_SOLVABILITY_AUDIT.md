@@ -35,7 +35,7 @@ Tested all eight tasks at 23 exact seeds: **0–15, 37, 82, 211, 307, 401, −92
 | borrowed_signature | 20 | 1 |
 | brothers_letter | 31 | 1 |
 | garden_burials | 31 | 2 |
-| mercy_inquest | 35 | 7 |
+| mercy_inquest | 38 | 7 |
 
 All references fit even the conservative one-action-per-reply interpretation of the 40-reply limit; none needs more than one call per reply. References know the solution but still acquire admissible sources through legal public tools. They prove feasibility, not that a fresh model can find the route.
 
@@ -65,8 +65,8 @@ Nine regression methods cover exact semantic aliases without proof relaxation, p
 ## Remaining limits
 
 - Programmatic proof vocabulary and authored routes are finite; this is not a formal proof of every natural-language claim or an exhaustive absence-of-contradiction certificate.
-- Reference and source-only feasibility runs use cooperative fixture characters. A live character may permanently refuse an eligible disclosure; successful routes do not guarantee live cooperation.
-- In the canonical recorded murder Vedant is the only independent named eyewitness. Complete attribution needs his disclosure or an eligible admission by Savitri. Sera only hears the cry in this tape; clothing alone remains insufficient.
+- The original sweep used cooperative fixtures. Final bounded-refusal checks are recorded separately in FAIRNESS_RESULT.json: all eight tasks have scripted proof routes even when character planners always decline. These are feasibility results, not model success rates.
+- In the canonical recorded murder Vedant is the independent named eyewitness. Repeated corroborated reassurance can now record his eligible external observation. Sera still only hears the cry in this tape; clothing alone remains insufficient. No confession or partial observation is promoted to proof.
 - The source-only probes are scripted genre-specific investigators with public text parsing and exhaustive 2/3-record examinations, not trained or LLM successes. Batched reply bounds are calculated schedules, not measured API reply counts.
 - Narrative prose, internal grief/ego and supernatural causes are not scored. No ghost influence or continuous offstage lifetime simulation is implemented.
 - Historical metrics refer to their frozen source versions. The new independent register sample, payer/carrier correction and later docket wording mean older logs are evidence of their old versions, not automatic validation of current source.
@@ -74,3 +74,5 @@ Nine regression methods cover exact semantic aliases without proof relaxation, p
 - Security relies on the documented trusted-host/container boundary; these data/proof checks are not universal jailbreak certification.
 
 The exact source hashes, individual 184 gate rows, six public-only probe results and correction list are in `CASE_SOLVABILITY_AUDIT.json`. Parent packaging will regenerate the current author exports and scripted replays; historical model runs remain labeled by their original source conditions.
+
+The final full-inquest reference also questions Savitri about Vedant’s external actions, rather than depending on Vedant volunteering a self-incriminating account. The original 184-row audit hashes remain historical; the current regenerated gates and final refusal sweep accompany the submission.

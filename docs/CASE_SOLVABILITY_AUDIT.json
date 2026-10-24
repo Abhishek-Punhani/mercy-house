@@ -2348,5 +2348,6 @@
     "tests/town/test_case_audit.py": "2091f897b8ece1451ac3d2a1f1f223e6773049c0b12a0b6a4864f0fd077b37e5",
     "tests/town/public_feasibility.py": "dc215e59647e84784512d8109e8dc16696caa31103a669c4680a935ab5d9198a"
   },
-  "source_note": "Audit of current worktree by exact file hashes; final submission manifest records the final commit. Training/evaluation snapshots remain separately versioned."
+  "source_note": "Audit of current worktree by exact file hashes; final submission manifest records the final commit. Training/evaluation snapshots remain separately versioned.",
+  "followup": "FAIRNESS_RESULT.json; original rows/hashes are historical, current baseline trajectories regenerated after bounded-cooperation change."
 }

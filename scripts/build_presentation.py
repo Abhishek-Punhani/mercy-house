@@ -177,7 +177,7 @@ def build():
     card(s,.65,2.8,3.85,2.8,'CASE CONSISTENCY','184 task-and-seed checks passed. We fixed mixed-up roles, weak document attribution and impossible witness details.',body_size=17)
     card(s,4.76,2.8,3.85,2.8,'SOFTWARE CHECKS',f'{count} world/runtime tests.\n9 earlier regression tests.\n{node} viewer tests.\nDesktop and mobile checks.','violet',18)
     card(s,8.87,2.8,3.85,2.8,'TRY IT','Take the guided tour. Watch recorded cases, or choose a provider and bring your API key. Optional speech follows each exchange.','amber',18)
-    small(s,'A hosted beginner test scored 1.0. Difficult live cases remain unproven; a witness can refuse to disclose crucial evidence.')
+    small(s,'A hosted beginner test scored 1.0. Difficult live cases remain unproven; repeated corroborated questions now have bounded cooperation.')
 
     s=slide('Thank you.','Questions & live demonstration','Scan to explore the source or watch an investigation unfold.')
     for x,label,name,url,detail in [(.7,'SOURCE REPOSITORY','qr-repository.png',REPO_URL,'Public source and project documentation'),(6.86,'LIVE DEMONSTRATION','qr-live-demo.png',LIVE_URL,'Open access · no sign-in')]:

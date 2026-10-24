@@ -1,5 +1,5 @@
 {
-  "town_tests": 127,
+  "town_tests": 133,
   "legacy_tests": 9,
   "passed": true,
   "cold_build_seconds": 21.587,
@@ -20,7 +20,7 @@
     }
   },
   "gate_tasks": 8,
-  "source_note": "Final provider adapters, DNS-pinned public transport, speech-aware live playback, word highlighting and guided tour. Historical model-training and elite results are unchanged.",
+  "source_note": "Final bounded cooperation and cleanup. Historical live/training metrics keep their original source conditions.",
   "fresh_clone_compose": {
     "exit_code": 0,
     "seconds": 6.808,
@@ -43,5 +43,7 @@
   "interview_depth_tests": "4 regressions: no question cap, public-only history, batched material counting, safe briefings",
   "final_viewer_validation": "FINAL_VIEWER_VALIDATION.json",
   "provider_transport_smoke": "PROVIDER_TRANSPORT_SMOKE.json",
-  "final_hosted_browser": "FINAL_HOSTED_BROWSER.json"
+  "final_hosted_browser": "FINAL_HOSTED_BROWSER.json",
+  "fairness": "FAIRNESS_RESULT.json",
+  "final_submission": "FINAL_SUBMISSION_VALIDATION.json"
 }

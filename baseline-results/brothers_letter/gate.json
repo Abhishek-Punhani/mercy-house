@@ -1,1 +1,1 @@
-{"task_id": "brothers_letter", "seed": 7, "starting_hash": "aceb5a4ef0cf079be59269b4935a824d2208f31a9caaff5fb8d8b2260158b6fb", "reference": 1.0, "noop": 0.0, "seconds": 0.063, "passed": true}
+{"task_id": "brothers_letter", "seed": 7, "starting_hash": "aceb5a4ef0cf079be59269b4935a824d2208f31a9caaff5fb8d8b2260158b6fb", "reference": 1.0, "noop": 0.0, "seconds": 0.046, "passed": true}

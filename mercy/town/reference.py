@@ -77,6 +77,10 @@ def solve(world, folder=None):
               approach='reassure', show=[a.rid('brass seal'), a.rid('torn cuff')])
     if task == 'last_witness':
         return a.finish([('savitri', 'killed', 'mira')])
+    if task == 'mercy_inquest':
+        a.go('archive')
+        a.act('ask',pid='savitri',question='Please distinguish what you personally observed at the service door from what you inferred about the assault.',approach='reassure',show=[a.rid('brass seal'),a.rid('torn cuff')])
+        a.go('hall')
     a.act('search', surface='visitors book')
     a.go('courtyard', 'square', 'das_house')
     a.act('people_here')

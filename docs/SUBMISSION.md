@@ -1,30 +1,38 @@
-# Local submission handoff
+# Final submission
 
-The public GitHub repository has been created/configured and pushed under the user’s later explicit authorization. The user still handles organizer access and the submission form. The public live demo is documented in DEPLOYMENT.md.
+Team: **Kasukabe Defence Force** — Aditya Ahirwar, Abhishek, Tapis Samaiya.
 
-The project-root `Kasukabe Defence Force.zip` is reference material; judges clone and run the source repository. It contains all eight reference/no-op gate trajectories, at least three actual API model runs including failures, actual beginner model success, a separately labeled scripted full-inquest reference, two-page design PDF, fourteen-slide editable PowerPoint and PDF, CPU policy evidence, the negative family comparison, validation and a hashed manifest.
+The runnable entry is the repository's `main` branch. `Kasukabe Defence Force.zip` is reference material; judges do not execute the archive. The demo task is `lantern_room`, seed 7.
 
-- `sample-trajectories/success-model/`: actual cold-start native detective with live character agents and acquired proof.
-- `sample-trajectories/success-reference/`: privileged scripted public-tool route, not an LLM result.
-- `sample-trajectories/failure-model/`: an actual failed detective run.
-- `test-run-logs/`: retained native model investigations, including successes, failures and the interview-depth smoke. Exact run counts and source identities are in MANIFEST.json.
-- `rl/family-calibration/`: predeclared three-case comparison. Private response-bank files are excluded. This is a different NPC condition from the live beginner runs.
-- `MANIFEST.json`: source commit, run identities, trajectory labels and per-file hashes.
+## Required material
 
-Rebuild after final source commit with `python scripts/build_submission.py`. Chrome and pdfinfo are local document authoring tools, not runtime dependencies. The builder checks page counts, archive integrity and configured credential values without printing them. Never include `.env` in the repository, zip or logs.
+- `baseline-results/`: all eight reference/no-op gates and trajectories.
+- `test-run-logs/`: actual native API investigations, with historical source identities retained and failures included.
+- `sample-trajectories/`: an actual model success, an actual model failure, and a separately labeled scripted reference.
+- `design-doc.pdf`: two-page environment/reward/defence/limits description.
+- `deck.pdf`: fourteen-slide presentation; editable PowerPoint is also included.
+- `MANIFEST.json`: source commit, run identities and SHA-256 for every packaged file.
 
-Use local `main` for the team-named repository, invite the exact organizer username from their email, and upload the team-named zip. Configure the judged detective’s MODEL/API_KEY/BASE_URL and the environment’s own NPC_MODEL/NPC_API_KEY/NPC_BASE_URL. Development sharing is explicitly user-authorized; it is not evidence that the PS waives its own-setup rule for finals. A fresh clone must be configured because the ignored local .env is not shipped.
+The package also contains policy evidence, validation, the caption-only live investigation tutorial and its captions. Scripted feasibility, prepared training checkpoints, frozen full-case experiments and native model runs are labeled separately.
 
-Current evidence: all eight scripted gates 1/0; 114 town, 9 legacy and 9 Node tests; browser/filter/form checks; real-command isolation. Four development beginner runs succeeded; one separately saved user beginner run also succeeded. No reliable solving claim across harder families. Historical CPU greedy checkpoints 147/160 and live checkpoints 2/5 are separate; new matched family calibration gives LLM-ranked 1/3 versus frozen selector 0/3. The fresh source-trained selector separately scored96/96 on held-out prepared skill checkpoints and0/2 on the predeclared full-scope elite test (baseline also0/2). The selector stays optional.
+## Run from a fresh clone
 
-See VALIDATION_RESULT.json for current cold-build and fresh-clone timings. Organizer-machine timing and separate NPC deployment remain external. The optional viewer runs locally at http://localhost:8787 and is independent of judging. No universal security or winning guarantee is made.
+Create `.env` from `.env.example`. Configure detective `MODEL`, `API_KEY`, `BASE_URL`; configure environment-owned `NPC_MODEL`, `NPC_API_KEY`, `NPC_BASE_URL`. `APPEND_FILE=inputs/append.txt` must exist and be nonempty. No real credential is shipped.
 
+```bash
+docker compose up --build --abort-on-container-exit --exit-code-from harness
+```
 
-Latest reference material also includes SOURCE_TRAINING_REPORT/RESULT, ELITE_TRANSFER_RESULT, the case solvability audit, the private-reviewer design, and two correctly labeled UI screenshots. New source-policy weights and immutable training/elite manifests are separate from historical20k prototype artifacts. Private author-review snapshots, private response banks and optional LLM audit outputs are excluded.
+`MODE=baselines` checks all eight tasks. `MODE=all` is a development batch, not a guarantee that all cases fit a single finals slot. The selected task's reference and no-op run automatically before a detective request. Full native runs allow 40 model replies, ten tools per reply and 600 seconds from the first model request.
 
-The presentation authoring script uses optional python-pptx1.0.2 and LibreOffice (`pip install -r requirements-presentation.txt`), never runtime dependencies. `scripts/build_presentation.py` regenerates editable docs/deck.pptx and docs/deck.pdf; unchanged input hashes reuse artifacts. The final zip remains reference material; source main is the judged runnable entry.
+## Final checks and limits
 
-The final introduction names Aditya Ahirwar, Abhishek and Tapis Samaiya. The thank-you slide has validated QR codes and clickable repository/live URLs. The public repository and demo open without signing in. A live investigation needs the visitor’s own API key; no key is embedded.
+`FINAL_SUBMISSION_VALIDATION.json` identifies the validated source, fresh-clone command and results. `FAIRNESS_RESULT.json` records bounded-refusal probes. Scores, proof requirements and isolation remain programmatic. Three corroborated reassuring nonanswers can record an eligible external eyewitness account; formal access and specifically authorized inventory requests also resolve. No new memory, compelled self-incrimination or reward is created by that procedure.
 
+Only the organizer-provided GPT-Luna deployment was available for real calls. Other response formats and provider adapters have fixture tests. The optional selector's frozen elite result remains 0/2; no full-case learning advantage is claimed. Historical videos and native runs predate the final cooperation rule and retain their original labels.
 
-Current viewer features include case introductions before starting, optional browser speech and full observed interview history. Their validation and reply-counting explanation are in BRIEFING_VOICE_AND_INTERVIEWS.md and BRIEFING_VOICE_VALIDATION.json. Installed speech voices vary by device; text remains available.
+## Final handoff
+
+The PDF asks for a **private repo named after the team**, an organizer invitation and one team-named ZIP uploaded through the emailed form. The existing `mercy-house` repo and live demo remain public by team choice. The team will handle the private competition copy, organizer access and form upload. No form has been submitted by this tooling.
+
+Rebuild after the final commit with `python scripts/build_submission.py`. Optional presentation authoring uses `requirements-presentation.txt` and LibreOffice; these are not runtime dependencies. The archive builder verifies required files, PDF page counts, hashes, configured credential values and archive integrity. Old leaking demo transcripts and duplicate development handoff files were removed; historical empirical results and failures remain available.

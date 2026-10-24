@@ -1,0 +1,234 @@
+{
+  "passed": true,
+  "scope": "Programmatic feasibility, not LLM performance. Protected references know the solution but acquire all proof through public tools.",
+  "reference_noop_pairs": 184,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    37,
+    82,
+    211,
+    307,
+    401,
+    -9223372036854775808,
+    9223372036854775807
+  ],
+  "all_reference_scores": 1,
+  "all_noop_scores": 0,
+  "always_declining_actor_runs": [
+    {
+      "task_id": "lantern_room",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 7,
+      "cooperation_events": 1,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "lantern_room",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 7,
+      "cooperation_events": 1,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "lantern_room",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 7,
+      "cooperation_events": 1,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "second_passenger",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 18,
+      "cooperation_events": 1,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "second_passenger",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 18,
+      "cooperation_events": 1,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "second_passenger",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 18,
+      "cooperation_events": 1,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "bell_before_dawn",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 21,
+      "cooperation_events": 2,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "bell_before_dawn",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 21,
+      "cooperation_events": 2,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "bell_before_dawn",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 21,
+      "cooperation_events": 2,
+      "formal_access_events": 0
+    },
+    {
+      "task_id": "last_witness",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 16,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "last_witness",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 16,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "last_witness",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 16,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "borrowed_signature",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 26,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "borrowed_signature",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 26,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "borrowed_signature",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 26,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "brothers_letter",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 36,
+      "cooperation_events": 3,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "brothers_letter",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 36,
+      "cooperation_events": 3,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "brothers_letter",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 36,
+      "cooperation_events": 3,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "garden_burials",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 37,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "garden_burials",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 37,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "garden_burials",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 37,
+      "cooperation_events": 2,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "mercy_inquest",
+      "seed": 0,
+      "score": 1.0,
+      "public_tool_calls": 46,
+      "cooperation_events": 3,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "mercy_inquest",
+      "seed": 1,
+      "score": 1.0,
+      "public_tool_calls": 46,
+      "cooperation_events": 3,
+      "formal_access_events": 2
+    },
+    {
+      "task_id": "mercy_inquest",
+      "seed": 7,
+      "score": 1.0,
+      "public_tool_calls": 46,
+      "cooperation_events": 3,
+      "formal_access_events": 2
+    }
+  ],
+  "always_declining_runs": 24,
+  "seconds": 6.268,
+  "rules": [
+    "At least three corroborated reassuring nonanswers can record an eligible external direct observation.",
+    "No self-incriminating, partial, hearsay or personal-history memory is compelled.",
+    "Formal access needs an acquired incident trace; inventory return needs its existing evidence/trust capability.",
+    "Prompt attacks never advance cooperation; permission or handover alone earns no score."
+  ]
+}
