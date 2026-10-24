@@ -1,0 +1,23 @@
+{
+    email __ADMIN_EMAIL__
+}
+
+__DOMAIN__ {
+    # Entire site, including all JSON/SSE/run-control routes, requires login.
+    basicauth {
+        __USERNAME__ __PASSWORD_HASH__
+    }
+    encode gzip
+    header {
+        Strict-Transport-Security "max-age=31536000"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "same-origin"
+    }
+    reverse_proxy 127.0.0.1:8787 {
+        header_up Host __DOMAIN__
+        header_up X-Forwarded-Host __DOMAIN__
+        header_up X-Forwarded-Proto https
+        header_up -Forwarded
+        flush_interval -1
+    }
+}

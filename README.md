@@ -68,3 +68,8 @@ A separate three-case fixed-response calibration found LLM-ranked actions succee
 Author review: [new families](docs/FAMILY_AUTHOR_REVIEW.md), [original plot](docs/CURRENT_PLOT.md), [characters](docs/V2_CHARACTER_PROFILES.md), [locations](docs/V2_LOCATIONS.md), [documents](docs/V2_EVIDENCE_AUTHOR.md), [original opening](docs/DETECTIVE_OPENING.md). These private review files never enter the detective image or workspace. Historical V1 dossiers/transcripts remain historical. Continuous offstage lives, a scored ghost mechanism and broad unseen-plot generalization remain future work.
 
 The [consistency/solvability audit](docs/CASE_SOLVABILITY_AUDIT.md) checks 184 task/seed baseline pairs and six source-only scripted investigations, and documents concrete factual/provenance fixes. Current author exports and reference trajectories have been regenerated. Historical runs retain their source-specific labels. The [private report-review command](docs/VERIFIER_AND_REVIEWER.md) complements the official programmatic scorer; optional LLM commentary cannot assign rewards.
+
+
+## Hosted demo
+
+The authenticated demo is https://mercyhouse.abhi07.xyz. Login details are kept in the local ignored `.deployment/access.json`. Deployment uses a dedicated Terraform VM and Cloudflare record; see [deployment and verification](docs/DEPLOYMENT.md). The private repository is https://github.com/Abhishek-Punhani/mercy-house. The14-slide presentation includes team introduction and repository/demo QR codes; the QR codes contain no credentials.

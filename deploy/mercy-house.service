@@ -1,0 +1,25 @@
+[Unit]
+Description=Mercy House authenticated story viewer and trusted investigation launcher
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=simple
+User=mercyhouse
+Group=mercyhouse
+SupplementaryGroups=docker
+WorkingDirectory=/opt/mercy-house
+EnvironmentFile=/opt/mercy-house/.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m mercy.viewer.server --port 8787
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=45
+UMask=0077
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
