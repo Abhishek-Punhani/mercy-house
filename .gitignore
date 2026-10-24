@@ -21,3 +21,15 @@ __pycache__/
 .venv/
 submission/
 *.zip
+# Local credentials, SSH material and generated state (never source artifacts).
+.ssh/
+.credentials/
+*.pem
+*.key
+*.p12
+*.pfx
+application_default_credentials.json
+service-account*.json
+*-credentials.json
+*.tfplan
+*.log

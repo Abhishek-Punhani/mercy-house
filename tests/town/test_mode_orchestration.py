@@ -28,6 +28,7 @@ class ModeOrchestrationTests(unittest.TestCase):
             env = {'MODE': mode, 'TASK_ID': 'borrowed_signature', 'SEED': '17', 'PUBLIC_LOG_DIR': folder, 'APPEND_FILE': str(suffix)}
             with patch.dict(os.environ, env), patch.object(client, 'TOKENFILE', token), patch.object(client, 'rpc', rpc), patch.object(client, 'ThreadingHTTPServer'), patch.object(client.threading, 'Thread'), patch.object(client.urllib.request, 'urlopen', side_effect=lambda *a, **kw: Response(b'{"detective":true,"character":true}')), patch.object(client, 'run_harness', return_value={'termination_reason': 'failure'}) as runner:
                 client.main()
+                self.last_harness_call=runner.call_args
                 return calls, runner.call_count
 
     def test_baselines_checks_all_without_reset_or_model(self):
@@ -47,3 +48,10 @@ class ModeOrchestrationTests(unittest.TestCase):
         with TemporaryDirectory() as folder, patch.dict(os.environ, {'MODE':'baselines','PUBLIC_LOG_DIR':folder}), patch.object(client,'ThreadingHTTPServer'), patch.object(client.threading,'Thread'), patch.object(client,'rpc',return_value={'gate':{'passed':False},'trajectories':{},'summaries':{}}), patch.object(client,'run_harness') as runner:
             with self.assertRaises(RuntimeError): client.main()
             runner.assert_not_called()
+
+    def test_explicit_practice_is_forwarded_to_the_harder_case_harness(self):
+        with patch.dict(os.environ, {'MERCY_PRACTICE':'1'}):
+            self.exercise('full')
+        args,kwargs=self.last_harness_call
+        self.assertEqual(args[2],100)
+        self.assertTrue(kwargs['practice'])

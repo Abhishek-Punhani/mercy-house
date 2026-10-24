@@ -1,0 +1,131 @@
+{
+  "source_commit": "04edcb48613fc005bccc27cf607a7c47d7124af1",
+  "fresh_clone": "logs/judge-clone-04edcb4",
+  "cold_build_seconds": 18.078,
+  "cold_build_scope": "Four images, isolated empty docker-container builder, --no-cache, local machine. Exact Compose run builds again using local layers.",
+  "unit_tests": {
+    "town": 133,
+    "legacy": 9,
+    "node": 15,
+    "passed": true
+  },
+  "gates": {
+    "pairs": 184,
+    "reference": 1,
+    "noop": 0
+  },
+  "refusal_stress": {
+    "runs": 24,
+    "passed": true
+  },
+  "model_availability": [
+    "gpt-6-luna"
+  ],
+  "unknown_model_scope": "Native/legacy/structured reply formats and provider adapters tested with fixtures; no second real deployment available.",
+  "npc_credentials": "Explicit separate role variables; organizer development key reused with prior user authorization. Final own-setup configuration remains with the team.",
+  "runs": [
+    {
+      "label": "a",
+      "task_id": "lantern_room",
+      "seed": 7,
+      "model_override": "gpt-6-luna",
+      "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
+      "exit_code": 0,
+      "wall_seconds": 93.751,
+      "summary": "logs/judge-clone-04edcb4/logs/public/1792873337731874808/lantern_room/summary.json",
+      "termination": "success",
+      "score": 1.0,
+      "detective_replies": 12,
+      "append_suffix_exact": true,
+      "telemetry_complete": true
+    },
+    {
+      "label": "b",
+      "task_id": "last_witness",
+      "seed": 7,
+      "model_override": "gpt-6-luna",
+      "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
+      "exit_code": 0,
+      "wall_seconds": 180.324,
+      "summary": "logs/judge-clone-04edcb4/logs/public/1792873429430082880/last_witness/summary.json",
+      "termination": "failure",
+      "score": 0.0,
+      "detective_replies": 40,
+      "append_suffix_exact": true,
+      "telemetry_complete": true
+    }
+  ],
+  "passed": true,
+  "runtime_files_sha256": {
+    "mercy/server.py": "3c5314584b6fbae87e65140123dec88340ef62fec431dce7c48fd3134e4281b4",
+    "mercy/case.py": "3047bd5bb6c298874ed596d6a157af47b9bac62fcb29595a040e5afaa3a4e3b9",
+    "mercy/run.py": "fe3825d946d49892896e638712bd91f45ae89bd6cdad635a5cf7ce89ad5c9874",
+    "mercy/env.py": "82105498cb65dcd07979d20d73d568e47035e11f0363af0c01a1658d6eb7c4b5",
+    "mercy/baselines.py": "c4a1471ad00278dc1d608300330b18f1d446a0d69b0568e8705703d7e55b4000",
+    "mercy/__init__.py": "ca64ccafe77368091c369a12ff182c8ad021d559d77bd6ce65031720e6d36fc6",
+    "mercy/audit/review.py": "e0132f696f8150b8bdca7ce83c24bedf1a4dd5357741198f7a348ce711d83127",
+    "mercy/audit/__init__.py": "646f20811db1d24db745fb5709e47c5dac792e30431f5777a2063f225018e4e3",
+    "mercy/viewer/server.py": "ae89f5dd60826a01f328871d3ee8e5976e04ebd5951ffcb8407110f831e7c3d8",
+    "mercy/viewer/events.py": "e95bd0355f2c1ad678b492352b32a1cb43cb2fcea03711104be8d5fd9c9e75a4",
+    "mercy/viewer/__init__.py": "d49b7cf2e0e711a5f9839644f9111a5a3df0aa6c093f2a1dbbb4c8f4ad329fc3",
+    "mercy/town/family_proof.py": "7c734c080459e8f0765fa6e562ed46e7d58bc14b0d4cd82ee27ed439ba73891b",
+    "mercy/town/family_data.py": "100f2a1c52acfdb3f641f5140dc282e506213e89543fdf691ac7e3970271f3f4",
+    "mercy/town/run.py": "52e74036d9bc84dbd73785f1ee2569aa99ace472351cae67ce7c9aeb62e782ff",
+    "mercy/town/tasks.py": "f56d56027d3205136bb7c72bf76fc52e5741c039af16d62a062292a8cc5ddc59",
+    "mercy/town/api_gateway.py": "d2dbbac54349059f25865ebf2a261c894cc26ef33bf40f26fb198ee04591a292",
+    "mercy/town/setting.py": "1f6373e1b2196ca6cf11401198447b2c538cc61698adedc8092106d37b758290",
+    "mercy/town/providers.py": "84cf6c74ce82c66476e39bed4ca5047c7a96dccead62a23045e4dd62a600643f",
+    "mercy/town/service.py": "ae4d537880400faed8676f148d56039e027173581fd8d79adef0b3ab16356a6d",
+    "mercy/town/io.py": "c7459b1fc689ba8621ca71ab6f527af8adc0983140331b03d700ba165c45a717",
+    "mercy/town/comparison.py": "e7df39384a2f95d242f12298dfb5c24b169fc609180f95998fd6b485f34fc8c5",
+    "mercy/town/cooperation.py": "942396a52ffdbedf617491ffbc9015fb9d920819a33a3cf2d2c76c0b95a58958",
+    "mercy/town/validation.py": "9cdfbe13c0002b35322a967d473551fb13b88cd3654b3ee0c5b752c33f87c09c",
+    "mercy/town/reference.py": "f1c772d0c0f3abc10784a6a40c389d91cd342f61fca7e51ee486bd5d53b5b814",
+    "mercy/town/boundaries.py": "b7101cfed0d292fe38397b0a5a30ad4b867868e32c35488b2e3c58e6b578a112",
+    "mercy/town/family_reference.py": "993c1d266ee210b5fd061ee2e528d29199506edf7e396586081a32f67fe04cee",
+    "mercy/town/model.py": "07e52e6fc5069bd123964cd3c75bf8fa0620b65ca088ccf32deafcf63937b335",
+    "mercy/town/client.py": "b858e3cfe33a59ca670cfb3914e8996c05dd3294fc86db3fbf4885dde397a20c",
+    "mercy/town/world.py": "9872cb29e9e648b3735264b9a1d049fa4cef5572d4fdb57b257fc8c1b510870f",
+    "mercy/town/agents.py": "ee9675e27b1f9419573c855d36bbdcb7b7474549b38f4ef8d794c565df827718",
+    "mercy/town/town_cli.py": "bcc51d974e7cd0a96ba8824a24d9b29c3e1d7b33b859d71cce2f82541e42e349",
+    "mercy/town/workspace.py": "74d9840ec0d8cad3b61b4552a7faa470749dd4ccbd45145e2e7787044491195a",
+    "mercy/town/prose.py": "6165b4dd0c464047983edd6003a4cb1156d0f4cb236bb048b601c6fd55c54388",
+    "mercy/town/detective.py": "6689cc2ce9ea700c6cc31b74a697110b88da56e178d3fbd9847d97d69cb08991",
+    "mercy/town/harness.py": "1c5dcc423ef7ce0db3fd6caad06877d9782cca2fdf7f9c59e0c845df760783c9",
+    "mercy/town/verifier.py": "abbeb2865dd659de51564f7823a2ec3474724443c233bf01bcb3660323973f51",
+    "mercy/town/family_world.py": "82a424fea709ace4c28d27ce48902488e44191aad06df522ab685ecb0f550edd",
+    "mercy/town/factory.py": "02f52633945a55917b778c4953976544575ab2e697f1b3a8f8f995ac474abecc",
+    "mercy/town/__init__.py": "ae098b5ec04e095111576e9aaf1f36332ff42bdf05e4880c71d5a3e5e8370559",
+    "mercy/town/tools.py": "b713b5fbfd9846640ef80d869ecef3c29370ef355acc42cbe2dc9ee46e1460e4",
+    "mercy/rl/live.py": "cadeb300c0c9ae0f3b5ffc5d640d66038da56369c56c719712edf65a388fd3e8",
+    "mercy/rl/train_sources.py": "6db1a440f272495476cff83b02fa74553357aff9f3f369f1973b29cf6b032eca",
+    "mercy/rl/evaluate_live.py": "f0cb3c9f9e0e87240e11bada229e45922fd05b29c22eb554a0b30aeeda28aeff",
+    "mercy/rl/train.py": "40d475a864670d6234a1b4917623a3d1dc29368180d7b33bf3ce2e65cd45a49e",
+    "mercy/rl/source_curriculum.py": "cc0bd755f61d0811ebc7416e4fc41e6636a35aa9ef8f5f9a8cadecdc490a73ed",
+    "mercy/rl/affordances.py": "9f530e007f7011e761afb333cebe83141db343353f4031270c9b7393ec9a1d4d",
+    "mercy/rl/train_skills.py": "92361b26fe7f57107ecb7afc64a3e29768bdb94b7db9118b3c0e207d6a328a85",
+    "mercy/rl/curriculum.py": "f23d3f7e4bf9660037ddb7336d81a7293b2951c8d2665b76c1f68c10858393e3",
+    "mercy/rl/public.py": "d5c07f95ebb9b957d0079acad0865eaba4bbb43b07c7de626bb0594b121535e9",
+    "mercy/rl/skills.py": "26127c49a2642c73d80f989b2613147497ecb5b9566cf319a12c327716a9f7ff",
+    "mercy/rl/__init__.py": "a0046d1ae64ade604216f5a0e9243553e066663bd0e7c1c8f362905e84a4f66f",
+    "mercy/rl/compare_families.py": "96d4765ee08814f031250cefb1c9a60a28ebfc993966217c05c0c9cd581190a4",
+    "mercy/rl/policy.py": "0fa67bceb83c55b72a1ceb8a9715622b9a2572848c3566cb5576ea97124cd4ad"
+  },
+  "isolation_probe": {
+    "passed": true,
+    "checks": {
+      "real_command_to_public_world": true,
+      "no_keys_no_control_no_private_files_no_external_egress": true,
+      "public_gateway_cannot_reset_or_read_private_routes": true,
+      "timeout_then_continue": true,
+      "fake_workspace_evidence_cannot_score": true,
+      "legitimate_solution_through_real_commands": true
+    }
+  },
+  "browser_visibility_checks": {
+    "public_configured_key_option_hidden": true,
+    "mobile_tour_visible": true,
+    "mobile_layout_fits": true
+  },
+  "source_scope": "Fresh-clone runtime at the recorded commit. Subsequent edits are validation, packaging, docs, reference-test helpers and viewer CSS; protected runtime hashes are compared before final packaging."
+}

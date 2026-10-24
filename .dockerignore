@@ -8,3 +8,17 @@ viewer
 submission
 baseline-results
 *.zip
+.env.*
+!.env.example
+.deployment
+terraform
+.ssh
+.credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*credentials.json
+*.tfstate*
+*.tfplan
+*.log

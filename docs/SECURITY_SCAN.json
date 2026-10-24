@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "tracked_paths": 269,
+  "reachable_history_blobs": 653,
+  "configured_credentials_checked": 2,
+  "forbidden_tracked_paths": [],
+  "findings": [],
+  "scope": "Known configured task credentials, GitHub/API token patterns and private-key headers in tracked files and all reachable Git blobs. No secret values printed. Masked video form visually reviewed separately."
+}

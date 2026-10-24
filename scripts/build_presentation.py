@@ -121,8 +121,8 @@ def build():
 
     s=slide('Each person has a life beyond the question.','Character conversations','Family, work, relationships and private memories shape what a character is willing to say.')
     card(s,.65,2.85,3.85,2.58,'WHAT THEY KNOW','Their own history and local experiences. They cannot inspect another person’s memories.',body_size=18)
-    card(s,4.76,2.85,3.85,2.58,'WHAT THEY SHARE','Reassurance and relevant evidence can unlock a reluctant account. A character may still refuse.','violet',18)
-    card(s,8.87,2.85,3.85,2.58,'WHAT THEY SAY','A separate model call writes the spoken reply using only the released recollections.','amber',18)
+    card(s,4.76,2.85,3.85,2.58,'WHAT THEY SHARE','Reassurance and evidence unlock eligible observations. Repeated legitimate requests have bounded cooperation.','violet',18)
+    card(s,8.87,2.85,3.85,2.58,'WHAT THEY SAY','A separate model voices released recollections. A formal-account fallback records exact eligible facts.','amber',18)
     small(s,'Witnesses do not receive the answer file. Conversation alone cannot create evidence or change what happened.')
 
     s=slide('Read the report—and why it passed or failed.','The finished investigation')

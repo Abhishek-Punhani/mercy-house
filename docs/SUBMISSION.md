@@ -36,3 +36,6 @@ Only the organizer-provided GPT-Luna deployment was available for real calls. Ot
 The PDF asks for a **private repo named after the team**, an organizer invitation and one team-named ZIP uploaded through the emailed form. The existing `mercy-house` repo and live demo remain public by team choice. The team will handle the private competition copy, organizer access and form upload. No form has been submitted by this tooling.
 
 Rebuild after the final commit with `python scripts/build_submission.py`. Optional presentation authoring uses `requirements-presentation.txt` and LibreOffice; these are not runtime dependencies. The archive builder verifies required files, PDF page counts, hashes, configured credential values and archive integrity. Old leaking demo transcripts and duplicate development handoff files were removed; historical empirical results and failures remain available.
+
+
+Practice runs use 100 replies for intermediate/advanced cases and 40 for introductory cases. The website enables practice mode automatically. For a local extended run set `MERCY_PRACTICE=1`; default official judging remains 40 replies. Both modes keep the 600-second timer and ten tools per reply. Practice scores are labeled separately and are not judging-limit results.

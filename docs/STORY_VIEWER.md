@@ -31,3 +31,6 @@ The viewer serves explicit assets and public event endpoints. It excludes privat
 Browser checks cover desktop/mobile layout, provider configuration, tour, reports, source links, buffered live bursts, speech cancellation and word boundaries. Speech timing fixtures do not certify device audio. Machine results are in `FINAL_VIEWER_VALIDATION.json`, `FINAL_HOSTED_BROWSER.json` and `BRIEFING_VOICE_VALIDATION.json`.
 
 The caption-only tutorial is `investigation-end-to-end.mp4`. It starts a fresh public-site investigation through the real form, then shows the final report and sources. Its manifest is `INVESTIGATION_VIDEO.json`. The older `submission-walkthrough.mp4` is separately labeled as a retained-replay overview.
+
+
+Practice runs use 100 replies for intermediate/advanced cases and 40 for introductory cases. The website enables practice mode automatically. For a local extended run set `MERCY_PRACTICE=1`; default official judging remains 40 replies. Both modes keep the 600-second timer and ten tools per reply. Practice scores are labeled separately and are not judging-limit results.

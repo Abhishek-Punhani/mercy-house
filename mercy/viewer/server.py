@@ -20,6 +20,7 @@ import threading
 import time
 from urllib.parse import urlsplit, parse_qs
 
+from mercy.town.budget import reply_limit
 from mercy.town.providers import PROVIDERS, endpoint_url, public_addresses
 from mercy.town.tasks import TASKS, description, task_id
 from .events import opening, observation, action_event, reply_event, verdict
@@ -132,7 +133,7 @@ class Manager:
     def settings(self):
         shared=self.defaults.get('ALLOW_SHARED_NPC_KEY')=='1'
         public_demo=self.defaults.get('MERCY_PUBLIC_DEMO')=='1'
-        return {'tasks':[description(k) for k in TASKS], 'providers':PROVIDERS,
+        return {'tasks':[{**description(k),'practice_reply_limit':reply_limit(k,True)} for k in TASKS], 'providers':PROVIDERS,
           'defaults':{'model':self.defaults.get('MODEL','gpt-6-luna'),'base_url':self.defaults.get('BASE_URL',''),'seed':7},
           'public_demo':public_demo,
           'key_configured':bool(self.defaults.get('API_KEY')) and not public_demo,
@@ -147,6 +148,7 @@ class Manager:
             meta={'id':ident,'kind':'live-model','label':TASKS[config['task_id']]['name']+' · '+config['model'],
                   'difficulty':TASKS[config['task_id']]['difficulty'],'family':TASKS[config['task_id']].get('family','mercy_house'),
                   'task_id':config['task_id'],'seed':config['seed'],'model':config['model'],'created_at':time.time(),
+                  'practice':True,'reply_limit':reply_limit(config['task_id'],True),
                   'description':'Live API detective with independent town character agents.'}
             (folder/'meta.json').write_text(json.dumps(meta,indent=2)+'\n')
             run=Run(ident,meta,folder,(config['key'],config['npc_key']));self.runs[ident]=run
@@ -215,7 +217,7 @@ class Manager:
         env.update({aliases[k]:v for k,v in variables.items()})
         env.update({'MODE':'full','MODEL':config['model'],'TASK_ID':config['task_id'],'SEED':str(config['seed']),'NPC_BACKEND':'llm'})
         override={'services':{'model-gateway':{'environment':{k:'${'+alias+'}' for k,alias in aliases.items()}},
-           'harness':{'volumes':[str(run.folder/'public')+':/logs/public']},
+           'harness':{'environment':{'MERCY_PRACTICE':'1'},'volumes':[str(run.folder/'public')+':/logs/public']},
            'world':{'volumes':[str(run.folder/'private')+':/logs/private']}}}
         for role in ('world','harness','model-gateway','workspace'):
             override['services'].setdefault(role,{})['build']={'context':str(context)}

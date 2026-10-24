@@ -50,7 +50,7 @@ def main():
                 original=originals.get(prefix,'')
                 native='native-'+original.split('/')[-2] if summary['task_id'] in ('lantern_room','second_passenger','bell_before_dawn') and original else None
                 entry={'id':saved[1] if saved else native or 'recorded-model-'+str(number),'kind':'recorded-model','label':TASKS[summary['task_id']]['name']+' · model run '+str(number),
-                       'task_id':summary['task_id'],'seed':summary['seed'],
+                       'task_id':summary['task_id'],'seed':summary['seed'],'reply_limit':summary.get('reply_limit',40),'practice':summary.get('practice',False),
                        'description':'Actual API detective crime-scene run. Termination: '+summary['termination_reason']+'. '+('The verifier accepted its acquired support.' if summary['result'].get('success') else 'The verifier withheld success.')}
                 (destination/(entry['id']+'.json')).write_text(json.dumps({'events':replay(initial,rows,summary)},ensure_ascii=False)+'\n');catalog.append(entry)
     for path in sorted((ROOT/'logs/public').glob('*/*/summary.json')):
@@ -60,7 +60,7 @@ def main():
         ident='native-'+path.parent.parent.name
         if any(e['id']==ident for e in catalog):continue
         initial=json.loads((path.parent/'opening.json').read_text());rows=[json.loads(s) for s in (path.parent/'episode.jsonl').read_text().splitlines()]
-        entry={'id':ident,'kind':'recorded-model','label':TASKS[task]['name']+' · live-character run','task_id':task,'seed':summary['seed'],
+        entry={'id':ident,'kind':'recorded-model','label':TASKS[task]['name']+' · live-character run','task_id':task,'seed':summary['seed'],'reply_limit':summary.get('reply_limit',40),'practice':summary.get('practice',False),
                'description':'Actual isolated API detective and character agents. Result: '+summary['termination_reason']+'. The report is scored from acquired evidence.'}
         (destination/(ident+'.json')).write_text(json.dumps({'events':replay(initial,rows,summary)},ensure_ascii=False)+'\n');catalog.append(entry)
     for skill,run in [('statement_review','selector-final-live-671000'),('navigation','selector-final-live-671003-continuation'),('forgery','selector-final-live-671000')]:

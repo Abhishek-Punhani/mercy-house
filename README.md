@@ -96,3 +96,6 @@ Open https://mercyhouse.abhi07.xyz without signing in. Recorded cases need no ke
 The viewer now includes public case briefings before live runs, optional browser speech for introductions and dialogue, and a complete interview notebook. The detective receives its own public interview progress to support focused follow-ups. See [briefing, voice and interview behavior](docs/STORY_VIEWER.md). Multiple returned materials do not consume extra detective replies; the40-reply/10-tool-call limits are unchanged.
 
 The final viewer adds a seven-step **Quick tour**, provider presets and custom public HTTPS endpoints, speech-synchronized live playback, spoken-word highlighting, and consistent character voices where installed. See [final handoff and provider limits](docs/STORY_VIEWER.md). The [captioned submission walkthrough](docs/submission-walkthrough.mp4) uses clearly labeled retained API replays.
+
+
+Practice runs use 100 replies for intermediate/advanced cases and 40 for introductory cases. The website enables practice mode automatically. For a local extended run set `MERCY_PRACTICE=1`; default official judging remains 40 replies. Both modes keep the 600-second timer and ten tools per reply. Practice scores are labeled separately and are not judging-limit results.

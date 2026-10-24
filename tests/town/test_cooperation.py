@@ -14,12 +14,15 @@ def refusal_route(task,seed=7):
     world=build(task,seed,RefuseAll())
     original=world.step
     calls=[]
+    batches=0
     # Same public reference route; repeat already-known requests in batches of
     # three. No hidden actor decision or memory is consulted by this retry rule.
     def step(tool,args):
+        nonlocal batches
+        batches+=1
         out=None
         for _ in range(3 if tool in ('ask','request_access') else 1):
-            out=original(tool,args);calls.append({'tool':tool,'error':out.get('error')})
+            out=original(tool,args);calls.append({'tool':tool,'error':out.get('error'),'reply_batch':batches})
             if 'error' in out or tool=='request_access' and out.get('granted') or tool=='ask' and (out.get('handed_over') or out.get('recollections')):break
         return out
     world.step=step
@@ -37,6 +40,7 @@ class CooperationTests(unittest.TestCase):
                 # At most three predeclared retries per reference reply: <=10
                 # tools/reply. This proves a feasible script, not an LLM result.
                 self.assertLessEqual(len(calls),120)
+                self.assertLessEqual(max(c['reply_batch'] for c in calls),40)
 
     def test_reassurance_without_acquired_material_never_compels_recall(self):
         w=build('last_witness',7,RefuseAll());w.location='hall';w.people_here()

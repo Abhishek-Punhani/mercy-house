@@ -35,6 +35,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 7,
+      "reference_reply_batches": 5,
+      "max_tools_per_batch": 3,
       "cooperation_events": 1,
       "formal_access_events": 0
     },
@@ -43,6 +45,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 7,
+      "reference_reply_batches": 5,
+      "max_tools_per_batch": 3,
       "cooperation_events": 1,
       "formal_access_events": 0
     },
@@ -51,6 +55,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 7,
+      "reference_reply_batches": 5,
+      "max_tools_per_batch": 3,
       "cooperation_events": 1,
       "formal_access_events": 0
     },
@@ -59,6 +65,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 18,
+      "reference_reply_batches": 16,
+      "max_tools_per_batch": 3,
       "cooperation_events": 1,
       "formal_access_events": 0
     },
@@ -67,6 +75,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 18,
+      "reference_reply_batches": 16,
+      "max_tools_per_batch": 3,
       "cooperation_events": 1,
       "formal_access_events": 0
     },
@@ -75,6 +85,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 18,
+      "reference_reply_batches": 16,
+      "max_tools_per_batch": 3,
       "cooperation_events": 1,
       "formal_access_events": 0
     },
@@ -83,6 +95,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 21,
+      "reference_reply_batches": 17,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 0
     },
@@ -91,6 +105,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 21,
+      "reference_reply_batches": 17,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 0
     },
@@ -99,6 +115,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 21,
+      "reference_reply_batches": 17,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 0
     },
@@ -107,6 +125,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 16,
+      "reference_reply_batches": 10,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -115,6 +135,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 16,
+      "reference_reply_batches": 10,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -123,6 +145,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 16,
+      "reference_reply_batches": 10,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -131,6 +155,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 26,
+      "reference_reply_batches": 20,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -139,6 +165,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 26,
+      "reference_reply_batches": 20,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -147,6 +175,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 26,
+      "reference_reply_batches": 20,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -155,6 +185,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 36,
+      "reference_reply_batches": 28,
+      "max_tools_per_batch": 3,
       "cooperation_events": 3,
       "formal_access_events": 2
     },
@@ -163,6 +195,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 36,
+      "reference_reply_batches": 28,
+      "max_tools_per_batch": 3,
       "cooperation_events": 3,
       "formal_access_events": 2
     },
@@ -171,6 +205,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 36,
+      "reference_reply_batches": 28,
+      "max_tools_per_batch": 3,
       "cooperation_events": 3,
       "formal_access_events": 2
     },
@@ -179,6 +215,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 37,
+      "reference_reply_batches": 31,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -187,6 +225,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 37,
+      "reference_reply_batches": 31,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -195,6 +235,8 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 37,
+      "reference_reply_batches": 31,
+      "max_tools_per_batch": 3,
       "cooperation_events": 2,
       "formal_access_events": 2
     },
@@ -203,6 +245,8 @@
       "seed": 0,
       "score": 1.0,
       "public_tool_calls": 46,
+      "reference_reply_batches": 38,
+      "max_tools_per_batch": 3,
       "cooperation_events": 3,
       "formal_access_events": 2
     },
@@ -211,6 +255,8 @@
       "seed": 1,
       "score": 1.0,
       "public_tool_calls": 46,
+      "reference_reply_batches": 38,
+      "max_tools_per_batch": 3,
       "cooperation_events": 3,
       "formal_access_events": 2
     },
@@ -219,12 +265,14 @@
       "seed": 7,
       "score": 1.0,
       "public_tool_calls": 46,
+      "reference_reply_batches": 38,
+      "max_tools_per_batch": 3,
       "cooperation_events": 3,
       "formal_access_events": 2
     }
   ],
   "always_declining_runs": 24,
-  "seconds": 6.268,
+  "seconds": 6.108,
   "rules": [
     "At least three corroborated reassuring nonanswers can record an eligible external direct observation.",
     "No self-incriminating, partial, hearsay or personal-history memory is compelled.",

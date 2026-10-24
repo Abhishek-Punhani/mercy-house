@@ -14,3 +14,10 @@ mark.spoken-word { background: #d3b278; color: #14191a; border-radius: 3px; padd
 .tour-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 24px; }
 .tour-target { outline: 2px solid #d3b278 !important; outline-offset: 5px; }
 @media(max-width: 600px) { .masthead-actions { gap: 5px; } #tour-button { font-size: 11px; padding: 6px; } }
+/* Visibility utilities must win over component layout declarations. */
+.hidden { display: none !important; }
+@media (max-width:650px) {
+  #tour-button { display:inline-flex; }
+  .masthead-actions { flex-wrap:wrap; justify-content:flex-end; gap:5px; }
+  .masthead { height:auto; min-height:77px; padding-top:10px; padding-bottom:10px; }
+}

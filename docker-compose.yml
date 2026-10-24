@@ -70,6 +70,7 @@ services:
     read_only: true
     environment:
       MODE: ${MODE:-full}
+      MERCY_PRACTICE: ${MERCY_PRACTICE:-0}
       MODEL: ${MODEL:-gpt-6-luna}
       TASK_ID: ${TASK_ID:-lantern_room}
       SEED: ${SEED:-7}

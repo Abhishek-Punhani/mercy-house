@@ -14,6 +14,7 @@ from .detective import run_detective
 from .io import write_json
 from .io import append_log
 from .harness import run as run_harness, instructions
+from .budget import reply_limit
 
 TOKENFILE=Path(os.getenv('WORLD_TOKEN_FILE','/control/token'))
 
@@ -141,7 +142,8 @@ def main():
             with event_lock:append_log(run_folder/'actions.jsonl',{'timestamp':time.time(),**event})
         world=Proxy(start['opening'],observer=observe);world.hash=start['state_hash'];world.seed=seed;controller['world']=world
         write_json(run_folder/'run.json',{'world_run_id':start.get('run_id'),'mode':mode,'task_id':task,'seed':seed})
-        summary=run_harness(world,run_folder,40)
+        practice=os.getenv('MERCY_PRACTICE','0')=='1'
+        summary=run_harness(world,run_folder,reply_limit(task,practice),practice=practice)
         print(json.dumps(summary),flush=True)
         controller.pop('world',None)
         if summary['termination_reason']=='crash':raise RuntimeError('Model run crashed; inspect logs')

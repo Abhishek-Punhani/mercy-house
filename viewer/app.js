@@ -564,7 +564,7 @@ function render() {
       ? "ACTION " + state.reply
       : run?.kind === "selector-checkpoint"
         ? "DECISION " + state.reply + " / " + run.max_steps
-        : "REPLY " + state.reply + " / 40"
+        : "REPLY " + state.reply + " / " + (run?.reply_limit || 40)
     : "PROLOGUE";
   $("activity-text").textContent = state.status;
   $("activity-detail").textContent =
@@ -863,6 +863,7 @@ function selectedBriefing() {
 }
 function updateBriefingPreview() {
   const task = selectedBriefing();
+  $("run-budget").textContent = "Practice limit: " + (task.practice_reply_limit || (["intermediate","advanced"].includes(task.difficulty) ? 100 : 40)) + " model replies and 10 minutes from the first request. Official judging remains capped at 40 replies. Playback does not pause the agent.";
   $("briefing-preview-title").textContent = task.name || "Before you begin";
   $("briefing-preview-text").textContent = caseBriefing(task);
 }

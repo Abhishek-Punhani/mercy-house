@@ -7,6 +7,7 @@ import time
 
 from .io import append_log, write_json
 from .tools import schemas
+from .budget import reply_limit
 from . import model
 from mercy.rl.public import Notebook
 
@@ -47,7 +48,7 @@ def interview_progress(book):
     return result
 
 
-def instructions(root=None,task_scope=None):
+def instructions(root=None,task_scope=None,max_replies=40):
     root = Path(root or Path(__file__).resolve().parents[2])
     path = Path(os.getenv('APPEND_FILE', 'inputs/append.txt'))
     if not path.is_absolute():
@@ -59,7 +60,7 @@ def instructions(root=None,task_scope=None):
         raise ValueError('APPEND_FILE is empty')
     if len(extra.encode('utf-8')) > 24000:
         raise ValueError('APPEND_FILE exceeds the conservative context budget')
-    return SYSTEM + ('\nYour selected task: '+task_scope if task_scope else '') + '\n' + extra
+    return SYSTEM.replace('at most 40 replies','at most '+str(max_replies)+' replies') + ('\nYour selected task: '+task_scope if task_scope else '') + '\n' + extra
 
 
 def parse(raw, step):
@@ -121,10 +122,11 @@ def fit_context(messages, tools, cap=48000):
         raise ValueError('Initial instructions/observation exceed the conservative context budget')
 
 
-def run(world, folder, steps=40, transport=None, root=None, seconds=600):
+def run(world, folder, steps=40, transport=None, root=None, seconds=600, practice=False):
     folder = Path(folder)
     initial = world.opening()
-    system = instructions(root,initial.get('task',{}).get('scope') or initial.get('exercise',{}).get('instruction'))
+    limit=min(reply_limit(initial.get('task'),practice),steps)
+    system = instructions(root,initial.get('task',{}).get('scope') or initial.get('exercise',{}).get('instruction'),limit)
     messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': json.dumps(initial, ensure_ascii=False)}]
     tools = schemas()
     book = Notebook(initial)
@@ -135,7 +137,7 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
     attempted_replies=0
     seed = getattr(world, 'seed', int(os.getenv('SEED', '7')))
     write_json(folder / 'opening.json', initial)
-    for step in range(1, min(40, steps) + 1):
+    for step in range(1, limit + 1):
         if time.monotonic() >= deadline:
             reason = 'time_cap'
             break
@@ -148,7 +150,7 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
         try:
             if hasattr(world,'reply_count'):world.reply_count=step
             index=[{'record_id':r['record_id'],'label':r.get('label') or ('account from '+r['person'] if r.get('person') else 'comparison' if 'compared' in r else 'notebook' if 'hypotheses' in r else 'record')} for r in list(book.records.values())[-24:]]
-            messages.append({'role':'user','content':'Investigation budget: reply '+str(step)+' of '+str(min(40,steps))+', approximately '+str(max(0,int(deadline-time.monotonic())))+' seconds remain. '+('This is the final reply: submit your supported findings now and put unresolved matters in narrative.' if step==min(40,steps) else 'Keep the selected task scope in view and leave time to submit your report. Batch independent calls with already-known arguments; read returned answers before choosing dependent follow-ups. Use review_records to revisit acquired material. An interview can continue when a timeline, vantage point, source or contradiction needs clarification.')+'\nSelected scope: '+initial.get('task',{}).get('scope','')+'\nYour acquired casebook index: '+json.dumps(index,ensure_ascii=False)+'\nYour public interview history: '+json.dumps(interview_progress(book),ensure_ascii=False)})
+            messages.append({'role':'user','content':'Investigation budget: reply '+str(step)+' of '+str(limit)+', approximately '+str(max(0,int(deadline-time.monotonic())))+' seconds remain. '+('This is the final reply: submit your supported findings now and put unresolved matters in narrative.' if step==limit else 'Keep the selected task scope in view and leave time to submit your report. Batch independent calls with already-known arguments; read returned answers before choosing dependent follow-ups. Use review_records to revisit acquired material. An interview can continue when a timeline, vantage point, source or contradiction needs clarification.')+'\nSelected scope: '+initial.get('task',{}).get('scope','')+'\nYour acquired casebook index: '+json.dumps(index,ensure_ascii=False)+'\nYour public interview history: '+json.dumps(interview_progress(book),ensure_ascii=False)})
             fit_context(messages, tools)
             sent = deepcopy(messages)
             model_tick = time.monotonic()
@@ -230,7 +232,7 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
     summary = {'task_id': initial.get('task', {}).get('task_id'), 'seed': seed,
                'termination_reason': reason, 'reason': reason, 'result': result,
                'seconds': round(time.monotonic() - start, 3), 'error': error,
-               'detective_model_replies':attempted_replies,
+               'detective_model_replies':attempted_replies,'reply_limit':limit,'practice':practice,
                'interviews':interview_progress(book)}
     write_json(folder / 'summary.json', summary)
     return summary

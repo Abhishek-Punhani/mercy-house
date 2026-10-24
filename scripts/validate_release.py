@@ -1,9 +1,7 @@
 """Local release checks. No model calls; outputs are public, credential-free."""
-import hashlib
 import json
 from pathlib import Path
 import runpy
-import subprocess
 import sys
 import time
 
@@ -30,9 +28,9 @@ def main():
             assert result['success'] and not any(c['error'] for c in calls)
             # The fixture groups only up to three already-known identical asks
             # or access requests per reference decision; <=10 allowed tools.
-            batches=sum(1 for h in world.history if h['action'] not in ('ask','request_access'))
-            ask_calls=sum(1 for h in world.history if h['action']=='ask')
-            refusal.append({'task_id':task,'seed':seed,'score':result['score'],'public_tool_calls':len(calls),
+            batches=max(c['reply_batch'] for c in calls)
+            assert batches<=40
+            refusal.append({'task_id':task,'seed':seed,'score':result['score'],'public_tool_calls':len(calls),'reference_reply_batches':batches,'max_tools_per_batch':max(sum(c['reply_batch']==n for c in calls) for n in range(1,batches+1)),
                 'cooperation_events':sum(r['kind']=='bounded_cooperation' for r in world.audit.rows),
                 'formal_access_events':sum(r['kind']=='formal_access' for r in world.audit.rows)})
     record={'passed':True,'scope':'Programmatic feasibility, not LLM performance. Protected references know the solution but acquire all proof through public tools.',
