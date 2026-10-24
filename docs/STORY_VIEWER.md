@@ -24,7 +24,7 @@ Open **http://localhost:8787**. Recorded cases need no API calls or Docker. For 
 
 ## Replay provenance
 
-The library includes four public-tool family references, fifteen actual API detective runs (ten failures and five beginner successes), and three actual trained-selector checkpoint evaluations. It defaults to an actual beginner success. Difficulty filters select introductory, intermediate, advanced and training replays. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
+The library includes four public-tool family references, retained actual API detective runs, including all saved failures and beginner successes, and three actual trained-selector checkpoint evaluations. It defaults to an actual beginner success. Difficulty filters select introductory, intermediate, advanced and training replays. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
 
 Regenerate bundled replays with `python scripts/build_viewer_replays.py`. This reads public trajectories from the prior submission archive, current reference execution and the recorded selector evaluations. It never reads private actor audits or world snapshots.
 

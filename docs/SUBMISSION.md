@@ -7,7 +7,7 @@ The project-root `Kasukabe Defence Force.zip` is reference material; judges clon
 - `sample-trajectories/success-model/`: actual cold-start native detective with live character agents and acquired proof.
 - `sample-trajectories/success-reference/`: privileged scripted public-tool route, not an LLM result.
 - `sample-trajectories/failure-model/`: an actual failed detective run.
-- `test-run-logs/`: fifteen actual native model runs, including ten failures and five beginner successes. Four are the original development calibration; four later user-started UI tests are separately documented in SAVED_UI_RUN_RESULTS.json.
+- `test-run-logs/`: retained native model investigations, including successes, failures and the interview-depth smoke. Exact run counts and source identities are in MANIFEST.json.
 - `rl/family-calibration/`: predeclared three-case comparison. Private response-bank files are excluded. This is a different NPC condition from the live beginner runs.
 - `MANIFEST.json`: source commit, run identities, trajectory labels and per-file hashes.
 
@@ -25,3 +25,6 @@ Latest reference material also includes SOURCE_TRAINING_REPORT/RESULT, ELITE_TRA
 The presentation authoring script uses optional python-pptx1.0.2 and LibreOffice (`pip install -r requirements-presentation.txt`), never runtime dependencies. `scripts/build_presentation.py` regenerates editable docs/deck.pptx and docs/deck.pdf; unchanged input hashes reuse artifacts. The final zip remains reference material; source main is the judged runnable entry.
 
 The final introduction names Aditya Ahirwar, Abhishek and Tapis Samaiya. The thank-you slide has validated QR codes and clickable repository/live URLs. The public repository and demo open without signing in. A live investigation needs the visitor’s own API key; no key is embedded.
+
+
+Current viewer features include case introductions before starting, optional browser speech and full observed interview history. Their validation and reply-counting explanation are in BRIEFING_VOICE_AND_INTERVIEWS.md and BRIEFING_VOICE_VALIDATION.json. Installed speech voices vary by device; text remains available.

@@ -120,6 +120,46 @@
     "family": "lantern_room"
   },
   {
+    "id": "6ffc6b9b57",
+    "kind": "recorded-model",
+    "label": "The Second Passenger \u00b7 model run 16",
+    "task_id": "second_passenger",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "second_passenger"
+  },
+  {
+    "id": "74b2846a97",
+    "kind": "recorded-model",
+    "label": "A Borrowed Signature \u00b7 model run 17",
+    "task_id": "borrowed_signature",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
+  },
+  {
+    "id": "63d82c07f4",
+    "kind": "recorded-model",
+    "label": "A Brother's Letter \u00b7 model run 18",
+    "task_id": "brothers_letter",
+    "seed": 15,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "advanced",
+    "family": "mercy_house"
+  },
+  {
+    "id": "d6613651d7",
+    "kind": "recorded-model",
+    "label": "The Last Witness \u00b7 model run 19",
+    "task_id": "last_witness",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success.",
+    "difficulty": "intermediate",
+    "family": "mercy_house"
+  },
+  {
     "id": "recorded-model-2",
     "kind": "recorded-model",
     "label": "A Borrowed Signature \u00b7 model run 2",

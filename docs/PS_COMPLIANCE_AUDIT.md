@@ -45,7 +45,7 @@ Every normal detective reply has timestamp, step, seed, full model request, raw 
 
 Meaningful tests cover gradients and parameter updates; public-only features; seeded checkpoints; private planner/speaker isolation; source grounding; fabricated objects and source IDs; unsupported accusations; comparison composition; exact instruction suffix; malformed replies; multi-call limits; forced end; total model timeout and explicit key-role configuration. A real container probe checks shell access, blocked internet, denied orchestration, absent private files, forged proof receiving zero and valid public proof receiving success.
 
-The final current suite has 120 town tests and 9 legacy regression tests, plus nine Node state tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
+The final current suite has 124 town tests and 9 legacy regression tests, plus fourteen Node state/speech tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
 
 ## Submission status
 
@@ -72,3 +72,6 @@ Hosted deployment is active at https://mercyhouse.abhi07.xyz with public access 
 
 
 Current public-site mode requires a visitor-supplied key for both model roles and contains no team API key. It is separate from the official judging setup; hosted convenience does not waive the PS’s separate environment-model setup requirement. The user explicitly requested public source and a site without login after the earlier private/authenticated deployment.
+
+
+Public case briefings, optional browser speech and an interview notebook were added after the measured training experiments. A received interview summary supports focused follow-ups without exposing private NPC state. Multiple materials from a tool remain in one reply; independent calls can be batched up to10 per reply. The40-reply/600-second limits and score rules remain unchanged. These are presentation/prompt changes, not a new training run or a reliable-solving claim. See BRIEFING_VOICE_AND_INTERVIEWS.md.

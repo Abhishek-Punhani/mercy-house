@@ -1,7 +1,7 @@
 {
-  "town_tests": 120,
+  "town_tests": 124,
   "legacy_tests": 9,
-  "node_state_tests": 9,
+  "node_state_tests": 14,
   "browser": {
     "passed": true,
     "checks": [
@@ -45,7 +45,7 @@
   },
   "cold_build": {
     "exit_code": 0,
-    "seconds": 26.338,
+    "seconds": 14.917,
     "scope": "Four current runtime images; new isolated docker-container builder with no imported cache, --no-cache; local machine."
   },
   "frozen_source_compose_baselines": "passed all eight reference/no-op pairs without model calls",
@@ -105,5 +105,7 @@
   "hosted_viewer_boundary_tests": "11 viewer tests include4 hosted-origin/provider-key regressions",
   "deployment_validation": "DEPLOYMENT_RESULT.json",
   "public_viewer_tests": "13 viewer boundary tests, including visitor key isolation and creator-only stop token",
-  "public_site": "PUBLIC_SITE_BROWSER_CHECKS.json"
+  "public_site": "PUBLIC_SITE_BROWSER_CHECKS.json",
+  "briefing_voice_validation": "BRIEFING_VOICE_VALIDATION.json",
+  "interview_depth_tests": "4 regressions: no question cap, public-only history, batched material counting, safe briefings"
 }

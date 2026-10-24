@@ -1,0 +1,49 @@
+{
+  "run_id": "d6613651d7",
+  "url": "https://mercyhouse.abhi07.xyz",
+  "mode": "public; no HTTP authentication; visitor-supplied key for both detective and characters",
+  "task_id": "last_witness",
+  "seed": 7,
+  "seconds": 154.696,
+  "report_submitted": true,
+  "result": {
+    "type": "finished",
+    "termination": "failure",
+    "result": {
+      "score": 0.0,
+      "success": false,
+      "supported_findings": [],
+      "false_findings": [
+        {
+          "actor": "vedant",
+          "predicate": "killed",
+          "object": "mira"
+        }
+      ],
+      "unsupported_findings": [],
+      "unresolved_findings": [],
+      "reward_components": {
+        "supported_coverage": 0.0,
+        "false_penalty": 0.2,
+        "unsupported_penalty": 0.0,
+        "total": 0.0
+      },
+      "material_events_total": 1,
+      "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+    },
+    "seconds": 144.07,
+    "seq": 211
+  },
+  "status": "running",
+  "observed_questions_by_person": {
+    "anya": 2,
+    "kabir": 4,
+    "savitri": 1,
+    "sera": 1,
+    "vedant": 1
+  },
+  "max_questions_single_person": 4,
+  "model_replies_observed": 39,
+  "source_note": "One native hosted development run under commit1ac75d6 before the subsequent generic speaker/actor clarification and natural-speech wording update. No paired improvement claim; failure retained.",
+  "interpretation": "Question count exceeded two for one person, but the only Vedant interview was inconclusive and the detective made a false murder attribution. More questions do not establish effective interviewing."
+}

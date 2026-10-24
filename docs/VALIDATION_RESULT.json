@@ -1,11 +1,11 @@
 {
-  "town_tests": 120,
+  "town_tests": 124,
   "legacy_tests": 9,
   "passed": true,
-  "cold_build_seconds": 26.338,
+  "cold_build_seconds": 14.917,
   "cold_build": {
     "exit_code": 0,
-    "seconds": 26.338,
+    "seconds": 14.917,
     "scope": "Four current runtime images; new isolated docker-container builder with no imported cache, --no-cache; local machine."
   },
   "command_probe": {
@@ -20,7 +20,7 @@
     }
   },
   "gate_tasks": 8,
-  "source_note": "Current evidence/proof audit corrections, independent signed register sample, source mechanism training and persistent submitted-report viewer. Historical native/selector runs retain their old source labels.",
+  "source_note": "Current public briefing, browser speech, interview notebook and native investigation guidance; official score and budgets unchanged. The native interview smoke belongs to its recorded pre-final-clarification source version.",
   "fresh_clone_compose": {
     "exit_code": 0,
     "seconds": 6.808,
@@ -31,12 +31,14 @@
     "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
     "source_note": "Fresh local Git clone; MODE=baselines with unused placeholder key. No provider calls. Later handoff edits update validation documents and presentation authoring/content only; runtime code is identical."
   },
-  "node_state_tests": 9,
+  "node_state_tests": 14,
   "viewer_validation": "docs/UI_VALIDATION_RESULT.json",
   "case_audit": "docs/CASE_SOLVABILITY_AUDIT.json",
   "source_training": "docs/SOURCE_TRAINING_RESULT.json",
   "hosted_viewer_boundary_tests": "11 viewer tests include4 hosted-origin/provider-key regressions",
   "deployment_validation": "DEPLOYMENT_RESULT.json",
   "public_viewer_tests": "13 viewer boundary tests, including visitor key isolation and creator-only stop token",
-  "public_site": "PUBLIC_SITE_BROWSER_CHECKS.json"
+  "public_site": "PUBLIC_SITE_BROWSER_CHECKS.json",
+  "briefing_voice_validation": "BRIEFING_VOICE_VALIDATION.json",
+  "interview_depth_tests": "4 regressions: no question cap, public-only history, batched material counting, safe briefings"
 }

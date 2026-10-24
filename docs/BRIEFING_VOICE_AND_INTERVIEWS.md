@@ -25,3 +25,8 @@ This is improved prompting, bookkeeping and presentation, not a new policy-train
 Regression tests verify more than two questions are legal, several material handovers and tool calls still occupy one detective reply, interview summaries contain only received information, and briefings do not reveal the named solutions. Browser/Node checks cover briefing selection before model calls, spoken question/answer ordering, cancellation, unsupported speech fallback, interview history and mobile layout. Speech lifecycle tests use a mock voice service; they do not certify audibility on every computer. See BRIEFING_VOICE_VALIDATION.json and the native run evidence when present.
 
 Browser API references: [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis), [SpeechSynthesisUtterance](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance).
+
+
+## Actual native interview smoke
+
+A single hosted Last Witness seed7 run used39 detective replies. It asked Anya2 questions, Kabir4, Savitri1, Sera1 and Vedant1, then falsely accused Vedant and scored0. It demonstrates no two-question cap, but does not establish effective interviewing or improved solving. The Vedant answer disclosed only movements; presence did not establish a fatal act. The failure remains in the archive with its source manifest. Subsequent generic guidance clarifies speaker-versus-actor attribution and staying within task scope; it has not been given a favorable reroll. See INTERVIEW_DEPTH_LIVE_RESULT.json.

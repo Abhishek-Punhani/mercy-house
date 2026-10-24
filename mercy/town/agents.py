@@ -17,6 +17,8 @@ NARRATOR_SYSTEM += (' An empty or selective released-recollection list means tha
                     'Make a negative factual claim only when an explicitly released recollection supports it. '
                     'For decline or reluctance, respond naturally and briefly: ask for time, privacy, a precise question, or reassurance in your own voice. '
                     'Do not name unreleased facts or imply that a particular hidden fact exists. Avoid formulaic statements about having no recollection to rely on.')
+NARRATOR_SYSTEM += (' Speak as the person having the conversation. Do not refer to a supplied memory list, notes you were given, prompts, or what is in your context. '
+                    'If you cannot place an exact time, say so naturally without treating that uncertainty as an alibi. Do not invent an observation to make an answer more complete.')
 
 class ModelAgent:
     def __init__(self,model=None,key=None,base=None,audit=None):
