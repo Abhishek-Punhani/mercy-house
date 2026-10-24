@@ -48,6 +48,22 @@
     "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
   },
   {
+    "id": "df9ae0e971",
+    "kind": "recorded-model",
+    "label": "The Last Witness \u00b7 model run 6",
+    "task_id": "last_witness",
+    "seed": 24,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+  },
+  {
+    "id": "fdc7a4bb0b",
+    "kind": "recorded-model",
+    "label": "The Last Witness \u00b7 model run 7",
+    "task_id": "last_witness",
+    "seed": 23,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+  },
+  {
     "id": "rl-statement_review",
     "kind": "selector-checkpoint",
     "label": "Statement Review \u00b7 trained selector",

@@ -24,7 +24,7 @@ Open **http://localhost:8787**. Recorded cases need no API calls or Docker. For 
 
 ## Replay provenance
 
-The initial library includes the current public-tool inquest reference, five earlier actual API detective runs, and three actual trained-selector checkpoint evaluations. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
+The initial library includes the current public-tool inquest reference, seven actual API detective runs (including the two recorded during UI development), and three actual trained-selector checkpoint evaluations. Reference and model replays are labeled separately. Selector checkpoints begin with previously acquired public material; they are not fresh crime-scene solutions. New local live runs become saved replays after completion or server restart.
 
 Regenerate bundled replays with `python scripts/build_viewer_replays.py`. This reads public trajectories from the prior submission archive, current reference execution and the recorded selector evaluations. It never reads private actor audits or world snapshots.
 
