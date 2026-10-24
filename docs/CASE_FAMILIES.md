@@ -43,3 +43,13 @@ Historical CPU training results (147/160 offline checkpoints and 2/5 live checkp
 ## Presentation
 
 The local viewer starts with an actual beginner model success and offers level filters. Scripted references and checkpoint replays retain their labels. New runs use the selected provider, task and seed; judges still use the independent standard Compose command. Private author review below must never enter an evaluated workspace.
+
+## Reproduce the controlled comparison
+
+With development provider settings configured in the ignored .env, run:
+
+```bash
+python scripts/frozen_run.py mercy.rl.compare_families --output logs/new-family-calibration --steps 24 --request-cap 150
+```
+
+This makes bounded proposer API calls, keeps selector weights fixed and records its source manifest. It uses fixture-based grounded responses, not live NPCs. Choose a fresh output directory. The published six trajectories are in the submission archive under rl/family-calibration; the protected response-bank files are excluded.

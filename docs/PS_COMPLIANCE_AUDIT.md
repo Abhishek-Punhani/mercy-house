@@ -20,7 +20,7 @@ Games & World Simulations directly fits; Other/Open is also allowed and uses the
 | Five tasks, at least two levels | Eight TASK_IDs across three designed levels and four families. Only beginner live success has been calibrated. |
 | Reference >=.95, no-op <=.05 | All eight score 1/0. References execute public tools but know the solution and use cooperative fixture characters. This proves authored feasibility, not reliable cooperation from live NPCs. |
 | Gates before model, abort on failure | Private `/gate`, then harness check before `/reset` and first detective call. `MODE=baselines` uses no model API. |
-| Exact Compose command | Verified with four-role default Compose; harness exits 0 for all eight baselines. Current fresh-clone timing and commit are recorded in VALIDATION_RESULT.json (Docker cache present). No host ports. |
+| Exact Compose command | Verified with four-role default Compose; harness exits 0 for all eight baselines. A fresh local Git clone completed all eight baseline pairs in 4.543 seconds with Docker cache present; source commit is recorded in VALIDATION_RESULT.json. No host ports. |
 | MODEL/API_KEY/BASE_URL, TASK_ID, SEED | Wired into trusted gateway and selected-task reset. NPC model role separately configurable. |
 | APPEND_FILE exact suffix | Exact UTF-8 text preserved, including CRLF, in actual system prompt and full logged request. Missing/empty files reject before model calls; oversized files reject for context safety. |
 | MODE full/all/baselines | One chosen task / sequential all tasks / all baseline pairs. `all` is development batch mode, not a single finals slot. Unknown mode/task rejected. |

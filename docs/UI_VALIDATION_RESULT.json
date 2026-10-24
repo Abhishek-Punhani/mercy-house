@@ -86,10 +86,13 @@
   ],
   "fresh_clone_compose": {
     "exit_code": 0,
-    "seconds": 6.423,
-    "commit": "9910ee92ff815fafeec9d9f7b0e2bc6cecc19e2c",
+    "seconds": 4.543,
+    "commit": "2db7e8885754a3e56f8f1ab5d5f9c02af2474e65",
     "mode": "baselines",
-    "cache": "Docker layer cache present; separate new-builder no-cache measurement retained"
+    "tasks": 8,
+    "cache": "Docker layer cache present; separate isolated no-cache measurement retained",
+    "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
+    "source_note": "Fresh local Git clone; MODE=baselines with unused placeholder key. No provider calls. Later handoff commit changes validation documents and removes two unreferenced generated replay copies; runtime code remains identical."
   },
   "family_evidence": "FAMILY_VALIDATION_RESULT.json"
 }
