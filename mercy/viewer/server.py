@@ -20,6 +20,7 @@ import threading
 import time
 from urllib.parse import urlsplit, parse_qs
 
+from mercy.town.providers import PROVIDERS, endpoint_url, public_addresses
 from mercy.town.tasks import TASKS, description, task_id
 from .events import opening, observation, action_event, reply_event, verdict
 
@@ -65,8 +66,9 @@ def configuration(data, defaults):
     public_demo=defaults.get('MERCY_PUBLIC_DEMO')=='1'
     if public_demo and data.get('use_configured_key'):
         raise ValueError('Public live investigations require your own API key.')
-    if public_demo and base.rstrip('/')!=defaults.get('BASE_URL','').rstrip('/'):
-        raise ValueError('Use the provider configured for this public demo.')
+    endpoint_url(base)
+    if public_demo:
+        public_addresses(base)
     if data.get('use_configured_key') and base.rstrip('/')!=defaults.get('BASE_URL','').rstrip('/'):
         raise ValueError('The configured key is bound to its configured provider URL. Supply your own key for another provider.')
     key=defaults.get('API_KEY','') if data.get('use_configured_key') else data.get('api_key','')
@@ -130,7 +132,7 @@ class Manager:
     def settings(self):
         shared=self.defaults.get('ALLOW_SHARED_NPC_KEY')=='1'
         public_demo=self.defaults.get('MERCY_PUBLIC_DEMO')=='1'
-        return {'tasks':[description(k) for k in TASKS],
+        return {'tasks':[description(k) for k in TASKS], 'providers':PROVIDERS,
           'defaults':{'model':self.defaults.get('MODEL','gpt-6-luna'),'base_url':self.defaults.get('BASE_URL',''),'seed':7},
           'public_demo':public_demo,
           'key_configured':bool(self.defaults.get('API_KEY')) and not public_demo,

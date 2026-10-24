@@ -6,7 +6,10 @@ import os
 from pathlib import Path
 import threading
 import time
-import urllib.request
+try:
+    from .providers import provider_request, provider_response, request_public_json
+except ImportError:  # Standalone gateway image.
+    from providers import provider_request, provider_response, request_public_json
 
 TOKEN = Path(os.getenv('WORLD_TOKEN_FILE', '/control/token'))
 LOCK = threading.Lock()
@@ -20,11 +23,6 @@ def configuration(npc=False):
                 os.getenv('NPC_BASE_URL') or (os.getenv('BASE_URL', '') if shared else ''),
                 os.getenv('NPC_MODEL') or os.getenv('MODEL', ''))
     return os.getenv('API_KEY', ''), os.getenv('BASE_URL', ''), os.getenv('MODEL', '')
-
-
-class NoRedirect(urllib.request.HTTPRedirectHandler):
-    def redirect_request(self, *args, **kwargs):
-        raise ValueError('Model redirects are disabled')
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -64,14 +62,9 @@ class Handler(BaseHTTPRequestHandler):
             for field in ('tools', 'response_format'):
                 if field in data:
                     payload[field] = data[field]
-            base = base.rstrip('/')
-            endpoint = base + ('/chat/completions' if base.endswith('/v1') else '/v1/chat/completions')
-            req = urllib.request.Request(endpoint, data=json.dumps(payload).encode(),
-                    headers={'Authorization': 'Bearer ' + key, 'Content-Type': 'application/json'})
-            with urllib.request.build_opener(NoRedirect()).open(req, timeout=15 if npc else 55) as response:
-                wire = response.read(200001)
-            if len(wire) > 200000:
-                raise ValueError('Provider response too large')
+            endpoint, headers, body = provider_request(base, key, payload)
+            value = request_public_json(endpoint, headers, body, 15 if npc else 55)
+            wire = json.dumps(provider_response(base, value)).encode()
             code = 200
         except Exception:
             code, wire = 502, b'{"error":"Configured model API unavailable or request rejected"}'

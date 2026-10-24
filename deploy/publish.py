@@ -115,11 +115,11 @@ def checks(domain,login=None):
     for path in ('/.env','/logs/private/world.json','/terraform/terraform.tfstate'):
         try:request(path);raise AssertionError('Private path was exposed')
         except urllib.error.HTTPError as exc:assert exc.code==404,(path,exc.code)
-    bad={'Origin':'https://other.invalid','X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
+    bad={'Origin':'https://127.0.0.1/v1','X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
     try:request('/api/runs',bad,b'{}');raise AssertionError('Wrong origin was accepted')
     except urllib.error.HTTPError as exc:assert exc.code==403,exc.code
     probe={'Origin':base,'X-Mercy-CSRF':csrf,'Content-Type':'application/json'}
-    for payload in ({'use_configured_key':True},{'api_key':''},{'base_url':'https://other.invalid','api_key':'not-a-key'}):
+    for payload in ({'use_configured_key':True},{'api_key':''},{'base_url':'https://127.0.0.1/v1','api_key':'not-a-key'}):
         try:request('/api/runs',probe,json.dumps(payload).encode());raise AssertionError('Public key/provider requirement bypassed')
         except urllib.error.HTTPError as exc:assert exc.code==400,exc.code
     _,raw,_=request('/api/runs');assert len(json.loads(raw)['runs'])==len(runs)
@@ -127,7 +127,7 @@ def checks(domain,login=None):
     assert 'text/event-stream' in h['Content-Type'] and b'opening' in wire
     return {'https_certificate':'verified by system trust store','anonymous_ui_config_and_replays':'200; no login',
        'private_paths':'404','wrong_origin':'403','server_key_access':'denied',
-       'public_live_runs':'visitor key for detective and characters; configured provider only',
+       'public_live_runs':'visitor key for detective and characters; provider presets and public HTTPS custom endpoints',
        'invalid_key_or_provider_creates_no_run':'400','sse_replay':'passed','tasks':len(config['tasks']),
        'replays':len(runs),'key_configured':config['key_configured'],'public_demo':True,'generation_calls':0}
 

@@ -1,0 +1,17 @@
+{
+  "provider": "organizer configured endpoint",
+  "model": "gpt-6-luna",
+  "checks": [
+    {
+      "role": "detective_tools",
+      "passed": true
+    },
+    {
+      "role": "character_json",
+      "passed": true
+    }
+  ],
+  "requests": 2,
+  "seconds": 3.01,
+  "other_provider_credentials": "Not available; additional protocols tested with fixtures, not paid cross-provider calls."
+}

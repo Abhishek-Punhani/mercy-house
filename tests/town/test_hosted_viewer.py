@@ -19,7 +19,8 @@ class HostedViewerTests(unittest.TestCase):
         defaults={**DEFAULTS,'MERCY_PUBLIC_DEMO':'1'}
         with self.assertRaises(ValueError):configuration({'use_configured_key':True},defaults)
         with self.assertRaises(ValueError):configuration({'api_key':'visitor-key','base_url':'https://another.example'},defaults)
-        c=configuration({'api_key':'visitor-key'},defaults)
+        with patch('mercy.viewer.server.public_addresses',return_value=['1.1.1.1']):
+            c=configuration({'api_key':'visitor-key','base_url':'https://another.example/v1'},defaults)
         self.assertEqual(c['key'],'visitor-key');self.assertEqual(c['npc_key'],'visitor-key')
         self.assertEqual(c['base_url'],c['npc_base'])
         with TemporaryDirectory() as folder,patch('mercy.viewer.server.credentials',return_value=defaults):
