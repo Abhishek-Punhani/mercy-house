@@ -131,7 +131,7 @@ def build():
     small(s,'Image: an actual beginner investigation that scored 1.0. The written narrative is shown, but is not automatically fact-checked.')
 
     s=slide('What we built.','The software')
-    for i,(title,body) in enumerate([('PYTHON','Runs the world, checks actions, stores evidence and scores reports.'),('JAVASCRIPT + SVG','Shows places, characters, dialogue, evidence and the final report.'),('DOCKER','Separates the hidden world, model access, run controller and detective’s shell.'),('MODEL APIs','Power the detective and character conversations. The viewer streams their public actions.')]):
+    for i,(title,body) in enumerate([('PYTHON','Runs the world, checks actions, stores evidence and scores reports.'),('JAVASCRIPT + SVG','Shows places, characters, dialogue, evidence and the final report.'),('DOCKER','Separates the hidden world, model access, run controller and detective’s shell.'),('MODEL APIs','Power the detective and character conversations. Provider presets and custom HTTPS endpoints. Public actions stream to the viewer.')]):
         card(s,.65+i*3.08,2.8,2.9,2.85,title,body,['mint','violet','amber','mint'][i],16)
     small(s,'Hosted on Google Cloud with Terraform, Cloudflare DNS and Caddy HTTPS. The public website needs no account.')
 
@@ -176,7 +176,7 @@ def build():
     count=tests.get('town_tests','?');node=tests.get('node_state_tests',9)
     card(s,.65,2.8,3.85,2.8,'CASE CONSISTENCY','184 task-and-seed checks passed. We fixed mixed-up roles, weak document attribution and impossible witness details.',body_size=17)
     card(s,4.76,2.8,3.85,2.8,'SOFTWARE CHECKS',f'{count} world/runtime tests.\n9 earlier regression tests.\n{node} viewer tests.\nDesktop and mobile checks.','violet',18)
-    card(s,8.87,2.8,3.85,2.8,'TRY IT','Open the demo without signing in. Watch a recorded case, or enter your own API key to start a live investigation.','amber',18)
+    card(s,8.87,2.8,3.85,2.8,'TRY IT','Take the guided tour. Watch recorded cases, or choose a provider and bring your API key. Optional speech follows each exchange.','amber',18)
     small(s,'A hosted beginner test scored 1.0. Difficult live cases remain unproven; a witness can refuse to disclose crucial evidence.')
 
     s=slide('Thank you.','Questions & live demonstration','Scan to explore the source or watch an investigation unfold.')

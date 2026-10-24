@@ -1,0 +1,89 @@
+{
+  "id": "447858320b",
+  "task_id": "lantern_room",
+  "seed": 37,
+  "model": "gpt-6-luna",
+  "status": "finished",
+  "final": {
+    "type": "finished",
+    "termination": "success",
+    "result": {
+      "score": 1.0,
+      "success": true,
+      "supported_findings": [
+        {
+          "actor": "maren",
+          "predicate": "killed",
+          "object": "oren"
+        }
+      ],
+      "false_findings": [],
+      "unsupported_findings": [],
+      "unresolved_findings": [],
+      "reward_components": {
+        "supported_coverage": 1.0,
+        "false_penalty": 0.0,
+        "unsupported_penalty": 0.0,
+        "total": 1.0
+      },
+      "material_events_total": 1,
+      "limitations": "Structured propositions and authored alternative proof paths are scored. Narrative is unscored; this is not a general natural-language fact checker."
+    },
+    "seconds": 142.804,
+    "seq": 121
+  },
+  "scope": "One development smoke through public-mode visitor key and the four final runtime containers; not a reliability estimate.",
+  "detective_model_replies": 24,
+  "interviews": [
+    {
+      "person": "nell",
+      "questions_asked": 5,
+      "unique_questions": 5,
+      "shown_records": [
+        "r1",
+        "r11",
+        "r15",
+        "r2",
+        "r4",
+        "r7"
+      ],
+      "firsthand_accounts": 4,
+      "last_question": "You said you were setting the reading-room table before the lamps were lowered, but couldn't locate your standing place. Please reconstruct your view at the instant you saw the blow: which side of the table were you on, ",
+      "last_answer": "I was laying the reading-room table, but I can\u2019t place which side I was on, or say whether anything stood between us. I saw Maren pick up the lamp base and strike Oren with it; I can\u2019t say clearly that I saw it hit his head. I can\u2019t tell yo",
+      "last_released_recollections": 3
+    },
+    {
+      "person": "maren",
+      "questions_asked": 4,
+      "unique_questions": 4,
+      "shown_records": [
+        "r1",
+        "r11",
+        "r2",
+        "r4"
+      ],
+      "firsthand_accounts": 3,
+      "last_question": "Take your time. I am trying to establish exactly what happened, not to put words in your mouth. Did you handle or strike Oren with the lamp base? If you disagree with Nell's account, explain what you did, and what you sa",
+      "last_answer": "I did pick up the lamp base. I\u2019d come to discuss an old freight charge with Oren, and Tobin arrived from the Pine Lantern side hall. I can\u2019t give you a clear account of what happened immediately before or after\u2014 I don\u2019t want to guess.",
+      "last_released_recollections": 3
+    },
+    {
+      "person": "tobin",
+      "questions_asked": 4,
+      "unique_questions": 4,
+      "shown_records": [
+        "r1",
+        "r11",
+        "r15",
+        "r2",
+        "r4",
+        "r7"
+      ],
+      "firsthand_accounts": 3,
+      "last_question": "Maren's account says you arrived from the side hall while she was there with Oren. Nell says she saw Maren strike him and says you arrived from that same hall. Please separate what you personally saw from what you heard:",
+      "last_answer": "I came in from the Pine Lantern side hall\u2014I had business with Oren over a disputed workshop advance. Whether he was already down or hurt, or whether Maren had the lamp base, I can\u2019t give you a truthful answer without guessing. I can\u2019t place",
+      "last_released_recollections": 3
+    }
+  ],
+  "public_source_manifest": "logs/ui-runs/447858320b/source-manifest.json"
+}

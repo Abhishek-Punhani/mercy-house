@@ -55,7 +55,7 @@ Completed runs now show a persistent solved/unsolved/not-graded panel beneath th
 
 ## Public hosted demo
 
-The website now opens without a login. Recorded cases need no key. Public live runs use the visitor’s key for both the detective and characters on the displayed provider. The server has no team API key; the form hides the configured-key option in public mode. A creator-only token protects the Stop button. Local judging mode retains separately configured character credentials. Deployment and verification: DEPLOYMENT.md.
+The website now opens without a login. Recorded cases need no key. Public live runs use the visitor’s key for both the detective and characters on the selected provider. The server has no team API key; the form hides the configured-key option in public mode. A creator-only token protects the Stop button. Local judging mode retains separately configured character credentials. Deployment and verification: DEPLOYMENT.md.
 
 
 ## Case briefing, voice and interview notebook

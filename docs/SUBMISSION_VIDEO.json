@@ -1,0 +1,72 @@
+{
+  "file": "docs/submission-walkthrough.mp4",
+  "seconds": 101.289,
+  "frames": 393,
+  "resolution": "1440 \u00d7 1050",
+  "chapters": [
+    {
+      "seconds": "0",
+      "caption": "MERCY HOUSE \u00b7 Kasukabe Defence Force | Aditya Ahirwar \u00b7 Abhishek \u00b7 Tapis Samaiya. A detective environment where every conclusion needs evidence."
+    },
+    {
+      "seconds": "6.01",
+      "caption": "New users can take a seven-step guided tour. Watching recorded cases costs no API calls."
+    },
+    {
+      "seconds": "14.94",
+      "caption": "Optional browser speech waits for each exchange. Word highlighting follows browser boundary events; installed voices are assigned consistently to characters."
+    },
+    {
+      "seconds": "20.95",
+      "caption": "Begin with the public case briefing. The detective must discover the evidence and interview witnesses during the investigation."
+    },
+    {
+      "seconds": "27.96",
+      "caption": "Bring your provider API key. Presets include OpenAI, Claude, Gemini, OpenRouter and more. Model IDs are entered by the user; compatible custom HTTPS endpoints are also supported."
+    },
+    {
+      "seconds": "35.97",
+      "caption": "Claude uses a Messages API adapter. Other presets use compatible chat endpoints. The public host stores no team key. No live run is launched in this recording."
+    },
+    {
+      "seconds": "42.12",
+      "caption": "This is an actual retained API detective run, replayed for inspection. The detective asks a witness what they personally saw. It is not a newly running agent."
+    },
+    {
+      "seconds": "50.13",
+      "caption": "The detective can return, ask follow-ups and show acquired documents. Each character answers from their own released recollections. The full interview notebook preserves the exchanges."
+    },
+    {
+      "seconds": "57.15",
+      "caption": "Searches expose material through public world tools. Travel, access, interviews and comparisons consume the investigation budget."
+    },
+    {
+      "seconds": "63.19",
+      "caption": "The report stays visible. The rule-based verifier checks acquired support and separates supported, false and unsupported claims. Naming the right killer without proof does not score."
+    },
+    {
+      "seconds": "72.20",
+      "caption": "Click a cited source to inspect the material the detective actually acquired. Private answers and unreleased memories are never included in this observer feed."
+    },
+    {
+      "seconds": "78.53",
+      "caption": "Failures remain visible. The frozen selector did not solve either of the two elite transfer cases. Stronger results on prepared practice checkpoints are not a claim of full-case mastery."
+    },
+    {
+      "seconds": "86.53",
+      "caption": "RL trains a small action selector on CPU: 6,000 practice episodes, 132 coefficients. The API language model stays fixed. The detective still needs to gather evidence and submit a supported report."
+    },
+    {
+      "seconds": "94.53",
+      "caption": "Explore: mercyhouse.abhi07.xyz  |  Source: github.com/Abhishek-Punhani/mercy-house\nThank you. Kasukabe Defence Force \u00b7 Captioned UI walkthrough; browser audio is not recorded."
+    }
+  ],
+  "content": "Actual local viewer interactions with retained public API traces. Recorded replay, not a fresh live model run. Captions; no audio track. No speech mocks used.",
+  "model_calls": 0,
+  "recorded_at": "2026-10-24T18:06:05.289Z",
+  "encoded_seconds": 101.584,
+  "bytes": 1682203,
+  "sha256": "001cccfa456db556cc51fc07363968ecb7563c6a73a0c11cd707378ca26108c6",
+  "audio_track": false,
+  "visual_review": "Verified provider captions remain visible over dialogs, report is readable, and ending links are visible."
+}

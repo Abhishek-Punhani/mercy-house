@@ -1,0 +1,14 @@
+{
+  "url": "https://mercyhouse.abhi07.xyz",
+  "passed": true,
+  "provider_choices": 13,
+  "checks": [
+    "anonymous public page",
+    "editable provider endpoint",
+    "configured key hidden",
+    "Claude preset",
+    "guided tour opens",
+    "mobile fits"
+  ],
+  "generation_calls": 0
+}

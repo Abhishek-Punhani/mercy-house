@@ -1,12 +1,12 @@
 {
-  "town_tests": 124,
+  "town_tests": 127,
   "legacy_tests": 9,
   "passed": true,
-  "cold_build_seconds": 14.917,
+  "cold_build_seconds": 21.587,
   "cold_build": {
     "exit_code": 0,
-    "seconds": 14.917,
-    "scope": "Four current runtime images; new isolated docker-container builder with no imported cache, --no-cache; local machine."
+    "seconds": 21.587,
+    "scope": "Four final runtime images at 327927d; newly isolated docker-container builder, no imported cache, --no-cache. Local machine."
   },
   "command_probe": {
     "passed": true,
@@ -20,7 +20,7 @@
     }
   },
   "gate_tasks": 8,
-  "source_note": "Current public briefing, browser speech, interview notebook and native investigation guidance; official score and budgets unchanged. The native interview smoke belongs to its recorded pre-final-clarification source version.",
+  "source_note": "Final provider adapters, DNS-pinned public transport, speech-aware live playback, word highlighting and guided tour. Historical model-training and elite results are unchanged.",
   "fresh_clone_compose": {
     "exit_code": 0,
     "seconds": 6.808,
@@ -29,9 +29,9 @@
     "tasks": 8,
     "cache": "Docker layer cache present; separate isolated no-cache measurement retained",
     "command": "docker compose up --build --abort-on-container-exit --exit-code-from harness",
-    "source_note": "Fresh local Git clone; MODE=baselines with unused placeholder key. No provider calls. Later handoff edits update validation documents and presentation authoring/content only; runtime code is identical."
+    "source_note": "Historical fresh-clone baseline check at the recorded commit; later runtime provider and viewer changes are covered by final tests and a fresh no-cache four-image build."
   },
-  "node_state_tests": 14,
+  "node_state_tests": 15,
   "viewer_validation": "docs/UI_VALIDATION_RESULT.json",
   "case_audit": "docs/CASE_SOLVABILITY_AUDIT.json",
   "source_training": "docs/SOURCE_TRAINING_RESULT.json",
@@ -40,5 +40,8 @@
   "public_viewer_tests": "13 viewer boundary tests, including visitor key isolation and creator-only stop token",
   "public_site": "PUBLIC_SITE_BROWSER_CHECKS.json",
   "briefing_voice_validation": "BRIEFING_VOICE_VALIDATION.json",
-  "interview_depth_tests": "4 regressions: no question cap, public-only history, batched material counting, safe briefings"
+  "interview_depth_tests": "4 regressions: no question cap, public-only history, batched material counting, safe briefings",
+  "final_viewer_validation": "FINAL_VIEWER_VALIDATION.json",
+  "provider_transport_smoke": "PROVIDER_TRANSPORT_SMOKE.json",
+  "final_hosted_browser": "FINAL_HOSTED_BROWSER.json"
 }

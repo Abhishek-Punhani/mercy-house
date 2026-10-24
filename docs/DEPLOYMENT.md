@@ -2,7 +2,7 @@
 
 Live site: **https://mercyhouse.abhi07.xyz**. It opens without a username or password. The source is public at **https://github.com/Abhishek-Punhani/mercy-house**.
 
-Recorded investigations are available without an account or API key. To start a new live case, enter your own key for the provider shown in the form. That key powers the detective and characters for that run. The viewer does not save it in browser storage or application files. The public host stores no team API key. This website mode is separate from the official judging configuration, where character credentials remain separately configured.
+Recorded investigations are available without an account or API key. To start a new live case, enter your own key for the selected provider. That key powers the detective and characters for that run. The viewer does not save it in browser storage or application files. The public host stores no team API key. This website mode is separate from the official judging configuration, where character credentials remain separately configured.
 
 ## Infrastructure
 
@@ -14,7 +14,7 @@ The Python viewer binds only to127.0.0.1:8787 under systemd. Caddy forwards the 
 
 ## Public live-run controls
 
-`MERCY_PUBLIC_ORIGIN=https://mercyhouse.abhi07.xyz` restricts the Host and browser Origin. `MERCY_PUBLIC_DEMO=1` requires a visitor key, refuses server-key use and restricts calls to the configured provider URL. The browser explains that this key powers both model roles for the public demonstration. The original local/judging mode still separates detective and character credentials.
+`MERCY_PUBLIC_ORIGIN=https://mercyhouse.abhi07.xyz` restricts the Host and browser Origin. `MERCY_PUBLIC_DEMO=1` requires a visitor key, refuses server-key use and accepts public HTTPS provider endpoints on port 443 with DNS validation and pinned connections. The browser explains that this key powers both model roles for the public demonstration. The original local/judging mode still separates detective and character credentials.
 
 Only one live run executes at a time. The creator receives a random control token held in browser memory; stopping that run requires the token. It is absent from shared replay responses and saved metadata. Recorded public actions and dialogue remain viewable by other visitors. Private world files, raw private model context and credentials are not served.
 
@@ -41,6 +41,6 @@ The previous HTTP login was removed at the user’s request. Old local `.deploym
 
 ## Verification
 
-Terraform format and validation passed; eight resources were created, with no changes or deletions to existing resources. A later plan reports no changes. HTTPS certificates validate through the system trust store. Anonymous homepage/config/replay requests return200 with no login challenge. Private paths return404, cross-origin writes403 and missing visitor keys/server-key requests/wrong providers400 without creating runs. Replay events stream through Caddy.
+Terraform format and validation passed; eight resources were created, with no changes or deletions to existing resources. A later plan reports no changes. HTTPS certificates validate through the system trust store. Anonymous homepage/config/replay requests return200 with no login challenge. Private paths return404, cross-origin writes403 and missing visitor keys/server-key requests/private or invalid endpoints400 without creating runs. Replay events stream through Caddy.
 
 A hosted native detective test completed Lantern Room seed7 with score1.0 before the public-access change. The separate public visitor-key test also scored1.0 with no false or unsupported findings; its graded investigation took46.048 seconds. Current public HTTP checks and both test records are in DEPLOYMENT_RESULT.json. These are bounded deployment checks, not a general solving estimate. No scores from historical runs were changed when site access changed.

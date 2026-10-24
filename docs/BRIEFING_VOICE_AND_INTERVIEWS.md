@@ -30,3 +30,5 @@ Browser API references: [SpeechSynthesis](https://developer.mozilla.org/en-US/do
 ## Actual native interview smoke
 
 A single hosted Last Witness seed7 run used39 detective replies. It asked Anya2 questions, Kabir4, Savitri1, Sera1 and Vedant1, then falsely accused Vedant and scored0. It demonstrates no two-question cap, but does not establish effective interviewing or improved solving. The Vedant answer disclosed only movements; presence did not establish a fatal act. The failure remains in the archive with its source manifest. Subsequent generic guidance clarifies speaker-versus-actor attribution and staying within task scope; it has not been given a favorable reroll. See INTERVIEW_DEPTH_LIVE_RESULT.json.
+
+The final update replaces live “jump to newest event” playback with one speech-aware event buffer. It adds exact word highlighting when browser boundary events are available and stable per-character voice assignment. See [final viewer handoff](FINAL_VIEWER_HANDOFF.md) and `FINAL_VIEWER_VALIDATION.json`; device voice availability still needs a check on the presentation laptop.
