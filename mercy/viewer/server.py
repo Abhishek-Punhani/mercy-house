@@ -1,7 +1,9 @@
-"""Loopback-only story observer and trusted, opt-in Docker run launcher.
+"""Loopback story observer and trusted, opt-in Docker run launcher.
 
 Usage: python -m mercy.viewer.server --port 8787
 The browser never receives private world/actor files or configured API keys.
+Hosted access requires an authenticated HTTPS proxy and explicit public origin;
+the application itself always binds to loopback.
 """
 import argparse
 import hmac
@@ -34,6 +36,20 @@ def credentials():
     return {**result,**os.environ}
 
 
+def public_origin(value):
+    """Explicit deployment configuration, never inferred from forwarded headers."""
+    if not value:return None
+    if not isinstance(value,str) or any(ord(c)<=32 for c in value):raise ValueError('Invalid public origin')
+    url=urlsplit(value)
+    try:port=url.port
+    except ValueError:raise ValueError('Invalid public origin') from None
+    if (url.scheme!='https' or not url.hostname or url.username or url.password
+        or url.path not in ('','/') or url.query or url.fragment
+        or not re.fullmatch(r'[A-Za-z0-9.-]+',url.hostname)
+        or port is not None and not 1<=port<=65535):raise ValueError('Use a single HTTPS public origin without a path')
+    return 'https://'+url.hostname.lower()+(':'+str(port) if port not in (None,443) else '')
+
+
 def configuration(data, defaults):
     if not isinstance(data,dict) or set(data)-{'task_id','seed','model','base_url','api_key','use_configured_key'}:raise ValueError('Unknown run option')
     task=task_id(data.get('task_id','lantern_room'))
@@ -46,6 +62,8 @@ def configuration(data, defaults):
     url=urlsplit(base)
     if url.scheme!='https' or not url.hostname or url.username or url.password or url.query or url.fragment:raise ValueError('Use an HTTPS base URL without credentials, query or fragment')
     if type(data.get('use_configured_key',False)) is not bool:raise ValueError('Invalid configured-key option')
+    if data.get('use_configured_key') and base.rstrip('/')!=defaults.get('BASE_URL','').rstrip('/'):
+        raise ValueError('The configured key is bound to its configured provider URL. Supply your own key for another provider.')
     key=defaults.get('API_KEY','') if data.get('use_configured_key') else data.get('api_key','')
     if not isinstance(key,str) or not 1<=len(key)<=1024 or any(c in key for c in '\r\n\x00'):raise ValueError('Provide an API key or choose the configured key')
     shared=defaults.get('ALLOW_SHARED_NPC_KEY')=='1'
@@ -83,6 +101,7 @@ class Run:
 class Manager:
     def __init__(self,root=ROOT):
         self.root=Path(root);self.defaults=credentials();self.runs={};self.lock=threading.Lock();self.csrf=secrets.token_urlsafe(32)
+        self.public_origin=public_origin(self.defaults.get('MERCY_PUBLIC_ORIGIN',''))
         catalog=self.root/'viewer/data/catalog.json'
         if catalog.exists():
             for entry in json.loads(catalog.read_text()):
@@ -213,14 +232,29 @@ def handler(manager):
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args):pass
         def local(self):
-            host=self.headers.get('Host','').split(':')[0]
-            return host in ('localhost','127.0.0.1')
+            return self.request_origin() is not None
+        def request_origin(self):
+            host=self.headers.get('Host','')
+            if not host or any(ord(c)<=32 for c in host):return None
+            try:
+                url=urlsplit('http://'+host)
+                port=url.port
+            except ValueError:return None
+            if url.username or url.password or url.path or url.query or url.fragment:return None
+            if url.hostname in ('localhost','127.0.0.1'):
+                return 'http://'+host.lower()
+            configured=getattr(manager,'public_origin',None)
+            if configured:
+                public=urlsplit(configured)
+                if url.hostname==public.hostname and port in (None,443) and public.port is None:return configured
+                if url.hostname==public.hostname and port==public.port:return configured
+            return None
         def send(self,value,code=200):
             data=json.dumps(value,ensure_ascii=False).encode();self.send_response(code)
             self.send_header('Content-Type','application/json');self.send_header('Cache-Control','no-store')
             self.send_header('X-Content-Type-Options','nosniff');self.end_headers();self.wfile.write(data)
         def do_GET(self):
-            if not self.local():self.send({'error':'Loopback access only'},403);return
+            if not self.local():self.send({'error':'Host is not permitted'},403);return
             url=urlsplit(self.path);path=url.path
             if path=='/api/config':self.send(manager.settings());return
             if path=='/api/runs':
@@ -258,8 +292,9 @@ def handler(manager):
             self.send_header('Content-Security-Policy',"default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'")
             self.send_header('X-Content-Type-Options','nosniff');self.end_headers();self.wfile.write(data)
         def do_POST(self):
-            origin=self.headers.get('Origin');expected='http://'+self.headers.get('Host','')
-            if not self.local() or origin not in (None,expected) or not hmac.compare_digest(self.headers.get('X-Mercy-CSRF',''),manager.csrf):self.send({'error':'Request rejected'},403);return
+            origin=self.headers.get('Origin');expected=self.request_origin()
+            allowed_origins=(expected,) if expected and expected.startswith('https://') else (None,expected)
+            if not expected or origin not in allowed_origins or not hmac.compare_digest(self.headers.get('X-Mercy-CSRF',''),manager.csrf):self.send({'error':'Request rejected'},403);return
             try:
                 size=int(self.headers.get('Content-Length','0'))
                 if not 0<size<=6000:raise ValueError('Invalid request size')
