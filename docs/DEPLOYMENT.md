@@ -44,3 +44,13 @@ The previous HTTP login was removed at the user’s request. Old local `.deploym
 Terraform format and validation passed; eight resources were created, with no changes or deletions to existing resources. A later plan reports no changes. HTTPS certificates validate through the system trust store. Anonymous homepage/config/replay requests return200 with no login challenge. Private paths return404, cross-origin writes403 and missing visitor keys/server-key requests/private or invalid endpoints400 without creating runs. Replay events stream through Caddy.
 
 A hosted native detective test completed Lantern Room seed7 with score1.0 before the public-access change. The separate public visitor-key test also scored1.0 with no false or unsupported findings; its graded investigation took46.048 seconds. Current public HTTP checks and both test records are in DEPLOYMENT_RESULT.json. These are bounded deployment checks, not a general solving estimate. No scores from historical runs were changed when site access changed.
+
+## Pull updates on the VM
+
+For the n8n-style SSH/Git workflow, push the reviewed changes to GitHub `main`, then run:
+
+```bash
+./terraform/redeploy.sh
+```
+
+This uses Mercy House's own Terraform outputs and the existing SSH key. It establishes a Git checkout on the original archive-installed VM after verifying its runtime hashes, then runs `git pull --ff-only origin main` **on the VM**, rebuilds all four investigation Docker images and restarts the `mercy-house` viewer service. The viewer is a systemd process; investigation containers are launched per case, so an update builds their images instead of starting a new paid episode. Active investigations and tracked remote edits cause the script to stop before deployment. Existing credentials, saved investigations, DNS and n8n resources stay in place. Public HTTPS, replay access and provider restrictions are checked afterward.
