@@ -1,0 +1,11 @@
+FROM python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+ARG RUN_UID=1000
+RUN useradd --uid ${RUN_UID} --create-home detective && mkdir -p /control /logs/public /app/mercy/town /app/mercy/rl && chown -R detective:detective /control /logs
+WORKDIR /app
+COPY mercy/__init__.py /app/mercy/__init__.py
+COPY mercy/town/__init__.py mercy/town/tools.py mercy/town/io.py mercy/town/detective.py mercy/town/client.py mercy/town/validation.py /app/mercy/town/
+COPY mercy/town/harness.py mercy/town/model.py mercy/town/tasks.py /app/mercy/town/
+COPY mercy/rl/__init__.py mercy/rl/policy.py mercy/rl/public.py mercy/rl/affordances.py mercy/rl/live.py /app/mercy/rl/
+USER detective
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+CMD ["python", "-m", "mercy.town.client"]

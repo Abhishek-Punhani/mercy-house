@@ -1,0 +1,37 @@
+{
+  "baseline_checks": 60,
+  "all_passed": true,
+  "reference_min": 1.0,
+  "noop_max": 0.0,
+  "tests": "python -m unittest discover -s tests -v",
+  "regression_replays": [
+    {
+      "fixture": "full_inquest",
+      "task": "full_inquest",
+      "seed": 8,
+      "score": 1.0
+    },
+    {
+      "fixture": "ninth_ward",
+      "task": "ninth_ward",
+      "seed": 8,
+      "score": 1.0
+    },
+    {
+      "fixture": "full_inquest-medical",
+      "task": "full_inquest",
+      "seed": 8,
+      "score": 1.0
+    }
+  ],
+  "live_demo": {
+    "seed7_score": 1.0,
+    "seed8_score": 1.0,
+    "model": "gpt-6-luna",
+    "source_runs": [
+      "1792770668945993035",
+      "1792771613397265821"
+    ]
+  },
+  "note": "Historical logs preserve original verifier scores; fixture replays exercise the current verifier. Raw failures led to removal of unnecessary citation requirements."
+}

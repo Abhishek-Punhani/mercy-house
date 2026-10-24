@@ -1,0 +1,15 @@
+{
+  "role": "assistant",
+  "tool_calls": [
+    {
+      "index": 0,
+      "function": {
+        "arguments": "{}",
+        "name": "catalog"
+      },
+      "id": "call_0VTiOaKtirVJoB9lOvX3GnRR",
+      "type": "function"
+    }
+  ],
+  "content": null
+}

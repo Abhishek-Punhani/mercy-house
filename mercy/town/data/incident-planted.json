@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "provenance": {
+    "kind": "recorded_llm_character_decisions",
+    "source_run": "town-v2-1792780061866270024",
+    "source_sha256": "076b93227bef6dac317563dc6f7bd7f64d010bd9e2f1ac3e1663549cc93574ba",
+    "scope": "four-participant calibration, three rounds; remaining residents keep their initial routines"
+  },
+  "turns": [
+    {
+      "tick": 0,
+      "person": "vedant",
+      "action": "guard_door"
+    },
+    {
+      "tick": 0,
+      "person": "savitri",
+      "action": "enter_archive"
+    },
+    {
+      "tick": 0,
+      "person": "sera",
+      "action": "wait"
+    },
+    {
+      "tick": 0,
+      "person": "dev",
+      "action": "go:garden"
+    },
+    {
+      "tick": 1,
+      "person": "vedant",
+      "action": "go:archive"
+    },
+    {
+      "tick": 1,
+      "person": "savitri",
+      "action": "attack_mira"
+    },
+    {
+      "tick": 1,
+      "person": "sera",
+      "action": "wait"
+    },
+    {
+      "tick": 1,
+      "person": "dev",
+      "action": "wait"
+    },
+    {
+      "tick": 2,
+      "person": "vedant",
+      "action": "go:hall"
+    },
+    {
+      "tick": 2,
+      "person": "savitri",
+      "action": "plant_threat"
+    },
+    {
+      "tick": 2,
+      "person": "sera",
+      "action": "wait"
+    },
+    {
+      "tick": 2,
+      "person": "dev",
+      "action": "go:cemetery"
+    }
+  ]
+}

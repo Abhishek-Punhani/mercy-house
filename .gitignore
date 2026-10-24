@@ -1,0 +1,13 @@
+.env
+logs/*
+!logs/private/
+!logs/public/
+logs/private/*
+logs/public/*
+!logs/private/.gitkeep
+!logs/public/.gitkeep
+__pycache__/
+*.pyc
+.venv/
+submission/
+*.zip

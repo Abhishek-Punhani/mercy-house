@@ -1,0 +1,575 @@
+{
+  "seed": 7,
+  "killer": "Savitri",
+  "evidence": {
+    "E431": {
+      "id": "E431",
+      "key": "room",
+      "title": "Room examination",
+      "action": "examine",
+      "content": "Mira died shortly after 21:10. There is a triangular impression in sealing wax by the door. A bloody sleeve thread lies beneath her hand.",
+      "cause": "The detective records the preserved room."
+    },
+    "E254": {
+      "id": "E254",
+      "key": "medical",
+      "title": "Mira’s medical examination",
+      "action": "authenticate",
+      "content": "The fatal injury occurred at 21:12, before the clock stopped at 21:30. Dev’s sleeve carried pressure-transfer stains consistent with aid, not proof of an attack.",
+      "cause": "The physician examines the body and compares the cloth."
+    },
+    "E504": {
+      "id": "E504",
+      "key": "witness",
+      "title": "Kitchen witness’s signed observation",
+      "action": "examine",
+      "content": "From the open service hatch I saw Savitri strike Mira at 21:12. Vedant held the door. I recognized their faces by the lit table. I hid until Dev came in.",
+      "cause": "Cook Sera witnessed the act and wrote a statement before gossip circulated."
+    },
+    "E766": {
+      "id": "E766",
+      "key": "opportunity",
+      "title": "Independent crossing record",
+      "action": "authenticate",
+      "content": "The night porter and cook separately recorded Savitri and Vedant entering the archive corridor at 21:08. The originals predate the public accusation. A seal fragment at the door matches Savitri’s personal seal.",
+      "cause": "Independent contemporaneous records and seal comparison establish presence."
+    },
+    "E149": {
+      "id": "E149",
+      "key": "agreement",
+      "title": "Recovered planning letter",
+      "action": "authenticate",
+      "content": "Vedant wrote to Savitri: “I know you intend to kill Mira if she refuses. I will keep the corridor clear.” Original paper, seal and retained draft agree.",
+      "cause": "The assistant retained a draft; the recipient hid the original."
+    },
+    "E174": {
+      "id": "E174",
+      "key": "threat",
+      "title": "Supposed threat from Dev",
+      "action": "examine",
+      "content": "“I will silence you before the ninth bell.” Signed Dev. The town constable calls this decisive.",
+      "cause": "Savitri wrote and planted a threat under Dev’s name."
+    },
+    "E940": {
+      "id": "E940",
+      "key": "threat_test",
+      "title": "Threat-letter examination",
+      "action": "authenticate",
+      "content": "The threat uses Savitri’s distinctive corrected letterform and her household stationery. A discarded draft survives in her ash bucket; Dev’s verified writing differs.",
+      "cause": "Paper and handwriting comparisons expose the forgery."
+    },
+    "E648": {
+      "id": "E648",
+      "key": "draft",
+      "title": "Ash-bucket fragments",
+      "action": "examine",
+      "content": "A recoverable draft of the threat is on the reverse of Savitri’s household account. Her instruction to deliver it under Dev’s name is legible.",
+      "cause": "Savitri incompletely burned a draft."
+    },
+    "E196": {
+      "id": "E196",
+      "key": "garden",
+      "title": "Garden excavation notes",
+      "action": "examine",
+      "content": "Two skeletons lie above, not beneath, last month’s planted bulbs. They died years ago. Grave cloth carries the ninth-ward laundry mark.",
+      "cause": "A gardener uncovers recently relocated old remains."
+    },
+    "E474": {
+      "id": "E474",
+      "key": "cart",
+      "title": "Carrier’s retained invoice",
+      "action": "authenticate",
+      "content": "Savitri paid Nalin to move two sealed grave crates from the old cemetery to Dev’s winter beds. Nalin’s signature and the stable’s duplicate match.",
+      "cause": "The carrier and stable retain independent payment records."
+    },
+    "E696": {
+      "id": "E696",
+      "key": "soil",
+      "title": "Soil and grave comparison",
+      "action": "authenticate",
+      "content": "Empty cemetery graves match the two sets of remains. Fresh cart tracks connect the cemetery gate to Dev’s garden. A delivery token matches Savitri’s invoice.",
+      "cause": "A survey compares burial sites and delivery records."
+    },
+    "E159": {
+      "id": "E159",
+      "key": "kabir",
+      "title": "Kabir’s first account",
+      "action": "interview",
+      "content": "I touched nothing after the scene was secured. Dev is our man. You know you can trust me.",
+      "cause": "Kabir conceals removal of the carrier’s letter."
+    },
+    "E619": {
+      "id": "E619",
+      "key": "custody",
+      "title": "Scene custody ledger",
+      "action": "authenticate",
+      "content": "Anya’s signed inventory lists envelope C before Kabir’s watch and records it missing afterward. A clerk independently saw Kabir pocket it.",
+      "cause": "Two observers document custody before and after removal."
+    },
+    "E319": {
+      "id": "E319",
+      "key": "carrier_letter",
+      "title": "Recovered carrier’s letter",
+      "action": "examine",
+      "content": "Kabir, please hide this. I delivered the crates for Savitri and did not ask what was inside. Your brother, Nalin. The envelope was recovered from Kabir’s satchel under witnessed inventory.",
+      "cause": "A witnessed recovery exposes the removal motive."
+    },
+    "E138": {
+      "id": "E138",
+      "key": "affair",
+      "title": "Leena and Mira’s correspondence",
+      "action": "examine",
+      "content": "Intimate letters describe their affair and agree to meet at the chapel at 20:00. They also discuss protecting the original ninth-ward statement.",
+      "cause": "The correspondents preserve private letters."
+    },
+    "E188": {
+      "id": "E188",
+      "key": "chapel",
+      "title": "Chapel meeting corroboration",
+      "action": "authenticate",
+      "content": "The chapel keeper’s original entry and separate letters confirm Leena and Mira’s intimate relationship. Leena was with the keeper from 21:00 to 21:25.",
+      "cause": "Independent records corroborate the relationship and relevant alibi."
+    },
+    "E544": {
+      "id": "E544",
+      "key": "old_order",
+      "title": "Original confinement order",
+      "action": "authenticate",
+      "content": "Raghav signed Tara’s ninth-ward confinement order twelve years ago. The hospital duplicate agrees. This does not establish involvement in Mira’s murder.",
+      "cause": "An institutional duplicate preserves the order."
+    },
+    "E528": {
+      "id": "E528",
+      "key": "tara_copy",
+      "title": "Tara’s circulated statement",
+      "action": "examine",
+      "content": "“Raghav alone ... the door ... I asked mother ...” Sections are crossed out. The circulated text suggests only Raghav was responsible.",
+      "cause": "Savitri selectively copied Tara’s statement."
+    },
+    "E171": {
+      "id": "E171",
+      "key": "tara_original",
+      "title": "Tara’s original statement and copybook",
+      "action": "authenticate",
+      "content": "Tara described Raghav ordering confinement and Savitri refusing release. Savitri’s copybook contains instructions to omit the latter passage. Independent ink layers confirm the later omission.",
+      "cause": "Original and working copy reveal the edit."
+    },
+    "E346": {
+      "id": "E346",
+      "key": "register",
+      "title": "Death-register comparison",
+      "action": "authenticate",
+      "content": "Vedant’s replacement register omits patient Nera. An earlier parish duplicate and his correction ledger establish that he deliberately removed the entry.",
+      "cause": "A surviving duplicate exposes alteration."
+    },
+    "E192": {
+      "id": "E192",
+      "key": "harun",
+      "title": "Guide Harun’s recovered packet",
+      "action": "examine",
+      "content": "Harun recorded seeing the grave crates. He retained a threat from Vedant directing him to the quarry, with a matching appointment token.",
+      "cause": "The guide preserves material before his death."
+    },
+    "E664": {
+      "id": "E664",
+      "key": "quarry",
+      "title": "Quarry inquest and retained payment",
+      "action": "authenticate",
+      "content": "The inquest establishes Harun was killed, not lost in a fall. Vedant’s signed payment to the confessed attacker specifies silencing Harun over the crates; the attacker’s account matches nonpublic scene details.",
+      "cause": "Medical findings and independent financial material corroborate the guide’s killing."
+    },
+    "E534": {
+      "id": "E534",
+      "key": "elsie",
+      "title": "Elsie’s death examination",
+      "action": "authenticate",
+      "content": "Elsie died of the same progressive illness described in months of physician notes. Examination finds no injury or administered poison; the household’s timed observations support the illness course.",
+      "cause": "The physician compares the death with earlier medical records."
+    },
+    "E160": {
+      "id": "E160",
+      "key": "elsie_notes",
+      "title": "Elsie’s earlier medical notes",
+      "action": "examine",
+      "content": "Dated entries document severe deterioration before Mira’s death. The hospice copy independently matches the physician’s notes.",
+      "cause": "Two institutions preserve the prior illness record."
+    },
+    "E946": {
+      "id": "E946",
+      "key": "ward",
+      "title": "Ninth-ward controlled observation",
+      "action": "authenticate",
+      "content": "In repeated witnessed trials, the sealed ward object produces the same previously concealed phrase without physical contact. Swapping it for an inert replica stops the effect. Savitri and Vedant accurately describe the phrase separately. Neither trial identifies a killer.",
+      "cause": "An in-world repeatable supernatural rule manifests under controlled conditions."
+    },
+    "E679": {
+      "id": "E679",
+      "key": "choices",
+      "title": "Savitri and Vedant’s private exchange",
+      "action": "examine",
+      "content": "“The voice returns when we handle the ward key. It cannot move our hands. We can refuse; yesterday we did. Tonight we will act.” Separate dated diaries record the same bounded experiences.",
+      "cause": "The pair document influence and retained choice before the murder."
+    },
+    "E226": {
+      "id": "E226",
+      "key": "medium",
+      "title": "Ishan’s object impression",
+      "action": "interview",
+      "content": "Blood on a sleeve. “Stay with me.” I cannot see a face or know whether this happened before or after the injury.",
+      "cause": "A genuine but context-poor perception reflects Dev rendering aid."
+    },
+    "E328": {
+      "id": "E328",
+      "key": "gossip",
+      "title": "Three town accusations",
+      "action": "interview",
+      "content": "Three witnesses repeat: “Dev threatened her before the ninth bell.” Each admits hearing it from the constable, who read the supposed threat.",
+      "cause": "One forged source produces several dependent reports."
+    },
+    "E745": {
+      "id": "E745",
+      "key": "flight",
+      "title": "Departure letter",
+      "action": "examine",
+      "content": "A resident left to escape a blackmailer over an affair. A road-keeper’s dated receipt places departure before Mira’s murder.",
+      "cause": "An unrelated secret explains apparent flight."
+    },
+    "E742": {
+      "id": "E742",
+      "key": "raghav_alibi",
+      "title": "Raghav’s independent alibi",
+      "action": "authenticate",
+      "content": "Two separate tollhouse records and the keeper place Raghav beyond the closed bridge throughout 21:00–21:30. He could not reach Mercy House during the fatal interval.",
+      "cause": "Independent route records exclude direct participation."
+    },
+    "E163": {
+      "id": "E163",
+      "key": "kabir_alibi",
+      "title": "Kabir’s arrival register",
+      "action": "authenticate",
+      "content": "The gatekeeper and Anya place Kabir’s first arrival at 21:40, after Mira’s death. The custody breach occurred later.",
+      "cause": "Independent observers distinguish concealment from murder."
+    },
+    "E690": {
+      "id": "E690",
+      "key": "dev_statement",
+      "title": "Dev’s account and treatment cloth",
+      "action": "authenticate",
+      "content": "Dev arrived at 21:16 and pressed his sleeve to Mira’s wound. The cook witnessed his arrival after the attack. The cloth pattern agrees with the physician’s findings.",
+      "cause": "Witness and physical comparison corroborate aid."
+    }
+  },
+  "characters": {
+    "savitri": {
+      "name": "Savitri Das",
+      "background": "Leena’s mother; former matron. Comforted the detective after Tara’s death.",
+      "goal": "Keep her part in the ninth-ward confinement secret.",
+      "secret": "Participated in the murder and its concealment; experiences intrusive voices."
+    },
+    "vedant": {
+      "name": "Professor Vedant Rao",
+      "background": "Scholar of acoustics, wheelchair user, designer of Mercy House’s speaking tubes and archive.",
+      "goal": "Protect his reputation and preserve his experiments.",
+      "secret": "Helped suppress the register and knowingly assisted the murder."
+    },
+    "dev": {
+      "name": "Dev Malik",
+      "background": "Gravedigger and former caretaker; distrusted by the town.",
+      "goal": "Clear his name without exposing unauthorized grave openings.",
+      "secret": "Returned possessions from unnamed graves; attempted to save Mira."
+    },
+    "kabir": {
+      "name": "Kabir Rao",
+      "background": "Your trusted subordinate; you once saved his life.",
+      "goal": "Protect his brother Nalin.",
+      "secret": "Removed an envelope after the murder to hide his brother’s illicit delivery."
+    },
+    "leena": {
+      "name": "Leena Das",
+      "background": "Your former partner; Savitri’s daughter.",
+      "goal": "Protect her privacy and get Mira’s findings heard.",
+      "secret": "Had an affair with Mira and supplied restricted letters."
+    },
+    "raghav": {
+      "name": "Raghav Sethi",
+      "background": "Former director. You blame him for your sister Tara’s death.",
+      "goal": "Avoid exposure of institutional confinement.",
+      "secret": "Ordered confinement twelve years ago, but did not kill Mira."
+    },
+    "ishan": {
+      "name": "Ishan Vale",
+      "background": "A medium shunned by the town.",
+      "goal": "Understand object-bound sensory fragments.",
+      "secret": "Perceptions can be genuine but lack identity and temporal context."
+    },
+    "anya": {
+      "name": "Anya Paul",
+      "background": "Junior investigator; questions your preferred theory.",
+      "goal": "Preserve originals and distinguish independent sources.",
+      "secret": "No concealed wrongdoing."
+    }
+  },
+  "proof_bundles": {
+    "savitri_killed_mira": [
+      [
+        "E504",
+        "E766"
+      ]
+    ],
+    "vedant_killed_mira": [
+      [
+        "E504",
+        "E766"
+      ],
+      [
+        "E504",
+        "E149"
+      ],
+      [
+        "E504",
+        "E254"
+      ]
+    ],
+    "savitri_assisted_murder": [
+      [
+        "E504",
+        "E766"
+      ],
+      [
+        "E504",
+        "E149"
+      ],
+      [
+        "E504",
+        "E254"
+      ]
+    ],
+    "vedant_assisted_murder": [
+      [
+        "E149",
+        "E504",
+        "E766"
+      ]
+    ],
+    "vedant_altered_register": [
+      [
+        "E346"
+      ]
+    ],
+    "savitri_forged_threat": [
+      [
+        "E940",
+        "E648"
+      ]
+    ],
+    "savitri_moved_bodies": [
+      [
+        "E196",
+        "E474",
+        "E696"
+      ]
+    ],
+    "kabir_removed_letter": [
+      [
+        "E619",
+        "E319"
+      ]
+    ],
+    "leena_mira_affair": [
+      [
+        "E138",
+        "E188"
+      ]
+    ],
+    "dev_aided_mira": [
+      [
+        "E254",
+        "E690"
+      ]
+    ],
+    "raghav_confined_tara": [
+      [
+        "E544"
+      ]
+    ],
+    "savitri_edited_statement": [
+      [
+        "E528",
+        "E171"
+      ]
+    ],
+    "vedant_killed_guide": [
+      [
+        "E192",
+        "E664"
+      ]
+    ],
+    "elsie_natural_death": [
+      [
+        "E534",
+        "E160"
+      ]
+    ],
+    "ghost_influenced_pair": [
+      [
+        "E946",
+        "E679"
+      ]
+    ],
+    "ghost_caused_all_deaths": [
+      [
+        "E946",
+        "E679",
+        "E254",
+        "E534"
+      ],
+      [
+        "E534"
+      ]
+    ],
+    "dev_killed_mira": [
+      [
+        "E254",
+        "E690",
+        "E504"
+      ]
+    ],
+    "raghav_killed_mira": [
+      [
+        "E254",
+        "E742"
+      ],
+      [
+        "E742",
+        "E504"
+      ]
+    ],
+    "kabir_killed_mira": [
+      [
+        "E254",
+        "E163"
+      ],
+      [
+        "E163",
+        "E504"
+      ]
+    ],
+    "leena_killed_mira": [
+      [
+        "E254",
+        "E188"
+      ],
+      [
+        "E188",
+        "E504"
+      ]
+    ]
+  },
+  "truth": {
+    "savitri_killed_mira": true,
+    "vedant_killed_mira": false,
+    "savitri_assisted_murder": false,
+    "vedant_assisted_murder": true,
+    "vedant_altered_register": true,
+    "savitri_forged_threat": true,
+    "savitri_moved_bodies": true,
+    "kabir_removed_letter": true,
+    "leena_mira_affair": true,
+    "dev_aided_mira": true,
+    "raghav_confined_tara": true,
+    "savitri_edited_statement": true,
+    "vedant_killed_guide": true,
+    "elsie_natural_death": true,
+    "ghost_influenced_pair": true,
+    "ghost_caused_all_deaths": false,
+    "dev_killed_mira": false,
+    "raghav_killed_mira": false,
+    "kabir_killed_mira": false,
+    "leena_killed_mira": false
+  },
+  "proofs": {
+    "savitri_killed_mira": [
+      "E504",
+      "E766"
+    ],
+    "vedant_killed_mira": [
+      "E504",
+      "E766"
+    ],
+    "savitri_assisted_murder": [
+      "E504",
+      "E766"
+    ],
+    "vedant_assisted_murder": [
+      "E149",
+      "E504",
+      "E766"
+    ],
+    "vedant_altered_register": [
+      "E346"
+    ],
+    "savitri_forged_threat": [
+      "E940",
+      "E648"
+    ],
+    "savitri_moved_bodies": [
+      "E196",
+      "E474",
+      "E696"
+    ],
+    "kabir_removed_letter": [
+      "E619",
+      "E319"
+    ],
+    "leena_mira_affair": [
+      "E138",
+      "E188"
+    ],
+    "dev_aided_mira": [
+      "E254",
+      "E690"
+    ],
+    "raghav_confined_tara": [
+      "E544"
+    ],
+    "savitri_edited_statement": [
+      "E528",
+      "E171"
+    ],
+    "vedant_killed_guide": [
+      "E192",
+      "E664"
+    ],
+    "elsie_natural_death": [
+      "E534",
+      "E160"
+    ],
+    "ghost_influenced_pair": [
+      "E946",
+      "E679"
+    ],
+    "ghost_caused_all_deaths": [
+      "E946",
+      "E679",
+      "E254",
+      "E534"
+    ],
+    "dev_killed_mira": [
+      "E254",
+      "E690",
+      "E504"
+    ],
+    "raghav_killed_mira": [
+      "E254",
+      "E742"
+    ],
+    "kabir_killed_mira": [
+      "E254",
+      "E163"
+    ],
+    "leena_killed_mira": [
+      "E254",
+      "E188"
+    ]
+  }
+}

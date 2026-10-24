@@ -1,0 +1,38 @@
+services:
+  world:
+    build: .
+    command: ["python", "-m", "mercy.server"]
+    networks: [sealed]
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    pids_limit: 64
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',8000),2).close()"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  harness:
+    build: .
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    depends_on:
+      world:
+        condition: service_healthy
+    init: true
+    env_file: .env
+    environment:
+      WORLD_URL: http://world:8000
+    networks: [sealed, model_api]
+    volumes:
+      - ./logs:/app/logs
+      - ./inputs:/app/inputs:ro
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    pids_limit: 64
+networks:
+  sealed:
+    internal: true
+  model_api: {}

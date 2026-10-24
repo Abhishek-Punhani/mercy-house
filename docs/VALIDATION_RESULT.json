@@ -1,0 +1,26 @@
+{
+  "town_tests": 76,
+  "legacy_tests": 9,
+  "passed": true,
+  "cold_build_seconds": 23.208,
+  "cold_build": {
+    "exit_code": 0,
+    "seconds": 23.208,
+    "builder": "new isolated docker-container builder",
+    "cache": "new builder; no imported cache; --no-cache",
+    "scope": "four current images on this machine; includes builder bootstrap/base download; not organizer-machine certification"
+  },
+  "command_probe": {
+    "passed": true,
+    "checks": {
+      "real_command_to_public_world": true,
+      "no_keys_no_control_no_private_files_no_external_egress": true,
+      "public_gateway_cannot_reset_or_read_private_routes": true,
+      "timeout_then_continue": true,
+      "fake_workspace_evidence_cannot_score": true,
+      "legitimate_solution_through_real_commands": true
+    }
+  },
+  "gate_tasks": 5,
+  "source_note": "Current source: tool-description and legacy limitation-text clarification after frozen live source. No reward relaxation; frozen live results retained."
+}

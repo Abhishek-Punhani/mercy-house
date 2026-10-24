@@ -1,0 +1,8 @@
+FROM python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+ARG RUN_UID=1000
+RUN useradd --uid ${RUN_UID} --create-home town && mkdir -p /control /logs/private && chown -R town:town /control /logs
+WORKDIR /app
+COPY mercy /app/mercy
+USER town
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+CMD ["python", "-m", "mercy.town.service"]

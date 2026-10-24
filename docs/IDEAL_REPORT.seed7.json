@@ -1,0 +1,167 @@
+{
+  "claims": [
+    {
+      "claim_id": "savitri_killed_mira",
+      "status": "established",
+      "evidence_ids": [
+        "E504",
+        "E766"
+      ]
+    },
+    {
+      "claim_id": "vedant_killed_mira",
+      "status": "refuted",
+      "evidence_ids": [
+        "E504",
+        "E766"
+      ]
+    },
+    {
+      "claim_id": "savitri_assisted_murder",
+      "status": "refuted",
+      "evidence_ids": [
+        "E504",
+        "E766"
+      ]
+    },
+    {
+      "claim_id": "vedant_assisted_murder",
+      "status": "established",
+      "evidence_ids": [
+        "E149",
+        "E504",
+        "E766"
+      ]
+    },
+    {
+      "claim_id": "vedant_altered_register",
+      "status": "established",
+      "evidence_ids": [
+        "E346"
+      ]
+    },
+    {
+      "claim_id": "savitri_forged_threat",
+      "status": "established",
+      "evidence_ids": [
+        "E940",
+        "E648"
+      ]
+    },
+    {
+      "claim_id": "savitri_moved_bodies",
+      "status": "established",
+      "evidence_ids": [
+        "E196",
+        "E474",
+        "E696"
+      ]
+    },
+    {
+      "claim_id": "kabir_removed_letter",
+      "status": "established",
+      "evidence_ids": [
+        "E619",
+        "E319"
+      ]
+    },
+    {
+      "claim_id": "leena_mira_affair",
+      "status": "established",
+      "evidence_ids": [
+        "E138",
+        "E188"
+      ]
+    },
+    {
+      "claim_id": "dev_aided_mira",
+      "status": "established",
+      "evidence_ids": [
+        "E254",
+        "E690"
+      ]
+    },
+    {
+      "claim_id": "raghav_confined_tara",
+      "status": "established",
+      "evidence_ids": [
+        "E544"
+      ]
+    },
+    {
+      "claim_id": "savitri_edited_statement",
+      "status": "established",
+      "evidence_ids": [
+        "E528",
+        "E171"
+      ]
+    },
+    {
+      "claim_id": "vedant_killed_guide",
+      "status": "established",
+      "evidence_ids": [
+        "E192",
+        "E664"
+      ]
+    },
+    {
+      "claim_id": "elsie_natural_death",
+      "status": "established",
+      "evidence_ids": [
+        "E534",
+        "E160"
+      ]
+    },
+    {
+      "claim_id": "ghost_influenced_pair",
+      "status": "established",
+      "evidence_ids": [
+        "E946",
+        "E679"
+      ]
+    },
+    {
+      "claim_id": "ghost_caused_all_deaths",
+      "status": "refuted",
+      "evidence_ids": [
+        "E946",
+        "E679",
+        "E254",
+        "E534"
+      ]
+    },
+    {
+      "claim_id": "dev_killed_mira",
+      "status": "refuted",
+      "evidence_ids": [
+        "E254",
+        "E690",
+        "E504"
+      ]
+    },
+    {
+      "claim_id": "raghav_killed_mira",
+      "status": "refuted",
+      "evidence_ids": [
+        "E254",
+        "E742"
+      ]
+    },
+    {
+      "claim_id": "kabir_killed_mira",
+      "status": "refuted",
+      "evidence_ids": [
+        "E254",
+        "E163"
+      ]
+    },
+    {
+      "claim_id": "leena_killed_mira",
+      "status": "refuted",
+      "evidence_ids": [
+        "E254",
+        "E188"
+      ]
+    }
+  ]
+}

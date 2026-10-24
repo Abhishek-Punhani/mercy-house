@@ -1,0 +1,55 @@
+{
+  "version": "v2-experimental",
+  "fixture_tests": 14,
+  "live_prelude": {
+    "run": "town-v2-1792778781491318843",
+    "rounds": 4,
+    "independent_characters": 16,
+    "murder_event": {
+      "id": "j20",
+      "tick": 1,
+      "kind": "fatal_injury",
+      "actor": "savitri",
+      "location": "archive",
+      "detail": "Savitri strikes Mira with the heavy desk seal. Mira collapses beside the desk.",
+      "proposition": {
+        "predicate": "killed",
+        "actor": "savitri",
+        "object": "mira"
+      }
+    },
+    "detector_was_given_truth": false
+  },
+  "detective_summary": {
+    "reason": "step_cap",
+    "result": null,
+    "minutes": 59,
+    "seconds": 32.89
+  },
+  "notes": [
+    "No success score claimed. Detective ran only 12 replies and did not submit a report.",
+    "First live prelude produced no murder and was retained, not rewritten.",
+    "Background histories and earlier crimes remain authored; not a full autonomous lifetime simulator.",
+    "Live run preceded the small visible-body and silent-internal-monologue clarifications; current boundary tests cover the revised code.",
+    "The first delegation probe attempted to re-hide an already recorded item; this bug was fixed and regression-tested. Only fresh-delegation-probe.json tests the corrected live choice on a fresh letter."
+  ],
+  "controlled_delegation_probe": {
+    "setup": "Offline fixture incident; fresh unsearched letter; live LLM Kabir chooses the search behavior. Investigator route is scripted.",
+    "search_result": {
+      "searched": "visitors book",
+      "by": "kabir",
+      "findings": [
+        {
+          "record_id": "r1",
+          "object_id": "o90472-2",
+          "label": "visitors book",
+          "where": "hall",
+          "found_by": "kabir",
+          "description": "Names and arrival times, with a loose folded envelope between the last pages."
+        }
+      ],
+      "statement": "I found nothing else."
+    },
+    "concealment_happened": true
+  }
+}

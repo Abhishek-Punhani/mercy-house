@@ -1,0 +1,95 @@
+services:
+  world:
+    build:
+      context: .
+      dockerfile: Dockerfile.world
+      args: {RUN_UID: "${LOCAL_UID:-1000}"}
+    networks: [sealed]
+    init: true
+    read_only: true
+    environment:
+      NPC_BROKER_URL: http://model-gateway:8001/character
+      WORLD_TOKEN_FILE: /control/token
+      PRIVATE_LOG_DIR: /logs/private
+    volumes:
+      - control:/control
+      - ./logs/private:/logs/private
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 512m
+    pids_limit: 64
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health',timeout=2).close()"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  model-gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.gateway
+      args: {RUN_UID: "${LOCAL_UID:-1000}"}
+    depends_on:
+      world: {condition: service_healthy}
+    env_file: .env
+    environment: {WORLD_TOKEN_FILE: /control/token}
+    networks: [sealed, model_api]
+    volumes: ["control:/control:ro"]
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    pids_limit: 64
+  workspace:
+    build:
+      context: .
+      dockerfile: Dockerfile.workspace
+      args: {RUN_UID: "${LOCAL_UID:-1000}"}
+    networks: [sealed]
+    environment: {TOWN_GATEWAY_URL: "http://harness:8002"}
+    init: true
+    read_only: true
+    tmpfs:
+      - /workspace:uid=${LOCAL_UID:-1000},gid=${LOCAL_UID:-1000},mode=0700,size=64m
+      - /tmp:uid=${LOCAL_UID:-1000},gid=${LOCAL_UID:-1000},mode=0700,size=16m
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    cpus: 1
+    pids_limit: 64
+  harness:
+    build:
+      context: .
+      dockerfile: Dockerfile.detective
+      args: {RUN_UID: "${LOCAL_UID:-1000}"}
+    depends_on:
+      world: {condition: service_healthy}
+      model-gateway: {condition: service_started}
+      workspace: {condition: service_started}
+    init: true
+    read_only: true
+    environment:
+      MODE: ${MODE:-full}
+      MODEL: ${MODEL:-gpt-6-luna}
+      TASK_ID: ${TASK_ID:-last_witness}
+      SEED: ${SEED:-7}
+      APPEND_FILE: ${APPEND_FILE:-inputs/append.txt}
+      NPC_BACKEND: ${NPC_BACKEND:-llm}
+      MODEL_GATEWAY_URL: http://model-gateway:8001
+      WORLD_URL: http://world:8000
+      WORLD_TOKEN_FILE: /control/token
+      WORKSPACE_URL: http://workspace:8003
+    networks: [sealed]
+    volumes:
+      - control:/control:ro
+      - ./logs/public:/logs/public
+      - ./inputs:/app/inputs:ro
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    pids_limit: 64
+networks:
+  sealed: {internal: true}
+  model_api: {}
+volumes:
+  control: {}

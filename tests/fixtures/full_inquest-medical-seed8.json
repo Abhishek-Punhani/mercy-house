@@ -1,0 +1,377 @@
+[
+  {
+    "tool": "catalog",
+    "args": {}
+  },
+  {
+    "tool": "preserve",
+    "args": {
+      "evidence_id": "E187"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E332"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E479"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E484"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E229"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E297"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E821"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E144"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E187"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E240"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E353"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E930"
+    }
+  },
+  {
+    "tool": "interview",
+    "args": {
+      "evidence_id": "E618"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E314"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E510"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E757"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E131"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E570"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E599"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E564"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E499"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E606"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E686"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E296"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E950"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E512"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E191"
+    }
+  },
+  {
+    "tool": "interview",
+    "args": {
+      "evidence_id": "E596"
+    }
+  },
+  {
+    "tool": "interview",
+    "args": {
+      "evidence_id": "E339"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E877"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E120"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E817"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E373"
+    }
+  },
+  {
+    "tool": "submit_report",
+    "args": {
+      "claims": [
+        {
+          "claim_id": "savitri_killed_mira",
+          "status": "refuted",
+          "evidence_ids": [
+            "E484",
+            "E479"
+          ]
+        },
+        {
+          "claim_id": "vedant_killed_mira",
+          "status": "established",
+          "evidence_ids": [
+            "E484",
+            "E229",
+            "E479"
+          ]
+        },
+        {
+          "claim_id": "savitri_assisted_murder",
+          "status": "established",
+          "evidence_ids": [
+            "E484",
+            "E297",
+            "E229"
+          ]
+        },
+        {
+          "claim_id": "vedant_assisted_murder",
+          "status": "refuted",
+          "evidence_ids": [
+            "E484",
+            "E479"
+          ]
+        },
+        {
+          "claim_id": "vedant_altered_register",
+          "status": "established",
+          "evidence_ids": [
+            "E499"
+          ]
+        },
+        {
+          "claim_id": "savitri_forged_threat",
+          "status": "established",
+          "evidence_ids": [
+            "E144",
+            "E187",
+            "E821"
+          ]
+        },
+        {
+          "claim_id": "savitri_moved_bodies",
+          "status": "established",
+          "evidence_ids": [
+            "E353",
+            "E930",
+            "E240"
+          ]
+        },
+        {
+          "claim_id": "kabir_removed_letter",
+          "status": "established",
+          "evidence_ids": [
+            "E314",
+            "E510",
+            "E618"
+          ]
+        },
+        {
+          "claim_id": "leena_mira_affair",
+          "status": "established",
+          "evidence_ids": [
+            "E757",
+            "E131"
+          ]
+        },
+        {
+          "claim_id": "dev_aided_mira",
+          "status": "established",
+          "evidence_ids": [
+            "E479",
+            "E373"
+          ]
+        },
+        {
+          "claim_id": "raghav_confined_tara",
+          "status": "established",
+          "evidence_ids": [
+            "E570"
+          ]
+        },
+        {
+          "claim_id": "savitri_edited_statement",
+          "status": "established",
+          "evidence_ids": [
+            "E564",
+            "E599"
+          ]
+        },
+        {
+          "claim_id": "vedant_killed_guide",
+          "status": "established",
+          "evidence_ids": [
+            "E606",
+            "E686"
+          ]
+        },
+        {
+          "claim_id": "elsie_natural_death",
+          "status": "established",
+          "evidence_ids": [
+            "E296",
+            "E950"
+          ]
+        },
+        {
+          "claim_id": "ghost_influenced_pair",
+          "status": "established",
+          "evidence_ids": [
+            "E512",
+            "E191"
+          ]
+        },
+        {
+          "claim_id": "ghost_caused_all_deaths",
+          "status": "refuted",
+          "evidence_ids": [
+            "E296",
+            "E686",
+            "E484"
+          ]
+        },
+        {
+          "claim_id": "dev_killed_mira",
+          "status": "refuted",
+          "evidence_ids": [
+            "E484",
+            "E373",
+            "E479"
+          ]
+        },
+        {
+          "claim_id": "raghav_killed_mira",
+          "status": "refuted",
+          "evidence_ids": [
+            "E484",
+            "E120"
+          ]
+        },
+        {
+          "claim_id": "kabir_killed_mira",
+          "status": "refuted",
+          "evidence_ids": [
+            "E484",
+            "E817"
+          ]
+        },
+        {
+          "claim_id": "leena_killed_mira",
+          "status": "refuted",
+          "evidence_ids": [
+            "E484",
+            "E131"
+          ]
+        }
+      ],
+      "narrative": "The evidence identifies Vedant as the person who struck Mira. Savitri knowingly facilitated access by holding the corridor door but did not inflict the fatal injury. The independent timing and crossing record corroborate the kitchen witness; Dev arrived after the attack to aid Mira. The remaining documentary and physical records establish the other specified acts. The ward-object trials support an object-bound influence on Savitri and Vedant, but their own exchange records that they retained the ability to refuse; the evidence does not support the entity directly causing every death."
+    }
+  }
+]

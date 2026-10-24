@@ -1,0 +1,245 @@
+[
+  {
+    "tool": "catalog",
+    "args": {}
+  },
+  {
+    "tool": "preserve",
+    "args": {
+      "evidence_id": "E187"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E512"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E499"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E296"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E950"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E191"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E314"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E187"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E570"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E564"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E332"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E479"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E484"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E229"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E297"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E821"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E144"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E240"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E353"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E930"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E510"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E757"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E131"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E599"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E606"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E686"
+    }
+  },
+  {
+    "tool": "interview",
+    "args": {
+      "evidence_id": "E596"
+    }
+  },
+  {
+    "tool": "interview",
+    "args": {
+      "evidence_id": "E339"
+    }
+  },
+  {
+    "tool": "examine",
+    "args": {
+      "evidence_id": "E877"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E120"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E817"
+    }
+  },
+  {
+    "tool": "authenticate",
+    "args": {
+      "evidence_id": "E373"
+    }
+  },
+  {
+    "tool": "interview",
+    "args": {
+      "evidence_id": "E618"
+    }
+  },
+  {
+    "tool": "submit_report",
+    "args": {
+      "claims": [
+        {
+          "claim_id": "ghost_influenced_pair",
+          "status": "established",
+          "evidence_ids": [
+            "E512",
+            "E191"
+          ]
+        },
+        {
+          "claim_id": "ghost_caused_all_deaths",
+          "status": "refuted",
+          "evidence_ids": [
+            "E686",
+            "E296",
+            "E297",
+            "E229"
+          ]
+        },
+        {
+          "claim_id": "vedant_altered_register",
+          "status": "established",
+          "evidence_ids": [
+            "E499"
+          ]
+        },
+        {
+          "claim_id": "elsie_natural_death",
+          "status": "established",
+          "evidence_ids": [
+            "E296",
+            "E950"
+          ]
+        }
+      ],
+      "narrative": "Controlled tests found that a sealed ward object produced a concealed phrase, while substitution with an inert replica stopped the effect. Savitri and Vedant separately recorded matching experiences, but their exchange states they could refuse and had done so; this supports influence without removing agency, not supernatural control. The evidence does not identify an entity as the cause of any death. The proposition that it directly caused every death is false: Elsie\u2019s examination and prior medical notes support death from her progressive illness, while the evidence concerning Harun establishes a human killing arranged by Vedant; the planning letter and independent crossing records also support deliberate human involvement in Mira\u2019s murder. Vedant deliberately altered the replacement death-register copy by omitting Nera."
+    }
+  }
+]

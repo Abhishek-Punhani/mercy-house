@@ -1,0 +1,10 @@
+FROM python:3.12.8-slim@sha256:2199a62885a12290dc9c5be3ca0681d367576ab7bf037da120e564723292a2f0
+ARG RUN_UID=1000
+RUN useradd --uid ${RUN_UID} --create-home actor && mkdir -p /workspace && chown actor:actor /workspace
+WORKDIR /workspace
+COPY mercy/town/workspace.py /app/workspace.py
+COPY mercy/town/town_cli.py /usr/local/bin/town
+RUN chmod 755 /usr/local/bin/town
+USER actor
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+CMD ["python", "/app/workspace.py"]

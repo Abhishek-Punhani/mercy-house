@@ -1,0 +1,52 @@
+{
+  "your_life": {
+    "name": "Inspector Arun Mehra",
+    "age": 38,
+    "occupation": "district investigator",
+    "life_history": [
+      "Grew up on Mill Lane in Bhairav’s Hollow with younger sister Tara; your father repaired coach wheels and your mother kept the household accounts.",
+      "Tara died at Mercy House twelve winters ago. The official letter called it a winter fever; you have never seen her original statement.",
+      "Spent later years trying to obtain original records.",
+      "Worked with Constable Kabir Mehta for six years; pulled him from a flooded cellar.",
+      "Lived with Leena Das for three years before they separated.",
+      "Received a letter from Dr. Mira Sen asking you to visit Mercy House about an old family record. You traveled here on leave, before any death was reported."
+    ],
+    "ordinary_life": [
+      "Keep a room in the district headquarters, a day’s coach journey away.",
+      "Remember the chapel path and the market square from childhood; several Mercy House rooms have since changed.",
+      "Still write occasionally to Leena, usually about practical matters."
+    ],
+    "remembered_people": {
+      "kabir": "colleague of six years",
+      "leena": "former partner",
+      "savitri": "Leena’s mother; served tea after Tara’s funeral",
+      "raghav": "signed letters refusing requests for Tara’s records"
+    }
+  },
+  "now": {
+    "place": {
+      "id": "archive",
+      "name": "Mercy House archive",
+      "description": "Oil lamps illuminate a desk, a cold fireplace and shelves. A service door opens toward the scullery."
+    },
+    "immediately_visible": "A woman lies motionless beside the archive desk.",
+    "exits": [
+      {
+        "id": "hall",
+        "name": "Mercy House entrance hall"
+      },
+      {
+        "id": "scullery",
+        "name": "Mercy House scullery"
+      }
+    ],
+    "searchable_features": [
+      "desk",
+      "fireplace",
+      "floor",
+      "shelves"
+    ],
+    "minutes_since_arrival": 0
+  },
+  "assignment": "A death has been reported. Establish what happened, preserve what you find, and submit your account with sources. You decide what to investigate."
+}
