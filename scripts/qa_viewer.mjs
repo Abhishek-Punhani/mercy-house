@@ -1,0 +1,54 @@
+// Browser verification against the dedicated local Chrome CDP instance.
+// Run: node --experimental-websocket scripts/qa_viewer.mjs
+import fs from 'node:fs/promises';
+const tab=await(await fetch('http://localhost:9224/json/new?'+encodeURIComponent('http://localhost:8787'),{method:'PUT'})).json();
+const socket=new WebSocket(tab.webSocketDebuggerUrl);await new Promise(resolve=>socket.addEventListener('open',resolve,{once:true}));
+let sequence=0;const pending=new Map(),errors=[];
+socket.addEventListener('message',event=>{const message=JSON.parse(event.data);if(message.id){const job=pending.get(message.id);if(!job)return;pending.delete(message.id);message.error?job.reject(new Error(JSON.stringify(message.error))):job.resolve(message.result);}else if(message.method==='Runtime.exceptionThrown')errors.push(message.params.exceptionDetails.text+' '+JSON.stringify(message.params.exceptionDetails.exception||{}));});
+const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;pending.set(id,{resolve,reject});socket.send(JSON.stringify({id,method,params}));});
+const evaluate=async expression=>{const result=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw new Error(JSON.stringify(result.exceptionDetails));return result.result.value;};
+const wait=async expression=>{for(let i=0;i<80;i++){if(await evaluate(expression))return;await new Promise(resolve=>setTimeout(resolve,100));}throw new Error('Timed out: '+expression);};
+const check=(value,message)=>{if(!value)throw new Error(message);};
+const shot=async name=>{await new Promise(resolve=>setTimeout(resolve,800));const result=await call('Page.captureScreenshot',{format:'png'});await fs.writeFile('logs/'+name,Buffer.from(result.data,'base64'));};
+try{
+ await call('Runtime.enable');await call('Page.enable');await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
+ await wait('document.getElementById("event-count")?.textContent.includes(" / ") && document.getElementById("event-count").textContent!=="0 / 0"');
+ check(await evaluate('document.querySelectorAll("#occupants .actor").length===1'),'Opening must not reveal undiscovered NPCs');
+ await shot('viewer-opening-desktop.png');
+ const target=await evaluate('(async()=>{const run=await(await fetch("/api/runs/reference-inquest")).json();return run.events.findIndex(e=>e.type==="action"&&e.action.tool==="ask")+1})()');
+ await evaluate('(()=>{const seek=document.getElementById("seek");seek.value='+target+';seek.dispatchEvent(new Event("input",{bubbles:true}));})()');
+ await wait('!document.getElementById("conversation").classList.contains("hidden")');
+ check(await evaluate('document.getElementById("question-text").textContent.length>10 && document.getElementById("answer-text").textContent.length>10'),'Actual question and answer must be shown');
+ check(await evaluate('Number(document.getElementById("record-count").textContent)>0'),'Acquired evidence tray should populate');
+ await shot('viewer-conversation-desktop.png');
+ const box=await evaluate('(()=>{const r=document.querySelector(".stage").getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,scale:1}})()');
+ const stageImage=await call('Page.captureScreenshot',{format:'png',clip:box});await fs.writeFile('logs/viewer-stage.png',Buffer.from(stageImage.data,'base64'));
+ await evaluate('document.querySelector(".evidence-card").click()');await wait('document.getElementById("detail-dialog").open');
+ check(await evaluate('document.getElementById("detail-body").textContent.length>10'),'Evidence dialog has actual content');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("end-button").click()');
+ await wait('document.getElementById("detail-dialog").open');
+ check(await evaluate('document.getElementById("detail-body").textContent.includes("scripted reference")'),'Reference success must be explicitly labeled');
+ await shot('viewer-reference-verdict.png');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("library-button").click()');await wait('document.querySelectorAll(".library-entry").length>=6');
+ await evaluate('document.querySelectorAll(".library-entry")[1].click()');await wait('document.getElementById("run-kind").textContent==="RECORDED API MODEL"');
+ await evaluate('document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');
+ check(await evaluate('document.getElementById("detail-kicker").textContent.includes("STEP_CAP")||document.getElementById("detail-kicker").textContent.includes("FAILURE")'),'Model failure must stay a failure');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click();document.getElementById("new-button").click()');await wait('document.getElementById("settings-dialog").open');
+ check(await evaluate('document.getElementById("key-input").value===""'),'Configured key is never sent to browser');
+ await shot('viewer-provider-dialog.png');
+ await evaluate('document.querySelector("#settings-dialog .close-dialog").click();document.getElementById("library-button").click()');await wait('document.getElementById("library-dialog").open');
+ await evaluate('Array.from(document.querySelectorAll(".library-entry")).find(b=>b.textContent.includes("Navigation · trained selector")).click()');await wait('document.getElementById("run-kind").textContent==="RL CHECKPOINT REPLAY"');
+ await evaluate('(()=>{const seek=document.getElementById("seek");seek.value=3;seek.dispatchEvent(new Event("input",{bubbles:true}));})()');
+ check(await evaluate('!document.getElementById("selector-panel").classList.contains("hidden")'),'RL replay must show measured action-selection probability');
+ await evaluate('document.getElementById("end-button").click()');await wait('document.getElementById("detail-dialog").open');
+ check(await evaluate('document.getElementById("detail-body").textContent.includes("Exercise reward")&&document.getElementById("detail-body").textContent.includes("Town report score")'),'Exercise success and Town reward must stay distinct');
+ await evaluate('document.querySelector("#detail-dialog .close-dialog").click()');
+ await evaluate('document.getElementById("library-button").click()');await wait('document.getElementById("library-dialog").open');
+ await evaluate('document.querySelector(".library-entry").click()');await wait('document.getElementById("run-kind").textContent==="SCRIPTED REFERENCE"');
+ await call('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ check(await evaluate('document.documentElement.scrollWidth<=window.innerWidth'),'Mobile layout must not overflow horizontally');
+ await shot('viewer-mobile.png');
+ check(errors.length===0,'Browser JavaScript errors: '+errors.join('; '));
+ await fs.writeFile('logs/viewer-browser-checks.json',JSON.stringify({passed:true,checks:['opening hides undiscovered NPCs','actual dialogue and evidence','evidence details','scripted reference label','actual model failure label','provider key absent from DOM','responsive mobile layout','RL choice probability is labeled','checkpoint reward separate from Town report score'],javascript_errors:errors},null,2)+'\n');
+ console.log(JSON.stringify({passed:true,browser_errors:errors,screenshots:5}));
+}finally{socket.close();}

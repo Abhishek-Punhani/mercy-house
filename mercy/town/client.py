@@ -23,9 +23,14 @@ def rpc(path,payload,timeout=None):
     with urllib.request.urlopen(req,timeout=timeout or (600 if path=='/initialize' else 120 if path=='/gate' else 60)) as response:return json.load(response)
 
 class Proxy:
-    def __init__(self,opening):self.initial=opening;self.ended=False;self.clock=0;self.hash='';self.seed=int(os.getenv('SEED','7'));self.action_timeout=60;self.lock=threading.RLock()
+    def __init__(self,opening,observer=None):self.initial=opening;self.ended=False;self.clock=0;self.hash='';self.seed=int(os.getenv('SEED','7'));self.action_timeout=60;self.lock=threading.RLock();self.observer=observer;self.reply_count=0
     def opening(self):return self.initial
+    def model_wait(self,step):
+        if self.observer:self.observer({'phase':'model_wait','reply':step})
+    def model_note(self,note,step):
+        if self.observer and note:self.observer({'phase':'reply_note','reply':step,'note':note[:1800]})
     def step(self,action,args):
+        if self.observer:self.observer({'phase':'start','action':{'tool':action,'args':args},'reply':self.reply_count})
         if action=='run_command':
             from .validation import validate_action
             validate_action(action,args)
@@ -37,9 +42,12 @@ class Proxy:
             if observation.get('timed_out'):observation['error']='Command timed out; partial output is retained and other tools remain available'
             with self.lock:
                 status=rpc('/status',{});self.ended=status['ended'];self.clock=status['minutes'];self.hash=status['state_hash']
+            if self.observer:self.observer({'phase':'result','action':{'tool':action,'args':args},'observation':observation,'reply':self.reply_count,'state':self.hash,'minutes':self.clock})
             return observation
         with self.lock:
-            result=rpc('/action',{'action':action,'args':args,'seconds':self.action_timeout},timeout=self.action_timeout);self.ended=result['ended'];self.clock=result['minutes'];self.hash=result['state_hash'];return result['observation']
+            result=rpc('/action',{'action':action,'args':args,'seconds':self.action_timeout},timeout=self.action_timeout);self.ended=result['ended'];self.clock=result['minutes'];self.hash=result['state_hash']
+            if self.observer:self.observer({'phase':'result','action':{'tool':action,'args':args},'observation':result['observation'],'reply':self.reply_count,'state':self.hash,'minutes':self.clock})
+            return result['observation']
     def state_hash(self):return self.hash
     @property
     def result(self):return rpc('/final',{}) if self.ended else None
@@ -127,8 +135,11 @@ def main():
         if not ready.get('detective') or (os.getenv('NPC_BACKEND','llm')=='llm' and not ready.get('character')):
             raise RuntimeError('Model roles are not configured. Set MODEL/API_KEY/BASE_URL and independent NPC_MODEL/NPC_API_KEY/NPC_BASE_URL; development sharing must be explicitly enabled.')
         start=rpc('/reset',{'task_id':task,'seed':seed,'backend':os.getenv('NPC_BACKEND','llm')})
-        world=Proxy(start['opening']);world.hash=start['state_hash'];world.seed=seed;controller['world']=world
         run_folder=folder/task
+        event_lock=threading.Lock()
+        def observe(event):
+            with event_lock:append_log(run_folder/'actions.jsonl',{'timestamp':time.time(),**event})
+        world=Proxy(start['opening'],observer=observe);world.hash=start['state_hash'];world.seed=seed;controller['world']=world
         write_json(run_folder/'run.json',{'world_run_id':start.get('run_id'),'mode':mode,'task_id':task,'seed':seed})
         summary=run_harness(world,run_folder,40)
         print(json.dumps(summary),flush=True)

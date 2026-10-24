@@ -44,3 +44,8 @@ Private audit chains record events, choices, invalid requests, before/after stat
 Unit tests cover private-context projections, canary extraction, unavailable memory IDs, local presence, strict schemas, locked access, evidence creation, pre-terminal score denial, false-claim flooding, provenance and alternative comparison paths. The container probe in `scripts/probe_container.py` exercised real commands, blocked external HTTPS, denied private world/reset routes, absence of keys/private files, timeout recovery, forged local proof receiving zero and a valid public-tool solution receiving full credit. Results are included in submission materials.
 
 Host-side development runners can read the repository and are not sandboxes. Do not run the workspace executor directly on the host: its process cleanup is intended for its isolated container. Docker isolation assumes an uncompromised host/kernel/daemon. We do not claim universal jailbreak resistance, formal noninterference, adversarial denial-of-service certification or that the trusted harness can be safely exposed as a general shell.
+
+
+## Optional story observer
+
+The host loopback viewer is a separate trusted administration surface, never mounted into the detective workspace. It serves explicit assets and a public-event projection; raw provider reasoning, unused memories and private actor/world files are excluded. Same-origin POST checks and a per-boot CSRF token protect run management. Model configuration is passed via process environment, separate from town credentials; source snapshots exclude .env. The UI has no arbitrary command/file endpoint. See [STORY_VIEWER.md](STORY_VIEWER.md) for the authority and scope.

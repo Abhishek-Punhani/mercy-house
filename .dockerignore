@@ -4,6 +4,7 @@ logs
 __pycache__
 tests
 docs
+viewer
 submission
 baseline-results
 *.zip

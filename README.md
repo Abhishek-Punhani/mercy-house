@@ -6,6 +6,10 @@ The submission is an RL **environment**. Judges supply the detective model. Our 
 
 ## Run
 
+For the optional animated story viewer, run `python -m mercy.viewer.server` and open **http://localhost:8787**. It includes room transitions, character mascots, actual dialogue, an evidence tray, provider configuration, live streaming and labeled recorded replays. Recorded cases make no model calls. [Viewer usage, validation and limits](docs/STORY_VIEWER.md).
+
+The viewer also replays actual trained-selector evaluations with action-selection probabilities. These are labeled skill checkpoints with prior acquired material, separately from full crime-scene model runs. It shows stated plans and hypotheses, not hidden reasoning or invented emotion scores. The standard judging command below remains independent of the viewer.
+
 Docker Compose v2 is required. Create `.env` from `.env.example`. Set `MODEL`, `API_KEY`, `BASE_URL` for the detective and `NPC_MODEL`, `NPC_API_KEY`, `NPC_BASE_URL` for environment characters. User-authorized development sharing uses explicit `ALLOW_SHARED_NPC_KEY=1`; submission NPC deployment must satisfy the PS’s own-setup requirement. No credentials are shipped.
 
 ```bash

@@ -461,11 +461,25 @@ class Town:
         self.audit.append('access_decision',{'person':pid,'area':owners[pid],'granted':granted})
         return {'granted':granted,'area':owners[pid] if granted else None,'words':decision.get('speech','')}
 
+    def review_records(self,records=None):
+        selected=list(self.receipts)[-12:] if records is None else records
+        if len(selected)>12 or any(r not in self.receipts for r in selected):
+            raise ValueError('You may review only records you possess')
+        return {'records':[{'record_id':r,**deepcopy(self.receipts[r]['content'])} for r in selected]}
+
+    def record_note(self,summary,hypotheses=None):
+        hypotheses=hypotheses or []
+        if len(summary)>1200 or any(len(h['statement'])>600 or any(r not in self.receipts for r in h['sources']) for h in hypotheses):
+            raise ValueError('Keep notes concise and cite only acquired records')
+        self.clock+=1
+        return self._receipt('notebook',{'summary':summary,'hypotheses':deepcopy(hypotheses),
+            'notice':'Detective-stated notes; not independently verified evidence.'})
+
     def step(self,action,args):
         before=self.state_hash()
         request={'action':action,'args':deepcopy(args),'flags':flags(json.dumps(args,ensure_ascii=False))}
         self.audit.append('detective_request',request)
-        methods={'look':self.look,'people_here':self.people_here,'go':self.move,'search':self.search,'collect':self.collect,'ask':self.ask,'compare':self.compare,'request_access':self.request_access,'excavate':self.excavate,'submit_report':self.submit}
+        methods={'look':self.look,'people_here':self.people_here,'go':self.move,'search':self.search,'collect':self.collect,'ask':self.ask,'compare':self.compare,'request_access':self.request_access,'excavate':self.excavate,'submit_report':self.submit,'review_records':self.review_records,'record_note':self.record_note}
         try:
             if self.phase!='investigation':raise ValueError('The detective has not arrived')
             if self.ended:raise ValueError('Report already submitted')
@@ -478,7 +492,8 @@ class Town:
                            'You have not located that object here','That person is not here to answer','Identify the people present before addressing this person',
                            'You may present only records you possess','The ward door is bolted; obtain access from the caretaker','No visible route to that destination from here',
                            'Compare two to six acquired records','Locate disturbed ground and secure a digging tool first','Identify and speak to the person present first',
-                           'This person does not control that access','Report already submitted','Invalid argument type','Missing required argument','Unexpected argument','Invalid argument value'}
+                           'This person does not control that access','Report already submitted','Invalid argument type','Missing required argument','Unexpected argument','Invalid argument value',
+                           'You may review only records you possess','Keep notes concise and cite only acquired records'}
             message=str(exc)
             out={'error':message if message in public_errors else 'Action denied: invalid arguments, unavailable access or unmet precondition'}
         except (TypeError,KeyError):

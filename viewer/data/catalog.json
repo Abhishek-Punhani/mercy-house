@@ -1,0 +1,80 @@
+[
+  {
+    "id": "reference-inquest",
+    "kind": "reference",
+    "label": "The Mercy House Inquest",
+    "task_id": "mercy_inquest",
+    "seed": 7,
+    "description": "Scripted public-tool reference with cooperative fixture characters. This is not a learned or LLM success."
+  },
+  {
+    "id": "recorded-model-1",
+    "kind": "recorded-model",
+    "label": "The Last Witness \u00b7 model run 1",
+    "task_id": "last_witness",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success."
+  },
+  {
+    "id": "recorded-model-2",
+    "kind": "recorded-model",
+    "label": "A Borrowed Signature \u00b7 model run 2",
+    "task_id": "borrowed_signature",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: step_cap. The verifier withheld success."
+  },
+  {
+    "id": "recorded-model-3",
+    "kind": "recorded-model",
+    "label": "A Borrowed Signature \u00b7 model run 3",
+    "task_id": "borrowed_signature",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+  },
+  {
+    "id": "recorded-model-4",
+    "kind": "recorded-model",
+    "label": "A Borrowed Signature \u00b7 model run 4",
+    "task_id": "borrowed_signature",
+    "seed": 7,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+  },
+  {
+    "id": "recorded-model-5",
+    "kind": "recorded-model",
+    "label": "The Last Witness \u00b7 model run 5",
+    "task_id": "last_witness",
+    "seed": 19,
+    "description": "Actual API detective crime-scene run. Termination: failure. The verifier withheld success."
+  },
+  {
+    "id": "rl-statement_review",
+    "kind": "selector-checkpoint",
+    "label": "Statement Review \u00b7 trained selector",
+    "task_id": "checkpoint-statement_review",
+    "seed": 671002,
+    "model": "Frozen CPU selector + API proposer",
+    "max_steps": 10,
+    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate."
+  },
+  {
+    "id": "rl-navigation",
+    "kind": "selector-checkpoint",
+    "label": "Navigation \u00b7 trained selector",
+    "task_id": "checkpoint-navigation",
+    "seed": 671003,
+    "model": "Frozen CPU selector + API proposer",
+    "max_steps": 10,
+    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate."
+  },
+  {
+    "id": "rl-forgery",
+    "kind": "selector-checkpoint",
+    "label": "Forgery \u00b7 trained selector",
+    "task_id": "checkpoint-forgery",
+    "seed": 671000,
+    "model": "Frozen CPU selector + API proposer",
+    "max_steps": 10,
+    "description": "Actual frozen-selector evaluation with live character calls, starting at a skill checkpoint with prior acquired material. Exercise reward and broader Town score are separate."
+  }
+]

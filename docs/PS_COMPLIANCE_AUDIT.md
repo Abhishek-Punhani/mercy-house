@@ -25,7 +25,7 @@ Games & World Simulations directly fits; Other/Open is also allowed and uses the
 | APPEND_FILE exact suffix | Exact UTF-8 text preserved, including CRLF, in actual system prompt and full logged request. Missing/empty files reject before model calls; oversized files reject for context safety. |
 | MODE full/all/baselines | One chosen task / sequential all tasks / all baseline pairs. `all` is development batch mode, not a single finals slot. Unknown mode/task rejected. |
 | Pinned dependencies, no runtime download | Pinned Python base digest; standard library only; no pip dependencies or runtime install. |
-| Build <=3 minutes from empty cache | A new isolated no-cache builder completed four images in 23.208 seconds locally, including bootstrap/base retrieval. Organizer-machine timing remains unverified. |
+| Build <=3 minutes from empty cache | A new isolated no-cache builder completed four images in 13.474 seconds locally, including bootstrap/base retrieval. Organizer-machine timing remains unverified. |
 | Model-independent harness | Native, legacy and structured-text action parsing tested; no model-name behavior switches. Real API runs used one deployment, not unknown judge providers. |
 | One reply one step, malformed/plain consume step | Recovery tests include unreadable envelopes and raw non-JSON responses; feedback continues. Raw response retained where received. |
 | <=10 calls per reply | Further calls produce errors without execution; calls after terminal report also denied. |
@@ -45,10 +45,15 @@ Every normal detective reply has timestamp, step, seed, full model request, raw 
 
 Meaningful tests cover gradients and parameter updates; public-only features; seeded checkpoints; private planner/speaker isolation; source grounding; fabricated objects and source IDs; unsupported accusations; comparison composition; exact instruction suffix; malformed replies; multi-call limits; forced end; total model timeout and explicit key-role configuration. A real container probe checks shell access, blocked internet, denied orchestration, absent private files, forged proof receiving zero and valid public proof receiving success.
 
-The final current suite has 76 town tests and 9 legacy regression tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
+The final current suite has 86 town tests and 9 legacy regression tests, plus four Node state tests passing. Full crime-scene model runs are retained even when they fail. A scored reference success is not presented as a trained detective success, and skill-checkpoint success is not whole-case success. See the submission manifest for selected runs and source/version caveats.
 
 ## Submission status
 
 Local preparation includes `baseline-results/gate.json`, model-run logs, labeled success/failure trajectories, design/deck PDFs and a team-named reference archive. Verify the generated package using [SUBMISSION.md](SUBMISSION.md); that document is the packaging checklist. GitHub upload, repository naming, organizer access and form submission are the user’s responsibility by their explicit choice. Nothing is published automatically.
 
 Remaining scientific limits: one canonical plot; authored historical background; checkpoint rather than whole-case RL; fixture training and small stochastic transfer sample; unscored narrative; no direct measurement of internal grief/ego; incomplete ghost/lifetime mechanics; no universal security or winning guarantee. These are disclosed rather than hidden behind high checkpoint scores.
+
+
+## Story viewer update
+
+The optional local viewer now provides original vector scenes and mascots, real dialogue, acquired evidence, live provider setup, public SSE events and labeled replays. It excludes private memories and provider reasoning. `review_records` and `record_note` preserve acquired context without granting proof credit. Desktop/mobile browser checks and the real command-isolation probe pass; new source snapshots pass all five Compose gates. Two additional full API runs failed and are retained. See [STORY_VIEWER.md](STORY_VIEWER.md) and [UI_VALIDATION_RESULT.json](UI_VALIDATION_RESULT.json). The official headless command is unchanged.

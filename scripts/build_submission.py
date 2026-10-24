@@ -11,6 +11,7 @@ import re
 import shutil
 import subprocess
 import zipfile
+import base64
 
 ROOT = Path(__file__).resolve().parents[1]
 TEAM = 'Kasukabe Defence Force'
@@ -68,6 +69,8 @@ def main():
     if len(gates)<5 or not all(row['passed'] for row in gates): raise RuntimeError('All task gates required')
     live_good = sum(row['exercise_reward']==1 for row in live['rows'])
     live_caption = f'{live_good}/{len(live["rows"])} completed live checkpoint exercises; small unpaired smoke, not whole-case success.'
+    viewer_image=ROOT/'docs/viewer-stage.png'
+    viewer_slide=('<h1>Watch the actual inquiry</h1><div style="display:flex;align-items:center;gap:28px"><img alt="Actual scripted-reference dialogue in the Mercy House viewer" style="width:65%;max-height:420px;object-fit:contain" src="data:image/png;base64,'+base64.b64encode(viewer_image.read_bytes()).decode()+'"><div style="font-size:.9em"><p>Places change after movement.</p><p>Dialogue and evidence follow public observations.</p><p>Provider setup, live streaming and labeled replays.</p><p>No hidden character memories or invented thoughts.</p></div></div><p class="small">Shown: an actual scripted-reference replay. The UI labels it explicitly. New live runs still use strict scoring.</p>') if viewer_image.exists() else None
     rows = [('Untrained sampling','1 / 160','0.625%'),('Trained sampling','140 / 160','87.5%'),('Trained greedy','147 / 160','91.875%')]
     proof = 'R = clamp(C − 0.20 F − 0.10 U, 0, 1)'
     design = [
@@ -95,18 +98,35 @@ def main():
       '<h1>Evidence under stress</h1>'+table(['Check','Result'],[('Five task reference/no-op pairs','1.0 / 0.0 for every task'),('Town + legacy tests',str(tests['town_tests'])+' + '+str(tests['legacy_tests'])+' pass'),('Real-command isolation probe','Private routes denied; forged proof earns zero'),('Timeout recovery','Timed command followed by a valid action'),('Fresh no-cache local build',str(tests['cold_build_seconds'])+' seconds')])+'<p class="small">Sample success is explicitly scripted reference behavior. Failed model runs and raw logs are provided, not replaced with a staged score.</p>',
       '<h1>What this entry establishes</h1><p class="large">A reproducible world where supported reconstruction matters more than naming a culprit.</p><p>Runnable tools, private memories, grounded reward, observable failures and local RL learning.</p><p>Next: new causal plots and role assignments, repeated live transfer evaluations, controlled relationship interventions, and supernatural mechanics only when their causes are discoverable.</p><p class="small">Limits: one canonical case, fixture training, limited report semantics, no whole-case live success yet. Final NPC deployment and organizer-machine timing must be configured and verified.</p>'
     ]
+    if viewer_slide:deck[3]=viewer_slide
     render('design-doc',design)
     render('deck',deck,True)
+    archive=ROOT/(TEAM+'.zip')
+    retained=[]
+    if archive.exists():
+        with zipfile.ZipFile(archive) as previous:
+            old=json.loads(previous.read('MANIFEST.json'))
+            for item in old.get('model_runs',[]):
+                prefix=item['folder']+'/'
+                files={name[len(prefix):]:previous.read(name) for name in previous.namelist() if name.startswith(prefix)}
+                retained.append((item,files))
     folder = ROOT/'submission'/TEAM
     if folder.exists(): shutil.rmtree(folder)
     folder.mkdir(parents=True)
     shutil.copytree(ROOT/'baseline-results',folder/'baseline-results')
     run_summaries = []
-    for index, summary_path in enumerate(sorted((ROOT/'logs/public').glob('*/*/summary.json')),1):
+    for item,files in retained:
+        target=folder/'test-run-logs'/('model-run-'+str(len(run_summaries)+1))
+        for name,data in files.items():
+            path=target/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(data)
+        run_summaries.append({**item,'folder':str(target.relative_to(folder))})
+    paths=sorted((ROOT/'logs/public').glob('*/*/summary.json'))+sorted((ROOT/'logs/ui-runs').glob('*/public/*/*/summary.json'))
+    for summary_path in paths:
         run_folder = summary_path.parent
         if not (run_folder/'episode.jsonl').exists(): continue
-        target = folder/'test-run-logs'/('model-run-'+str(index))
-        for name in ('opening.json','run.json','episode.jsonl','summary.json'):
+        if any(r['original_run']==str(run_folder.relative_to(ROOT)) for r in run_summaries):continue
+        target = folder/'test-run-logs'/('model-run-'+str(len(run_summaries)+1))
+        for name in ('opening.json','run.json','episode.jsonl','summary.json','actions.jsonl'):
             if (run_folder/name).exists(): copy(run_folder/name,target/name)
         summary = json.loads(summary_path.read_text())
         run_summaries.append({'folder':str(target.relative_to(folder)),'original_run':str(run_folder.relative_to(ROOT)),
@@ -114,10 +134,10 @@ def main():
     if len(run_summaries)<3: raise RuntimeError('At least three actual model runs required')
     shutil.copytree(ROOT/'baseline-results/mercy_inquest/reference',folder/'sample-trajectories/success-reference')
     (folder/'sample-trajectories/success-reference/README.txt').write_text('Scripted public-tool reference with cooperative fixture characters. The script knows the authored solution. This proves a legal proof route; it is NOT an LLM or learned-policy success.\n')
-    failure = ROOT/run_summaries[-1]['original_run']
+    failure = folder/run_summaries[-1]['folder']
     shutil.copytree(failure,folder/'sample-trajectories/failure-model')
     (folder/'sample-trajectories/failure-model/README.txt').write_text('Actual API detective crime-scene run. Failure is retained; no success is inferred from narrative or a correct guess.\n')
-    for name in ('design-doc.pdf','deck.pdf','RL_TRAINING_REPORT.md','RL_TRAINING_RESULT.json','RL_LIVE_TRANSFER_RESULT.json','PS_COMPLIANCE_AUDIT.md','SECURITY.md','POLICY_AND_REWARD.md','VALIDATION_RESULT.json'):
+    for name in ('design-doc.pdf','deck.pdf','RL_TRAINING_REPORT.md','RL_TRAINING_RESULT.json','RL_LIVE_TRANSFER_RESULT.json','PS_COMPLIANCE_AUDIT.md','SECURITY.md','POLICY_AND_REWARD.md','VALIDATION_RESULT.json','STORY_VIEWER.md','UI_VALIDATION_RESULT.json','viewer-stage.png'):
         copy('docs/'+name,folder/name)
     copy('models/action-selector-final.json',folder/'rl/action-selector-final.json')
     for name in ('experiment.json','learning.jsonl','evaluation.json','exercise-gates.json'):
@@ -127,6 +147,8 @@ def main():
     for name in ('final-town-tests.txt','final-legacy-tests.txt','cold-build.json','fresh-clone-compose.json'):
         copy('logs/'+name,folder/'validation'/name)
     copy('logs/public/command-isolation-probe.json',folder/'validation/command-isolation-probe.json')
+    for name in ('ui-town-tests.txt','ui-legacy-tests.txt','viewer-state-tests.txt','viewer-browser-checks.json','viewer-form-checks.json','viewer-cold-build.json'):
+        copy('logs/'+name,folder/'validation'/name)
     for run in live['runs']:
         origin = ROOT/run
         for path in origin.rglob('*'):

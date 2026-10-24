@@ -1,0 +1,85 @@
+{
+  "town_tests": 86,
+  "legacy_tests": 9,
+  "node_state_tests": 4,
+  "browser": {
+    "passed": true,
+    "checks": [
+      "opening hides undiscovered NPCs",
+      "actual dialogue and evidence",
+      "evidence details",
+      "scripted reference label",
+      "actual model failure label",
+      "provider key absent from DOM",
+      "responsive mobile layout",
+      "RL choice probability is labeled",
+      "checkpoint reward separate from Town report score"
+    ],
+    "javascript_errors": []
+  },
+  "provider_form": {
+    "passed": true,
+    "checks": [
+      "form submission reaches backend validation",
+      "invalid endpoint creates no run",
+      "typed key cleared after rejection",
+      "no browser storage of keys"
+    ]
+  },
+  "command_isolation": {
+    "passed": true,
+    "checks": {
+      "real_command_to_public_world": true,
+      "no_keys_no_control_no_private_files_no_external_egress": true,
+      "public_gateway_cannot_reset_or_read_private_routes": true,
+      "timeout_then_continue": true,
+      "fake_workspace_evidence_cannot_score": true,
+      "legitimate_solution_through_real_commands": true
+    }
+  },
+  "cold_build": {
+    "exit_code": 0,
+    "seconds": 13.474,
+    "scope": "Current four runtime images, new isolated builder, no imported cache, --no-cache, local machine."
+  },
+  "frozen_source_compose_baselines": "passed all five reference/no-op pairs with no model calls",
+  "new_model_runs": [
+    {
+      "run_id": "df9ae0e971",
+      "seed": 24,
+      "task_id": "last_witness",
+      "termination": "failure",
+      "score": 0.0,
+      "false_findings": [
+        {
+          "actor": "vedant",
+          "predicate": "killed",
+          "object": "mira"
+        }
+      ],
+      "seconds": 324.752,
+      "source_note": "Development run in immutable Docker images; not a controlled paired policy comparison."
+    },
+    {
+      "run_id": "fdc7a4bb0b",
+      "seed": 23,
+      "task_id": "last_witness",
+      "termination": "failure",
+      "score": 0.0,
+      "false_findings": [
+        {
+          "actor": "dev",
+          "predicate": "killed",
+          "object": "mira"
+        }
+      ],
+      "seconds": 176.908,
+      "source_note": "Development run in immutable Docker images; not a controlled paired policy comparison."
+    }
+  ],
+  "limitations": [
+    "New model runs both failed. No whole-case performance improvement is established.",
+    "Raw provider reasoning and private NPC memories are excluded from viewer events.",
+    "Hosted multi-user deployment and materially different causal case families are not implemented."
+  ]
+}

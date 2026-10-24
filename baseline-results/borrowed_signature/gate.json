@@ -1,1 +1,1 @@
-{"task_id": "borrowed_signature", "seed": 7, "starting_hash": "1a5e288830327d4c55ac366cb62e99937dad1832a750e27e8f20598a7ab4fde5", "reference": 1.0, "noop": 0.0, "seconds": 0.03, "passed": true}
+{"task_id": "borrowed_signature", "seed": 7, "starting_hash": "1a5e288830327d4c55ac366cb62e99937dad1832a750e27e8f20598a7ab4fde5", "reference": 1.0, "noop": 0.0, "seconds": 0.028, "passed": true}

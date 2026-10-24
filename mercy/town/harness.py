@@ -8,10 +8,12 @@ import time
 from .io import append_log, write_json
 from .tools import schemas
 from . import model
+from mercy.rl.public import Notebook
 
 SYSTEM = ('You are Inspector Arun Mehra in November 1900. Your biography is your own remembered life. '
           'Investigate through the tools, choose your own leads, and distinguish observations from hearsay. '
           'Use the task scope and reporting contract in the opening. You have at most 40 replies and ten executed tool calls per reply. '
+          'A selective answer or refusal is not an alibi. Present acquired records explicitly with show, and use ordinary follow-up or reassurance when appropriate. '
           'Finish with submit_report and cite acquired record IDs. A personal connection is not evidence of a present act.')
 
 
@@ -95,6 +97,7 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
     system = instructions(root,initial.get('task',{}).get('scope') or initial.get('exercise',{}).get('instruction'))
     messages = [{'role': 'system', 'content': system}, {'role': 'user', 'content': json.dumps(initial, ensure_ascii=False)}]
     tools = schemas()
+    book = Notebook(initial)
     transport = transport or model.request
     start = time.monotonic()
     deadline = start + seconds
@@ -112,22 +115,27 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
         sent = None
         model_latency = None
         try:
-            messages.append({'role':'user','content':'Investigation budget: reply '+str(step)+' of '+str(min(40,steps))+', approximately '+str(max(0,int(deadline-time.monotonic())))+' seconds remain. '+('This is the final reply: submit your supported findings now and put unresolved matters in narrative.' if step==min(40,steps) else 'Keep the selected task scope in view and leave time to submit your report.')})
+            if hasattr(world,'reply_count'):world.reply_count=step
+            index=[{'record_id':r['record_id'],'label':r.get('label') or ('account from '+r['person'] if r.get('person') else 'comparison' if 'compared' in r else 'notebook' if 'hypotheses' in r else 'record')} for r in list(book.records.values())[-24:]]
+            messages.append({'role':'user','content':'Investigation budget: reply '+str(step)+' of '+str(min(40,steps))+', approximately '+str(max(0,int(deadline-time.monotonic())))+' seconds remain. '+('This is the final reply: submit your supported findings now and put unresolved matters in narrative.' if step==min(40,steps) else 'Keep the selected task scope in view and leave time to submit your report. You may make several sequential tool calls in one reply. Use review_records to revisit acquired material and record_note for a concise stated plan or hypothesis.')+'\nSelected scope: '+initial.get('task',{}).get('scope','')+'\nYour acquired casebook index: '+json.dumps(index,ensure_ascii=False)})
             fit_context(messages, tools)
             sent = deepcopy(messages)
             model_tick = time.monotonic()
+            if hasattr(world,'model_wait'):world.model_wait(step)
             try:
                 raw, wire = transport(sent, tools, timeout=min(60, deadline - time.monotonic()))
             finally:
                 model_latency = round((time.monotonic() - model_tick) * 1000, 3)
             try:
                 reply, calls = parse(raw, step)
+                if hasattr(world,'model_note'):world.model_note(reply.get('content'),step)
                 messages.append(reply)
                 if not calls:
                     errors.append('No tool call; step consumed')
                     messages.append({'role': 'user', 'content': 'No action was taken. Use a listed tool or submit_report.'})
                 for index, call in enumerate(calls):
                     fn = call['function']
+                    action = {'tool':fn['name'],'args':{}}
                     try:
                         args = json.loads(fn['arguments'])
                         action = {'tool': fn['name'], 'args': args}
@@ -147,6 +155,7 @@ def run(world, folder, steps=40, transport=None, root=None, seconds=600):
                     except (TimeoutError, OSError):
                         result = {'error': 'Tool timed out or became unavailable; use another action'}
                     shown = bounded_result(result)
+                    book.observe(action,shown)
                     results.append(shown)
                     if 'error' in shown:
                         errors.append(shown['error'])

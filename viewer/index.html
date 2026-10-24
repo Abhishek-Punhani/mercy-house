@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="mercy-csrf" content="__CSRF_TOKEN__">
+  <meta name="description" content="Watch an evidence-grounded detective investigation unfold in a snowbound mountain town, 1900.">
+  <title>Mercy House — The living casebook</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2313191a'/%3E%3Cpath d='M11 32V16a9 9 0 0118 0v16M16 32V17a4 4 0 018 0v15' fill='none' stroke='%23d3b278' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="Mercy House home"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M6 43V18a14 14 0 0128 0v25M13 43V19a7 7 0 0114 0v24M20 6v10M10 9l6 9M30 9l-6 9"/></svg><span>MERCY HOUSE<small>THE LIVING CASEBOOK</small></span></a>
+    <div class="masthead-center"><span class="tiny-star">✦</span> BHAIRAV’S HOLLOW <span>·</span> NOVEMBER, 1900</div>
+    <div class="masthead-actions"><button class="quiet-button" id="library-button">Recorded cases</button><button class="primary-button" id="new-button"><span aria-hidden="true">＋</span> New investigation</button></div>
+  </header>
+  <div class="case-strip"><div><span class="status-dot" id="status-dot"></span><span class="badge" id="run-kind">RECORDED REFERENCE</span><span id="case-title">The Mercy House Inquest</span></div><span id="provider-label">Public-tool reconstruction</span></div>
+  <main class="workspace">
+    <aside class="notebook panel">
+      <div class="section-heading"><span class="eyebrow">THE INVESTIGATOR</span><span class="gold-symbol">♧</span></div>
+      <div class="detective-card"><div id="detective-portrait" class="detective-portrait"></div><div><h1>Arun Mehra</h1><p>Inspector · district constabulary</p><button class="text-button" id="biography-button">Read his remembered life ↗</button></div></div>
+      <div class="activity-box"><span class="eyebrow">CURRENT ACTIVITY</span><p id="activity-text">At the crime scene</p><div class="small" id="activity-detail">Waiting for the investigation to begin.</div></div>
+      <div id="selector-panel" class="selector-panel hidden"><span class="eyebrow">TRAINED ACTION SELECTOR</span><p id="selector-choice"></p><meter id="selector-probability" min="0" max="1" value="0"></meter><small>Probability of selecting this action, not confidence in anyone’s guilt.</small></div>
+      <div class="section-heading notebook-heading"><h2>Investigation notes</h2><span class="tiny-label">STATED, NOT VERIFIED</span></div>
+      <div id="decision-note" class="decision-note">No decision note recorded yet. The detective’s private reasoning is not shown.</div>
+      <div id="hypotheses" class="hypotheses"></div>
+      <div class="known-heading"><span class="eyebrow">WHAT HAS BEEN OBSERVED</span></div>
+      <div class="stats"><div><strong id="record-count">0</strong><span>records</span></div><div><strong id="people-count">0</strong><span>people</span></div><div><strong id="place-count">1</strong><span>places</span></div></div>
+      <button class="outline-button" id="scope-button">Read the assignment <span>↗</span></button>
+      <p class="boundary-note"><span>◈</span> An observation is not a verdict.<br>Hidden memories stay with their owner.</p>
+    </aside>
+    <section class="story-column">
+      <section class="stage" aria-label="Investigation story scene">
+        <div id="backdrop" class="backdrop" aria-hidden="true"></div><div class="stage-vignette" aria-hidden="true"></div>
+        <div class="stage-top"><div class="location-heading"><span class="eyebrow">YOU ARE HERE</span><h2 id="location-name">Mercy House archive</h2></div><div class="scene-counter"><span id="reply-count">PROLOGUE</span><span class="observer-label">READ-ONLY OBSERVER</span></div></div>
+        <div class="scene-description"><p id="scene-description">The lamps have been turned up too high.</p><button class="text-button" id="scene-button">Read the room ↗</button></div>
+        <div class="stage-atmosphere" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div id="occupants" class="occupants"></div>
+        <div id="conversation" class="conversation hidden" aria-live="polite"><div class="dialogue-bubble detective-bubble"><span class="eyebrow">INSPECTOR MEHRA</span><p id="question-text"></p></div><div class="dialogue-bubble witness-bubble"><span class="eyebrow" id="witness-name"></span><p id="answer-text"></p><span class="dialogue-basis" id="dialogue-basis"></span></div></div>
+        <div class="stage-bottom"><span id="stage-caption">The town is waiting.</span><button id="stop-button" class="danger-button hidden">Stop live run</button></div>
+        <div id="arrival-card" class="arrival-card"><span class="eyebrow">A HOMECOMING. AN UNFINISHED HISTORY.</span><p>Every account has a witness.<br>Every conclusion needs a source.</p><button class="primary-button" id="begin-button">Open the case <span>→</span></button><small id="arrival-label">A recorded public-tool reference. No model calls.</small></div>
+      </section>
+      <section class="player panel" aria-label="Replay controls"><div class="player-controls"><button id="back-button" class="icon-button" aria-label="Previous event">↶</button><button id="play-button" class="play-button" aria-label="Play recorded investigation">▶</button><button id="next-button" class="icon-button" aria-label="Next event">↷</button><span class="play-label" id="play-label">Recorded replay</span><div class="player-spacer"></div><label class="speed-label">Speed <select id="speed-select" aria-label="Replay speed"><option value="1">1×</option><option value="2" selected>2×</option><option value="4">4×</option></select></label><span class="event-count" id="event-count">0 / 0</span></div><input type="range" id="seek" min="0" max="1" value="0" aria-label="Seek through investigation"><div class="player-footer"><span id="playback-note">Recorded actions · actual tool observations</span><button class="text-button" id="end-button">Go to report →</button></div></section>
+      <section class="timeline panel"><div class="section-heading"><div><span class="eyebrow">THE INQUIRY UNFOLDS</span><h2>Chain of events</h2></div><span class="tiny-label" id="timeline-meta">NO EVENTS YET</span></div><div id="timeline-events" class="timeline-events"><p class="empty-copy">Movement, discoveries and conversations will appear here.</p></div></section>
+    </section>
+    <aside class="evidence-panel panel"><div class="section-heading"><div><span class="eyebrow">ONLY WHAT WAS ACQUIRED</span><h2>The evidence tray</h2></div><span class="gold-symbol">⌕</span></div><div class="filter-tabs" role="group" aria-label="Filter acquired records"><button data-filter="all" class="active">All</button><button data-filter="material">Material</button><button data-filter="accounts">Accounts</button></div><div id="evidence-list" class="evidence-list"><div class="evidence-empty"><span>▱</span><h3>Nothing on the table. Yet.</h3><p>A search may uncover a letter.<br>A question may change its meaning.</p></div></div><div class="evidence-footnote">The tray contains acquired records only. A paper’s contents may still be false.</div></aside>
+  </main>
+  <footer class="site-footer"><span>✦ MERCY HOUSE</span><span>Evidence-grounded investigation · independent character agents</span><button class="text-button" id="about-button">About this run</button></footer>
+  <div id="toast" role="status" class="toast hidden"></div>
+  <dialog id="detail-dialog" class="detail-dialog"><button class="close-dialog" aria-label="Close dialog">×</button><span class="eyebrow" id="detail-kicker">FROM THE CASEBOOK</span><h2 id="detail-title"></h2><div id="detail-body" class="detail-body"></div></dialog>
+  <dialog id="library-dialog" class="library-dialog"><button class="close-dialog" aria-label="Close recorded cases">×</button><span class="eyebrow">THE REPLAY LIBRARY</span><h2>Choose a recorded inquiry</h2><p class="modal-intro">Actual observations, replayed in the story stage. Scripted references and API model runs are labeled separately.</p><div id="library-list"></div></dialog>
+  <dialog id="settings-dialog" class="settings-dialog"><button class="close-dialog" aria-label="Close run configuration">×</button><span class="eyebrow">A NEW INVESTIGATION</span><h2>Bring your detective.</h2><p class="modal-intro">Connect an OpenAI-compatible model. The town’s character agents use the server’s separate configuration.</p><form id="run-form"><label>Investigation<select id="task-input" name="task"></select></label><div class="form-row"><label>Model deployment<input id="model-input" required maxlength="160" autocomplete="off" placeholder="Your model deployment"></label><label>Case seed<input id="seed-input" type="number" value="7" step="1" required></label></div><label>HTTPS base URL<input id="endpoint-input" type="url" required autocomplete="off" placeholder="https://your-provider.example/v1"></label><label class="checkbox-label"><input id="configured-key-input" type="checkbox"> Use the key already configured on this machine</label><label id="key-field">Detective API key<input id="key-input" type="password" autocomplete="off" placeholder="Held for this run; never saved by the viewer"></label><div class="configuration-status" id="configuration-status"></div><p class="small">Starting a live run calls your model API. The task’s reference/no-op checks run first. Maximum: 40 model replies and 10 minutes after the first request. Browser playback does not pause the agent.</p><div id="form-error" role="alert" class="form-error"></div><button type="submit" class="primary-button" id="start-button">Begin live investigation <span>→</span></button></form></dialog>
+</body></html>

@@ -36,3 +36,8 @@ On the organizer machine configure the judged detective’s `MODEL`, `API_KEY`, 
 Current gates pass 1/0 for all five tasks. The final CPU policy trains 20,000 episodes and scores 147/160 greedy offline checkpoint trials; live checkpoint transfer is 2/5, with an interrupted partial attempt disclosed. Full crime-scene API detective runs have not achieved success. The reference success proves an authored legal proof route under cooperative fixture characters. It does not establish that a live character always cooperates.
 
 A fresh isolated no-cache builder completed four images in 23.208 seconds on this machine. A fresh local Git clone also passed the exact Compose baseline command in 5.192 seconds with Docker cache present. Organizer-machine timing remains to verify. Container boundary probes and current tests pass; no universal jailbreak or winning guarantee is made. The package is reviewable and runnable locally, but reliable live solving and additional causal case families remain the main research improvements.
+
+
+## Viewer update
+
+The source now includes the optional local story viewer (`python -m mercy.viewer.server`, localhost:8787). It is independent of the headless judge command. The reference archive includes its screenshot, validation evidence and two additional failed API runs. Current runtime tests: 86 town + 9 legacy; viewer state tests: 4; nine browser checks and the provider-form failure path pass. A new no-cache build takes 13.474 seconds locally. The original 23.208-second result above describes the pre-viewer source. No live solving improvement is claimed.

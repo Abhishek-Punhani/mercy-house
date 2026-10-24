@@ -36,6 +36,12 @@ empty findings array if no material conclusion is established. The selector can
 choose to continue investigating instead. Include at least one investigation option.
 An empty report gives up the exercise. Do not infer a killer from ownership of a
 garment or a rumor; identify stronger testimony or independent traces.'''
+PROPOSER_SYSTEM += ''' A selective answer is not an alibi. Present relevant acquired
+record IDs through ask.show, and consider a precise follow-up or reassurance.
+Use review_records to recover your own acquired text rather than inventing it.
+For physical matched/handwriting_consistent findings, both endpoints are acquired
+physical object IDs; a person-to-document authorship finding instead uses forged.
+Cite the comparison receipts you actually rely on, as well as original records.'''
 
 
 def validate_candidates(value):
